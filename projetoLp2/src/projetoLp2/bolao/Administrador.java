@@ -9,7 +9,12 @@ import java.util.GregorianCalendar;
 public class Administrador extends Usuario {
 
 	Partida[] partidas = new Partida[64];
-
+	
+	FileInputStream fin;
+	FileOutputStream fon;
+	ObjectInputStream ois;
+	ObjectOutputStream oos;
+	
 	public Administrador(String username, String senha) {
 		super(username, senha);
 	}
@@ -19,18 +24,11 @@ public class Administrador extends Usuario {
 		
 		Partida partida = new Partida(nomeTime1, nomeTime2, data);
 		try {
-			FileInputStream fin = new FileInputStream("partidas.txt");
-			FileOutputStream fon = new FileOutputStream("partidas.txt");
-			ObjectInputStream ois = new ObjectInputStream(fin);
-			ObjectOutputStream oos = new ObjectOutputStream(fon);
-			partidas = (Partida[]) ois.readObject();
+			getPartidasFromFileText();
+			partidas[indicePartida] = partida;		
+			oos.writeObject(partidas);	
+			closeFileText();
 			
-			partidas[indicePartida] = partida;
-			
-			oos.writeObject(partidas);
-			
-			ois.close();
-			oos.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -42,18 +40,11 @@ public class Administrador extends Usuario {
 			int resultadoTime2) throws Exception {
 		
 		try {
-			FileInputStream fin = new FileInputStream("partidas.txt");
-			FileOutputStream fon = new FileOutputStream("partidas.txt");
-			ObjectInputStream ois = new ObjectInputStream(fin);
-			ObjectOutputStream oos = new ObjectOutputStream(fon);
-			partidas = (Partida[]) ois.readObject();
-			
-			partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
-			
+			getPartidasFromFileText();
+			partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);	
 			oos.writeObject(partidas);
+			closeFileText();
 			
-			ois.close();
-			oos.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -62,7 +53,7 @@ public class Administrador extends Usuario {
 	}
 
 	private void atualizaRanking() {
-		// TODO Auto-generated method stub
+		//nem ideia de como se pega a lista de usuarios
 		
 	}
 
@@ -72,4 +63,29 @@ public class Administrador extends Usuario {
 		// adiciona pos pontos
 		
 	} 
+	
+	private void getPartidasFromFileText() {
+		
+		try {
+		    fin = new FileInputStream("partidas.txt");ois.close();
+			oos.close();
+			fon = new FileOutputStream("partidas.txt");
+			ois = new ObjectInputStream(fin);
+			oos = new ObjectOutputStream(fon);
+			partidas = (Partida[]) ois.readObject();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+	}
+	
+	private void closeFileText(){
+
+		try {
+			ois.close();
+			oos.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 }
