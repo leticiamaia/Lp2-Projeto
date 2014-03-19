@@ -7,30 +7,40 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JMenuBar;
+
 import java.awt.Label;
+
 import javax.swing.JPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Choice;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.JTabbedPane;
 
 public class TelaDoUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -84,27 +94,39 @@ public class TelaDoUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox.setToolTipText("\\ijrery");
-		comboBox.setBounds(385, 238, 150, 27);
-		comboBox.addItem("1ª fase");
-		comboBox.addItem("2ª fase");
-		comboBox.addItem("3ª fase");
+		comboBox.setBounds(431, 150, 150, 27);
+		comboBox.addItem("Primeira fase");
+		comboBox.addItem("Oitavas de Final");
+		comboBox.addItem("Quartas de Final");
+		comboBox.addItem("Semi-final");
+		comboBox.addItem("Final");
 		contentPane.add(comboBox);
 		
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
 		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
-		lblBoloCopaDo.setBounds(363, 64, 499, 91);
+		lblBoloCopaDo.setBounds(528, 11, 499, 91);
 		contentPane.add(lblBoloCopaDo);
 		
-		JLabel lblSelecioneAFase = new JLabel("Selecione a fase:");
-		lblSelecioneAFase.setBounds(281, 244, 112, 14);
+		JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA deseja apostar:");
+		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSelecioneAFase.setBounds(85, 150, 358, 23);
 		contentPane.add(lblSelecioneAFase);
 		
-		table = new JTable();
-		table.setBounds(316, 297, 359, 169);
-		contentPane.add(table);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/flag_brazil.png")));
+		lblNewLabel.setBounds(399, 11, 103, 99);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnVisualizaRanking = new JButton("Visualizar Ranking");
+		btnVisualizaRanking.setBounds(1021, 229, 163, 37);
+		contentPane.add(btnVisualizaRanking);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(85, 195, 861, 434);
+		contentPane.add(panel);
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
