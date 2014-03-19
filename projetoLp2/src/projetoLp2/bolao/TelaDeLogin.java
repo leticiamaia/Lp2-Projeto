@@ -107,9 +107,7 @@ public class TelaDeLogin extends JFrame {
 		contentPane.add(bolaoCopa2014);
 
 		JLabel fuleco = new JLabel("");
-		fuleco.setIcon(new ImageIcon("projetoLp2/docs/tatu-bola.png")); // essa parte vocês terão que salvar a imagem 
-		// no pc de vcs, e trocar o link (vou 
-		//passar pra voces, ainda nao sei como faz pra tornar a imagem 'universal' :\
+		fuleco.setIcon(new ImageIcon(this.getClass().getResource("docs/tatu-bola.png")));
 		fuleco.setBounds(-44, 11, 361, 272);
 		contentPane.add(fuleco);
 		
