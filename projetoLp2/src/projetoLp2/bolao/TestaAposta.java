@@ -37,7 +37,6 @@ public class TestaAposta {
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 			Assert.assertTrue(aposta.getPalpiteGolsTime1() == 1);
 			Assert.assertTrue(aposta.getPalpiteGolsTime2() == 2);
-			Assert.assertTrue(aposta.palpiteGanhador() == -1);
 		} catch (Exception e) {
 			Assert.fail();
 		}

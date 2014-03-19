@@ -35,7 +35,7 @@ public abstract class Aposta {
 	}
 	
 	//Metodo para ajuda no resultado
-	protected int palpiteGanhador(){
+	private int palpiteGanhador(){
 		Integer p1 = palpiteGolsTime1;
 		Integer p2 = palpiteGolsTime2;
 		

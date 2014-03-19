@@ -19,6 +19,7 @@ public class Jogador extends Usuario {
 		totalPontos += resultadoAposta;
 	}
 	
+	//nao precisa tirar do arquvo.
 	public Aposta getAposta(int indiceAposta){
 		Aposta aposta = null;
 		try {
