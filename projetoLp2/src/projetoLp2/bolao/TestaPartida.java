@@ -97,4 +97,38 @@ public class TestaPartida {
 			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testaCompareTo(){
+		try {
+			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
+			partida.resultado();
+		} catch (Exception e) {
+			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
+		}
+		
+		try {
+			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
+			partida.setGols(1, 1);
+			Assert.assertTrue(partida.resultado() == 0);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+		
+		try {
+			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
+			partida.setGols(2, 1);
+			Assert.assertTrue(partida.resultado() == 1);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+		
+		try {
+			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
+			partida.setGols(1, 2);
+			Assert.assertTrue(partida.resultado() == -1);
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
 }

@@ -58,5 +58,12 @@ public class Partida {
 			throw new Exception("Jogo ainda não foi realizado!");
 		return golsTime2;
 	}
-	
+
+	//adicionei este metodo para facilitar na avaliaçao da aposta
+	public int resultado() throws Exception{
+		Integer g1 = getGolsTime1();
+		Integer g2 = getGolsTime2();
+		
+		return g1.compareTo(g2);
+	}
 }
