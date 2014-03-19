@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Window.Type;
 
 public class TelaDeLogin extends JFrame {
 
@@ -38,11 +39,14 @@ public class TelaDeLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeLogin() {
+		setResizable(false);
 		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); // título da janela
 		setBackground(Color.WHITE); //cor do fundo
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 759, 448); // localização e tamanho da janela
 		contentPane = new JPanel();
+		contentPane.setAlignmentX(CENTER_ALIGNMENT);
+		contentPane.setAlignmentY(CENTER_ALIGNMENT);
 		contentPane.setBackground(new Color(255, 255, 255)); //cor do fundo do painel em RGB code
 		setContentPane(contentPane);
 		contentPane.setLayout(null); // sem layout = é possivel posicionar botões em qualquer área do painel
