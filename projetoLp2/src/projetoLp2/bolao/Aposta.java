@@ -34,11 +34,17 @@ public abstract class Aposta {
 		this.palpiteGolsTime2 = palpiteGolsTime2;
 	}
 	
+	//Metodo para ajuda no resultado
 	protected int palpiteGanhador(){
 		Integer p1 = palpiteGolsTime1;
 		Integer p2 = palpiteGolsTime2;
 		
 		return p1.compareTo(p2);
+	}
+	
+	//Metodo usado pelo administrador
+	public void mudaPlacarDaPartida(int golsTime1, int golsTime2) throws Exception{
+		partida.setGols(golsTime1, golsTime2);
 	}
 	
 	public int resultadoAposta() throws Exception{
