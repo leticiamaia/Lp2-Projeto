@@ -1,11 +1,16 @@
 package projetoLp2.bolao;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class TelaDeLogin extends JFrame {
 
@@ -24,7 +29,7 @@ public class TelaDeLogin extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				} //09
 			}
 		});
 	}
@@ -53,13 +58,13 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(recebeSenha);
 		recebeSenha.setColumns(10);
 		
-		JTextPane login = new JTextPane(); // cria uma 'área de texto'
+		JLabel login = new JLabel(); // cria uma 'área de texto'
 		login.setBounds(104, 36, 49, 20);
 		quadroDeLogin.add(login);
 		login.setText("Login:"); // texto 'impresso'
 		login.setBackground(new Color(240, 240, 240));
 		
-		JTextPane senha = new JTextPane();
+		JLabel senha = new JLabel();
 		senha.setBounds(104, 67, 43, 20);
 		quadroDeLogin.add(senha);
 		senha.setText("Senha: ");
@@ -85,25 +90,30 @@ public class TelaDeLogin extends JFrame {
 			}
 		});
 		
-		JTextPane textoPrincipal = new JTextPane(); // cria o texto principal ("Bolão Copa do Mundo 2014)
-		textoPrincipal.setFont(new Font("BlackJack", Font.PLAIN, 45)); // define a fonte e o tamanho do texto
-		//aqui eu acho que teremos que mudar a fonte, pq se o pc não tiver a fonte BlackJack, o texto não fica daquele jeito.
-		textoPrincipal.setText("Bol\u00E3o Copa do Mundo 2014");
-		textoPrincipal.setBounds(230, 63, 513, 73);
-		contentPane.add(textoPrincipal);
+	/*	File imagemFuleco = new File("C:\\Users\\M\\Desktop\\Projeto LP2\\tatu-bola.png");
+		try {
+			   BufferedImage fuleco = ImageIO.read(imagemFuleco);
+			} catch (IOException e) {
+			}*/
 		
-		JTextPane textoBoasVindas = new JTextPane(); 
-		textoBoasVindas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textoBoasVindas.setText("Seja bem vindo!");
-		textoBoasVindas.setBounds(412, 136, 134, 48);
-		contentPane.add(textoBoasVindas);
+		JLabel boasVindas = new JLabel("Seja bem vindo!");
+		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		boasVindas.setBounds(409, 135, 133, 19);
+		contentPane.add(boasVindas);
 		
+		JLabel bolaoCopa2014 = new JLabel("Bol\u00E3o Copa do Mundo 2014");
+		bolaoCopa2014.setFont(new Font("Segoe Print", Font.PLAIN, 32));
+		bolaoCopa2014.setBounds(241, 66, 525, 58);
+		contentPane.add(bolaoCopa2014);
+
 		JLabel fuleco = new JLabel("");
-		fuleco.setIcon(new ImageIcon("C:\\Users\\M\\Desktop\\Projeto LP2\\tatu-bola.png")); // essa parte vocês terão que salvar a imagem 
+		fuleco.setIcon(new ImageIcon("projetoLp2/docs/tatu-bola.png")); // essa parte vocês terão que salvar a imagem 
 		// no pc de vcs, e trocar o link (vou 
 		//passar pra voces, ainda nao sei como faz pra tornar a imagem 'universal' :\
 		fuleco.setBounds(-44, 11, 361, 272);
 		contentPane.add(fuleco);
+		
+		
 		
 
 		
