@@ -38,4 +38,8 @@ public class Jogador extends Usuario {
 		
 		return aposta;
 	}
+
+	public int getPontos() {
+		return totalPontos;
+	}
 }

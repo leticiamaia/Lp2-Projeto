@@ -4,7 +4,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import org.omg.CORBA.portable.IndirectionException;
 
 public class Administrador extends Usuario {
 
@@ -24,7 +28,7 @@ public class Administrador extends Usuario {
 		
 		Partida partida = new Partida(nomeTime1, nomeTime2, data);
 		try {
-			getPartidasFromFileText();
+			getObjectFromFileText("partidas.txt");
 			partidas[indicePartida] = partida;		
 			oos.writeObject(partidas);	
 			closeFileText();
@@ -40,7 +44,8 @@ public class Administrador extends Usuario {
 			int resultadoTime2) throws Exception {
 		
 		try {
-			getPartidasFromFileText();
+			getObjectFromFileText("partidas.txt");
+			partidas = (Partida[]) ois.readObject();
 			partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);	
 			oos.writeObject(partidas);
 			closeFileText();
@@ -53,26 +58,46 @@ public class Administrador extends Usuario {
 	}
 
 	private void atualizaRanking() {
-		//nem ideia de como se pega a lista de usuarios
-		
+		List <Jogador> jogadores;
+		try {
+			getObjectFromFileText("usuarios.txt");
+			jogadores = (List<Jogador>)ois.readObject();
+			Collections.sort(jogadores, new OrdenaJogadores());
+			closeFileText();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	private void atualizaPontucao(int indicePartida) {
-		//para cada usuario em main
-			//compara a pontuacao da partida
-		// adiciona pos pontos
+		
+			List <Jogador> jogadores;
+			try {
+				getObjectFromFileText("usuarios.txt");
+				jogadores = (List<Jogador>)ois.readObject();
+				for (Jogador j: jogadores) {
+					Aposta aposta = j.getAposta(indicePartida);
+					//discutir, melhor passar a partida do que abrir o arquivo novamente
+				}
+				closeFileText();
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		
 	} 
 	
-	private void getPartidasFromFileText() {
+	private void getObjectFromFileText(String fileText) {
 		
 		try {
-		    fin = new FileInputStream("partidas.txt");ois.close();
+		    fin = new FileInputStream(fileText);
+		    ois.close();
 			oos.close();
-			fon = new FileOutputStream("partidas.txt");
+			fon = new FileOutputStream(fileText);
 			ois = new ObjectInputStream(fin);
 			oos = new ObjectOutputStream(fon);
-			partidas = (Partida[]) ois.readObject();
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
