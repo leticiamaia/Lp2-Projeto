@@ -37,6 +37,8 @@ import java.awt.Choice;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JTabbedPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaDoUsuario extends JFrame {
 
@@ -97,7 +99,7 @@ public class TelaDoUsuario extends JFrame {
 		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox.setToolTipText("\\ijrery");
-		comboBox.setBounds(431, 150, 150, 27);
+		comboBox.setBounds(527, 149, 201, 27);
 		comboBox.addItem("Primeira fase");
 		comboBox.addItem("Oitavas de Final");
 		comboBox.addItem("Quartas de Final");
@@ -107,26 +109,38 @@ public class TelaDoUsuario extends JFrame {
 		
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
 		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
-		lblBoloCopaDo.setBounds(528, 11, 499, 91);
+		lblBoloCopaDo.setBounds(507, 11, 499, 91);
 		contentPane.add(lblBoloCopaDo);
 		
 		JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA deseja apostar:");
 		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSelecioneAFase.setBounds(85, 150, 358, 23);
+		lblSelecioneAFase.setBounds(181, 149, 358, 23);
 		contentPane.add(lblSelecioneAFase);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/flag_brazil.png")));
-		lblNewLabel.setBounds(399, 11, 103, 99);
+		lblNewLabel.setBounds(378, 11, 103, 99);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnVisualizaRanking = new JButton("Visualizar Ranking");
-		btnVisualizaRanking.setBounds(1021, 229, 163, 37);
+		btnVisualizaRanking.setBounds(1021, 219, 163, 47);
 		contentPane.add(btnVisualizaRanking);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(85, 195, 861, 434);
+		panel.setBounds(85, 195, 861, 422);
 		contentPane.add(panel);
+		
+		JButton btnNewButton = new JButton("Visualizar Apostas");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(1021, 293, 163, 46);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(1021, 363, 163, 47);
+		contentPane.add(btnNewButton_1);
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
