@@ -11,6 +11,11 @@ import java.util.List;
 
 public class Administrador extends Usuario {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2088632941739437245L;
+
 	Partida[] partidas = new Partida[64];
 
 	FileInputStream fin;

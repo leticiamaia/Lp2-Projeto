@@ -1,8 +1,14 @@
 package projetoLp2.bolao;
 
-public abstract class Usuario {
+import java.io.Serializable;
+
+public abstract class Usuario implements Serializable{
 	
-	 protected String username;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 493334626607355526L;
+	protected String username;
 	 protected String senha;
 	 
 	public void mudaSenha(String novaSenha){
@@ -22,6 +28,12 @@ public abstract class Usuario {
 	
 	public String getUsername() {
 		return username;
+	}
+	
+	public boolean login(String usernameInput, String senhaInput) {
+		if (usernameInput.equals(username) && senhaInput == senha) {
+			return true;
+		} else return false;
 	}
 	
 }

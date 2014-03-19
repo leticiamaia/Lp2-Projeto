@@ -1,7 +1,13 @@
 package projetoLp2.bolao;
 
-public abstract class Aposta {
+import java.io.Serializable;
 
+public abstract class Aposta implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1431163718698165587L;
 	protected Partida partida;
 	protected int palpiteGolsTime1, palpiteGolsTime2, valorPontuacao;
 	
@@ -40,11 +46,6 @@ public abstract class Aposta {
 		Integer p2 = palpiteGolsTime2;
 		
 		return p1.compareTo(p2);
-	}
-	
-	//Metodo usado pelo administrador
-	public void mudaPlacarDaPartida(int golsTime1, int golsTime2) throws Exception{
-		partida.setGols(golsTime1, golsTime2);
 	}
 	
 	public int resultadoAposta() throws Exception{

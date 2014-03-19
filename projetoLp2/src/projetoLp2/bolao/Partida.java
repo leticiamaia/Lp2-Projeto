@@ -1,10 +1,12 @@
 package projetoLp2.bolao;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-public class Partida {
+public class Partida implements Serializable{
 
+	private static final long serialVersionUID = -2980340733258351497L;
 	//Usei o GregorianCalendar, pois quase todos os metodos de Date estao obsoletos.
 	GregorianCalendar data;
 	String time1, time2;

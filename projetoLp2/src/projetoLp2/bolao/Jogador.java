@@ -7,6 +7,10 @@ import java.io.ObjectOutputStream;
 
 public class Jogador extends Usuario {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 776610356730575144L;
 	private Aposta[] apostas = new Aposta[64];
 	private int totalPontos = 0;
 	
