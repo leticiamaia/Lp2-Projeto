@@ -1,22 +1,23 @@
 package projetoLp2.bolao;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.awt.Window.Type;
+
 
 public class TelaDeLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField recebeSenha;
+	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
 
 	/**
@@ -45,8 +46,6 @@ public class TelaDeLogin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 759, 448); // localização e tamanho da janela
 		contentPane = new JPanel();
-		contentPane.setAlignmentX(CENTER_ALIGNMENT);
-		contentPane.setAlignmentY(CENTER_ALIGNMENT);
 		contentPane.setBackground(new Color(255, 255, 255)); //cor do fundo do painel em RGB code
 		setContentPane(contentPane);
 		contentPane.setLayout(null); // sem layout = é possivel posicionar botões em qualquer área do painel
@@ -57,10 +56,15 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null)); // faz a bordinha com "Fazer Login" em cima
 		quadroDeLogin.setLayout(null);
 		
-		recebeSenha = new JTextField(); // cria caixa pra receber texto
-		recebeSenha.setBounds(156, 36, 174, 20);
-		quadroDeLogin.add(recebeSenha);
-		recebeSenha.setColumns(10);
+		recebeLogin = new JTextField(); // cria caixa pra receber texto
+		recebeLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+	
+		recebeLogin.setBounds(156, 36, 174, 20);
+		quadroDeLogin.add(recebeLogin);
+		recebeLogin.setColumns(10);
 		
 		JLabel login = new JLabel(); // cria uma 'área de texto'
 		login.setBounds(104, 36, 49, 20);
@@ -74,7 +78,30 @@ public class TelaDeLogin extends JFrame {
 		senha.setText("Senha: ");
 		senha.setBackground(new Color(240, 240, 240));
 		
-		JButton botaoEntrar = new JButton("Entrar"); // cria botão de entrar
+		JButton botaoEntrar = new JButton("Entrar"); 
+	
+		botaoEntrar.addMouseListener(new MouseAdapter() {
+		String getSenha;
+		String getLogin;
+		Main maiin = new Main();
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getLogin = recebeLogin.getText();
+				getSenha = recebeSenhaEncriptada.getText(); 
+				try {
+					maiin.login(getLogin,getSenha);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				System.out.println(getSenha);
+				
+			}
+		});
+
 		botaoEntrar.setBounds(138, 97, 91, 23);
 		quadroDeLogin.add(botaoEntrar); //adiciona botão ao quadro de login
 		

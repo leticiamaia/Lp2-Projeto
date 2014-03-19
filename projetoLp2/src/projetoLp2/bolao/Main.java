@@ -35,6 +35,7 @@ public class Main {
 				}
 			}
 		}
+		System.out.println("chegou");
 		return false;
 	}
 	private void getObjectFromFileText(String fileText) {
