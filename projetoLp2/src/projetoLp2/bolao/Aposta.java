@@ -3,7 +3,7 @@ package projetoLp2.bolao;
 public abstract class Aposta {
 
 	protected Partida partida;
-	protected int palpiteGolsTime1, palpiteGolsTime2;
+	protected int palpiteGolsTime1, palpiteGolsTime2, valorPontuacao;
 	
 	public Aposta(Partida partida, int numGolsTime1, int numGolsTime2) throws Exception{
 		if (partida == null)
@@ -41,6 +41,15 @@ public abstract class Aposta {
 		return p1.compareTo(p2);
 	}
 	
-	public abstract int resultadoAposta() throws Exception;
+	public int resultadoAposta() throws Exception{
+		int resultado = 0;
+		if (partida.getGolsTime1() == palpiteGolsTime1)
+			resultado += valorPontuacao;
+		if (partida.getGolsTime2() == palpiteGolsTime2)
+			resultado += valorPontuacao;
+		if (partida.resultado() == palpiteGanhador())
+			resultado += valorPontuacao;
+		return resultado;
+	}
 	
 }
