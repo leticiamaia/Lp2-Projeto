@@ -1,9 +1,17 @@
-package projetoLp2.bolao;
+package projetoLp2.tests;
 
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import projetoLp2.bolao.Aposta;
+import projetoLp2.bolao.ApostaFinal;
+import projetoLp2.bolao.ApostaOitavasDeFinal;
+import projetoLp2.bolao.ApostaPrimeiraFase;
+import projetoLp2.bolao.ApostaQuartasDeFinal;
+import projetoLp2.bolao.ApostaSemiFinal;
+import projetoLp2.bolao.Partida;
 
 public class TestaAposta {
 

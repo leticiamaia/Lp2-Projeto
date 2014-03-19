@@ -1,9 +1,11 @@
-package projetoLp2.bolao;
+package projetoLp2.tests;
 
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import projetoLp2.bolao.Partida;
 
 public class TestaPartida {
 

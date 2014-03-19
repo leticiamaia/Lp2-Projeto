@@ -7,21 +7,19 @@ import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 //add exeptions?
 
 public class Administrador extends Usuario {
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2088632941739437245L;
-
-	Partida[] partidas = new Partida[64];
-
 	FileInputStream fin;
 	FileOutputStream fon;
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
+	Partida[] partidas = new Partida[64];
 
 	public Administrador(String username, String senha) {
 		super(username, senha);
@@ -31,31 +29,12 @@ public class Administrador extends Usuario {
 			String nomeTime2, GregorianCalendar data) throws Exception {
 
 		Partida partida = new Partida(nomeTime1, nomeTime2, data);
-		try {
-			getObjectFromFileText("partidas.txt");
-			partidas[indicePartida] = partida;
-			oos.writeObject(partidas);
-			closeFileText();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+		partidas[indicePartida] = partida;
 	}
 
 	public void atualizaPartida(int indicePartida, int resultadoTime1,
 			int resultadoTime2) throws Exception {
-
-		try {
-			getObjectFromFileText("partidas.txt");
-			partidas = (Partida[]) ois.readObject();
-			partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
-			oos.writeObject(partidas);
-			closeFileText();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
 		atualizaPontucao(indicePartida);
 		atualizaRanking();
 	}
@@ -78,7 +57,7 @@ public class Administrador extends Usuario {
 		List<Jogador> jogadores;
 		try {
 			getObjectFromFileText("usuarios.txt");
-			//check cast?
+			// check cast?
 			jogadores = (List<Jogador>) ois.readObject();
 			for (Jogador j : jogadores) {
 				Aposta aposta = j.getAposta(indicePartida);
@@ -89,8 +68,8 @@ public class Administrador extends Usuario {
 		}
 
 	}
-	
-	//adicionar a Usuario?
+
+	// adicionar a Usuario?
 	private void getObjectFromFileText(String fileText) {
 
 		try {
