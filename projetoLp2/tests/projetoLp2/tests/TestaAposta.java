@@ -83,37 +83,6 @@ public class TestaAposta {
 		}
 	}
 	
-//	@Test
-//	public void testaMudaPlacarDaPatrida(){
-//		try {
-//			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
-//			Aposta aposta = new ApostaPrimeiraFase(partida, 5, 5);
-//			aposta.mudaPlacarDaPartida(-4, 5);
-//			Assert.fail();
-//		} catch (Exception e) {
-//			Assert.assertEquals("Numero de gols invalido!", e.getMessage());
-//		}
-//		
-//		try {
-//			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
-//			Aposta aposta = new ApostaPrimeiraFase(partida, 5, 5);
-//			aposta.mudaPlacarDaPartida(4, -5);
-//			Assert.fail();
-//		} catch (Exception e) {
-//			Assert.assertEquals("Numero de gols invalido!", e.getMessage());
-//		}
-//		
-//		try {
-//			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
-//			Aposta aposta = new ApostaPrimeiraFase(partida, 5, 5);
-//			aposta.mudaPlacarDaPartida(4, 5);
-//			Assert.assertTrue(partida.getGolsTime1() == 4);
-//			Assert.assertTrue(partida.getGolsTime2() == 5);
-//		} catch (Exception e) {
-//			Assert.fail();
-//		}
-//	}
-	
 	@Test
 	public void testaResultadoAposta(){
 		try {
@@ -121,7 +90,7 @@ public class TestaAposta {
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 1, 1);
 			aposta.resultadoAposta();
 		} catch (Exception e) {
-			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
+			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
 		
 		try {

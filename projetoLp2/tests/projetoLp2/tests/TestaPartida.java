@@ -89,14 +89,14 @@ public class TestaPartida {
 			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.getGolsTime1();
 		} catch (Exception e) {
-			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
+			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
 		
 		try {
 			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.getGolsTime2();
 		} catch (Exception e) {
-			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
+			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class TestaPartida {
 			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.resultado();
 		} catch (Exception e) {
-			Assert.assertEquals("Jogo ainda não foi realizado!", e.getMessage());
+			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
 		
 		try {

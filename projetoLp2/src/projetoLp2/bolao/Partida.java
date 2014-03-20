@@ -51,17 +51,17 @@ public class Partida implements Serializable{
 
 	public int getGolsTime1() throws Exception{
 		if (golsTime1 == -1)
-			throw new Exception("Jogo ainda não foi realizado!");
+			throw new Exception("Jogo ainda nao foi realizado!");
 		return golsTime1;
 	}
 
 	public int getGolsTime2() throws Exception{
 		if (golsTime2 == -1)
-			throw new Exception("Jogo ainda não foi realizado!");
+			throw new Exception("Jogo ainda nao foi realizado!");
 		return golsTime2;
 	}
 
-	//Metodo para facilitar na avaliaçao da aposta
+	//Metodo para facilitar na avaliaï¿½ao da aposta
 	public int resultado() throws Exception{
 		Integer g1 = getGolsTime1();
 		Integer g2 = getGolsTime2();
