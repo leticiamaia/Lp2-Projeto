@@ -42,9 +42,10 @@ public class Administrador extends Usuario {
 	private void atualizaRanking() {
 		List<Jogador> jogadores;
 		try {
-			getObjectFromFileText("usuarios.txt");
+			getObjectFromFileText("usuarios.bin");
 			jogadores = (List<Jogador>) ois.readObject();
 			Collections.sort(jogadores, new OrdenaJogadores());
+			oos.writeObject(jogadores);
 			closeFileText();
 
 		} catch (Exception ex) {

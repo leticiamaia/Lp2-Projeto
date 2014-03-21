@@ -89,7 +89,7 @@ public class TelaDeLogin extends JFrame {
 				getLogin = recebeLogin.getText();
 				getSenha = recebeSenhaEncriptada.getText(); 
 				try {
-					maiin.login(getLogin,getSenha);
+					maiin.login2(getLogin,getSenha);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -97,7 +97,7 @@ public class TelaDeLogin extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				System.out.println(getSenha);
+				//System.out.println(getSenha);
 				
 			}
 		});

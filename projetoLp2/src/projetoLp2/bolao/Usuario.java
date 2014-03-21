@@ -22,16 +22,16 @@ public abstract class Usuario implements Serializable{
 		
 	}
 	
-	public String getSenha() {
-		return senha;
-	}
+//	public String getSenha() {
+//		return senha;
+//	}
 	
 	public String getUsername() {
 		return username;
 	}
 	
 	public boolean login(String usernameInput, String senhaInput) {
-		if (usernameInput.equals(username) && senhaInput == senha) {
+		if (usernameInput.equals(this.username) && senhaInput.equals(this.senha)) {
 			return true;
 		} else return false;
 	}
