@@ -20,11 +20,12 @@ public class TelaDeLogin extends JFrame {
 	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
 	private TelaDeCadastro telaDeCadastro;
-
+	private MeuBolao bolao;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		MeuBolao bolao = new MeuBolao();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -85,7 +86,6 @@ public class TelaDeLogin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String getSenha;
 				String getLogin;
-				Main maiin = new Main();
 						getLogin = recebeLogin.getText();
 						getSenha = recebeSenhaEncriptada.getText(); 
 						
@@ -103,7 +103,7 @@ public class TelaDeLogin extends JFrame {
 						
 				
 							try {
-								maiin.login2(getLogin,getSenha);
+								bolao.login2(getLogin,getSenha);
 							} catch (ClassNotFoundException e1) {
 								
 								e1.printStackTrace();

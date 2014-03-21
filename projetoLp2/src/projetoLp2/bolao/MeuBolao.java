@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class MeuBolao {
 	List<Jogador> jogadores;
 	Usuario usuarioLogado = null;
 
