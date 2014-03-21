@@ -21,6 +21,9 @@ public class TelaDeLogin extends JFrame {
 	private JPasswordField recebeSenhaEncriptada;
 	private TelaDeCadastro telaDeCadastro;
 	private MeuBolao bolao;
+	String getSenha;
+	String getLogin;
+	TelaDoUsuario telaUser;
 	/**
 	 * Launch the application.
 	 */
@@ -84,8 +87,7 @@ public class TelaDeLogin extends JFrame {
 		JButton botaoEntrar = new JButton("Entrar"); 
 		botaoEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String getSenha;
-				String getLogin;
+			
 						getLogin = recebeLogin.getText();
 						getSenha = recebeSenhaEncriptada.getText(); 
 						
@@ -95,26 +97,24 @@ public class TelaDeLogin extends JFrame {
 						if(getSenha.equals("")) {
 							JOptionPane.showMessageDialog(null, "Campo 'senha' não deve ser vazio!");
 						}
-						
-						else {
-							JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
-							dispose(); 
-						}
-						
-				
-							try {
+						try {
 								bolao.login2(getLogin,getSenha);
+								JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
+								dispose(); 
+								telaUser.show();
 							} catch (ClassNotFoundException e1) {
-								
+								JOptionPane.showMessageDialog(null, "Login não foi bem sucedido!");
 								e1.printStackTrace();
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(null, "Login não foi bem sucedido!");
 								e1.printStackTrace();
 							} catch (Exception e) {
-								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(null, "Login não foi bem sucedido!");
 								e.printStackTrace();
 							}
+							
 					}
+			
 		});
 		botaoEntrar.setBounds(138, 97, 91, 23);
 		quadroDeLogin.add(botaoEntrar); 
