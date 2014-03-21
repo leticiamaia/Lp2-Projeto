@@ -21,6 +21,7 @@ public class TelaDeLogin extends JFrame {
 	private JPasswordField recebeSenhaEncriptada;
 	private TelaDeCadastro telaDeCadastro;
 	private MeuBolao bolao;
+	private TelaDoUsuario telaUser;
 	/**
 	 * Launch the application.
 	 */
@@ -99,6 +100,8 @@ public class TelaDeLogin extends JFrame {
 						else {
 							JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
 							dispose(); 
+							telaUser = new TelaDoUsuario();
+							telaUser.show();
 						}
 						
 				
