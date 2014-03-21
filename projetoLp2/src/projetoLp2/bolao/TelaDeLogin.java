@@ -100,6 +100,7 @@ public class TelaDeLogin extends JFrame {
 						else {
 							JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
 							dispose(); 
+							JOptionPane.showMessageDialog(null, "Seja bem vindo " + getLogin + "!");
 							telaUser = new TelaDoUsuario();
 							telaUser.show();
 						}
