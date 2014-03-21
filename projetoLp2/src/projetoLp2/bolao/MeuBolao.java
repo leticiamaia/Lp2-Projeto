@@ -13,28 +13,26 @@ public class MeuBolao {
 	List<Jogador> jogadores;
 	Usuario usuarioLogado = null;
 
-	FileInputStream fin;
-	FileOutputStream fon;
 	ObjectInputStream ois;
-	ObjectOutputStream oos;
+	ObjectOutputStream out;
 
-	public boolean login2(String username, String senha)
-			throws ClassNotFoundException, IOException {
-	
-		 if (usuarioLogado!= null) return false; // throw Exception?
+	public boolean login2(String username, String senha) throws Exception {
+
+		if (usuarioLogado != null)
+			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
+																					// Exception?
 		try {
 			createIos("admin.bin");
 			Administrador admin = (Administrador) ois.readObject();
-			System.out.println(admin.getUsername());
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
-				System.out.println("Admin Logadoo!!");
-				ois.close();
+				// System.out.println("Admin Logadoo!!");
 				return true;
 			}
 		} catch (Exception e) {
 			System.err.println(e);
-			System.exit(1);
+		} finally {
+			ois.close();
 		}
 
 		try {
@@ -44,23 +42,76 @@ public class MeuBolao {
 			for (Jogador j : jogadores) {
 				if (j.login(username, senha)) {
 					usuarioLogado = j;
-					ois.close();
 					return true;
 				}
 			}
-			ois.close();
 		} catch (Exception e) {
 			System.err.println(e);
-			System.exit(1);
+		} finally {
+			ois.close();
 		}
 		return false;
 	}
-	
+
+	public int cadastraJogador(String username, String senha, String email,
+			String perguntaSecreta, String resposta) throws Exception {
+		int retorno = 1;
+		
+		try {
+
+			createIos("admin.bin");
+			Administrador admin = (Administrador)ois.readObject();
+			if(username.equals(admin.getUsername())) retorno = 2;
+
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			ois.close();
+		}
+
+		try {
+
+			createIos("usuarios.bin");
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
+					.readObject();
+			for (Jogador j : jogadores) {
+				if (j.getUsername().equals(username)) {
+					retorno = 2;
+				}
+			}
+
+			Jogador j = new Jogador(username, senha);
+			jogadores.add(j);
+
+			createOut("usuarios.bin");
+			out.writeObject(jogadores);
+
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			ois.close();
+			out.close();
+		}
+		return retorno;
+	}
+
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo nao Existe");
-		}	
+		}
+	}
+
+	private void createOut(String fileName) throws IOException {
+		try {
+			out = new ObjectOutputStream(new FileOutputStream(fileName));
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo nao Existe");
+		}
+	}
+
+	public void desloga() {
+		usuarioLogado = null;
 	}
 }

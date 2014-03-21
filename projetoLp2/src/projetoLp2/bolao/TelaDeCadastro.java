@@ -29,6 +29,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JCheckBox;
 
 public class TelaDeCadastro extends JFrame {
@@ -39,9 +40,9 @@ public class TelaDeCadastro extends JFrame {
 	private JTextField recebeUserField;
 	private JPasswordField recebeSenhaField;
 	private JPasswordField recebeConfirmaSenhaField;
-	private String senha, senhaConfirmada, email, usuario;
+	private String senha, senhaConfirmada, email, usuario, respostaSecreta, pergunta;
 	private JTextField respostaSecretaField;
-
+	private static MeuBolao bolao;
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +63,8 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
+		bolao = new MeuBolao();
+		
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
@@ -163,7 +166,7 @@ public class TelaDeCadastro extends JFrame {
 		label_2.setBounds(580, 246, 53, 18);
 		contentPane.add(label_2);
 		
-		JComboBox<String> perguntaSecretaComboBox = new JComboBox();
+		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
 		perguntaSecretaComboBox.addItem("Onde sua mãe nasceu?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
@@ -199,6 +202,8 @@ public class TelaDeCadastro extends JFrame {
 				senhaConfirmada = recebeConfirmaSenhaField.getText();
 				email = recebeEmailField.getText();
 				usuario = recebeUserField.getText();
+				respostaSecreta = respostaSecretaField.getText();
+				pergunta = (String)perguntaSecretaComboBox.getSelectedItem();
 				if(usuario.equals("")) {
 					JOptionPane.showMessageDialog(null, "O campo 'usuário' é obrigatório!");
 				}
@@ -209,8 +214,16 @@ public class TelaDeCadastro extends JFrame {
 					JOptionPane.showMessageDialog(null, "Os campos de senha são obrigatórios!");
 				}
 				
-				else if(senha.equals(senhaConfirmada) && senha.isEmpty() == false && senhaConfirmada.isEmpty() == false) {					
-					JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+				else if(senha.equals(senhaConfirmada) && !senha.isEmpty() && !senhaConfirmada.isEmpty()) {
+					int  sucesso = 0;
+					try {
+						sucesso = bolao.cadastraJogador(usuario, senha, email, pergunta, respostaSecreta);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					if (sucesso == 1)JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+					else if (sucesso == 2) JOptionPane.showMessageDialog(null, "Usuario ja existente, escolha outro.");
+					else if (sucesso == 3) JOptionPane.showMessageDialog(null, "E-mailS ja existente, escolha outro.");
 					dispose(); 
 				}
 				else {
