@@ -20,6 +20,7 @@ public class Main {
 
 	public boolean login2(String username, String senha)
 			throws ClassNotFoundException, IOException {
+	
 		 if (usuarioLogado!= null) return false; // throw Exception?
 		try {
 			createIos("admin.bin");

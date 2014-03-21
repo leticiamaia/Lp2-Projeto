@@ -50,7 +50,6 @@ public class TelaDeLogin extends JFrame {
 		contentPane.setBackground(new Color(255, 255, 255)); 
 		setContentPane(contentPane);
 		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
-		//fuleco.setIcon(new ImageIcon());
 		contentPane.setLayout(null); 
 		
 		JPanel quadroDeLogin = new JPanel();
@@ -82,31 +81,38 @@ public class TelaDeLogin extends JFrame {
 		senha.setBackground(new Color(240, 240, 240));
 		
 		JButton botaoEntrar = new JButton("Entrar"); 
-	
-		botaoEntrar.addMouseListener(new MouseAdapter() {
-		String getSenha;
-		String getLogin;
-		Main maiin = new Main();
-			@Override
-			public void mouseClicked(MouseEvent e){
-				getLogin = recebeLogin.getText();
-				getSenha = recebeSenhaEncriptada.getText(); 
-		
-					try {
-						maiin.login2(getLogin,getSenha);
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+		botaoEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String getSenha;
+				String getLogin;
+				Main maiin = new Main();
+						getLogin = recebeLogin.getText();
+						getSenha = recebeSenhaEncriptada.getText(); 
+						
+						if(getLogin.equals("")) {
+							JOptionPane.showMessageDialog(null, "Campo 'usuário' não deve ser vazio!");
+						}
+						if(getSenha.equals("")) {
+							JOptionPane.showMessageDialog(null, "Campo 'senha' não deve ser vazio!");
+						}
+						
+						else {
+							JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
+							dispose(); 
+						}
+						
+				
+							try {
+								maiin.login2(getLogin,getSenha);
+							} catch (ClassNotFoundException e1) {
+								
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 					}
-				
-				System.out.println(getSenha);
-				
-			}
 		});
-
 		botaoEntrar.setBounds(138, 97, 91, 23);
 		quadroDeLogin.add(botaoEntrar); 
 		
