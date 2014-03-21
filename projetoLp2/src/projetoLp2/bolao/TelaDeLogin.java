@@ -44,7 +44,7 @@ public class TelaDeLogin extends JFrame {
 		setResizable(false);
 		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); 
 		setBackground(Color.WHITE); 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(300, 150, 759, 448); 
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255)); 

@@ -57,8 +57,9 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
-		setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
+		setTitle("Cadastro de Novo Usuário");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
