@@ -12,7 +12,7 @@ public abstract class Usuario implements Serializable{
 	 protected String senha;
 	 
 	public void mudaSenha(String novaSenha){
-		this.senha = senha;
+		this.senha = novaSenha;
 		
 	}
 	

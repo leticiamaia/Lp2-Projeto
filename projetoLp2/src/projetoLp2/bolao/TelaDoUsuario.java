@@ -2,7 +2,9 @@ package projetoLp2.bolao;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,6 +39,7 @@ import java.awt.Choice;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JTabbedPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -66,13 +69,13 @@ public class TelaDoUsuario extends JFrame {
 	public TelaDoUsuario() {
 		setTitle("Tela do Usu\u00E1rio");
 		setAlwaysOnTop(true);
-		getContentPane().setLayout(null);
+		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
+		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 /*		Toolkit tk = Toolkit.getDefaultToolkit();  
 		int xSize = ((int) tk.getScreenSize().getWidth());  
 		int ySize = ((int) tk.getScreenSize().getHeight());*/  
-		setBounds(0, 0, 1300, 700);
-		
+		setBounds(0, 0, 1300, 700);	
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		

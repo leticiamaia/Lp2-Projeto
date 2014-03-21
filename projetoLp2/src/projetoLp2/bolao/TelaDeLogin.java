@@ -41,22 +41,24 @@ public class TelaDeLogin extends JFrame {
 	 */
 	public TelaDeLogin() {
 		setResizable(false);
-		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); // título da janela
-		setBackground(Color.WHITE); //cor do fundo
+		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); 
+		setBackground(Color.WHITE); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 759, 448); // localização e tamanho da janela
+		setBounds(100, 100, 759, 448); 
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255)); //cor do fundo do painel em RGB code
+		contentPane.setBackground(new Color(255, 255, 255)); 
 		setContentPane(contentPane);
-		contentPane.setLayout(null); // sem layout = é possivel posicionar botões em qualquer área do painel
+		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
+		//fuleco.setIcon(new ImageIcon());
+		contentPane.setLayout(null); 
 		
 		JPanel quadroDeLogin = new JPanel();
-		quadroDeLogin.setBounds(230, 195, 450, 164); //setta tamanhos (posição x, posição y, comprimento, altura)
-		contentPane.add(quadroDeLogin); // adiciona o quadro de login a janela criada lá em cima
+		quadroDeLogin.setBounds(230, 195, 450, 164); 
+		contentPane.add(quadroDeLogin); 
 		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null)); // faz a bordinha com "Fazer Login" em cima
 		quadroDeLogin.setLayout(null);
 		
-		recebeLogin = new JTextField(); // cria caixa pra receber texto
+		recebeLogin = new JTextField(); 
 		recebeLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -66,10 +68,10 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(recebeLogin);
 		recebeLogin.setColumns(10);
 		
-		JLabel login = new JLabel(); // cria uma 'área de texto'
+		JLabel login = new JLabel(); 
 		login.setBounds(104, 36, 49, 20);
 		quadroDeLogin.add(login);
-		login.setText("Login:"); // texto 'impresso'
+		login.setText("Login:"); 
 		login.setBackground(new Color(240, 240, 240));
 		
 		JLabel senha = new JLabel();
@@ -103,7 +105,7 @@ public class TelaDeLogin extends JFrame {
 		});
 
 		botaoEntrar.setBounds(138, 97, 91, 23);
-		quadroDeLogin.add(botaoEntrar); //adiciona botão ao quadro de login
+		quadroDeLogin.add(botaoEntrar); 
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
 		botaoCadastrar.setBounds(239, 97, 91, 23);
@@ -113,19 +115,14 @@ public class TelaDeLogin extends JFrame {
 		botaoEsqueciDados.setBounds(178, 130, 119, 23);
 		quadroDeLogin.add(botaoEsqueciDados);
 		
-		recebeSenhaEncriptada = new JPasswordField(); // cria um campo de texto para senha 
+		recebeSenhaEncriptada = new JPasswordField(); 
 		recebeSenhaEncriptada.setBounds(156, 67, 174, 20);
 		quadroDeLogin.add(recebeSenhaEncriptada);
-		 botaoEntrar.addActionListener(new ActionListener() { // não faço ideia do q isso faz xD mas provavelmente transforma os caracteres em bolinhas
+		 botaoEntrar.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		
-	/*	File imagemFuleco = new File("C:\\Users\\M\\Desktop\\Projeto LP2\\tatu-bola.png");
-		try {
-			   BufferedImage fuleco = ImageIO.read(imagemFuleco);
-			} catch (IOException e) {
-			}*/
+
 		
 		JLabel boasVindas = new JLabel("Seja bem vindo!");
 		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
