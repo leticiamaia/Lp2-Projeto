@@ -10,31 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeuBolao {
-	List<Jogador> jogadores;
 	Usuario usuarioLogado = null;
 
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public boolean login2(String username, String senha) throws Exception {
-
-		if (usuarioLogado != null)
-			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
-																					// Exception?
+	public boolean login2(String username, String senha) throws IOException {
+//		if (usuarioLogado != null)
+//			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
+		System.out.println("Log1");
 		try {
 			createIos("admin.bin");
+			System.out.println("Log1");
 			Administrador admin = (Administrador) ois.readObject();
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
-				// System.out.println("Admin Logadoo!!");
 				return true;
 			}
 		} catch (Exception e) {
 			System.err.println(e);
+			System.out.println("Hola");
 		} finally {
 			ois.close();
 		}
-
 		try {
 			createIos("usuarios.bin");
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
@@ -47,6 +45,7 @@ public class MeuBolao {
 			}
 		} catch (Exception e) {
 			System.err.println(e);
+			System.out.println("Hola");
 		} finally {
 			ois.close();
 		}
@@ -56,13 +55,13 @@ public class MeuBolao {
 	public int cadastraJogador(String username, String senha, String email,
 			String perguntaSecreta, String resposta) throws Exception {
 		int retorno = 1;
-		
+
 		try {
-
 			createIos("admin.bin");
-			Administrador admin = (Administrador)ois.readObject();
-			if(username.equals(admin.getUsername())) retorno = 2;
-
+			Administrador admin = (Administrador) ois.readObject();
+			if (username.equals(admin.getUsername())) {
+				retorno = 2;
+			}
 		} catch (Exception e) {
 			System.err.println(e);
 		} finally {
@@ -70,7 +69,6 @@ public class MeuBolao {
 		}
 
 		try {
-
 			createIos("usuarios.bin");
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
@@ -79,19 +77,18 @@ public class MeuBolao {
 					retorno = 2;
 				}
 			}
-
 			Jogador j = new Jogador(username, senha);
 			jogadores.add(j);
 
 			createOut("usuarios.bin");
 			out.writeObject(jogadores);
-
 		} catch (Exception e) {
 			System.err.println(e);
 		} finally {
 			ois.close();
 			out.close();
 		}
+		
 		return retorno;
 	}
 
