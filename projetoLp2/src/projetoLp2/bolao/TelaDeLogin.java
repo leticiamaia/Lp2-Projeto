@@ -19,6 +19,7 @@ public class TelaDeLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
+	private TelaDeCadastro telaDeCadastro;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,7 @@ public class TelaDeLogin extends JFrame {
 		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); 
 		setBackground(Color.WHITE); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 759, 448); 
+		setBounds(300, 150, 759, 448); 
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255)); 
 		setContentPane(contentPane);
@@ -87,19 +88,21 @@ public class TelaDeLogin extends JFrame {
 		String getLogin;
 		Main maiin = new Main();
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e){
 				getLogin = recebeLogin.getText();
 				getSenha = recebeSenhaEncriptada.getText(); 
-				try {
-					maiin.login2(getLogin,getSenha);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				//System.out.println(getSenha);
+		
+					try {
+						maiin.login2(getLogin,getSenha);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+				System.out.println(getSenha);
 				
 			}
 		});
@@ -108,6 +111,15 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(botaoEntrar); 
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
+		botaoCadastrar.addActionListener(new ProxJanela());
+		botaoCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				telaDeCadastro = new TelaDeCadastro();
+				telaDeCadastro.show();
+
+			}
+		});
 		botaoCadastrar.setBounds(239, 97, 91, 23);
 		quadroDeLogin.add(botaoCadastrar);
 		
@@ -118,11 +130,6 @@ public class TelaDeLogin extends JFrame {
 		recebeSenhaEncriptada = new JPasswordField(); 
 		recebeSenhaEncriptada.setBounds(156, 67, 174, 20);
 		quadroDeLogin.add(recebeSenhaEncriptada);
-		 botaoEntrar.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-
 		
 		JLabel boasVindas = new JLabel("Seja bem vindo!");
 		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
