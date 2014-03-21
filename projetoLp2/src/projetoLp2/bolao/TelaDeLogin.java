@@ -111,7 +111,6 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(botaoEntrar); 
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
-		botaoCadastrar.addActionListener(new ProxJanela());
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
