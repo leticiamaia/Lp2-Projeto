@@ -72,6 +72,7 @@ public class TelaDoUsuario extends JFrame {
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
 /*		Toolkit tk = Toolkit.getDefaultToolkit();  
 		int xSize = ((int) tk.getScreenSize().getWidth());  
 		int ySize = ((int) tk.getScreenSize().getHeight());*/  
