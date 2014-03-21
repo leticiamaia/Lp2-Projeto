@@ -56,7 +56,7 @@ public class TelaDeLogin extends JFrame {
 		JPanel quadroDeLogin = new JPanel();
 		quadroDeLogin.setBounds(230, 195, 450, 164); 
 		contentPane.add(quadroDeLogin); 
-		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null)); // faz a bordinha com "Fazer Login" em cima
+		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		quadroDeLogin.setLayout(null);
 		
 		recebeLogin = new JTextField(); 
