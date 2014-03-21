@@ -30,12 +30,13 @@ import java.awt.event.MouseEvent;
 public class TelaDeCadastro extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JPasswordField passwordField_2;
+	private JTextField recebeNomeField;
+	private JTextField recebeEmailField;
+	private JTextField recebeUserField;
+	private JPasswordField recebeSenhaField;
+	private JPasswordField recebeConfirmaSenhaField;
+	private String senha, senhaConfirmada, email, usuario;
+	private JTextField respostaSecretaField;
 
 	/**
 	 * Launch the application.
@@ -57,6 +58,7 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
+		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
 		setTitle("Cadastro de Novo Usuário");
@@ -67,33 +69,33 @@ public class TelaDeCadastro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCadastroDeNovo = new JLabel("Cadastro de novo usu\u00E1rio");
-		lblCadastroDeNovo.setBounds(186, 0, 386, 54);
-		lblCadastroDeNovo.setFont(new Font("Segoe Print", Font.PLAIN, 30));
-		contentPane.add(lblCadastroDeNovo);
+		JLabel cadastroDeNovo = new JLabel("Cadastro de novo usu\u00E1rio");
+		cadastroDeNovo.setBounds(186, 0, 386, 54);
+		cadastroDeNovo.setFont(new Font("Segoe Print", Font.PLAIN, 30));
+		contentPane.add(cadastroDeNovo);
 		
 		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
 		lblNomeCompleto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNomeCompleto.setBounds(132, 122, 101, 21);
 		contentPane.add(lblNomeCompleto);
 		
-		textField = new JTextField();
-		textField.setBounds(241, 122, 336, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		recebeNomeField = new JTextField();
+		recebeNomeField.setBounds(241, 122, 336, 20);
+		contentPane.add(recebeNomeField);
+		recebeNomeField.setColumns(10);
 		
-		JLabel lblPreenchaOsCampos = new JLabel("Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
-		lblPreenchaOsCampos.setLabelFor(this);
-		lblPreenchaOsCampos.setToolTipText("");
-		lblPreenchaOsCampos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPreenchaOsCampos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPreenchaOsCampos.setBounds(214, 65, 327, 21);
-		contentPane.add(lblPreenchaOsCampos);
+		JLabel informacaoLabel = new JLabel("Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
+		informacaoLabel.setLabelFor(this);
+		informacaoLabel.setToolTipText("");
+		informacaoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		informacaoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		informacaoLabel.setBounds(214, 65, 327, 21);
+		contentPane.add(informacaoLabel);
 		
-		JLabel lblOsCamposMarcados = new JLabel("Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
-		lblOsCamposMarcados.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblOsCamposMarcados.setBounds(196, 82, 386, 21);
-		contentPane.add(lblOsCamposMarcados);
+		JLabel informacao2Label = new JLabel("Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
+		informacao2Label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		informacao2Label.setBounds(196, 82, 386, 21);
+		contentPane.add(informacao2Label);
 		
 		JLabel lblNewLabel = new JLabel("*");
 		lblNewLabel.setForeground(Color.RED);
@@ -106,20 +108,20 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_1.setBounds(188, 154, 45, 18);
 		contentPane.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(241, 153, 336, 20);
-		contentPane.add(textField_1);
+		recebeEmailField = new JTextField();
+		recebeEmailField.setColumns(10);
+		recebeEmailField.setBounds(241, 153, 336, 20);
+		contentPane.add(recebeEmailField);
 		
 		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
 		lblUsurio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblUsurio.setBounds(180, 183, 53, 21);
 		contentPane.add(lblUsurio);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(241, 183, 336, 20);
-		contentPane.add(textField_2);
+		recebeUserField = new JTextField();
+		recebeUserField.setColumns(10);
+		recebeUserField.setBounds(241, 183, 336, 20);
+		contentPane.add(recebeUserField);
 		
 		JLabel label = new JLabel("*");
 		label.setForeground(Color.RED);
@@ -137,13 +139,13 @@ public class TelaDeCadastro extends JFrame {
 		lblNewLabel_2.setBounds(124, 246, 102, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(241, 214, 336, 20);
-		contentPane.add(passwordField);
+		recebeSenhaField = new JPasswordField();
+		recebeSenhaField.setBounds(241, 214, 336, 20);
+		contentPane.add(recebeSenhaField);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(241, 244, 336, 20);
-		contentPane.add(passwordField_1);
+		recebeConfirmaSenhaField = new JPasswordField();
+		recebeConfirmaSenhaField.setBounds(241, 244, 336, 20);
+		contentPane.add(recebeConfirmaSenhaField);
 		
 		JLabel label_1 = new JLabel("*");
 		label_1.setForeground(Color.RED);
@@ -157,9 +159,9 @@ public class TelaDeCadastro extends JFrame {
 		label_2.setBounds(580, 246, 53, 18);
 		contentPane.add(label_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(241, 275, 336, 20);
-		contentPane.add(comboBox);
+		JComboBox perguntaSecretaComboBox = new JComboBox();
+		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
+		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -170,10 +172,6 @@ public class TelaDeCadastro extends JFrame {
 		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblResposta.setBounds(168, 301, 57, 21);
 		contentPane.add(lblResposta);
-		
-		passwordField_2 = new JPasswordField();
-		passwordField_2.setBounds(241, 306, 336, 20);
-		contentPane.add(passwordField_2);
 		
 		JLabel label_3 = new JLabel("*");
 		label_3.setForeground(Color.RED);
@@ -187,24 +185,48 @@ public class TelaDeCadastro extends JFrame {
 		label_4.setBounds(580, 305, 53, 18);
 		contentPane.add(label_4);
 		
-		JButton btnNewButton = new JButton("Confirmar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton botaoConfirma = new JButton("Confirmar");
+		botaoConfirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
-				dispose(); 
+				senha =	recebeSenhaField.getText();
+				senhaConfirmada = recebeConfirmaSenhaField.getText();
+				email = recebeEmailField.getText();
+				usuario = recebeUserField.getText();
+				if(usuario.equals("")) {
+					JOptionPane.showMessageDialog(null, "O campo 'usuário' é obrigatório!");
+				}
+				if(email.equals("")) {
+					JOptionPane.showMessageDialog(null, "O campo 'email' é obrigatório!");
+				}
+				if(senha.equals("") || senhaConfirmada.equals("")) {
+					JOptionPane.showMessageDialog(null, "Os campos de senha são obrigatórios!");
+				}
 				
+				else if(senha.equals(senhaConfirmada) && senha.isEmpty() == false && senhaConfirmada.isEmpty() == false) {					
+					JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+					dispose(); 
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "As senhas não conferem!");
+				}
+
 			}
 		});
-		btnNewButton.setBounds(260, 352, 121, 34);
-		contentPane.add(btnNewButton);
+		botaoConfirma.setBounds(260, 352, 121, 34);
+		contentPane.add(botaoConfirma);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
+		JButton botaoCancela = new JButton("Cancelar");
+		botaoCancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose(); 
 			}
 		});
-		btnCancelar.setBounds(413, 352, 121, 34);
-		contentPane.add(btnCancelar);
+		botaoCancela.setBounds(413, 352, 121, 34);
+		contentPane.add(botaoCancela);
+		
+		respostaSecretaField = new JTextField();
+		respostaSecretaField.setColumns(10);
+		respostaSecretaField.setBounds(241, 306, 336, 20);
+		contentPane.add(respostaSecretaField);
 	}
 }
