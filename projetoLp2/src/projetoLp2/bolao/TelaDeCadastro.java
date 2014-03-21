@@ -2,6 +2,7 @@ package projetoLp2.bolao;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.ItemSelectable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,8 +25,11 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -159,8 +163,11 @@ public class TelaDeCadastro extends JFrame {
 		label_2.setBounds(580, 246, 53, 18);
 		contentPane.add(label_2);
 		
-		JComboBox perguntaSecretaComboBox = new JComboBox();
+		JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
+		perguntaSecretaComboBox.addItem("Onde sua mãe nasceu?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Outra pergunta estúpida aqui");
 		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
@@ -209,10 +216,9 @@ public class TelaDeCadastro extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "As senhas não conferem!");
 				}
-
 			}
 		});
-		botaoConfirma.setBounds(260, 352, 121, 34);
+		botaoConfirma.setBounds(261, 374, 121, 34);
 		contentPane.add(botaoConfirma);
 		
 		JButton botaoCancela = new JButton("Cancelar");
@@ -221,12 +227,22 @@ public class TelaDeCadastro extends JFrame {
 				dispose(); 
 			}
 		});
-		botaoCancela.setBounds(413, 352, 121, 34);
+		botaoCancela.setBounds(414, 374, 121, 34);
 		contentPane.add(botaoCancela);
 		
 		respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
+		
+		JCheckBox chckbxLiConcordoE = new JCheckBox("Li, concordo e aceito os Termos de Uso.");
+		chckbxLiConcordoE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		chckbxLiConcordoE.setBackground(Color.WHITE);
+		chckbxLiConcordoE.setBounds(271, 333, 261, 23);
+		contentPane.add(chckbxLiConcordoE);
 	}
 }
