@@ -57,7 +57,7 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -190,6 +190,7 @@ public class TelaDeCadastro extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+				dispose(); 
 				
 			}
 		});
@@ -197,10 +198,9 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose(); 
 			}
 		});
 		btnCancelar.setBounds(413, 352, 121, 34);
