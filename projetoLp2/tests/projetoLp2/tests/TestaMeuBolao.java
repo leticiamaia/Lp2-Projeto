@@ -28,6 +28,7 @@ public class TestaMeuBolao {
 	public void testaCadastro() throws Exception {
 		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Leticia", "1234","let@gmail.com","Qual?","patos"), 1);
 		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Leticia", "1234","lmt@gmail.com","Qual?","patos"), 2);
+		Assert.assertEquals(bolao.cadastraJogador("Leticica", "Let", "1234","lmt@gmail.com","Qual?","patos"), 1);
 		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Admin", "1234","leti@gmail.com","Qual?","patos"), 2);
 		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Outro", "1234","lmt@gmail.com","Qual?","patos"), 3);
 

@@ -76,7 +76,7 @@ public class MeuBolao {
 					retorno = 3;
 				}
 			}
-			if(retorno ==1) {
+			if(retorno == 1) {
 				Jogador j = new Jogador(nome, username, senha, email, perguntaSecreta,
 					resposta);
 				jogadores.add(j);

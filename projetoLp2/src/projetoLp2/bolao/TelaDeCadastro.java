@@ -242,8 +242,7 @@ public class TelaDeCadastro extends JFrame {
 					}
 					else if (sucesso == 2)
 						JOptionPane.showMessageDialog(null,
-								"Usuario ja existente, escolha outro."); //BUG ALERT! quando essa tela aparece, ele cria todos os campos 
-					//preenchidos anteriormente, de modo que se vc fechar a tela e mudar somente o user, ele diz que o email já existe e vice-versa.
+								"Usuario ja existente, escolha outro."); //Lucas consertou
 					else if (sucesso == 3)
 						JOptionPane.showMessageDialog(null,
 								"E-mail ja existente, escolha outro.");
