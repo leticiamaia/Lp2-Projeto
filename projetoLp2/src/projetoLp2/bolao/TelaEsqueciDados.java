@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -138,11 +139,11 @@ public class TelaEsqueciDados extends JFrame {
 				MeuBolao bolao = new MeuBolao();;
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
-						System.out.println("Usuario encontrado");
+						JOptionPane.showMessageDialog(null,"Usuario encontrado");
 					}
-					else System.out.println("Usuario nao existe!");
+					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				
 			}
