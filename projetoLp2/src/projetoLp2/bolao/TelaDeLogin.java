@@ -128,6 +128,10 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(botaoCadastrar);
 		
 		JButton botaoEsqueciDados = new JButton("Esqueci dados");
+		botaoEsqueciDados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		botaoEsqueciDados.setBounds(178, 130, 119, 23);
 		quadroDeLogin.add(botaoEsqueciDados);
 		
