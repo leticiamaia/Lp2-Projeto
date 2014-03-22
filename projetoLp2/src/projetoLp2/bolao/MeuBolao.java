@@ -26,7 +26,7 @@ public class MeuBolao {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("Entrou no 1º catch");
+			System.err.println(e);
 		} finally {
 			ois.close();
 		}
@@ -41,8 +41,7 @@ public class MeuBolao {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Entrou no 1º catch");
-			//System.err.println(e);
+			System.err.println(e);
 		} finally {
 			ois.close();
 		}
