@@ -15,13 +15,12 @@ public class MeuBolao {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public boolean login2(String username, String senha) throws IOException {
-//		if (usuarioLogado != null)
-//			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
+	public boolean login2(String username, String senha) throws Exception {
+		if (usuarioLogado != null)
+			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
 		System.out.println("Log1");
 		try {
 			createIos("admin.bin");
-			System.out.println("Log1");
 			Administrador admin = (Administrador) ois.readObject();
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
@@ -29,7 +28,6 @@ public class MeuBolao {
 			}
 		} catch (Exception e) {
 			System.err.println(e);
-			System.out.println("Hola");
 		} finally {
 			ois.close();
 		}
@@ -45,14 +43,13 @@ public class MeuBolao {
 			}
 		} catch (Exception e) {
 			System.err.println(e);
-			System.out.println("Hola");
 		} finally {
 			ois.close();
 		}
 		return false;
 	}
 
-	public int cadastraJogador(String username, String senha, String email,
+	public int cadastraJogador(String nome, String username, String senha, String email,
 			String perguntaSecreta, String resposta) throws Exception {
 		int retorno = 1;
 
@@ -76,8 +73,12 @@ public class MeuBolao {
 				if (j.getUsername().equals(username)) {
 					retorno = 2;
 				}
+				if (j.getEmail().equals(email)) {
+					retorno = 3;
+				}
 			}
-			Jogador j = new Jogador(username, senha);
+			Jogador j = new Jogador(nome, username, senha, email, perguntaSecreta,
+					resposta);
 			jogadores.add(j);
 
 			createOut("usuarios.bin");
@@ -88,7 +89,7 @@ public class MeuBolao {
 			ois.close();
 			out.close();
 		}
-		
+
 		return retorno;
 	}
 
