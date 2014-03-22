@@ -92,6 +92,28 @@ public class MeuBolao {
 		return retorno;
 	}
 
+	public boolean checkUsuario(String usuario, String pergunta,
+			String respostaSecreta, String email) throws IOException {
+		try {
+			createIos("usuarios.bin");
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
+					.readObject();
+			for (Jogador j : jogadores) {
+				if (j.getUsername().equals(usuario)
+						&& j.getPerguntaSecreta().equals(pergunta)
+						&& j.getResposta().equals(respostaSecreta)
+						&& j.getEmail().equals(email)) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			ois.close();
+		}
+		return false;
+	}
+	
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
@@ -108,6 +130,7 @@ public class MeuBolao {
 		}
 	}
 
+	
 	public void desloga() {
 		usuarioLogado = null;
 	}

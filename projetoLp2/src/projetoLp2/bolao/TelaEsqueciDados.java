@@ -23,8 +23,6 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaEsqueciDados extends JFrame {
 
-	ObjectInputStream ois;
-	
 	private JPanel contentPane;
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta, eMail; 
@@ -141,7 +139,8 @@ public class TelaEsqueciDados extends JFrame {
 				 * 
 				 */
 				try {
-					if(checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
+					MeuBolao bolao = new MeuBolao();;
+					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
 						System.out.println("Usuario encontrado");
 					}
 					else System.out.println("Usuario nao existe!");
@@ -177,35 +176,6 @@ public class TelaEsqueciDados extends JFrame {
 		
 
 	}
-	
-	private boolean checkUsuario(String usuario, String pergunta,
-			String respostaSecreta, String email) throws IOException {
-		try {
-			createIos("usuarios.bin");
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
-					.readObject();
-			for (Jogador j : jogadores) {
-				if (j.getUsername().equals(usuario)
-						&& j.getPerguntaSecreta().equals(pergunta)
-						&& j.getResposta().equals(respostaSecreta)
-						&& j.getEmail().equals(email)) {
-					return true;
-				}
-			}
-		} catch (Exception e) {
-			System.err.println(e);
-		} finally {
-			ois.close();
-		}
-		return false;
-	}
 
-	private void createIos(String fileName) throws IOException {
-		try {
-			ois = new ObjectInputStream(new FileInputStream(fileName));
-		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo nao Existe");
-		}
-	}
 
 }
