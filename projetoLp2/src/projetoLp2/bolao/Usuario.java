@@ -11,16 +11,17 @@ public abstract class Usuario implements Serializable{
 	protected String username;
 	protected String senha;
 	 
-	public void mudaSenha(String novaSenha){
-		this.senha = novaSenha;
-		
-	}
-	
 	public Usuario(String username, String senha) {
 		this.username = username;
 		this.senha = senha;
 		
 	}
+	
+	public void mudaSenha(String novaSenha){
+		this.senha = novaSenha;
+		
+	}
+	
 	
 	public String getSenha() {
 		return senha;

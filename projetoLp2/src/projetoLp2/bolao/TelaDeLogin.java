@@ -24,6 +24,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
+	private Usuario admin;
 	private Jogador jogador1;
 	/**
 	 * Launch the application.
@@ -101,8 +102,8 @@ public class TelaDeLogin extends JFrame {
 									Colocar nome no lugar de user
 								*/
 									dispose(); 
-									//JOptionPane.showMessageDialog(null, "");
-									if(bolao.getUsuarioLogado().equals("admin"))
+
+									if(bolao.getUsuarioLogado().equals(admin.getUsername()))
 									{
 										telaAdmin = new TelaDoAdmin();
 										telaAdmin.show();										
