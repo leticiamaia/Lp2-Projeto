@@ -7,15 +7,28 @@ import java.io.ObjectOutputStream;
 
 public class Jogador extends Usuario {
 
-	/**
-	 * 
-	 */
+
+	
 	private static final long serialVersionUID = 776610356730575144L;
 	private Aposta[] apostas = new Aposta[64];
 	private int totalPontos = 0;
 	private String email;
 	private String perguntaSecreta;
 	private String resposta;
+	private String nome;
+	
+	public Jogador(String nome, String username, String senha, String email,
+			String perguntaSecreta, String resposta) throws Exception {
+		super(username, senha);
+		if (email == null || email.equals("") || senha == null
+				|| senha.equals("") || perguntaSecreta == null
+				|| perguntaSecreta.equals("")) throw new Exception("Campos nao podem ser nulos ou vazios.");
+		this.email = email;
+		this.perguntaSecreta = perguntaSecreta;
+		this.resposta = resposta;
+		this.nome = nome;
+	}
+	
 	public Aposta[] getApostas() {
 		return apostas;
 	}
@@ -57,18 +70,6 @@ public class Jogador extends Usuario {
 		this.email = email;
 	}
 
-	private String nome;
-	public Jogador(String nome, String username, String senha, String email,
-			String perguntaSecreta, String resposta) throws Exception {
-		super(username, senha);
-		if (email == null || email.equals("") || senha == null
-				|| senha.equals("") || perguntaSecreta == null
-				|| perguntaSecreta.equals("")) throw new Exception("Campos nao podem ser nulos ou vazios.");
-			this.email = email;
-		this.perguntaSecreta = perguntaSecreta;
-		this.resposta = resposta;
-		this.nome = nome;
-	}
 
 	public void adicionaPontos(int resultadoAposta) {
 		totalPontos += resultadoAposta;

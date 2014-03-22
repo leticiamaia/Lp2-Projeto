@@ -236,12 +236,13 @@ public class TelaDeCadastro extends JFrame {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					if (sucesso == 1)
-						JOptionPane.showMessageDialog(null,
-								"Cadastro feito com sucesso!");
+					if (sucesso == 1) {
+						JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+						dispose();
+					}
 					else if (sucesso == 2)
 						JOptionPane.showMessageDialog(null,
-								"Usuario ja existente, escolha outro."); // ele cria um user 
+								"Usuario ja existente, escolha outro.");
 					else if (sucesso == 3)
 						JOptionPane.showMessageDialog(null,
 								"E-mail ja existente, escolha outro.");

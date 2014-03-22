@@ -23,6 +23,7 @@ public class TelaDeLogin extends JFrame {
 	private MeuBolao bolao;
 	private TelaDoUsuario telaUser;
 	private TelaEsqueciDados telaEsqueceu;
+	private Jogador jogador1;
 	/**
 	 * Launch the application.
 	 */
@@ -94,7 +95,10 @@ public class TelaDeLogin extends JFrame {
 						}	
 							try {
 								if (bolao.login2(getLogin,getSenha)) {
-									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !");
+									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
+									/*
+									Colocar nome no lugar de user
+								*/
 									dispose(); 
 									//JOptionPane.showMessageDialog(null, "");
 									telaUser = new TelaDoUsuario();
