@@ -156,10 +156,5 @@ public class TelaDeLogin extends JFrame {
 		fuleco.setBounds(-44, 11, 361, 272);
 		contentPane.add(fuleco);
 		
-		
-		
-
-		
-		
 	}
 }

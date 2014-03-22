@@ -135,17 +135,13 @@ public class TelaEsqueciDados extends JFrame {
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				respostaSecreta = respostaSecretaField.getText();
 				eMail = recebeEmail.getText();
-				/*if(usuario)
-				 * 
-				 */
+				MeuBolao bolao = new MeuBolao();;
 				try {
-					MeuBolao bolao = new MeuBolao();;
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
 						System.out.println("Usuario encontrado");
 					}
 					else System.out.println("Usuario nao existe!");
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				

@@ -48,8 +48,16 @@ public class MeuBolao {
 		return false;
 	}
 
-	public int cadastraJogador(String nome, String username, String senha, String email,
-			String perguntaSecreta, String resposta) throws Exception {
+	public int cadastraJogador(String nome, String username, String senha,
+			String email, String perguntaSecreta, String resposta)
+			throws Exception {
+		if (nome == null || username == null || username.equals("")
+				|| senha == null || senha.equals("") || email == null
+				|| email.equals("") || perguntaSecreta == null
+				|| resposta == null)
+			throw new Exception(
+					"Campos nao podem ser nulos, aguns na devem estar vazios.");
+
 		int retorno = 1;
 
 		try {
@@ -76,9 +84,9 @@ public class MeuBolao {
 					retorno = 3;
 				}
 			}
-			if(retorno == 1) {
-				Jogador j = new Jogador(nome, username, senha, email, perguntaSecreta,
-					resposta);
+			if (retorno == 1) {
+				Jogador j = new Jogador(nome, username, senha, email,
+						perguntaSecreta, resposta);
 				jogadores.add(j);
 			}
 
@@ -95,7 +103,13 @@ public class MeuBolao {
 	}
 
 	public boolean checkUsuario(String usuario, String pergunta,
-			String respostaSecreta, String email) throws IOException {
+			String respostaSecreta, String email) throws Exception {
+		if (usuario == null || usuario == "" || pergunta == null
+				|| pergunta == "" || respostaSecreta == null
+				|| respostaSecreta == "" || email == null || email.equals("")) {
+			throw new Exception("Campos nao podem ser nulos ou vazios.");
+		}
+
 		try {
 			createIos("usuarios.bin");
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
@@ -115,7 +129,7 @@ public class MeuBolao {
 		}
 		return false;
 	}
-	
+
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
@@ -132,7 +146,6 @@ public class MeuBolao {
 		}
 	}
 
-	
 	public void desloga() {
 		usuarioLogado = null;
 	}
