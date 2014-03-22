@@ -27,7 +27,7 @@ public class TelaEsqueciDados extends JFrame {
 	private JPanel contentPane;
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta; 
-	Jogador jogador1;
+	//Jogador jogador1;
 
 	/**
 	 * Launch the application.
@@ -118,7 +118,9 @@ public class TelaEsqueciDados extends JFrame {
 				usuario = recebeLogin.getText();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				respostaSecreta = respostaSecretaField.getText();
-				if(usuario)
+				/*if(usuario)
+				 * 
+				 */
 				
 			}
 		});
