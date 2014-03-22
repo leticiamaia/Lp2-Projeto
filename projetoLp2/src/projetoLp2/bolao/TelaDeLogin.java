@@ -94,9 +94,9 @@ public class TelaDeLogin extends JFrame {
 						}	
 							try {
 								if (bolao.login2(getLogin,getSenha)) {
-									JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
+									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !");
 									dispose(); 
-									JOptionPane.showMessageDialog(null, "Seja bem vindo " + getLogin + "!");
+									//JOptionPane.showMessageDialog(null, "");
 									telaUser = new TelaDoUsuario();
 									telaUser.show();
 								}

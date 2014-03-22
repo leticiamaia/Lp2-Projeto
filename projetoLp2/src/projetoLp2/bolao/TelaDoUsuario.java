@@ -134,7 +134,7 @@ public class TelaDoUsuario extends JFrame {
 		panel.setBounds(85, 195, 861, 422);
 		contentPane.add(panel);
 		
-		JButton btnNewButton = new JButton("Visualizar Apostas");
+		JButton btnNewButton = new JButton("Visualizar suas Apostas");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}

@@ -66,23 +66,35 @@ public class TelaEsqueciDados extends JFrame {
 		
 		JLabel login = new JLabel(); 
 		login.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		login.setBounds(156, 160, 77, 20);
+		login.setBounds(157, 146, 77, 20);
 		contentPane.add(login);
 		login.setText("Seu usu\u00E1rio: "); 
 		login.setBackground(new Color(240, 240, 240));
 		
 		final JTextField recebeLogin = new JTextField(); 
-		recebeLogin.setBounds(243, 161, 334, 20);
+		recebeLogin.setBounds(245, 176, 336, 20);
 		contentPane.add(recebeLogin);
 		recebeLogin.setColumns(10);
 		
+		JLabel email = new JLabel("Seu e-mail:");
+		email.setSize(67, 20);
+		email.setLocation(164, 176);
+		email.setBackground(Color.WHITE);
+		email.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		contentPane.add(email);
+		
+		final JTextField recebeEmail = new JTextField(); 
+		recebeEmail.setBounds(245, 145, 336, 20);
+		contentPane.add(recebeEmail);
+		recebeEmail.setColumns(10);
+		
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(127, 191, 109, 20);
+		lblNewLabel_3.setBounds(127, 206, 104, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
-		perguntaSecretaComboBox.setBounds(241, 192, 336, 20);
+		perguntaSecretaComboBox.setBounds(245, 206, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
@@ -94,12 +106,12 @@ public class TelaEsqueciDados extends JFrame {
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
 		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblResposta.setBounds(153, 222, 93, 21);
+		lblResposta.setBounds(150, 237, 81, 21);
 		contentPane.add(lblResposta);
 		
 		final JTextField respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
-		respostaSecretaField.setBounds(241, 223, 336, 20);
+		respostaSecretaField.setBounds(245, 237, 336, 20);
 		contentPane.add(respostaSecretaField);
 		
 		JLabel informacaoEsqueciSenha = new JLabel("<html>Aqui voc\u00EA pode recuperar apenas sua senha atrav\u00E9s da sua resposta \u00E0 pergunta secreta escolhida no momento do seu cadastro. Caso voc\u00EA n\u00E3o se recorde do seu usu\u00E1rio ou da sua resposta/pergunta secreta, contate um administrador.</html>");
@@ -110,7 +122,7 @@ public class TelaEsqueciDados extends JFrame {
 		contentPane.add(informacaoEsqueciSenha);
 		
 		JButton confirma = new JButton("Confirma");
-		confirma.setBounds(297, 254, 91, 23);
+		confirma.setBounds(267, 274, 91, 23);
 		confirma.addActionListener(new ActionListener() {
 			
 			@Override
@@ -132,7 +144,7 @@ public class TelaEsqueciDados extends JFrame {
 				dispose();
 			}
 		});
-		cancela.setBounds(418, 254, 91, 23);
+		cancela.setBounds(444, 274, 91, 23);
 		contentPane.add(cancela);
 		
 		
