@@ -27,6 +27,7 @@ public class TelaEsqueciDados extends JFrame {
 	private JPanel contentPane;
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta, eMail; 
+	private TelaDoUsuario telaUser;
 	//Jogador jogador1;
 
 	/**
@@ -140,7 +141,12 @@ public class TelaEsqueciDados extends JFrame {
 				MeuBolao bolao = new MeuBolao();;
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
-						JOptionPane.showMessageDialog(null,"Usuario encontrado");
+						JOptionPane.showMessageDialog(null,"Usuário encontrado! \n");
+						JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + usuario + " !"); 
+						dispose(); 
+						// Fazer login aqui
+						telaUser = new TelaDoUsuario();
+						telaUser.show();
 					}
 					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 				} catch (Exception e1) {
