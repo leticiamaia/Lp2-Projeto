@@ -1,32 +1,33 @@
 package projetoLp2.bolao;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Color;
-
-import javax.swing.JLabel;
-
-import java.awt.Font;
-
-import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
 
 public class TelaEsqueciDados extends JFrame {
 
+	ObjectInputStream ois;
+	
 	private JPanel contentPane;
 	private JPanel mostraSenha;
-	private String usuario, respostaSecreta, pergunta; 
+	private String usuario, respostaSecreta, pergunta, eMail; 
 	//Jogador jogador1;
 
 	/**
@@ -100,13 +101,13 @@ public class TelaEsqueciDados extends JFrame {
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
-		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veículo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
+		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
@@ -135,9 +136,19 @@ public class TelaEsqueciDados extends JFrame {
 				usuario = recebeLogin.getText();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				respostaSecreta = respostaSecretaField.getText();
+				eMail = recebeEmail.getText();
 				/*if(usuario)
 				 * 
 				 */
+				try {
+					if(checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
+						System.out.println("Usuario encontrado");
+					}
+					else System.out.println("Usuario nao existe!");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -166,4 +177,35 @@ public class TelaEsqueciDados extends JFrame {
 		
 
 	}
+	
+	private boolean checkUsuario(String usuario, String pergunta,
+			String respostaSecreta, String email) throws IOException {
+		try {
+			createIos("usuarios.bin");
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
+					.readObject();
+			for (Jogador j : jogadores) {
+				if (j.getUsername().equals(usuario)
+						&& j.getPerguntaSecreta().equals(pergunta)
+						&& j.getResposta().equals(respostaSecreta)
+						&& j.getEmail().equals(email)) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			ois.close();
+		}
+		return false;
+	}
+
+	private void createIos(String fileName) throws IOException {
+		try {
+			ois = new ObjectInputStream(new FileInputStream(fileName));
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo nao Existe");
+		}
+	}
+
 }
