@@ -61,16 +61,16 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		quadroDeLogin.setLayout(null);
 		
-		recebeLogin = new JTextField(); 
-		recebeLogin.setBounds(156, 36, 174, 20);
-		quadroDeLogin.add(recebeLogin);
-		recebeLogin.setColumns(10);
-		
 		JLabel login = new JLabel(); 
 		login.setBounds(104, 36, 49, 20);
 		quadroDeLogin.add(login);
 		login.setText("Login:"); 
 		login.setBackground(new Color(240, 240, 240));
+		
+		recebeLogin = new JTextField(); 
+		recebeLogin.setBounds(156, 36, 174, 20);
+		quadroDeLogin.add(recebeLogin);
+		recebeLogin.setColumns(10);
 		
 		JLabel senha = new JLabel();
 		senha.setBounds(104, 67, 43, 20);

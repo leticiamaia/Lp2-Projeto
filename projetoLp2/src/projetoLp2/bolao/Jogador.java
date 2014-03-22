@@ -16,6 +16,47 @@ public class Jogador extends Usuario {
 	private String email;
 	private String perguntaSecreta;
 	private String resposta;
+	public Aposta[] getApostas() {
+		return apostas;
+	}
+
+	public int getTotalPontos() {
+		return totalPontos;
+	}
+
+
+	public String getPerguntaSecreta() {
+		return perguntaSecreta;
+	}
+
+	public void setPerguntaSecreta(String perguntaSecreta) {
+		this.perguntaSecreta = perguntaSecreta;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private String nome;
 	public Jogador(String nome, String username, String senha, String email,
 			String perguntaSecreta, String resposta) throws Exception {

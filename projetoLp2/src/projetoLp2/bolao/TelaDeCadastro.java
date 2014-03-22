@@ -173,10 +173,13 @@ public class TelaDeCadastro extends JFrame {
 
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Onde sua mãe nasceu?");
-		perguntaSecretaComboBox
-				.addItem("Qual o nome do seu primeiro animal de estimação?");
-		perguntaSecretaComboBox.addItem("Outra pergunta estúpida aqui");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
+		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veículo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
