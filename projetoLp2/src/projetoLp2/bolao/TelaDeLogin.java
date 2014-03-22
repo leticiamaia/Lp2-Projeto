@@ -98,9 +98,7 @@ public class TelaDeLogin extends JFrame {
 							try {
 								if (bolao.login2(getLogin,getSenha)) {
 									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
-									/*
-									Colocar nome no lugar de user
-								*/
+
 									dispose(); 
 
 									if(bolao.getUsuarioLogado().equals(admin.getUsername()))
