@@ -97,14 +97,17 @@ public class TelaDeLogin extends JFrame {
 							JOptionPane.showMessageDialog(null, "Campo 'senha' não deve ser vazio!");
 						}	
 							try {
-								bolao.login2(getLogin,getSenha);
-								JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
-								dispose(); 
-								JOptionPane.showMessageDialog(null, "Seja bem vindo " + getLogin + "!");
-								telaUser = new TelaDoUsuario();
-								telaUser.show();
+								if (bolao.login2(getLogin,getSenha)) {
+									JOptionPane.showMessageDialog(null, "Login feito com sucesso!");
+									dispose(); 
+									JOptionPane.showMessageDialog(null, "Seja bem vindo " + getLogin + "!");
+									telaUser = new TelaDoUsuario();
+									telaUser.show();
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Login ou senha incorreto(s).");
+								}
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 					}
