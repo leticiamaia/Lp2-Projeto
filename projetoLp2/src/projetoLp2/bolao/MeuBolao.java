@@ -76,9 +76,11 @@ public class MeuBolao {
 					retorno = 3;
 				}
 			}
-			Jogador j = new Jogador(nome, username, senha, email, perguntaSecreta,
+			if(retorno ==1) {
+				Jogador j = new Jogador(nome, username, senha, email, perguntaSecreta,
 					resposta);
-			jogadores.add(j);
+				jogadores.add(j);
+			}
 
 			createOut("usuarios.bin");
 			out.writeObject(jogadores);
