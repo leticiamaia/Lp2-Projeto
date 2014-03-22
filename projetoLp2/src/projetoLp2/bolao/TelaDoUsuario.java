@@ -25,6 +25,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -92,8 +93,6 @@ public class TelaDoUsuario extends JFrame {
 		JMenu mnSair = new JMenu("Sair");
 		menuBar.add(mnSair);
 		
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnSair.add(mntmSair);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,22 +144,23 @@ public class TelaDoUsuario extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(1021, 363, 163, 47);
 		contentPane.add(btnNewButton_1);
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mnSair.add(mntmSair);
+		/*mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja sair?");
+				if(resposta == 1) {
+					dispose();
 				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
+				else {
+					JOptionPane.showMessageDialog(null, "OK!");
 				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+
 	}
+
+}*/
+			}	
 }

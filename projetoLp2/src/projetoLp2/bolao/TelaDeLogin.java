@@ -22,6 +22,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaDeCadastro telaDeCadastro;
 	private MeuBolao bolao;
 	private TelaDoUsuario telaUser;
+	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
 	private Jogador jogador1;
 	/**
@@ -101,8 +102,15 @@ public class TelaDeLogin extends JFrame {
 								*/
 									dispose(); 
 									//JOptionPane.showMessageDialog(null, "");
+									if(bolao.getUsuarioLogado().equals("admin"))
+									{
+										telaAdmin = new TelaDoAdmin();
+										telaAdmin.show();										
+									}
+									else {
 									telaUser = new TelaDoUsuario();
 									telaUser.show();
+								}
 								}
 								else if (getLogin.isEmpty()== false && getSenha.isEmpty()==false){
 									JOptionPane.showMessageDialog(null, "Login ou senha incorreto(s).");

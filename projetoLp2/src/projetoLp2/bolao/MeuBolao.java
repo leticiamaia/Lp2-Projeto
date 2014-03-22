@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeuBolao {
-	Usuario usuarioLogado = null;
+	private Usuario usuarioLogado = null;
 
 	ObjectInputStream ois;
 	ObjectOutputStream out;
@@ -148,5 +148,9 @@ public class MeuBolao {
 
 	public void desloga() {
 		usuarioLogado = null;
+	}
+	
+	public Usuario getUsuarioLogado(){
+		return this.usuarioLogado;
 	}
 }

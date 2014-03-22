@@ -20,7 +20,7 @@ public class CriaFile {
 	        } catch( FileNotFoundException e ) {
 	          System.exit(1);
 	        }
-	      Administrador admin = new Administrador("Admin", "1234");
+	      Administrador admin = new Administrador("admin", "1234");
 	      out.writeObject(admin);
 	      out.close();
 	    } catch(IOException e) {
