@@ -117,10 +117,11 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Login ou senha incorreto(s).");
 								}
 							} catch (Exception e1) {
-								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
-					}
+			}
 		});
+		
 		botaoEntrar.setBounds(138, 97, 91, 23);
 		quadroDeLogin.add(botaoEntrar); 
 		
