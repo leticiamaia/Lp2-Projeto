@@ -45,19 +45,6 @@ public abstract class Usuario implements Serializable{
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
-	// CONSERTAR O EQUALS! Dois usuários são iguais se seus nomes de usuários são iguais.
-	@Override
-	public boolean equals(Object obj) {
-		Usuario user = (Usuario) obj;
-		if (username == null) {
-			if (user.getUsername() != null)
-				return false;
-		} else if (!username.equals(user.getUsername()))
-			return false;
-		return true;
-	}
-	
 	
 	
 }

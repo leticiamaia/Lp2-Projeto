@@ -24,8 +24,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
-	private Usuario admin;
-	private Jogador jogador1;
+
 	/**
 	 * Launch the application.
 	 */
@@ -98,10 +97,9 @@ public class TelaDeLogin extends JFrame {
 							try {
 								if (bolao.login2(getLogin,getSenha)) {
 									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
-
 									dispose(); 
 
-									if(bolao.getUsuarioLogado().equals(admin.getUsername()))
+									if(bolao.getUsuarioLogado() instanceof Administrador)
 									{
 										telaAdmin = new TelaDoAdmin();
 										telaAdmin.show();										
