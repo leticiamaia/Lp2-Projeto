@@ -22,6 +22,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaDeCadastro telaDeCadastro;
 	private MeuBolao bolao;
 	private TelaDoUsuario telaUser;
+	private TelaEsqueciDados telaEsqueceu;
 	/**
 	 * Launch the application.
 	 */
@@ -61,11 +62,6 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.setLayout(null);
 		
 		recebeLogin = new JTextField(); 
-		recebeLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-	
 		recebeLogin.setBounds(156, 36, 174, 20);
 		quadroDeLogin.add(recebeLogin);
 		recebeLogin.setColumns(10);
@@ -104,7 +100,7 @@ public class TelaDeLogin extends JFrame {
 									telaUser = new TelaDoUsuario();
 									telaUser.show();
 								}
-								else {
+								else if (getLogin.isEmpty()== false && getSenha.isEmpty()==false){
 									JOptionPane.showMessageDialog(null, "Login ou senha incorreto(s).");
 								}
 							} catch (Exception e1) {
@@ -130,6 +126,8 @@ public class TelaDeLogin extends JFrame {
 		JButton botaoEsqueciDados = new JButton("Esqueci dados");
 		botaoEsqueciDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				telaEsqueceu = new TelaEsqueciDados();
+				telaEsqueceu.show();
 			}
 		});
 		botaoEsqueciDados.setBounds(178, 130, 119, 23);
