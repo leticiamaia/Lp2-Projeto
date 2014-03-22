@@ -18,7 +18,6 @@ public class MeuBolao {
 	public boolean login2(String username, String senha) throws Exception {
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
-		System.out.println("Log1");
 		try {
 			createIos("admin.bin");
 			Administrador admin = (Administrador) ois.readObject();
