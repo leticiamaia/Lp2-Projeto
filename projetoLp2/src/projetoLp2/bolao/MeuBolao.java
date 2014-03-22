@@ -119,6 +119,7 @@ public class MeuBolao {
 						&& j.getPerguntaSecreta().equals(pergunta)
 						&& j.getResposta().equals(respostaSecreta)
 						&& j.getEmail().equals(email)) {
+					usuarioLogado = j;
 					return true;
 				}
 			}

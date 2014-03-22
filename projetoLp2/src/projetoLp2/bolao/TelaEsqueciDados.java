@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -26,7 +28,7 @@ public class TelaEsqueciDados extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel mostraSenha;
-	private String usuario, respostaSecreta, pergunta, eMail; 
+	private String usuario, respostaSecreta, pergunta, eMail, novaSenha; 
 	private TelaDoUsuario telaUser;
 	//Jogador jogador1;
 
@@ -59,6 +61,13 @@ public class TelaEsqueciDados extends JFrame {
 		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
+		
+		final JOptionPane pane = new JOptionPane("");
+		JDialog dialog = pane.createDialog("");
+		dialog.setContentPane(pane);
+		dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+		dialog.pack();
+		dialog.setVisible(false);		
 		
 		JLabel tituloEsqueceuDados = new JLabel("Esqueci meus dados");
 		tituloEsqueceuDados.setFont(new Font("Segoe Print", Font.PLAIN, 30));
@@ -126,7 +135,7 @@ public class TelaEsqueciDados extends JFrame {
 		informacaoEsqueciSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		informacaoEsqueciSenha.setBackground(Color.WHITE);
 		informacaoEsqueciSenha.setBounds(177, 76, 482, 74);
-		contentPane.add(informacaoEsqueciSenha);
+		contentPane.add(informacaoEsqueciSenha);		
 		
 		JButton confirma = new JButton("Confirma");
 		confirma.setBounds(292, 273, 91, 23);
@@ -141,12 +150,23 @@ public class TelaEsqueciDados extends JFrame {
 				MeuBolao bolao = new MeuBolao();;
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
-						JOptionPane.showMessageDialog(null,"Usuário encontrado! \n");
-						JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + usuario + " !"); 
-						dispose(); 
-						// Fazer login aqui
-						telaUser = new TelaDoUsuario();
-						telaUser.show();
+						JOptionPane.showMessageDialog(null, "Usuário(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
+						String[] options = {"OK"};
+						JPanel panel = new JPanel();
+						JLabel lbl = new JLabel("É preciso redefinir uma nova senha para continuar: ");
+						JPasswordField txt = new JPasswordField(10);
+						panel.add(lbl);
+						panel.add(txt);
+						pane.setVisible(true);
+						do {
+							pane.showOptionDialog(null, panel, "Redefinir Senha", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options , options[0]);
+							novaSenha = txt.getText();
+						}while(novaSenha.compareTo("") == 0);
+							telaUser = new TelaDoUsuario();
+							telaUser.show();			
+							dispose(); 
+						
+			
 					}
 					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 				} catch (Exception e1) {
