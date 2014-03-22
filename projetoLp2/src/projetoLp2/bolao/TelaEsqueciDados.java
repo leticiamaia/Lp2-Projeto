@@ -50,7 +50,7 @@ public class TelaEsqueciDados extends JFrame {
 	 */
 	public TelaEsqueciDados() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(300, 150, 759, 448);
+		setBounds(300, 150, 759, 448); 
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
@@ -61,40 +61,45 @@ public class TelaEsqueciDados extends JFrame {
 		JLabel tituloEsqueceuDados = new JLabel("Esqueci meus dados");
 		tituloEsqueceuDados.setFont(new Font("Segoe Print", Font.PLAIN, 30));
 		tituloEsqueceuDados.setBackground(Color.WHITE);
-		tituloEsqueceuDados.setBounds(246, 11, 365, 54);
+		tituloEsqueceuDados.setBounds(248, 11, 365, 54);
 		contentPane.add(tituloEsqueceuDados);
+		
+		JLabel dory = new JLabel("");
+		dory.setIcon(new ImageIcon(this.getClass().getResource("docs/dory-small.png")));
+		dory.setBounds(31, 11, 138, 272);
+		contentPane.add(dory);
 		
 		JLabel login = new JLabel(); 
 		login.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		login.setBounds(157, 146, 77, 20);
+		login.setBounds(182, 145, 77, 20);
 		contentPane.add(login);
 		login.setText("Seu usu\u00E1rio: "); 
 		login.setBackground(new Color(240, 240, 240));
 		
 		final JTextField recebeLogin = new JTextField(); 
-		recebeLogin.setBounds(245, 176, 336, 20);
+		recebeLogin.setBounds(270, 175, 336, 20);
 		contentPane.add(recebeLogin);
 		recebeLogin.setColumns(10);
 		
 		JLabel email = new JLabel("Seu e-mail:");
 		email.setSize(67, 20);
-		email.setLocation(164, 176);
+		email.setLocation(189, 175);
 		email.setBackground(Color.WHITE);
 		email.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(email);
 		
 		final JTextField recebeEmail = new JTextField(); 
-		recebeEmail.setBounds(245, 145, 336, 20);
+		recebeEmail.setBounds(270, 144, 336, 20);
 		contentPane.add(recebeEmail);
 		recebeEmail.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(127, 206, 104, 20);
+		lblNewLabel_3.setBounds(152, 205, 104, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
-		perguntaSecretaComboBox.setBounds(245, 206, 336, 20);
+		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
@@ -106,23 +111,23 @@ public class TelaEsqueciDados extends JFrame {
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
 		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblResposta.setBounds(150, 237, 81, 21);
+		lblResposta.setBounds(175, 236, 81, 21);
 		contentPane.add(lblResposta);
 		
 		final JTextField respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
-		respostaSecretaField.setBounds(245, 237, 336, 20);
+		respostaSecretaField.setBounds(270, 236, 336, 20);
 		contentPane.add(respostaSecretaField);
 		
 		JLabel informacaoEsqueciSenha = new JLabel("<html>Aqui voc\u00EA pode recuperar apenas sua senha atrav\u00E9s da sua resposta \u00E0 pergunta secreta escolhida no momento do seu cadastro. Caso voc\u00EA n\u00E3o se recorde do seu usu\u00E1rio ou da sua resposta/pergunta secreta, contate um administrador.</html>");
 		informacaoEsqueciSenha.setVerticalAlignment(SwingConstants.TOP);
 		informacaoEsqueciSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		informacaoEsqueciSenha.setBackground(Color.WHITE);
-		informacaoEsqueciSenha.setBounds(139, 75, 563, 74);
+		informacaoEsqueciSenha.setBounds(177, 76, 482, 74);
 		contentPane.add(informacaoEsqueciSenha);
 		
 		JButton confirma = new JButton("Confirma");
-		confirma.setBounds(267, 274, 91, 23);
+		confirma.setBounds(292, 273, 91, 23);
 		confirma.addActionListener(new ActionListener() {
 			
 			@Override
@@ -144,13 +149,19 @@ public class TelaEsqueciDados extends JFrame {
 				dispose();
 			}
 		});
-		cancela.setBounds(444, 274, 91, 23);
+		cancela.setBounds(469, 273, 91, 23);
 		contentPane.add(cancela);
 		
 		
 		mostraSenha = new JPanel();
 		mostraSenha.setBackground(new Color(240, 240, 240));
 		getContentPane().add(mostraSenha);
+		
+		JLabel interrogacaoLabel = new JLabel("?");
+		interrogacaoLabel.setForeground(Color.RED);
+		interrogacaoLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+		interrogacaoLabel.setBounds(68, 27, 77, 54);
+		contentPane.add(interrogacaoLabel);
 
 		
 
