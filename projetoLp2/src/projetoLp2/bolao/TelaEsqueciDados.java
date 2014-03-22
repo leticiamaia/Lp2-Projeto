@@ -53,6 +53,7 @@ public class TelaEsqueciDados extends JFrame {
 		setBounds(300, 150, 759, 448); 
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
+		setTitle("Esqueci minha senha");
 		setContentPane(contentPane);
 		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,13 +101,13 @@ public class TelaEsqueciDados extends JFrame {
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
-		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
+		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veículo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
