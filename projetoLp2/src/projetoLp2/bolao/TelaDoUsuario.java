@@ -1,53 +1,24 @@
 package projetoLp2.bolao;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
-
 import javax.swing.JMenuBar;
-
-import java.awt.Label;
-
-import javax.swing.JPopupMenu;
-
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.Box;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import javax.swing.SwingConstants;
-
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import java.awt.Choice;
-
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JTabbedPane;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
@@ -60,7 +31,6 @@ public class TelaDoUsuario extends JFrame {
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
 	private JTable table;
-	private JScrollPane scrollPane;
 	private JTable table_1;
 
 	/**
@@ -140,21 +110,7 @@ public class TelaDoUsuario extends JFrame {
 		bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); */
-	
-		
-		/*mntmSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja sair?");
-				if(resposta == 1) {
-					
-					dispose();
-
-					
-				}
 			
-			}
-		});
-*/		
 		class exitaction implements ActionListener {
 			public void actionPerformed (ActionEvent e) {
 				bolao = new MeuBolao();
@@ -195,57 +151,6 @@ public class TelaDoUsuario extends JFrame {
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblBemVindoEssa.setBounds(297, 215, 754, 25);
 		panel.add(lblBemVindoEssa);
-		
-		OrdenaJogadores ordena = new OrdenaJogadores();
-		String[] colunas = {"Posição", "Usuário", "Pontuação"};
-		String[][] dados = {
-				{"1ª", ordena.getUsuarioPosicao(0).getUsername(),/* ordena.getUsuarioPosicao(0).getPontos()*/},
-				{"2ª", ordena.getUsuarioPosicao(1).getUsername(), "0"},
-				{"3ª", ordena.getUsuarioPosicao(2).getUsername(), "0"}};
-		
-		/*table_1 = new JTable();
-		table_1.setEnabled(true);
-		table_1.setVisible(true);
-		table_1.setRowSelectionAllowed(false);
-		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table_1.getColumnModel().getColumn(0).setResizable(false);
-		table_1.getColumnModel().getColumn(0).setPreferredWidth(81);
-		table_1.getColumnModel().getColumn(1).setResizable(false);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(280);
-		table_1.getColumnModel().getColumn(2).setResizable(false);
-		table_1.getColumnModel().getColumn(2).setPreferredWidth(99);
-		table_1.setBounds(0, 0, 361, 200);
-
-		
-		JScrollPane scrollPane = new JScrollPane(table_1);
-		scrollPane.setBounds(333, 300, 361, 200);
-		scrollPane.setVisible(true);
-		panel.add(scrollPane);
-		
-	
-		
-		
-		
-
-			
-		
-		DefaultTableModel modelo = new DefaultTableModel(dados, colunas);  
-		table = new JTable(modelo);
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(94);
-		table.getColumnModel().getColumn(1).setPreferredWidth(319);
-		table.getColumnModel().getColumn(2).setPreferredWidth(128);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		table.setBounds(10, 10, 543, 249);
-		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(300, 300, 773, 329);
-		panel.add(scrollPane);
-		scrollPane.setVisible(true);
-		table.setVisible(true);
-		scrollPane.add(table);	
-		*/
-
-
 	}
 }
 			
