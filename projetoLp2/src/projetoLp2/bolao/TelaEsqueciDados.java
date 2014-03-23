@@ -146,9 +146,11 @@ public class TelaEsqueciDados extends JFrame {
 				usuario = recebeLogin.getText();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				respostaSecreta = respostaSecretaField.getText();
-				eMail = recebeEmail.getText();
-				MeuBolao bolao = new MeuBolao();;
+				eMail = recebeEmail.getText();	
+								
+				MeuBolao bolao = new MeuBolao();
 				try {
+
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
 						JOptionPane.showMessageDialog(null, "Usuário(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
 						String[] options = {"OK"};
@@ -166,8 +168,6 @@ public class TelaEsqueciDados extends JFrame {
 							telaUser = new TelaDoUsuario();
 							telaUser.show();			
 							dispose(); 
-						
-			
 					}
 					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 				} catch (Exception e1) {
@@ -176,6 +176,7 @@ public class TelaEsqueciDados extends JFrame {
 				
 			}
 		});
+	
 		contentPane.add(confirma);
 		
 		JButton cancela = new JButton("Cancela");

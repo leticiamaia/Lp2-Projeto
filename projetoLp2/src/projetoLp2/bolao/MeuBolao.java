@@ -144,8 +144,8 @@ public class MeuBolao {
 		if (usuarioLogado == null)
 			throw new Exception(
 					"Usuario precisa estar logado para realizar esta operacao");
-		if (novaSenha == null || novaSenha == "")
-			throw new Exception("Senha nao pode ser nula ou vazia");
+		if (novaSenha == null || novaSenha == "" || novaSenha.contains(" "))
+			throw new Exception("Senha nao pode ser nula, vazia e nem conter espaços");
 		boolean retorno = false;
 		usuarioLogado.mudaSenha(novaSenha);
 		if(usuarioLogado instanceof Administrador) {

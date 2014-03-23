@@ -232,7 +232,7 @@ public class TelaDeCadastro extends JFrame {
 				}
 				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
 					JOptionPane.showMessageDialog(null,
-							"E-mail Invelido.");
+							"E-mail Inválido.");
 					sucesso = -1;
 				}
 				
