@@ -15,7 +15,8 @@ public class MeuBolao {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public boolean login2(String username, String senha) throws Exception {
+	public int login2(String username, String senha) throws Exception {
+		int retorno = 3;
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
 		try {
@@ -23,7 +24,10 @@ public class MeuBolao {
 			Administrador admin = (Administrador) ois.readObject();
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
-				return true;
+				retorno = 1;
+			}
+			else if(admin.getUsername().equals(username)) {
+				retorno = 2;
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -37,7 +41,10 @@ public class MeuBolao {
 			for (Jogador j : jogadores) {
 				if (j.login(username, senha)) {
 					usuarioLogado = j;
-					return true;
+					retorno = 1;
+				}
+				else if(j.getUsername().equals(username)) {
+					retorno = 2;
 				}
 			}
 		} catch (Exception e) {
@@ -45,7 +52,7 @@ public class MeuBolao {
 		} finally {
 			ois.close();
 		}
-		return false;
+		return retorno;
 	}
 
 	public int cadastraJogador(String nome, String username, String senha,

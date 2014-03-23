@@ -95,7 +95,8 @@ public class TelaDeLogin extends JFrame {
 							JOptionPane.showMessageDialog(null, "Campo 'senha' não deve ser vazio!");
 						}	
 							try {
-								if (bolao.login2(getLogin,getSenha)) {
+								int sucesso = bolao.login2(getLogin, getSenha);
+								if (sucesso == 1) {
 									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
 									dispose(); 
 
@@ -109,8 +110,10 @@ public class TelaDeLogin extends JFrame {
 									telaUser.show();
 								}
 								}
-								else if (getLogin.isEmpty()== false && getSenha.isEmpty()==false){
-									JOptionPane.showMessageDialog(null, "Login ou senha incorreto(s).");
+								else if (getLogin.isEmpty()== false && getSenha.isEmpty()==false && sucesso == 2){
+									JOptionPane.showMessageDialog(null, "Senha incorreta(s).");
+								} else {
+									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
 								JOptionPane.showMessageDialog(null,e1.getMessage());
