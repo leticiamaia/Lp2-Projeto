@@ -12,11 +12,16 @@ import projetoLp2.bolao.ApostaPrimeiraFase;
 import projetoLp2.bolao.ApostaQuartasDeFinal;
 import projetoLp2.bolao.ApostaSemiFinal;
 import projetoLp2.bolao.Partida;
+import projetoLp2.bolao.TimeCopa;
 
 public class TestaAposta {
 
 	@Test
-	public void testaConstrutor(){
+	public void testaConstrutor() throws Exception{
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+		
 		try {
 			Aposta aposta = new ApostaPrimeiraFase(null, 1, 2);
 			Assert.fail();
@@ -25,7 +30,6 @@ public class TestaAposta {
 		}
 	
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, -1, 2);
 			Assert.fail();
 		} catch (Exception e) {
@@ -33,7 +37,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, -2);
 			Assert.fail();
 		} catch (Exception e) {
@@ -41,7 +44,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 			Assert.assertTrue(aposta.getPalpiteGolsTime1() == 1);
 			Assert.assertTrue(aposta.getPalpiteGolsTime2() == 2);
@@ -51,10 +53,12 @@ public class TestaAposta {
 	}
 	
 	@Test
-	public void testaSetPalpite(){
+	public void testaSetPalpite() throws Exception{
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));		
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 			aposta.setPalpiteGolsTime1(-1);
 		} catch (Exception e) {
@@ -62,7 +66,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 			aposta.setPalpiteGolsTime2(-2);
 		} catch (Exception e) {
@@ -70,7 +73,6 @@ public class TestaAposta {
 		}
 
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 			
 			aposta.setPalpiteGolsTime1(0);
@@ -84,9 +86,12 @@ public class TestaAposta {
 	}
 	
 	@Test
-	public void testaResultadoAposta(){
+	public void testaResultadoAposta() throws Exception{
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 1, 1);
 			aposta.resultadoAposta();
 		} catch (Exception e) {
@@ -94,7 +99,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 3);
 			Aposta aposta = new ApostaPrimeiraFase(partida, 5, 5);
 			Assert.assertTrue(aposta.resultadoAposta() == 1);
@@ -103,7 +107,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 3);
 			Aposta aposta = new ApostaPrimeiraFase(partida, 3, 3);
 			Assert.assertTrue(aposta.resultadoAposta() == 3);
@@ -112,7 +115,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 3);
 			Aposta aposta = new ApostaPrimeiraFase(partida, 4, 5);
 			Assert.assertTrue(aposta.resultadoAposta() == 0);
@@ -121,7 +123,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 3);
 			Aposta aposta = new ApostaPrimeiraFase(partida, 3, 5);
 			Assert.assertTrue(aposta.resultadoAposta() == 1);
@@ -130,7 +131,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 3);
 			Aposta aposta = new ApostaPrimeiraFase(partida, 5, 3);
 			Assert.assertTrue(aposta.resultadoAposta() == 1);
@@ -139,7 +139,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(4, 2);
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 4, 2);
 			Assert.assertTrue(aposta.resultadoAposta() == 6);
@@ -148,7 +147,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(4, 2);
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 3, 2);
 			Assert.assertTrue(aposta.resultadoAposta() == 4);
@@ -157,7 +155,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(4, 2);
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 3, 1);
 			Assert.assertTrue(aposta.resultadoAposta() == 2);
@@ -166,7 +163,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(4, 2);
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 1, 1);
 			Assert.assertTrue(aposta.resultadoAposta() == 0);
@@ -175,7 +171,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaQuartasDeFinal(partida, 3, 4);
 			Assert.assertTrue(aposta.resultadoAposta() == 12);
@@ -184,7 +179,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaQuartasDeFinal(partida, 2, 4);
 			Assert.assertTrue(aposta.resultadoAposta() == 8);
@@ -193,7 +187,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaQuartasDeFinal(partida, 2, 3);
 			Assert.assertTrue(aposta.resultadoAposta() == 4);
@@ -202,7 +195,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaQuartasDeFinal(partida, 2, 2);
 			Assert.assertTrue(aposta.resultadoAposta() == 0);
@@ -211,7 +203,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaSemiFinal(partida, 3, 4);
 			Assert.assertTrue(aposta.resultadoAposta() == 24);
@@ -220,7 +211,6 @@ public class TestaAposta {
 		}
 		
 		try {
-			Partida partida = new Partida("Brasil", "Holanda", new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(3, 4);
 			Aposta aposta = new ApostaFinal(partida, 3, 4);
 			Assert.assertTrue(aposta.resultadoAposta() == 48);

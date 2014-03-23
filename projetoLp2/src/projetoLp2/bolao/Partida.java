@@ -9,14 +9,15 @@ public class Partida implements Serializable{
 	private static final long serialVersionUID = -2980340733258351497L;
 	//Usei o GregorianCalendar, pois quase todos os metodos de Date estao obsoletos.
 	GregorianCalendar data;
-	String time1, time2;
+	TimeCopa time1, time2;
 	int golsTime1, golsTime2;
 	
-	public Partida(String time1, String time2, GregorianCalendar data) throws Exception{
-		if (time1 == null || time2 == null | time1.length() == 0 || time2.length() == 0)
-			throw new Exception("Nome do time invalido!");
+	public Partida(TimeCopa time1, TimeCopa time2, GregorianCalendar data) throws Exception{
+		if (time1 == null || time2 == null)
+			throw new Exception("Time invalido!");
 		
 		GregorianCalendar dataDeHoje = new GregorianCalendar();
+		
 		if (data.before(dataDeHoje))
 			throw new Exception("Nao e possivel adicionar jogo com data anterior a atual!");
 		
@@ -42,11 +43,11 @@ public class Partida implements Serializable{
 	}
 
 	public String getTime1() {
-		return time1;
+		return time1.getNomeDoTime();
 	}
 
 	public String getTime2() {
-		return time2;
+		return time2.getNomeDoTime();
 	}
 
 	public int getGolsTime1() throws Exception{
@@ -61,7 +62,7 @@ public class Partida implements Serializable{
 		return golsTime2;
 	}
 
-	//Metodo para facilitar na avalia�ao da aposta
+	//Metodo para facilitar na avaliacao da aposta
 	public int resultado() throws Exception{
 		Integer g1 = getGolsTime1();
 		Integer g2 = getGolsTime2();

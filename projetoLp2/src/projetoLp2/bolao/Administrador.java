@@ -25,10 +25,10 @@ public class Administrador extends Usuario {
 		super(username, senha);
 	}
 
-	public void cadastraPartida(int indicePartida, String nomeTime1,
-			String nomeTime2, GregorianCalendar data) throws Exception {
+	public void cadastraPartida(int indicePartida, TimeCopa time1,
+			TimeCopa time2, GregorianCalendar data) throws Exception {
 
-		Partida partida = new Partida(nomeTime1, nomeTime2, data);
+		Partida partida = new Partida(time1, time2, data);
 		partidas[indicePartida] = partida;
 	}
 
