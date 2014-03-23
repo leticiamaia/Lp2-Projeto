@@ -34,6 +34,9 @@ public class Partida implements Serializable{
 		 this.golsTime1 = golsTime1;
 		 this.golsTime2 = golsTime2;
 		 
+		 time1.addPartidaJogada(this);
+		 time2.addPartidaJogada(this);
+		 
 		 return true;
 	}
 

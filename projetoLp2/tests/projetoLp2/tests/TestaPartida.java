@@ -49,10 +49,10 @@ public class TestaPartida {
 	
 	@Test
 	public void testaSetGols() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
 		
 		try {
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(-1, 3);
 		} catch (Exception e) {
@@ -60,6 +60,8 @@ public class TestaPartida {
 		}
 		
 		try {
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(1, -3);
 		} catch (Exception e) {
@@ -67,10 +69,14 @@ public class TestaPartida {
 		}
 		
 		try {
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(1, 3);
 			Assert.assertTrue(partida.getGolsTime1() == 1);
 			Assert.assertTrue(partida.getGolsTime2() == 3);
+			Assert.assertTrue(time1.getNumDerrotas() == 1);
+			Assert.assertTrue(time2.getNumVitorias() == 1);
 		} catch (Exception e) {
 			Assert.fail();
 		}
