@@ -128,7 +128,7 @@ public class TelaDoUsuario extends JFrame {
 		
 		bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
+		//bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
