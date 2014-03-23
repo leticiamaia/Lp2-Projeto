@@ -196,29 +196,39 @@ public class TelaDoUsuario extends JFrame {
 		lblBemVindoEssa.setBounds(297, 215, 754, 25);
 		panel.add(lblBemVindoEssa);
 		
-		table_1 = new JTable();
-		table_1.setEnabled(false);
+		OrdenaJogadores ordena = new OrdenaJogadores();
+		String[] colunas = {"Posição", "Usuário", "Pontuação"};
+		String[][] dados = {
+				{"1ª", ordena.getUsuarioPosicao(0).getUsername(),/* ordena.getUsuarioPosicao(0).getPontos()*/},
+				{"2ª", ordena.getUsuarioPosicao(1).getUsername(), "0"},
+				{"3ª", ordena.getUsuarioPosicao(2).getUsername(), "0"}};
+		
+		/*table_1 = new JTable();
+		table_1.setEnabled(true);
+		table_1.setVisible(true);
 		table_1.setRowSelectionAllowed(false);
-		table_1.setToolTipText("");
 		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		/*table_1.getColumnModel().getColumn(0).setResizable(false);
+		table_1.getColumnModel().getColumn(0).setResizable(false);
 		table_1.getColumnModel().getColumn(0).setPreferredWidth(81);
 		table_1.getColumnModel().getColumn(1).setResizable(false);
 		table_1.getColumnModel().getColumn(1).setPreferredWidth(280);
 		table_1.getColumnModel().getColumn(2).setResizable(false);
-		table_1.getColumnModel().getColumn(2).setPreferredWidth(99);*/
-		table_1.setBounds(0, 0, 300, 161);
+		table_1.getColumnModel().getColumn(2).setPreferredWidth(99);
+		table_1.setBounds(0, 0, 361, 200);
 
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane(table_1);
 		scrollPane.setBounds(333, 300, 361, 200);
+		scrollPane.setVisible(true);
+		panel.add(scrollPane);
+		
 	
 		
 		
 		
 
 			
-	/*	
+		
 		DefaultTableModel modelo = new DefaultTableModel(dados, colunas);  
 		table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
