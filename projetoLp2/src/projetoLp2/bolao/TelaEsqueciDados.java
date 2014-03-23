@@ -144,10 +144,10 @@ public class TelaEsqueciDados extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				usuario = recebeLogin.getText();
+				usuario = recebeLogin.getText().trim();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
-				respostaSecreta = respostaSecretaField.getText();
-				eMail = recebeEmail.getText();	
+				respostaSecreta = respostaSecretaField.getText().trim();
+				eMail = recebeEmail.getText().trim();	
 								
 				bolao = new MeuBolao();
 				try {
@@ -162,7 +162,7 @@ public class TelaEsqueciDados extends JFrame {
 						pane.setVisible(true);
 						do {
 							pane.showOptionDialog(null, panel, "Redefinir Senha", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options , options[0]);
-							novaSenha = txt.getText();
+							novaSenha = txt.getText().trim();
 							bolao.mudarSenha(novaSenha);
 						}while(novaSenha.compareTo("") == 0);
 							telaUser = new TelaDoUsuario();

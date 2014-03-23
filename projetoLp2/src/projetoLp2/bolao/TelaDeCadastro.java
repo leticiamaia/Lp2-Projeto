@@ -207,12 +207,12 @@ public class TelaDeCadastro extends JFrame {
 		JButton botaoConfirma = new JButton("Confirmar");
 		botaoConfirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				nome = recebeNomeField.getText();
-				senha = recebeSenhaField.getText();
-				senhaConfirmada = recebeConfirmaSenhaField.getText();
-				email = recebeEmailField.getText();
-				usuario = recebeUserField.getText();
-				respostaSecreta = respostaSecretaField.getText();
+				nome = recebeNomeField.getText().trim();
+				senha = recebeSenhaField.getText().trim();
+				senhaConfirmada = recebeConfirmaSenhaField.getText().trim();
+				email = recebeEmailField.getText().trim();
+				usuario = recebeUserField.getText().trim();
+				respostaSecreta = respostaSecretaField.getText().trim();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				int sucesso = 0;
 				if (usuario.equals("")) {

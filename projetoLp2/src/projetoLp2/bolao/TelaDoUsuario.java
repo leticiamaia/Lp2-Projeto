@@ -1,6 +1,7 @@
 package projetoLp2.bolao;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -27,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -47,12 +49,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
 
 public class TelaDoUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
+	private JTable table;
+	private JScrollPane scrollPane;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -163,52 +172,70 @@ public class TelaDoUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		/*
-		 * 
-		 * 	JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA deseja apostar:");
-		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSelecioneAFase.setBounds(181, 149, 358, 23);
-		contentPane.add(lblSelecioneAFase);
-
-		 * 
-		 * JComboBox<String> comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboBox.setToolTipText("\\ijrery");
-		comboBox.setBounds(527, 149, 201, 27);
-		comboBox.addItem("Primeira fase");
-		comboBox.addItem("Oitavas de Final");
-		comboBox.addItem("Quartas de Final");
-		comboBox.addItem("Semi-final");
-		comboBox.addItem("Final");
-		contentPane.add(comboBox);
-		*/
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1284, 640);
+		panel.setBounds(-37, -29, 1284, 640);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
 		lblBoloCopaDo.setBackground(Color.WHITE);
-		lblBoloCopaDo.setBounds(506, 60, 492, 61);
+		lblBoloCopaDo.setBounds(470, 87, 492, 61);
 		panel.add(lblBoloCopaDo);
 		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
 		
 			
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(396, 11, 113, 161);
+		lblNewLabel.setBounds(360, 38, 113, 161);
 		panel.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 		
 		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas a\u00E7\u00F5es do programa atrav\u00E9s da barra de menu fixada acima.");
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblBemVindoEssa.setBounds(333, 188, 754, 25);
+		lblBemVindoEssa.setBounds(297, 215, 754, 25);
 		panel.add(lblBemVindoEssa);
 		
+		table_1 = new JTable();
+		table_1.setEnabled(false);
+		table_1.setRowSelectionAllowed(false);
+		table_1.setToolTipText("");
+		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		/*table_1.getColumnModel().getColumn(0).setResizable(false);
+		table_1.getColumnModel().getColumn(0).setPreferredWidth(81);
+		table_1.getColumnModel().getColumn(1).setResizable(false);
+		table_1.getColumnModel().getColumn(1).setPreferredWidth(280);
+		table_1.getColumnModel().getColumn(2).setResizable(false);
+		table_1.getColumnModel().getColumn(2).setPreferredWidth(99);*/
+		table_1.setBounds(0, 0, 300, 161);
 
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(333, 300, 361, 200);
 	
+		
+		
+		
+
+			
+	/*	
+		DefaultTableModel modelo = new DefaultTableModel(dados, colunas);  
+		table = new JTable(modelo);
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(94);
+		table.getColumnModel().getColumn(1).setPreferredWidth(319);
+		table.getColumnModel().getColumn(2).setPreferredWidth(128);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		table.setBounds(10, 10, 543, 249);
+		scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(300, 300, 773, 329);
+		panel.add(scrollPane);
+		scrollPane.setVisible(true);
+		table.setVisible(true);
+		scrollPane.add(table);	
+		*/
+
+
 	}
 }
 			

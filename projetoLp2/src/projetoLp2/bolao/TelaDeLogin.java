@@ -85,8 +85,8 @@ public class TelaDeLogin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String getSenha;
 				String getLogin;
-						getLogin = recebeLogin.getText();
-						getSenha = recebeSenhaEncriptada.getText(); 
+						getLogin = recebeLogin.getText().trim();
+						getSenha = recebeSenhaEncriptada.getText().trim(); 
 						
 						if(getLogin.equals("")) {
 							JOptionPane.showMessageDialog(null, "Campo 'usuário' não deve ser vazio!");
