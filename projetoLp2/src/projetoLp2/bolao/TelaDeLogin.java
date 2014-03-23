@@ -117,7 +117,6 @@ public class TelaDeLogin extends JFrame {
 							}
 			}
 		});
-		
 		botaoEntrar.setBounds(138, 97, 91, 23);
 		quadroDeLogin.add(botaoEntrar); 
 		

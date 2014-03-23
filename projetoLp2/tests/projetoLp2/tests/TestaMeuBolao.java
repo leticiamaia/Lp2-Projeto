@@ -55,6 +55,7 @@ public class TestaMeuBolao {
 				"Qual?", "patos");
 		bolao.desloga();
 		Assert.assertTrue(bolao.login2("Let", "1234"));
+
 	}
 
 	@Test
