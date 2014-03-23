@@ -22,7 +22,7 @@ public class TestaMeuBolao {
 
 	@Test
 	public void testaLoginAdmin() throws Exception {
-		Assert.assertTrue(bolao.login2("Admin", "1234"));
+		Assert.assertTrue(bolao.login2("admin", "1234"));
 		try {
 			bolao.login2("Admin", "1234");
 			Assert.fail();
@@ -65,7 +65,7 @@ public class TestaMeuBolao {
 				"lmt@gmail.com", "Qual?", "patos"), 2);
 		Assert.assertEquals(bolao.cadastraJogador("Leticica", "Let", "1234",
 				"lmt@gmail.com", "Qual?", "patos"), 1);
-		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Admin", "1234",
+		Assert.assertEquals(bolao.cadastraJogador("Leticia", "admin", "1234",
 				"leti@gmail.com", "Qual?", "patos"), 2);
 		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Outro", "1234",
 				"lmt@gmail.com", "Qual?", "patos"), 3);

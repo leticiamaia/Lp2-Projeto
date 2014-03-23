@@ -242,7 +242,7 @@ public class TelaDeCadastro extends JFrame {
 					}
 					else if (sucesso == 2)
 						JOptionPane.showMessageDialog(null,
-								"Usuario ja existente, escolha outro."); //Lucas consertou
+								"Usuario ja existente, escolha outro."); 
 					else if (sucesso == 3)
 						JOptionPane.showMessageDialog(null,
 								"E-mail ja existente, escolha outro.");

@@ -22,6 +22,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Box;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JCheckBoxMenuItem;
@@ -29,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 import java.awt.Font;
 
@@ -43,6 +45,7 @@ import javax.swing.JTabbedPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JInternalFrame;
 
 public class TelaDoUsuario extends JFrame {
@@ -116,12 +119,25 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
 		 menuSobre.add(sobreMenuItem);
 		
-		JMenu mnSair = new JMenu("Sair");
-		menuBar.add(mnSair);
+		 JMenu mnSair = new JMenu("Sair");
+		 menuBar.add(mnSair);
+		 JMenuItem mntmSair = new JMenuItem("Sair");
+		 mnSair.add(mntmSair);
+		 
 		
 		
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnSair.add(mntmSair);
+		menuBar.add(Box.createHorizontalGlue());
+		
+		;
+		
+		bolao = new MeuBolao();
+		JLabel bemVindoLabel = new JLabel();
+		bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado() + ".");
+		System.out.println(bolao.getUsuarioLogado());
+		System.out.println(bolao.getUsuarioLogado());
+		menuBar.add(bemVindoLabel);
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
 		/*mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja sair?");
@@ -173,20 +189,30 @@ public class TelaDoUsuario extends JFrame {
 		*/
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 1284, 640);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
-		lblBoloCopaDo.setBounds(265, 23, 492, 61);
+		lblBoloCopaDo.setBackground(Color.WHITE);
+		lblBoloCopaDo.setBounds(506, 60, 492, 61);
 		panel.add(lblBoloCopaDo);
 		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
 		
 			
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(376, 171, 103, 99);
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setBounds(396, 11, 113, 161);
 		panel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/flag_brazil.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
+		
+		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas a\u00E7\u00F5es do programa atrav\u00E9s da barra de menu fixada acima.");
+		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblBemVindoEssa.setBounds(333, 188, 754, 25);
+		panel.add(lblBemVindoEssa);
+		
+
 	
 	}
 }

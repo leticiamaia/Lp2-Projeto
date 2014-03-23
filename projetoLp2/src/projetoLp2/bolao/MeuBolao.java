@@ -56,7 +56,7 @@ public class MeuBolao {
 				|| email.equals("") || perguntaSecreta == null
 				|| resposta == null)
 			throw new Exception(
-					"Campos nao podem ser nulos, aguns na devem estar vazios.");
+					"Campos nao podem ser nulos, alguns não devem estar vazios.");
 
 		int retorno = 1;
 
