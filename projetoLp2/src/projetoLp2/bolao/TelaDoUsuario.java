@@ -40,7 +40,7 @@ public class TelaDoUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDoUsuario frame = new TelaDoUsuario();
+					TelaDoUsuario frame = new TelaDoUsuario(new TelaDeLogin().getLogin);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class TelaDoUsuario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaDoUsuario() {
+	public TelaDoUsuario(String user) {
 		setTitle("Tela do Usu\u00E1rio");
 		setAlwaysOnTop(true);
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
@@ -105,11 +105,11 @@ public class TelaDoUsuario extends JFrame {
 		
 		menuBar.add(Box.createHorizontalGlue());
 		
-		/*bolao = new MeuBolao();
+		bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
+		bemVindoLabel.setText("Você está logado como " + user + ".");
 		menuBar.add(bemVindoLabel);
-		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); */
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
 			
 		class exitaction implements ActionListener {
 			public void actionPerformed (ActionEvent e) {

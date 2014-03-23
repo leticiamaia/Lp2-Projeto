@@ -24,6 +24,8 @@ public class TelaDeLogin extends JFrame {
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
+	String getSenha;
+	String getLogin;
 
 	/**
 	 * Launch the application.
@@ -83,8 +85,7 @@ public class TelaDeLogin extends JFrame {
 		JButton botaoEntrar = new JButton("Entrar"); 
 		botaoEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String getSenha;
-				String getLogin;
+
 						getLogin = recebeLogin.getText().trim();
 						getSenha = recebeSenhaEncriptada.getText().trim(); 
 						
@@ -106,7 +107,7 @@ public class TelaDeLogin extends JFrame {
 										telaAdmin.show();										
 									}
 									else {
-									telaUser = new TelaDoUsuario();
+									telaUser = new TelaDoUsuario(getLogin);
 									telaUser.show();
 								}
 								}
