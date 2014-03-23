@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MeuBolao {
 	private Usuario usuarioLogado = null;
@@ -18,22 +17,25 @@ public class MeuBolao {
 	public int login2(String username, String senha) throws Exception {
 		int retorno = 3;
 		if (usuarioLogado != null)
-			throw new Exception("Nao e possivel logar com um usuario ja logado"); // throw
-		try {
-			createIos("admin.bin");
-			Administrador admin = (Administrador) ois.readObject();
-			if (admin.login(username, senha)) {
-				usuarioLogado = admin;
-				retorno = 1;
+			throw new Exception("Nao e possivel logar com um usuario ja logado");
+		if (username == null || username.equals("") || senha == null
+				|| senha.equals("")) throw new Exception("Username e Senha nao devem ser nulos ou vazios");
+
+			try {
+				createIos("admin.bin");
+				Administrador admin = (Administrador) ois.readObject();
+				if (admin.login(username, senha)) {
+					usuarioLogado = admin;
+					retorno = 1;
+				} else if (admin.getUsername().equals(username)) {
+					retorno = 2;
+				}
+			} catch (Exception e) {
+				System.out.println("aqui");
+				e.printStackTrace();
+			} finally {
+				ois.close();
 			}
-			else if(admin.getUsername().equals(username)) {
-				retorno = 2;
-			}
-		} catch (Exception e) {
-			System.err.println(e);
-		} finally {
-			ois.close();
-		}
 		try {
 			createIos("usuarios.bin");
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
@@ -42,13 +44,13 @@ public class MeuBolao {
 				if (j.login(username, senha)) {
 					usuarioLogado = j;
 					retorno = 1;
-				}
-				else if(j.getUsername().equals(username)) {
+				} else if (j.getUsername().equals(username)) {
 					retorno = 2;
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e);
+			System.out.println("aqui2");
+			e.printStackTrace();
 		} finally {
 			ois.close();
 		}
@@ -64,7 +66,7 @@ public class MeuBolao {
 				|| resposta == null)
 			throw new Exception(
 					"Campos nao podem ser nulos, alguns não devem estar vazios.");
-		
+
 		int retorno = 1;
 
 		try {
@@ -74,7 +76,7 @@ public class MeuBolao {
 				retorno = 2;
 			}
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		} finally {
 			ois.close();
 		}
@@ -100,7 +102,7 @@ public class MeuBolao {
 			createOut("usuarios.bin");
 			out.writeObject(jogadores);
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		} finally {
 			ois.close();
 			out.close();
@@ -131,23 +133,41 @@ public class MeuBolao {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		} finally {
 			ois.close();
 		}
 		return false;
 	}
-	
+
 	public boolean mudarSenha(String novaSenha) throws Exception {
 		if (usuarioLogado == null)
 			throw new Exception(
 					"Usuario precisa estar logado para realizar esta operacao");
+		if (novaSenha == null || novaSenha == "")
+			throw new Exception("Senha nao pode ser nula ou vazia");
 		boolean retorno = false;
 		usuarioLogado.mudaSenha(novaSenha);
-
+		if(usuarioLogado instanceof Administrador) {
+			retorno = mudarSenhaAdmin();
+		} else {
+			retorno = mudarSenhaUsuario();
+		}
+		return retorno;
+		
+	}
+	public boolean mudarSenhaAdmin() throws IOException {
+		Administrador admin = null;
+		boolean retorno = false;
 		try {
 			createIos("admin.bin");
-			Administrador admin = (Administrador) ois.readObject();
+			admin = (Administrador) ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ois.close();
+		}
+		try {
 			createOut("admin.bin");
 			if (admin.getUsername().equals(usuarioLogado.getUsername())) {
 				out.writeObject((Administrador) usuarioLogado);
@@ -156,16 +176,24 @@ public class MeuBolao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-				ois.close();
-				out.close();
+			out.close();
 		}
-		if (retorno)
-			return retorno;
-
+		return retorno;
+	}
+	
+	public boolean mudarSenhaUsuario() throws IOException {
+		ArrayList<Jogador> jogadores = null;
+		boolean retorno = false;
 		try {
 			createIos("usuarios.bin");
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
+			jogadores = (ArrayList<Jogador>) ois
 					.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ois.close();
+		}
+		try {
 			createOut("usuarios.bin");
 			for (int i = 0; i < jogadores.size(); i++) {
 				if (jogadores.get(i).getUsername()
@@ -179,21 +207,18 @@ public class MeuBolao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-				out.close();
-				ois.close();
+			out.close();
 		}
 		return retorno;
 	}
-
-	
 	public void desloga() {
 		usuarioLogado = null;
 	}
-	
-	public Usuario getUsuarioLogado(){
+
+	public Usuario getUsuarioLogado() {
 		return this.usuarioLogado;
 	}
-	
+
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));

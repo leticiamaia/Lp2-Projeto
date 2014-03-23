@@ -98,7 +98,13 @@ public class TestaMeuBolao {
 				"lucas@gmail.com"));
 	}
 	
+	@Test
 	public void testaMudarSenha() throws Exception {
+		Assert.assertEquals(bolao.login2("admin", "1234"),1);
+		bolao.mudarSenha("123");
+		bolao.desloga();
+		Assert.assertEquals(bolao.login2("admin", "123"), 1);
+		bolao.desloga();
 		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
 		bolao.login2("Let", "1234");
@@ -106,10 +112,6 @@ public class TestaMeuBolao {
 		bolao.desloga();
 		Assert.assertEquals(bolao.login2("Let", "123"),1);
 		bolao.desloga();
-		bolao.login2("admin", "1234");
-		bolao.mudarSenha("123");
-		bolao.desloga();
-		Assert.assertEquals(bolao.login2("admin", "123"), 1);
 	}
 	
 	@After
