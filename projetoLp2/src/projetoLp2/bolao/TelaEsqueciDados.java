@@ -161,6 +161,7 @@ public class TelaEsqueciDados extends JFrame {
 						do {
 							pane.showOptionDialog(null, panel, "Redefinir Senha", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options , options[0]);
 							novaSenha = txt.getText();
+							bolao.mudarSenha(novaSenha);
 						}while(novaSenha.compareTo("") == 0);
 							telaUser = new TelaDoUsuario();
 							telaUser.show();			

@@ -130,7 +130,63 @@ public class MeuBolao {
 		}
 		return false;
 	}
+	
+	public boolean mudarSenha(String novaSenha) throws Exception {
+		if (usuarioLogado == null)
+			throw new Exception(
+					"Usuario precisa estar logado para realizar esta operacao");
+		boolean retorno = false;
+		usuarioLogado.mudaSenha(novaSenha);
 
+		try {
+			createIos("admin.bin");
+			Administrador admin = (Administrador) ois.readObject();
+			createOut("admin.bin");
+			if (admin.getUsername().equals(usuarioLogado.getUsername())) {
+				out.writeObject((Administrador) usuarioLogado);
+				retorno = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+				ois.close();
+				out.close();
+		}
+		if (retorno)
+			return retorno;
+
+		try {
+			createIos("usuarios.bin");
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
+					.readObject();
+			createOut("usuarios.bin");
+			for (int i = 0; i < jogadores.size(); i++) {
+				if (jogadores.get(i).getUsername()
+						.equals(usuarioLogado.getUsername())) {
+					jogadores.set(i, (Jogador) usuarioLogado);
+					out.writeObject(jogadores);
+					retorno = true;
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+				out.close();
+				ois.close();
+		}
+		return retorno;
+	}
+
+	
+	public void desloga() {
+		usuarioLogado = null;
+	}
+	
+	public Usuario getUsuarioLogado(){
+		return this.usuarioLogado;
+	}
+	
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
@@ -145,13 +201,5 @@ public class MeuBolao {
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo nao Existe");
 		}
-	}
-
-	public void desloga() {
-		usuarioLogado = null;
-	}
-	
-	public Usuario getUsuarioLogado(){
-		return this.usuarioLogado;
 	}
 }

@@ -95,7 +95,21 @@ public class TestaMeuBolao {
 		Assert.assertTrue(bolao.checkUsuario("casal20", "namorada?", "Leticia",
 				"lucas@gmail.com"));
 	}
-
+	
+	public void testaMudarSenha() throws Exception {
+		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
+				"Qual?", "patos");
+		bolao.login2("Let", "1234");
+		bolao.mudarSenha("123");
+		bolao.desloga();
+		Assert.assertTrue(bolao.login2("Let", "123"));
+		bolao.desloga();
+		bolao.login2("admin", "1234");
+		bolao.mudarSenha("123");
+		bolao.desloga();
+		Assert.assertTrue(bolao.login2("admin", "123"));
+	}
+	
 	@After
 	public void clean() {
 		CriaFile c = new CriaFile();
