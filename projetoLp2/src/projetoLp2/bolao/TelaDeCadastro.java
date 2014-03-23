@@ -68,7 +68,7 @@ public class TelaDeCadastro extends JFrame {
 		bolao = new MeuBolao();
 
 		setResizable(false);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
 		setTitle("Cadastro de Novo Usuário");
 		contentPane = new JPanel();

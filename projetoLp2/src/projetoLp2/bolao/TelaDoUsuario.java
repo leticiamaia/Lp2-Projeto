@@ -43,10 +43,13 @@ import javax.swing.JTabbedPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JInternalFrame;
 
 public class TelaDoUsuario extends JFrame {
 
 	private JPanel contentPane;
+	private TelaDeLogin telaLogin;
+	private MeuBolao bolao;
 
 	/**
 	 * Launch the application.
@@ -81,17 +84,67 @@ public class TelaDoUsuario extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnInformaesPessoais = new JMenu("Informa\u00E7\u00F5es Pessoais");
+		JMenu mnInformaesPessoais = new JMenu("Usuário");
 		menuBar.add(mnInformaesPessoais);
 		
-		JMenuItem mntmVisualizarInformaes = new JMenuItem("Visualizar Informa\u00E7\u00F5es");
+		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
+		mntmVisualizarInformaes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		mnInformaesPessoais.add(mntmVisualizarInformaes);
 		
-		JMenuItem mntmAlterarSenha = new JMenuItem("Alterar senha");
+		JMenuItem mntmAlterarSenha = new JMenuItem("Visualizar Ranking");
 		mnInformaesPessoais.add(mntmAlterarSenha);
+		
+		JMenu menuApostas = new JMenu("Apostas");
+		menuBar.add(menuApostas);
+		
+		JMenuItem fazerApostaMenuItem  = new JMenuItem("Fazer nova aposta");
+		menuApostas.add(fazerApostaMenuItem);
+		
+		JMenuItem verApostaMenuItem  = new JMenuItem("Visualizar apostas");
+		menuApostas.add(verApostaMenuItem);
+		
+		JMenuItem editarApostaMenuItem  = new JMenuItem("Editar uma aposta");
+		menuApostas.add(editarApostaMenuItem);
+		
+		JMenu menuSobre = new JMenu("Sobre");
+		menuBar.add(menuSobre);
+		
+		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
+		 menuSobre.add(sobreMenuItem);
 		
 		JMenu mnSair = new JMenu("Sair");
 		menuBar.add(mnSair);
+		
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mnSair.add(mntmSair);
+		/*mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja sair?");
+				if(resposta == 1) {
+					
+					dispose();
+
+					
+				}
+			
+			}
+		});
+*/		
+		class exitaction implements ActionListener {
+			public void actionPerformed (ActionEvent e) {
+				bolao = new MeuBolao();
+				bolao.desloga();
+				dispose();
+				telaLogin = new TelaDeLogin();
+				telaLogin.show();
+			}
+		}
+		mntmSair.addActionListener(new exitaction());
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -99,7 +152,15 @@ public class TelaDoUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox<String> comboBox = new JComboBox();
+		/*
+		 * 
+		 * 	JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA deseja apostar:");
+		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSelecioneAFase.setBounds(181, 149, 358, 23);
+		contentPane.add(lblSelecioneAFase);
+
+		 * 
+		 * JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox.setToolTipText("\\ijrery");
 		comboBox.setBounds(527, 149, 201, 27);
@@ -109,58 +170,24 @@ public class TelaDoUsuario extends JFrame {
 		comboBox.addItem("Semi-final");
 		comboBox.addItem("Final");
 		contentPane.add(comboBox);
-		
-		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
-		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
-		lblBoloCopaDo.setBounds(507, 11, 499, 91);
-		contentPane.add(lblBoloCopaDo);
-		
-		JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA deseja apostar:");
-		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSelecioneAFase.setBounds(181, 149, 358, 23);
-		contentPane.add(lblSelecioneAFase);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/flag_brazil.png")));
-		lblNewLabel.setBounds(378, 11, 103, 99);
-		contentPane.add(lblNewLabel);
-		
-		JButton btnVisualizaRanking = new JButton("Visualizar Ranking");
-		btnVisualizaRanking.setBounds(1021, 219, 163, 47);
-		contentPane.add(btnVisualizaRanking);
+		*/
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(85, 195, 861, 422);
+		panel.setBounds(0, 0, 1284, 640);
 		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Visualizar suas Apostas");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(1021, 293, 163, 46);
-		contentPane.add(btnNewButton);
+		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
+		lblBoloCopaDo.setBounds(265, 23, 492, 61);
+		panel.add(lblBoloCopaDo);
+		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(1021, 363, 163, 47);
-		contentPane.add(btnNewButton_1);
-		
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnSair.add(mntmSair);
-		/*mntmSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja sair?");
-				if(resposta == 1) {
-					dispose();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "OK!");
-				}
-			}
-		});
-
+			
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(376, 171, 103, 99);
+		panel.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/flag_brazil.png")));
+	
 	}
-
-}*/
-			}	
 }
+			
