@@ -264,7 +264,7 @@ public class TelaDeCadastro extends JFrame {
 				} 
 			}
 		});
-		botaoConfirma.setBounds(261, 374, 121, 34);
+		botaoConfirma.setBounds(264, 351, 121, 34);
 		contentPane.add(botaoConfirma);
 
 		JButton botaoCancela = new JButton("Cancelar");
@@ -273,7 +273,7 @@ public class TelaDeCadastro extends JFrame {
 				dispose();
 			}
 		});
-		botaoCancela.setBounds(414, 374, 121, 34);
+		botaoCancela.setBounds(410, 351, 121, 34);
 		contentPane.add(botaoCancela);
 
 		respostaSecretaField = new JTextField();
@@ -281,15 +281,5 @@ public class TelaDeCadastro extends JFrame {
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
 
-		JCheckBox chckbxLiConcordoE = new JCheckBox(
-				"Li, concordo e aceito os Termos de Uso.");
-		chckbxLiConcordoE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
-		chckbxLiConcordoE.setBackground(Color.WHITE);
-		chckbxLiConcordoE.setBounds(271, 333, 261, 23);
-		contentPane.add(chckbxLiConcordoE);
 	}
 }

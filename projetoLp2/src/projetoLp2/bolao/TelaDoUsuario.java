@@ -126,11 +126,12 @@ public class TelaDoUsuario extends JFrame {
 		
 		menuBar.add(Box.createHorizontalGlue());
 		
-		bolao = new MeuBolao();
+		/*bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		//bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
+		bemVindoLabel.setText("Você está logado como " + bolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
-		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); */
+	
 		
 		/*mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

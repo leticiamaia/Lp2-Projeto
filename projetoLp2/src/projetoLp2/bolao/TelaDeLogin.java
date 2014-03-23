@@ -106,7 +106,6 @@ public class TelaDeLogin extends JFrame {
 										telaAdmin.show();										
 									}
 									else {
-										System.out.println("Entrou no if2");
 									telaUser = new TelaDoUsuario();
 									telaUser.show();
 								}

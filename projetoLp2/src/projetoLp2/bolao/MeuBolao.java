@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class MeuBolao {
-	private Usuario usuarioLogado = null;
+	private Usuario usuarioLogado;
 
 	ObjectInputStream ois;
 	ObjectOutputStream out;

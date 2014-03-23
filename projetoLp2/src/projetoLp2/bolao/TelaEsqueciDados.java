@@ -30,7 +30,8 @@ public class TelaEsqueciDados extends JFrame {
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta, eMail, novaSenha; 
 	private TelaDoUsuario telaUser;
-	//Jogador jogador1;
+	MeuBolao bolao;
+
 
 	/**
 	 * Launch the application.
@@ -148,9 +149,8 @@ public class TelaEsqueciDados extends JFrame {
 				respostaSecreta = respostaSecretaField.getText();
 				eMail = recebeEmail.getText();	
 								
-				MeuBolao bolao = new MeuBolao();
+				bolao = new MeuBolao();
 				try {
-
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
 						JOptionPane.showMessageDialog(null, "Usuário(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
 						String[] options = {"OK"};
