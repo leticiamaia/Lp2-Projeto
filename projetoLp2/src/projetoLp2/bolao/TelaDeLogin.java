@@ -116,7 +116,8 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
-								JOptionPane.showMessageDialog(null,e1.getMessage());
+								System.out.println(e1.getMessage());
+								//JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
 			}
 		});
