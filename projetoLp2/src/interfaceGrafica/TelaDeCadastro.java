@@ -1,4 +1,4 @@
-package projetoLp2.bolao;
+package interfaceGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -31,6 +31,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JCheckBox;
+
+import projetoLp2.bolao.MeuBolao;
 
 public class TelaDeCadastro extends JFrame {
 
@@ -70,7 +72,7 @@ public class TelaDeCadastro extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
-		setTitle("Cadastro de Novo Usuário");
+		setTitle("Cadastro de Novo Usuï¿½rio");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -173,13 +175,13 @@ public class TelaDeCadastro extends JFrame {
 
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
-		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veículo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
+		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
@@ -217,29 +219,29 @@ public class TelaDeCadastro extends JFrame {
 				int sucesso = 0;
 				if (usuario.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'usuário' é obrigatório!");
+							"O campo 'usuï¿½rio' ï¿½ obrigatï¿½rio!");
 					sucesso = -1;
 				}
 				if (email.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'email' é obrigatório!");
+							"O campo 'email' ï¿½ obrigatï¿½rio!");
 					sucesso = -1;
 				}
 				if (senha.equals("") || senhaConfirmada.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Os campos de senha são obrigatórios!");
+							"Os campos de senha sï¿½o obrigatï¿½rios!");
 					sucesso = -1;
 				}
 				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
 					JOptionPane.showMessageDialog(null,
-							"E-mail Inválido.");
+							"E-mail Invï¿½lido.");
 					sucesso = -1;
 				}
 				
 				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
 						|| senhaConfirmada.isEmpty()) {
 					JOptionPane.showMessageDialog(null,
-							"As senhas não conferem!");
+							"As senhas nï¿½o conferem!");
 					sucesso = -1;
 					
 				}

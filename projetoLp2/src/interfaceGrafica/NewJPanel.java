@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package projetoLp2.bolao;
+package interfaceGrafica;
 import java.awt.Color;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;

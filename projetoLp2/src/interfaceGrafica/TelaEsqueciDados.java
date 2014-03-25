@@ -1,4 +1,4 @@
-package projetoLp2.bolao;
+package interfaceGrafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -23,6 +23,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import projetoLp2.bolao.MeuBolao;
 
 public class TelaEsqueciDados extends JFrame {
 
@@ -112,13 +114,13 @@ public class TelaEsqueciDados extends JFrame {
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
-		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veículo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
+		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
@@ -154,10 +156,10 @@ public class TelaEsqueciDados extends JFrame {
 				
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
-						JOptionPane.showMessageDialog(null, "Usuário(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
+						JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
 						String[] options = {"OK"};
 						JPanel panel = new JPanel();
-						JLabel lbl = new JLabel("É preciso redefinir uma nova senha para continuar: ");
+						JLabel lbl = new JLabel("ï¿½ preciso redefinir uma nova senha para continuar: ");
 						JPasswordField txt = new JPasswordField(10);
 						panel.add(lbl);
 						panel.add(txt);
@@ -172,7 +174,7 @@ public class TelaEsqueciDados extends JFrame {
 							dispose(); 
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
+						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario nï¿½o cadastrado!");
 					}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());

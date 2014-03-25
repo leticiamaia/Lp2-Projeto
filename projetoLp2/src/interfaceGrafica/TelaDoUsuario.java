@@ -1,4 +1,4 @@
-package projetoLp2.bolao;
+package interfaceGrafica;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -37,6 +37,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.LineBorder;
+
+import projetoLp2.bolao.MeuBolao;
 
 public class TelaDoUsuario extends JFrame {
 
