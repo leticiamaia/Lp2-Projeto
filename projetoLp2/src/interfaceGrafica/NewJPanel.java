@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -43,6 +44,7 @@ public class NewJPanel extends javax.swing.JPanel {
     private void initComponents() {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTable1.setBorder(new LineBorder(new Color(0, 0, 0)));
         jTable1.setFillsViewportHeight(true);
         setVisible(true);
         jTable1.setModel(new DefaultTableModel(
@@ -82,6 +84,7 @@ public class NewJPanel extends javax.swing.JPanel {
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(302);
         jTable1.getColumnModel().getColumn(2).setResizable(false);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(68);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setRowHeight(30);
         jTable1.setEditingColumn(0);
         jTable1.setEditingRow(0);
@@ -96,9 +99,9 @@ public class NewJPanel extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
         				.addComponent(lblRaking))
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
