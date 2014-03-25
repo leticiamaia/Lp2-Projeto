@@ -82,6 +82,10 @@ public class TestaMeuBolao {
 				"lmt@gmail.com"));
 		bolao.cadastraJogador("Leticia", "Leticia", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
+		bolao.cadastraJogador("amor", "amor", "amor", "amor@gmail.com",
+				"amor", "amor");
+		Assert.assertTrue(bolao.checkUsuario("amor", "amor", "amor",
+				"amor@gmail.com"));
 		Assert.assertTrue(bolao.checkUsuario("Leticia", "Qual?", "patos",
 				"lmt@gmail.com"));
 		Assert.assertFalse(bolao.checkUsuario("Leticia", "Qual?",
