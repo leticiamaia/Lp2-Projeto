@@ -28,7 +28,7 @@ public abstract class Usuario implements Serializable{
 	}
 	*/
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 	
 	public boolean login(String usernameInput, String senhaInput) {

@@ -150,6 +150,7 @@ public class TelaEsqueciDados extends JFrame {
 				eMail = recebeEmail.getText().trim();	
 								
 				bolao = new MeuBolao();
+				
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
 						JOptionPane.showMessageDialog(null, "Usuário(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
@@ -169,7 +170,9 @@ public class TelaEsqueciDados extends JFrame {
 							telaUser.show();			
 							dispose(); 
 					}
-					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
+					else {
+						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
+					}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}

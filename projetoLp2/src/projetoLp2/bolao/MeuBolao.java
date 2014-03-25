@@ -118,18 +118,22 @@ public class MeuBolao {
 				|| respostaSecreta == "" || email == null || email.equals("")) {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
-
+		boolean retorno = false;
 		try {
 			createIos("usuarios.bin");
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
+			System.out.println(jogadores.size());
+			System.out.println(usuario + pergunta + respostaSecreta + email);
 			for (Jogador j : jogadores) {
+				System.out.println(j.getUsername()+ j.getPerguntaSecreta() + j.getResposta()+j.getEmail());
 				if (j.getUsername().equals(usuario)
 						&& j.getPerguntaSecreta().equals(pergunta)
 						&& j.getResposta().equals(respostaSecreta)
 						&& j.getEmail().equals(email)) {
+						
 					usuarioLogado = j;
-					return true;
+					retorno = true;
 				}
 			}
 		} catch (Exception e) {
@@ -137,7 +141,9 @@ public class MeuBolao {
 		} finally {
 			ois.close();
 		}
-		return false;
+		
+		System.out.println(retorno);
+		return retorno;
 	}
 
 	public boolean mudarSenha(String novaSenha) throws Exception {
