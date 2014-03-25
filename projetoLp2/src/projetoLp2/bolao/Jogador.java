@@ -29,14 +29,50 @@ public class Jogador extends Usuario {
 		this.nome = nome;
 	}
 	
+	
 	public Aposta[] getApostas() {
 		return apostas;
 	}
 
+	public boolean novaAposta(int idx, Partida partida, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+		if(apostas[idx] != null) {
+			apostas[idx].setPalpiteGolsTime1(palpiteGolsTime1);
+			apostas[idx].setPalpiteGolsTime2(palpiteGolsTime2);
+			return true;
+		}
+		
+		if(idx >= 0 && idx < 48) {
+			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			return true;
+		}
+		
+		if(idx >= 48 && idx < 56) {
+			apostas[idx] = new ApostaQuartasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			return true;
+		}
+		
+		if(idx >= 56 && idx < 60) {
+			apostas[idx] = new ApostaSemiFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			return true;
+		}
+		
+		if(idx >= 60 && idx < 63) { // terceiro lugar tera mesmo peso que semifinal
+			apostas[idx] = new ApostaFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			return true;
+		}
+
+		if(idx == 63) {
+			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
 	public int getTotalPontos() {
 		return totalPontos;
 	}
-
 
 	public String getPerguntaSecreta() {
 		return perguntaSecreta;
@@ -72,22 +108,6 @@ public class Jogador extends Usuario {
 	}
 
 	public Aposta getAposta(int indiceAposta) {
-		Aposta aposta = null;
-		/*try {
-			FileInputStream fin = new FileInputStream("partidas.txt");
-			FileOutputStream fon = new FileOutputStream("partidas.txt");
-			ObjectInputStream ois = new ObjectInputStream(fin);
-			ObjectOutputStream oos = new ObjectOutputStream(fon);
-			apostas = (Aposta[]) ois.readObject();
-
-			aposta = apostas[indiceAposta];
-
-			ois.close();
-			oos.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}*/
-
 		return apostas[indiceAposta];
 	}
 
