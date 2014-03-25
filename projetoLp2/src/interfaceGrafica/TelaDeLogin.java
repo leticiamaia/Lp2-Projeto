@@ -60,7 +60,7 @@ public class TelaDeLogin extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255)); 
 		setContentPane(contentPane);
-		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setLayout(null); 
 		
 		JPanel quadroDeLogin = new JPanel();
@@ -116,6 +116,7 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
+								System.out.println("Caiu exceçao");
 								JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
 			}
@@ -160,7 +161,7 @@ public class TelaDeLogin extends JFrame {
 		contentPane.add(bolaoCopa2014);
 
 		JLabel fuleco = new JLabel("");
-		fuleco.setIcon(new ImageIcon(this.getClass().getResource("docs/tatu-bola.png")));
+		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
 		fuleco.setBounds(-44, 11, 361, 272);
 		contentPane.add(fuleco);
 		

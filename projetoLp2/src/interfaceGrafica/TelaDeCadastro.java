@@ -76,8 +76,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setIconImage(new ImageIcon(this.getClass().getResource(
-				"docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -175,13 +174,13 @@ public class TelaDeCadastro extends JFrame {
 
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
-		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
+		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
@@ -219,29 +218,29 @@ public class TelaDeCadastro extends JFrame {
 				int sucesso = 0;
 				if (usuario.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'usuï¿½rio' ï¿½ obrigatï¿½rio!");
+							"O campo 'usuario' é obrigatorio!");
 					sucesso = -1;
 				}
 				if (email.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'email' ï¿½ obrigatï¿½rio!");
+							"O campo 'email' é obrigatorio!");
 					sucesso = -1;
 				}
 				if (senha.equals("") || senhaConfirmada.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Os campos de senha sï¿½o obrigatï¿½rios!");
+							"Os campos de senha são obrigatorios!");
 					sucesso = -1;
 				}
 				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
 					JOptionPane.showMessageDialog(null,
-							"E-mail Invï¿½lido.");
+							"E-mail Invalido.");
 					sucesso = -1;
 				}
 				
 				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
 						|| senhaConfirmada.isEmpty()) {
 					JOptionPane.showMessageDialog(null,
-							"As senhas nï¿½o conferem!");
+							"As senhas nao conferem!");
 					sucesso = -1;
 					
 				}

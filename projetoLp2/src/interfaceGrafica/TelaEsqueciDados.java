@@ -61,7 +61,7 @@ public class TelaEsqueciDados extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		setTitle("Esqueci minha senha");
 		setContentPane(contentPane);
-		setIconImage(new ImageIcon(this.getClass().getResource("docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		
@@ -79,7 +79,7 @@ public class TelaEsqueciDados extends JFrame {
 		contentPane.add(tituloEsqueceuDados);
 		
 		JLabel dory = new JLabel("");
-		dory.setIcon(new ImageIcon(this.getClass().getResource("docs/dory-small.png")));
+		dory.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/dory-small.png")));
 		dory.setBounds(31, 11, 138, 272);
 		contentPane.add(dory);
 		
@@ -114,13 +114,13 @@ public class TelaEsqueciDados extends JFrame {
 		
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
-		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veï¿½culo motorizado?");		
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
+		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 		
 		JLabel lblResposta = new JLabel("Sua resposta:");
@@ -156,10 +156,10 @@ public class TelaEsqueciDados extends JFrame {
 				
 				try {
 					if(bolao.checkUsuario(usuario, pergunta, respostaSecreta, eMail)) {
-						JOptionPane.showMessageDialog(null, "Usuï¿½rio(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
+						JOptionPane.showMessageDialog(null, "Usuario(a) encontrado(a)! \nSeja bem vindo " + usuario + " !"); 					
 						String[] options = {"OK"};
 						JPanel panel = new JPanel();
-						JLabel lbl = new JLabel("ï¿½ preciso redefinir uma nova senha para continuar: ");
+						JLabel lbl = new JLabel("Voce precisa redefinir sua senha para continuar: ");
 						JPasswordField txt = new JPasswordField(10);
 						panel.add(lbl);
 						panel.add(txt);
@@ -174,7 +174,7 @@ public class TelaEsqueciDados extends JFrame {
 							dispose(); 
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario nï¿½o cadastrado!");
+						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 					}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
