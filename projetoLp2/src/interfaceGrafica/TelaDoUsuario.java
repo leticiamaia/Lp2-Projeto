@@ -111,7 +111,7 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Program designed by:\n- Letícia Maia \n- Lucas de Matos \n- Marcela Tejo \n- Órion Winter \nVersion: 1.0 - 2014", "Sobre nós", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/selo-RA-200.jpg")));
+				JOptionPane.showMessageDialog(null, "Program designed by:\n- Letícia Maia \n- Lucas de Matos \n- Marcela Tejo \n- Órion Winter \nVersion: 1.0 (2014) ©", "Sobre nós", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
 			}
 		});
 		 menuSobre.add(sobreMenuItem);
@@ -167,9 +167,9 @@ public class TelaDoUsuario extends JFrame {
 		panel.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 		
-		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas a\u00E7\u00F5es do programa atrav\u00E9s da barra de menu fixada acima.");
+		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblBemVindoEssa.setBounds(261, 160, 754, 25);
+		lblBemVindoEssa.setBounds(261, 160, 817, 25);
 		panel.add(lblBemVindoEssa);
 		
 		JLabel rankingLabel = new JLabel("Ranking");

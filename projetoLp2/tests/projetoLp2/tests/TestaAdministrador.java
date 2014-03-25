@@ -16,7 +16,7 @@ import interfaceGrafica.*;
 
 public class TestaAdministrador {
 	
-	/*Administrador admin;
+	Administrador admin;
 	TimeCopa time1;
 	TimeCopa time2;
 	GregorianCalendar data;
@@ -30,8 +30,8 @@ public class TestaAdministrador {
 	    data = new GregorianCalendar(2014, 07, 12, 23, 00);
 	}
 	
-	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
-			TimeCopa time2, GregorianCalendar data) throws Exception {
+	/*public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
+			TimeCopa time2, GregorianCalendar data) throws Exception {*/
 	@Test
 	public void testaCadastrapartida() throws Exception {
 		partidas = admin.cadastraPartida(1, time1, time2, data);
@@ -39,6 +39,6 @@ public class TestaAdministrador {
 		Assert.assertEquals(partidas[1].getTime2(), time2);
 		Assert.assertEquals(partidas[1].getData(), data);
 	}
-	*/
+	
 	
 }

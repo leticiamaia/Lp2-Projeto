@@ -6,11 +6,15 @@
 
 package interfaceGrafica;
 import java.awt.Color;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
@@ -42,17 +46,17 @@ public class NewJPanel extends javax.swing.JPanel {
         jTable1.setFillsViewportHeight(true);
         setVisible(true);
         jTable1.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
-        		{null, null, null},
+        	new String[][] {
+        		{"1ª", null, null},
+        		{"2ª", null, null},
+        		{"3ª", null, null},
+        		{"4ª", null, null},
+        		{"5ª", null, null},
+        		{"6ª", null, null},
+        		{"7ª", null, null},
+        		{"8ª", null, null},
+        		{"9ª", null, null},
+        		{"10ª", null, null},
         	},
         	new String[] {
         		"Posi\u00E7\u00E3o", "Usu\u00E1rio", "Pontua\u00E7\u00E3o"
@@ -69,6 +73,9 @@ public class NewJPanel extends javax.swing.JPanel {
         		return columnEditables[column];
         	}
         });
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jTable1.setDefaultRenderer(String.class, centerRenderer);
         jTable1.getColumnModel().getColumn(0).setResizable(false);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
         jTable1.getColumnModel().getColumn(1).setResizable(false);
@@ -89,7 +96,7 @@ public class NewJPanel extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 619, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
         				.addComponent(lblRaking))
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -98,8 +105,7 @@ public class NewJPanel extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addComponent(lblRaking, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(53, Short.MAX_VALUE))
+        			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
         );
         this.setLayout(layout);
     }// </editor-fold>//GEN-END:initComponents
