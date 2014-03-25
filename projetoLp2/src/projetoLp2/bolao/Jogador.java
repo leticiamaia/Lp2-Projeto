@@ -70,10 +70,6 @@ public class Jogador extends Usuario {
 		
 	}
 	
-	public int getTotalPontos() {
-		return totalPontos;
-	}
-
 	public String getPerguntaSecreta() {
 		return perguntaSecreta;
 	}
@@ -113,6 +109,10 @@ public class Jogador extends Usuario {
 
 	public int getPontos() {
 		return totalPontos;
+	}
+	
+	public void setPontos(int num) {
+		totalPontos = num;
 	}
 
 	public String getEmail() {

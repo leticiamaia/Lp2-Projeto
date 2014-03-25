@@ -10,16 +10,17 @@ public class OrdenaJogadores implements Comparator<Jogador> {
 
 	@Override
 	public int compare(Jogador arg0, Jogador arg1) {
+		
 		if (arg0.getPontos() == arg1.getPontos())
 			return arg0.getUsername().compareTo(arg1.getUsername());
-		else
-			return (new Integer(arg0.getPontos())).compareTo(new Integer(arg1
-					.getPontos()));
+		
+		return arg1.getPontos() - arg0.getPontos();
+		
 	}
 	
-	// CONFERIR SE TÁ CERTO xD
-	//no arq usuarios.txt está uma lista de usuarios ou de jogadores?
-	//Preciso que esse método retorne um Jogador, para poder dar um getPontos.
+	// CONFERIR SE Tï¿½ CERTO xD
+	//no arq usuarios.txt estï¿½ uma lista de usuarios ou de jogadores?
+	//Preciso que esse mï¿½todo retorne um Jogador, para poder dar um getPontos.
 	//Usado em: TelaDoUsuario
 	
 	/*public Usuario getUsuarioPosicao(int posicaoUsuario) {
