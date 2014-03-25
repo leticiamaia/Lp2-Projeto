@@ -81,7 +81,7 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel cadastroDeNovo = new JLabel("Cadastro de novo Usu\u00E1rio");
-		cadastroDeNovo.setBounds(186, 0, 386, 54);
+		cadastroDeNovo.setBounds(186, 0, 391, 54);
 		cadastroDeNovo.setFont(new Font("Segoe Print", Font.PLAIN, 30));
 		contentPane.add(cadastroDeNovo);
 
