@@ -161,14 +161,19 @@ public class TelaDeLogin extends JFrame {
 		contentPane.add(boasVindas);
 		
 		JLabel bolaoCopa2014 = new JLabel("Bol\u00E3o Copa do Mundo 2014");
-		bolaoCopa2014.setFont(new Font("Segoe Print", Font.PLAIN, 32));
-		bolaoCopa2014.setBounds(241, 66, 525, 58);
+		bolaoCopa2014.setFont(new Font("Calibri Light", Font.PLAIN, 38));
+		bolaoCopa2014.setBounds(241, 77, 525, 58);
 		contentPane.add(bolaoCopa2014);
-
-		JLabel fuleco = new JLabel("");
-		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
-		fuleco.setBounds(-44, 11, 361, 272);
-		contentPane.add(fuleco);
+		
+				JLabel fuleco = new JLabel("");
+				fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
+				fuleco.setBounds(-44, 11, 255, 272);
+				contentPane.add(fuleco);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setBounds(171, 109, 510, 31);
+		contentPane.add(label);
 		
 	}
 }

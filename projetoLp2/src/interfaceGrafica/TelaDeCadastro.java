@@ -72,7 +72,7 @@ public class TelaDeCadastro extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
-		setTitle("Cadastro de Novo Usu�rio");
+		setTitle("Cadastro de Novo  Usu\u00E1rio");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,8 +81,8 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel cadastroDeNovo = new JLabel("Cadastro de novo Usu\u00E1rio");
-		cadastroDeNovo.setBounds(186, 0, 391, 54);
-		cadastroDeNovo.setFont(new Font("Segoe Print", Font.PLAIN, 30));
+		cadastroDeNovo.setBounds(207, 0, 391, 54);
+		cadastroDeNovo.setFont(new Font("Calibri", Font.PLAIN, 33));
 		contentPane.add(cadastroDeNovo);
 
 		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
@@ -288,6 +288,11 @@ public class TelaDeCadastro extends JFrame {
 		lblMemorizeSuaPergunta.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblMemorizeSuaPergunta.setBounds(145, 326, 432, 14);
 		contentPane.add(lblMemorizeSuaPergunta);
+		
+		JLabel label_5 = new JLabel("");
+		label_5.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label_5.setBounds(94, 39, 504, 14);
+		contentPane.add(label_5);
 
 	}
 }

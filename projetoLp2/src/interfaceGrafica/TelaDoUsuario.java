@@ -158,7 +158,7 @@ public class TelaDoUsuario extends JFrame {
 		lblBoloCopaDo.setBackground(Color.WHITE);
 		lblBoloCopaDo.setBounds(458, 62, 492, 61);
 		panel.add(lblBoloCopaDo);
-		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
+		lblBoloCopaDo.setFont(new Font("Calibri Light", Font.PLAIN, 43));
 		
 			
 		JLabel lblNewLabel = new JLabel("");
@@ -176,6 +176,11 @@ public class TelaDoUsuario extends JFrame {
 		rankingLabel.setBounds(323, 234, 317, 61);
 		panel.add(rankingLabel);
 		rankingLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		lblNewLabel_1.setBounds(420, 106, 530, 28);
+		panel.add(lblNewLabel_1);
 		
 		NewJPanel tablePanel = new NewJPanel();
 	    tablePanel.setBounds(327, 202, 665, 386);

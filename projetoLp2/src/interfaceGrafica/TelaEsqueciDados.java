@@ -73,10 +73,15 @@ public class TelaEsqueciDados extends JFrame {
 		dialog.setVisible(false);		
 		
 		JLabel tituloEsqueceuDados = new JLabel("Esqueci meus dados");
-		tituloEsqueceuDados.setFont(new Font("Segoe Print", Font.PLAIN, 30));
+		tituloEsqueceuDados.setFont(new Font("Calibri Light", Font.PLAIN, 36));
 		tituloEsqueceuDados.setBackground(Color.WHITE);
-		tituloEsqueceuDados.setBounds(248, 11, 365, 54);
+		tituloEsqueceuDados.setBounds(252, 11, 365, 54);
 		contentPane.add(tituloEsqueceuDados);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaEsqueciDados.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setBounds(121, 49, 496, 9);
+		contentPane.add(label);
 		
 		JLabel dory = new JLabel("");
 		dory.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/dory-small.png")));
