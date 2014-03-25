@@ -42,27 +42,27 @@ public class Jogador extends Usuario {
 		}
 		
 		if(idx >= 0 && idx < 48) {
-			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			apostas[idx] = new ApostaPrimeiraFase(partida, palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 		
 		if(idx >= 48 && idx < 56) {
-			apostas[idx] = new ApostaQuartasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 		
 		if(idx >= 56 && idx < 60) {
-			apostas[idx] = new ApostaSemiFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			apostas[idx] = new ApostaQuartasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 		
 		if(idx >= 60 && idx < 63) { // terceiro lugar tera mesmo peso que semifinal
-			apostas[idx] = new ApostaFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			apostas[idx] = new ApostaSemiFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 
 		if(idx == 63) {
-			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
+			apostas[idx] = new ApostaFinal(partida, palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 		
