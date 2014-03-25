@@ -77,7 +77,7 @@ public class TelaDoUsuario extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnInformaesPessoais = new JMenu("Usuário");
+		JMenu mnInformaesPessoais = new JMenu("Usuï¿½rio");
 		menuBar.add(mnInformaesPessoais);
 		
 		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
@@ -109,7 +109,7 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Program designed by:\n-Letícia Maia \n-Lucas de Matos \n-Marcela Tejo \n-Órion Winter \nVersion: 1.0 - 2014", "Sobre nós", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/selo-RA-200.jpg")));
+				JOptionPane.showMessageDialog(null, "Program designed by:\n-Letï¿½cia Maia \n-Lucas de Matos \n-Marcela Tejo \n-ï¿½rion Winter \nVersion: 1.0 - 2014", "Sobre nï¿½s", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/selo-RA-200.jpg")));
 			}
 		});
 		 menuSobre.add(sobreMenuItem);
@@ -142,7 +142,7 @@ public class TelaDoUsuario extends JFrame {
 		
 		bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Você está logado como " + user + ".");
+		bemVindoLabel.setText("Vocï¿½ estï¿½ logado como " + user + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
 		
@@ -179,16 +179,16 @@ public class TelaDoUsuario extends JFrame {
 	    tablePanel.setBounds(327, 202, 665, 386);
 	    tablePanel.setVisible(true);
 		
-		JButton btnNewButton = new JButton("Atualizar Tabela");
+	   /*JButton btnNewButton = new JButton("Atualizar Tabela");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
 		btnNewButton.setBounds(587, 578, 152, 35);
-		contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton);*/
 		contentPane.add(tablePanel);
-		
+	
 	}
 }
 			

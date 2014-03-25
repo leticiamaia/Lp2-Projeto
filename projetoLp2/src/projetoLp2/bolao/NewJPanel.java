@@ -81,7 +81,7 @@ public class NewJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
         setBackground(Color.WHITE);
         
-        JLabel lblRaking = new JLabel("Raking - Jogadores com Melhor Pontua\u00E7\u00E3o");
+        JLabel lblRaking = new JLabel("Ranking - Jogadores com Melhor Pontua\u00E7\u00E3o");
         lblRaking.setFont(new Font("Segoe Print", Font.PLAIN, 28));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         layout.setHorizontalGroup(
