@@ -13,47 +13,42 @@ import projetoLp2.bolao.Partida;
 
 public class CriaFile {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		ObjectOutputStream out = null;
-	    try {
-	      try {
-	        out = new ObjectOutputStream(new FileOutputStream("admin.bin"));
-	        } catch( FileNotFoundException e ) {
-	        	e.printStackTrace();
-	        }
-	      Administrador admin = new Administrador("admin", "1234");
-	      out.writeObject(admin);
-	      out.close();
-	    } catch(IOException e) {
-	    	e.printStackTrace();
-	    }
-	    //criar file com lista de usuarios
-	    try {
-		      try {
-		        out = new ObjectOutputStream(new FileOutputStream("usuarios.bin"));
-		        } catch( FileNotFoundException e ) {
-		        	e.printStackTrace();
-		        }
-		      List<Jogador> jogadores = new ArrayList<Jogador>();
-		      out.writeObject(jogadores);
-		      out.close();
-		    } catch(IOException e) {
-		    	e.printStackTrace();
-		    }
-		    
-	    try {
-		      try {
-		        out = new ObjectOutputStream(new FileOutputStream("partidas.bin"));
-		        } catch( FileNotFoundException e ) {
-		        	e.printStackTrace();
-		        }
-		      Partida[] partidas = new Partida[64];
-		      out.writeObject(partidas);
-		      out.close();
-		    } catch(IOException e) {
-		    	e.printStackTrace();
-		    }
-		    
+		try {
+			out = new ObjectOutputStream(new FileOutputStream("admin.bin"));
+			Administrador admin = new Administrador("admin", "1234");
+			out.writeObject(admin);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+		}
+		// criar file com lista de usuarios
+		try {
+
+			out = new ObjectOutputStream(new FileOutputStream("usuarios.bin"));
+			List<Jogador> jogadores = new ArrayList<Jogador>();
+			out.writeObject(jogadores);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+		}
+
+		try {
+			out = new ObjectOutputStream(new FileOutputStream("partidas.bin"));
+			Partida[] partidas = new Partida[64];
+			for (int i = 0; i < 64; i++) {
+				partidas[i] = null;
+			}
+			out.writeObject(partidas);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+		}
+
 	}
 
 }

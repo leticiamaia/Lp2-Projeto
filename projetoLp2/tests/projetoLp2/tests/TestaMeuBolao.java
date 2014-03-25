@@ -14,7 +14,7 @@ public class TestaMeuBolao {
 	private MeuBolao bolao;
 
 	@Before
-	public void set() {
+	public void set() throws IOException {
 		bolao = new MeuBolao();
 		CriaFile c = new CriaFile();
 		c.main(null);
@@ -119,7 +119,7 @@ public class TestaMeuBolao {
 	}
 	
 	@After
-	public void clean() {
+	public void clean() throws IOException {
 		CriaFile c = new CriaFile();
 		c.main(null);
 		bolao.desloga();

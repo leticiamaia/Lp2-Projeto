@@ -40,17 +40,21 @@ public class Partida implements Serializable{
 		 return true;
 	}
 
-	public String getData() {
+	public String getDataFormatada() {
 		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 		return dataFormatada.format(data.getTimeInMillis()); 
 	}
 
-	public String getTime1() {
-		return time1.getNomeDoTime();
+	public GregorianCalendar getData() {
+		return data; 
+	}
+	
+	public TimeCopa getTime1() {
+		return time1;
 	}
 
-	public String getTime2() {
-		return time2.getNomeDoTime();
+	public TimeCopa getTime2() {
+		return time2;
 	}
 
 	public int getGolsTime1() throws Exception{

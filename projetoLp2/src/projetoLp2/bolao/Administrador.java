@@ -20,14 +20,14 @@ public class Administrador extends Usuario {
 	private static final long serialVersionUID = 2088632941739437245L;
 	ObjectInputStream ois;
 	ObjectOutputStream out;
-	Partida[] partidas = new Partida[64];
 
 	public Administrador(String username, String senha) {
 		super(username, senha);
 	}
 
-	public void cadastraPartida(int indicePartida, TimeCopa time1,
+	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
 			TimeCopa time2, GregorianCalendar data) throws Exception {
+		Partida[] partidas = null;
 		Partida partida = new Partida(time1, time2, data);
 		try {
 			createIos("partidas.bin");
@@ -46,15 +46,16 @@ public class Administrador extends Usuario {
 		} finally {
 			out.close();
 		}
+		return partidas;
 	}
 
-	public void atualizaPartida(int indicePartida, int resultadoTime1,
+	/*public void atualizaPartida(int indicePartida, int resultadoTime1,
 			int resultadoTime2) throws Exception {
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
 		atualizaPontucao(indicePartida);
 		atualizaRanking();
 	}
-
+*/
 	private void atualizaRanking() throws IOException {
 		List<Jogador> jogadores = null;
 		try {

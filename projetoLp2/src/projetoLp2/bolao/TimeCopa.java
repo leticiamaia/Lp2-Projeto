@@ -1,11 +1,16 @@
 package projetoLp2.bolao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 
-public class TimeCopa {
+public class TimeCopa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 553510963983020232L;
 	private String nomeDoTime, abreviacaoNomeTime;
 	private ImageIcon bandeiraDoTime;
 	private List<Partida> partidas;
