@@ -12,6 +12,8 @@ import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
+import interfaceGrafica.*;
+
 public class TestaAdministrador {
 	
 	/*Administrador admin;
