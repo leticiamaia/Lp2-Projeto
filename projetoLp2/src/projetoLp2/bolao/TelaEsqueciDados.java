@@ -88,10 +88,10 @@ public class TelaEsqueciDados extends JFrame {
 		login.setText("Seu usu\u00E1rio: "); 
 		login.setBackground(new Color(240, 240, 240));
 		
-		JTextField recebeLogin = new JTextField(); 
-		recebeLogin.setBounds(270, 176, 336, 20);
-		contentPane.add(recebeLogin);
-		recebeLogin.setColumns(10);
+		final JTextField recebeEmail = new JTextField(); 
+		recebeEmail.setBounds(270, 176, 336, 20);
+		contentPane.add(recebeEmail);
+		recebeEmail.setColumns(10);
 		
 		JLabel email = new JLabel("Seu e-mail:");
 		email.setSize(67, 20);
@@ -100,17 +100,17 @@ public class TelaEsqueciDados extends JFrame {
 		email.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(email);
 		
-		JTextField recebeEmail = new JTextField(); 
-		recebeEmail.setBounds(270, 144, 336, 20);
-		contentPane.add(recebeEmail);
-		recebeEmail.setColumns(10);
+		final JTextField recebeLogin = new JTextField(); 
+		recebeLogin.setBounds(270, 144, 336, 20);
+		contentPane.add(recebeLogin);
+		recebeLogin.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_3.setBounds(152, 205, 104, 20);
 		contentPane.add(lblNewLabel_3);
 		
-		JComboBox<String> perguntaSecretaComboBox = new JComboBox();
+		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
@@ -126,7 +126,7 @@ public class TelaEsqueciDados extends JFrame {
 		lblResposta.setBounds(175, 236, 81, 21);
 		contentPane.add(lblResposta);
 		
-		JTextField respostaSecretaField = new JTextField();
+		final JTextField respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(270, 236, 336, 20);
 		contentPane.add(respostaSecretaField);
@@ -141,14 +141,14 @@ public class TelaEsqueciDados extends JFrame {
 		JButton confirma = new JButton("Confirma");
 		confirma.setBounds(292, 273, 91, 23);
 		
-		usuario = recebeLogin.getText().trim();
-		pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
-		respostaSecreta = respostaSecretaField.getText().trim();
-		eMail = recebeEmail.getText().trim();	
+	
 		confirma.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				usuario = recebeLogin.getText().trim();
+				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
+				respostaSecreta = respostaSecretaField.getText().trim();
+				eMail = recebeEmail.getText().trim();	
 								
 				bolao = new MeuBolao();
 				
