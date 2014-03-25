@@ -175,7 +175,7 @@ public class TelaEsqueciDados extends JFrame {
 						JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 					}
 				} catch (Exception e1) {
-					System.out.println(e1.getMessage());
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				
 			}

@@ -1,6 +1,7 @@
 package projetoLp2.bolao;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -14,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.Box;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import java.awt.Font;
@@ -41,8 +43,6 @@ public class TelaDoUsuario extends JFrame {
 	private JPanel contentPane;
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
-	private JTable table;
-	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -107,6 +107,11 @@ public class TelaDoUsuario extends JFrame {
 		menuBar.add(menuSobre);
 		
 		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
+		sobreMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Program designed by:\n-Letícia Maia \n-Lucas de Matos \n-Marcela Tejo \n-Órion Winter \nVersion: 1.0 - 2014", "Sobre nós", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/selo-RA-200.jpg")));
+			}
+		});
 		 menuSobre.add(sobreMenuItem);
 		
 		 JMenu mnSair = new JMenu("Sair");
@@ -143,35 +148,46 @@ public class TelaDoUsuario extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1284, 240);
-		contentPane.add(panel);
+		panel.setBounds(0, 0, 1284, 191);
+		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
 		lblBoloCopaDo.setBackground(Color.WHITE);
-		lblBoloCopaDo.setBounds(470, 87, 492, 61);
+		lblBoloCopaDo.setBounds(458, 62, 492, 61);
 		panel.add(lblBoloCopaDo);
 		lblBoloCopaDo.setFont(new Font("Segoe Print", Font.PLAIN, 34));
 		
 			
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(360, 38, 113, 161);
+		lblNewLabel.setBounds(335, 0, 113, 161);
 		panel.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 		
 		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas a\u00E7\u00F5es do programa atrav\u00E9s da barra de menu fixada acima.");
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblBemVindoEssa.setBounds(297, 215, 754, 25);
+		lblBemVindoEssa.setBounds(261, 160, 754, 25);
 		panel.add(lblBemVindoEssa);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 240, 1284, 400);
-		contentPane.add(panel_1);
-	}
-	
-	public void testaPane() {
+		JLabel rankingLabel = new JLabel("Ranking");
+		rankingLabel.setBounds(323, 234, 317, 61);
+		panel.add(rankingLabel);
+		rankingLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		NewJPanel tablePanel = new NewJPanel();
+	    tablePanel.setBounds(327, 202, 665, 386);
+	    tablePanel.setVisible(true);
+		
+		JButton btnNewButton = new JButton("Atualizar Tabela");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
+		btnNewButton.setBounds(587, 578, 152, 35);
+		contentPane.add(btnNewButton);
+		contentPane.add(tablePanel);
 		
 	}
 }

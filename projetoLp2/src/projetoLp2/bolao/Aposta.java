@@ -3,7 +3,7 @@ package projetoLp2.bolao;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-import org.junit.Assert;
+
 
 public abstract class Aposta implements Serializable{
 

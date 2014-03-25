@@ -249,7 +249,7 @@ public class TelaDeCadastro extends JFrame {
 						sucesso = bolao.cadastraJogador(nome, usuario, senha, email,
 								pergunta, respostaSecreta);
 					} catch (Exception e) {
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(null,e.getMessage());
 					}
 					if (sucesso == 1) {
 						JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
