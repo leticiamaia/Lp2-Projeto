@@ -80,7 +80,7 @@ public class TelaDeCadastro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel cadastroDeNovo = new JLabel("Cadastro de novo usu\u00E1rio");
+		JLabel cadastroDeNovo = new JLabel("Cadastro de novo Usu\u00E1rio");
 		cadastroDeNovo.setBounds(186, 0, 386, 54);
 		cadastroDeNovo.setFont(new Font("Segoe Print", Font.PLAIN, 30));
 		contentPane.add(cadastroDeNovo);
@@ -190,7 +190,7 @@ public class TelaDeCadastro extends JFrame {
 
 		JLabel lblResposta = new JLabel("Resposta:");
 		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblResposta.setBounds(168, 301, 57, 21);
+		lblResposta.setBounds(168, 304, 57, 21);
 		contentPane.add(lblResposta);
 
 		JLabel label_3 = new JLabel("*");
@@ -205,7 +205,8 @@ public class TelaDeCadastro extends JFrame {
 		label_4.setBounds(580, 305, 53, 18);
 		contentPane.add(label_4);
 
-		JButton botaoConfirma = new JButton("Confirmar");
+		JButton botaoConfirma = new JButton(" Confirmar");
+		botaoConfirma.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/tick.png")));
 		botaoConfirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nome = recebeNomeField.getText().trim();
@@ -268,7 +269,8 @@ public class TelaDeCadastro extends JFrame {
 		botaoConfirma.setBounds(264, 351, 121, 34);
 		contentPane.add(botaoConfirma);
 
-		JButton botaoCancela = new JButton("Cancelar");
+		JButton botaoCancela = new JButton(" Cancelar");
+		botaoCancela.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
 		botaoCancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -281,6 +283,11 @@ public class TelaDeCadastro extends JFrame {
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
+		
+		JLabel lblMemorizeSuaPergunta = new JLabel("<html>Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.</html>");
+		lblMemorizeSuaPergunta.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblMemorizeSuaPergunta.setBounds(145, 326, 432, 14);
+		contentPane.add(lblMemorizeSuaPergunta);
 
 	}
 }

@@ -181,7 +181,7 @@ public class TelaDoUsuario extends JFrame {
 	    tablePanel.setBounds(327, 202, 665, 386);
 	    tablePanel.setVisible(true);
 		
-	   JButton btnNewButton = new JButton("Atualizar Tabela");
+	 /*  JButton btnNewButton = new JButton("Atualizar Tabela");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -189,7 +189,7 @@ public class TelaDoUsuario extends JFrame {
 		btnNewButton.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
 		btnNewButton.setBounds(583, 578, 152, 35);
 		contentPane.add(btnNewButton);
-		contentPane.add(tablePanel);
+		contentPane.add(tablePanel);*/
 	
 	}
 }

@@ -85,7 +85,8 @@ public class TelaDeLogin extends JFrame {
 		senha.setText("Senha: ");
 		senha.setBackground(new Color(240, 240, 240));
 		
-		JButton botaoEntrar = new JButton("Entrar"); 
+		JButton botaoEntrar = new JButton(" Entrar"); 
+		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
 		botaoEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -115,16 +116,19 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
-								e1.printStackTrace();
-								//System.out.println("Caiu exceçao");
-								//JOptionPane.showMessageDialog(null,e1.getMessage());
+								JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
 			}
 		});
-		botaoEntrar.setBounds(138, 97, 91, 23);
+		botaoEntrar.setBounds(104, 98, 99, 23);
 		quadroDeLogin.add(botaoEntrar); 
 		
 		JButton botaoCadastrar = new JButton("Cadastrar");
+		botaoCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,17 +137,18 @@ public class TelaDeLogin extends JFrame {
 
 			}
 		});
-		botaoCadastrar.setBounds(239, 97, 91, 23);
+		botaoCadastrar.setBounds(219, 98, 111, 23);
 		quadroDeLogin.add(botaoCadastrar);
 		
-		JButton botaoEsqueciDados = new JButton("Esqueci dados");
+		JButton botaoEsqueciDados = new JButton("Esqueci senha");
+		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
 		botaoEsqueciDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaEsqueceu = new TelaEsqueciDados();
 				telaEsqueceu.show();
 			}
 		});
-		botaoEsqueciDados.setBounds(178, 130, 119, 23);
+		botaoEsqueciDados.setBounds(145, 130, 140, 23);
 		quadroDeLogin.add(botaoEsqueciDados);
 		
 		recebeSenhaEncriptada = new JPasswordField(); 

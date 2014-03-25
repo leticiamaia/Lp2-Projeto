@@ -140,10 +140,9 @@ public class TelaEsqueciDados extends JFrame {
 		informacaoEsqueciSenha.setBounds(177, 76, 482, 74);
 		contentPane.add(informacaoEsqueciSenha);		
 		
-		JButton confirma = new JButton("Confirma");
-		confirma.setBounds(292, 273, 91, 23);
-		
-	
+		JButton confirma = new JButton(" Confirma");
+		confirma.setIcon(new ImageIcon(TelaEsqueciDados.class.getResource("/projetoLp2/bolao/docs/tick.png")));
+		confirma.setBounds(292, 273, 121, 34);	
 		confirma.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -185,13 +184,14 @@ public class TelaEsqueciDados extends JFrame {
 	
 		contentPane.add(confirma);
 		
-		JButton cancela = new JButton("Cancela");
+		JButton cancela = new JButton(" Cancela");
+		cancela.setIcon(new ImageIcon(TelaEsqueciDados.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
 		cancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		cancela.setBounds(469, 273, 91, 23);
+		cancela.setBounds(469, 273, 121, 34);
 		contentPane.add(cancela);
 		
 		
