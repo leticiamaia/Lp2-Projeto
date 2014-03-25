@@ -16,7 +16,7 @@ import interfaceGrafica.*;
 
 public class TestaAdministrador {
 	
-	/*Administrador admin;
+	Administrador admin;
 	TimeCopa time1;
 	TimeCopa time2;
 	GregorianCalendar data;
@@ -30,15 +30,49 @@ public class TestaAdministrador {
 	    data = new GregorianCalendar(2014, 07, 12, 23, 00);
 	}
 	
-	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
-			TimeCopa time2, GregorianCalendar data) throws Exception {
 	@Test
-	public void testaCadastrapartida() throws Exception {
-		partidas = admin.cadastraPartida(1, time1, time2, data);
-		Assert.assertEquals(partidas[1].getTime1(), time1);
-		Assert.assertEquals(partidas[1].getTime2(), time2);
-		Assert.assertEquals(partidas[1].getData(), data);
+	public void testaCadastrapartida() {
+		try {
+			partidas = admin.cadastraPartida(-1, time1, time2, data);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Indice da partida invalido!", e.getMessage());
+		}
+		
+		try {
+			partidas = admin.cadastraPartida(1, null, time2, data);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Time(s) invalido(s)!", e.getMessage());
+		}
+		
+		try {
+			partidas = admin.cadastraPartida(1, time1, null, data);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Time(s) invalido(s)!", e.getMessage());
+		}
+		
+		try {
+			partidas = admin.cadastraPartida(1, time1, time2, data);
+			Assert.assertEquals(partidas[1].getTime1(), time1);
+			Assert.assertEquals(partidas[1].getTime2(), time2);
+			Assert.assertEquals(partidas[1].getData(), data);
+			
+			partidas = admin.cadastraPartida(2, time2, time1, data);
+			Assert.assertEquals(partidas[2].getTime1(), time2);
+			Assert.assertEquals(partidas[2].getTime2(), time1);
+			Assert.assertEquals(partidas[2].getData(), data);
+			
+			Assert.assertEquals(partidas[1].getTime1(), time1);
+			Assert.assertEquals(partidas[1].getTime2(), time2);
+			Assert.assertEquals(partidas[1].getData(), data);
+			
+			System.out.println(partidas[1].getTime1());
+						
+		} catch (Exception e) {
+			Assert.fail();
+		}
 	}
-	*/
 	
 }

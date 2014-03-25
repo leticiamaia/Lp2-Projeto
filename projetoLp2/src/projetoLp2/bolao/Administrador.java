@@ -25,8 +25,12 @@ public class Administrador extends Usuario {
 		super(username, senha);
 	}
 
-	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
-			TimeCopa time2, GregorianCalendar data) throws Exception {
+	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1, TimeCopa time2, GregorianCalendar data) throws Exception {
+		if (indicePartida < 0)
+			throw new Exception("Indice da partida invalido!");
+		if (time1 == null || time2 == null)
+			throw new Exception("Time(s) invalido(s)!");
+		
 		Partida[] partidas = null;
 		Partida partida = new Partida(time1, time2, data);
 		try {
