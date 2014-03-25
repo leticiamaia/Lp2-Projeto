@@ -24,7 +24,6 @@ public class TelaDeLogin extends JFrame {
 	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
 	private TelaDeCadastro telaDeCadastro;
-	private MeuBolao bolao;
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
@@ -116,8 +115,9 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
-								System.out.println("Caiu exceçao");
-								JOptionPane.showMessageDialog(null,e1.getMessage());
+								e1.printStackTrace();
+								//System.out.println("Caiu exceçao");
+								//JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
 			}
 		});
