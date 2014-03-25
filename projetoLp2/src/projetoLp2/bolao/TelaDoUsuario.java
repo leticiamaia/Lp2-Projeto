@@ -62,6 +62,7 @@ public class TelaDoUsuario extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 */
 	public TelaDoUsuario(String user) {
 		setTitle("Tela do Usu\u00E1rio");
