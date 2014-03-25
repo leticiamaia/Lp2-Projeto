@@ -89,12 +89,7 @@ public class TelaDeLogin extends JFrame {
 						getLogin = recebeLogin.getText().trim();
 						getSenha = recebeSenhaEncriptada.getText().trim(); 
 						
-						if(getLogin.equals("")) {
-							JOptionPane.showMessageDialog(null, "Campo 'usuário' não deve ser vazio!");
-						}
-						if(getSenha.equals("")) {
-							JOptionPane.showMessageDialog(null, "Campo 'senha' não deve ser vazio!");
-						}	
+
 							try {
 								int sucesso = bolao.login2(getLogin, getSenha);
 								if (sucesso == 1) {
@@ -117,8 +112,7 @@ public class TelaDeLogin extends JFrame {
 									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
 								}
 							} catch (Exception e1) {
-								System.out.println(e1.getMessage());
-								//JOptionPane.showMessageDialog(null,e1.getMessage());
+								JOptionPane.showMessageDialog(null,e1.getMessage());
 							}
 			}
 		});

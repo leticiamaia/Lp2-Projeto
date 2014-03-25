@@ -1,24 +1,35 @@
 package projetoLp2.bolao;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JMenuBar;
 import javax.swing.Box;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Choice;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JTabbedPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
@@ -54,7 +65,6 @@ public class TelaDoUsuario extends JFrame {
 	 */
 	public TelaDoUsuario(String user) {
 		setTitle("Tela do Usu\u00E1rio");
-		setAlwaysOnTop(true);
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,11 +115,6 @@ public class TelaDoUsuario extends JFrame {
 		
 		menuBar.add(Box.createHorizontalGlue());
 		
-		bolao = new MeuBolao();
-		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Você está logado como " + user + ".");
-		menuBar.add(bemVindoLabel);
-		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
 			
 		class exitaction implements ActionListener {
 			public void actionPerformed (ActionEvent e) {
@@ -122,15 +127,22 @@ public class TelaDoUsuario extends JFrame {
 		}
 		mntmSair.addActionListener(new exitaction());
 		
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		bolao = new MeuBolao();
+		JLabel bemVindoLabel = new JLabel();
+		bemVindoLabel.setText("Você está logado como " + user + ".");
+		menuBar.add(bemVindoLabel);
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(-37, -29, 1284, 640);
+		panel.setBounds(0, 0, 1284, 240);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -151,6 +163,15 @@ public class TelaDoUsuario extends JFrame {
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblBemVindoEssa.setBounds(297, 215, 754, 25);
 		panel.add(lblBemVindoEssa);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(0, 240, 1284, 400);
+		contentPane.add(panel_1);
+	}
+	
+	public void testaPane() {
+		
 	}
 }
 			

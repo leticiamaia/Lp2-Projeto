@@ -100,7 +100,7 @@ public class TelaEsqueciDados extends JFrame {
 		email.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(email);
 		
-		final JTextField recebeEmail = new JTextField(); 
+		JTextField recebeEmail = new JTextField(); 
 		recebeEmail.setBounds(270, 144, 336, 20);
 		contentPane.add(recebeEmail);
 		recebeEmail.setColumns(10);
@@ -110,7 +110,7 @@ public class TelaEsqueciDados extends JFrame {
 		lblNewLabel_3.setBounds(152, 205, 104, 20);
 		contentPane.add(lblNewLabel_3);
 		
-		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
+		JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
@@ -126,7 +126,7 @@ public class TelaEsqueciDados extends JFrame {
 		lblResposta.setBounds(175, 236, 81, 21);
 		contentPane.add(lblResposta);
 		
-		final JTextField respostaSecretaField = new JTextField();
+		JTextField respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(270, 236, 336, 20);
 		contentPane.add(respostaSecretaField);
@@ -140,14 +140,15 @@ public class TelaEsqueciDados extends JFrame {
 		
 		JButton confirma = new JButton("Confirma");
 		confirma.setBounds(292, 273, 91, 23);
+		
+		usuario = recebeLogin.getText().trim();
+		pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
+		respostaSecreta = respostaSecretaField.getText().trim();
+		eMail = recebeEmail.getText().trim();	
 		confirma.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				usuario = recebeLogin.getText().trim();
-				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
-				respostaSecreta = respostaSecretaField.getText().trim();
-				eMail = recebeEmail.getText().trim();	
+
 								
 				bolao = new MeuBolao();
 				try {
