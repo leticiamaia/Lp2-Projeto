@@ -1,5 +1,7 @@
 package projetoLp2.tests;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
@@ -12,7 +14,7 @@ import projetoLp2.bolao.TimeCopa;
 
 public class TestaAdministrador {
 	
-	Administrador admin;
+	/*Administrador admin;
 	TimeCopa time1;
 	TimeCopa time2;
 	GregorianCalendar data;
@@ -21,12 +23,13 @@ public class TestaAdministrador {
 	@Before
 	public void set() throws Exception {
 		admin = new Administrador ("admin", "senha");
-	    time1 = new TimeCopa("//", "Brasil", "BRA");
-	    time2 = new TimeCopa("//", "Brasil", "BRA");
+	    time1 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+	    time2 = new TimeCopa("bandeiraArgentina.png", "Argentina", "ARG");
 	    data = new GregorianCalendar(2014, 07, 12, 23, 00);
-	}/*
+	}
+	
 	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
-			TimeCopa time2, GregorianCalendar data) throws Exception {*/
+			TimeCopa time2, GregorianCalendar data) throws Exception {
 	@Test
 	public void testaCadastrapartida() throws Exception {
 		partidas = admin.cadastraPartida(1, time1, time2, data);
@@ -34,5 +37,6 @@ public class TestaAdministrador {
 		Assert.assertEquals(partidas[1].getTime2(), time2);
 		Assert.assertEquals(partidas[1].getData(), data);
 	}
+	*/
 	
 }
