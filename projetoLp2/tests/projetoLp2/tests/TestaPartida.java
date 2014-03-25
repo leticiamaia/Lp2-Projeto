@@ -12,8 +12,8 @@ public class TestaPartida {
 
 	@Test
 	public void testaConstrutor() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		
 		try {
 			Partida partida = new Partida(null, time2, new GregorianCalendar());
@@ -51,8 +51,8 @@ public class TestaPartida {
 	public void testaSetGols() throws Exception{
 		
 		try {
-			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(-1, 3);
 		} catch (Exception e) {
@@ -60,8 +60,8 @@ public class TestaPartida {
 		}
 		
 		try {
-			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(1, -3);
 		} catch (Exception e) {
@@ -69,8 +69,8 @@ public class TestaPartida {
 		}
 		
 		try {
-			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+			TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+			TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(1, 3);
 			Assert.assertTrue(partida.getGolsTime1() == 1);
@@ -84,8 +84,8 @@ public class TestaPartida {
 	
 	@Test
 	public void testaGetGols() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		
 		try {
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
@@ -104,8 +104,8 @@ public class TestaPartida {
 	
 	@Test
 	public void testaCompareTo() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		
 		try {
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));

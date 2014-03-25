@@ -18,8 +18,8 @@ public class TestaAposta {
 
 	@Test
 	public void testaConstrutor() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		
 		try {
@@ -54,8 +54,8 @@ public class TestaAposta {
 	
 	@Test
 	public void testaSetPalpite() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));		
 		
 		try {
@@ -87,8 +87,8 @@ public class TestaAposta {
 	
 	@Test
 	public void testaResultadoAposta() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil");
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		
 		try {
