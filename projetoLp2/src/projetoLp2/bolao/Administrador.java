@@ -28,9 +28,24 @@ public class Administrador extends Usuario {
 
 	public void cadastraPartida(int indicePartida, TimeCopa time1,
 			TimeCopa time2, GregorianCalendar data) throws Exception {
-
 		Partida partida = new Partida(time1, time2, data);
+		try {
+			createIos("partidas.bin");
+			partidas  = (Partida[]) ois.readObject();
+		}  catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			ois.close();
+		}
 		partidas[indicePartida] = partida;
+		try {
+			createOut("partidas.bin");
+			out.writeObject(partidas);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			out.close();
+		}
 	}
 
 	public void atualizaPartida(int indicePartida, int resultadoTime1,
