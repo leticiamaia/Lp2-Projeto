@@ -31,7 +31,6 @@ public class MeuBolao {
 					retorno = 2;
 				}
 			} catch (Exception e) {
-				System.out.println("aqui");
 				e.printStackTrace();
 			} finally {
 				ois.close();

@@ -88,8 +88,8 @@ public class TelaEsqueciDados extends JFrame {
 		login.setText("Seu usu\u00E1rio: "); 
 		login.setBackground(new Color(240, 240, 240));
 		
-		final JTextField recebeLogin = new JTextField(); 
-		recebeLogin.setBounds(270, 175, 336, 20);
+		JTextField recebeLogin = new JTextField(); 
+		recebeLogin.setBounds(270, 176, 336, 20);
 		contentPane.add(recebeLogin);
 		recebeLogin.setColumns(10);
 		
@@ -172,7 +172,7 @@ public class TelaEsqueciDados extends JFrame {
 					}
 					else JOptionPane.showMessageDialog(null, "Algum dado incorreto ou usuario não cadastrado!");
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage());
+					System.out.println(e1.getMessage());
 				}
 				
 			}
