@@ -180,6 +180,7 @@ public class TelaDoUsuario extends JFrame {
 		NewJPanel tablePanel = new NewJPanel();
 	    tablePanel.setBounds(327, 202, 665, 386);
 	    tablePanel.setVisible(true);
+	    contentPane.add(tablePanel);
 		
 	 /*  JButton btnNewButton = new JButton("Atualizar Tabela");
 		btnNewButton.addActionListener(new ActionListener() {
