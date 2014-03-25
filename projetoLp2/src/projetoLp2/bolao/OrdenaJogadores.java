@@ -22,7 +22,7 @@ public class OrdenaJogadores implements Comparator<Jogador> {
 	//Preciso que esse método retorne um Jogador, para poder dar um getPontos.
 	//Usado em: TelaDoUsuario
 	
-	public Usuario getUsuarioPosicao(int posicaoUsuario) {
+	/*public Usuario getUsuarioPosicao(int posicaoUsuario) {
 		Usuario[] user = null;
 		Usuario posUser = null;
 		try {
@@ -42,5 +42,5 @@ public class OrdenaJogadores implements Comparator<Jogador> {
 
 		return (Jogador) posUser;
 	}
-
+*/
 }

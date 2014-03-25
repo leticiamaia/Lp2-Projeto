@@ -66,10 +66,6 @@ public class Jogador extends Usuario {
 		return serialVersionUID;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 	public void adicionaPontos(int resultadoAposta) {
 		totalPontos += resultadoAposta;
@@ -77,7 +73,7 @@ public class Jogador extends Usuario {
 
 	public Aposta getAposta(int indiceAposta) {
 		Aposta aposta = null;
-		try {
+		/*try {
 			FileInputStream fin = new FileInputStream("partidas.txt");
 			FileOutputStream fon = new FileOutputStream("partidas.txt");
 			ObjectInputStream ois = new ObjectInputStream(fin);
@@ -90,9 +86,9 @@ public class Jogador extends Usuario {
 			oos.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
+		}*/
 
-		return aposta;
+		return apostas[indiceAposta];
 	}
 
 	public int getPontos() {

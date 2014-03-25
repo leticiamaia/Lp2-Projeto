@@ -9,6 +9,7 @@ import java.util.List;
 
 import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.Jogador;
+import projetoLp2.bolao.Partida;
 
 public class CriaFile {
 
@@ -18,31 +19,41 @@ public class CriaFile {
 	      try {
 	        out = new ObjectOutputStream(new FileOutputStream("admin.bin"));
 	        } catch( FileNotFoundException e ) {
-	          System.exit(1);
+	        	e.printStackTrace();
 	        }
 	      Administrador admin = new Administrador("admin", "1234");
 	      out.writeObject(admin);
 	      out.close();
 	    } catch(IOException e) {
-	      System.err.println(e);
-	      System.exit(1);
+	    	e.printStackTrace();
 	    }
 	    //criar file com lista de usuarios
 	    try {
 		      try {
 		        out = new ObjectOutputStream(new FileOutputStream("usuarios.bin"));
 		        } catch( FileNotFoundException e ) {
-		          System.exit(1);
+		        	e.printStackTrace();
 		        }
 		      List<Jogador> jogadores = new ArrayList<Jogador>();
 		      out.writeObject(jogadores);
 		      out.close();
 		    } catch(IOException e) {
-		      System.err.println(e);
-		      System.exit(1);
+		    	e.printStackTrace();
 		    }
 		    
-
+	    try {
+		      try {
+		        out = new ObjectOutputStream(new FileOutputStream("partidas.bin"));
+		        } catch( FileNotFoundException e ) {
+		        	e.printStackTrace();
+		        }
+		      Partida[] partidas = new Partida[64];
+		      out.writeObject(partidas);
+		      out.close();
+		    } catch(IOException e) {
+		    	e.printStackTrace();
+		    }
+		    
 	}
 
 }
