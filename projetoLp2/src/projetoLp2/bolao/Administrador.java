@@ -82,6 +82,8 @@ public class Administrador extends Usuario {
 		} finally {
 			out.close();
 		}
+		atualizaPontuacao(indicePartida);
+		atualizaRanking();
 		return partidas;
 	}
 
@@ -106,7 +108,7 @@ public class Administrador extends Usuario {
 		}
 	}
 
-	private void atualizaPontucao(int indicePartida) throws IOException {
+	private void atualizaPontuacao(int indicePartida) throws IOException {
 
 		List<Jogador> jogadores = null;
 		try {

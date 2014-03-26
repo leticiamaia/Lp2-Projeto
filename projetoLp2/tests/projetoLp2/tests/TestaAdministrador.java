@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.After;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
@@ -24,8 +23,7 @@ public class TestaAdministrador {
 
 	@Before
 	public void set() throws Exception {
-		CriaFile c = new CriaFile();
-		c.main(null);
+		CriaFile.main(null);
 		admin = new Administrador ("admin", "senha");
 	    time1 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 	    time2 = new TimeCopa("bandeiraArgentina.png", "Argentina", "ARG");
@@ -122,7 +120,6 @@ public class TestaAdministrador {
 	
 	@After
 	public void clean() throws IOException {
-		CriaFile c = new CriaFile();
-		c.main(null);
+		CriaFile.main(null);
 	}
 }
