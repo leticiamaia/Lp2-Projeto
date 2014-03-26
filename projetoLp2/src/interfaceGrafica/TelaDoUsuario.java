@@ -48,8 +48,8 @@ public class TelaDoUsuario extends JFrame {
 	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
-	private AlterarInfoPanel infoPanel;
-	private RankingPanel rankingPanel;
+	private AlterarInfoPanel infoPanel = new AlterarInfoPanel();
+	private RankingPanel rankingPanel =  new RankingPanel();;
 
 	/**
 	 * Launch the application.
@@ -90,7 +90,6 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
 		mntmVisualizarInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				infoPanel = new AlterarInfoPanel();
 				contentPane.add(infoPanel, 2, 0);
 				infoPanel.setVisible(true);
 			}
@@ -100,12 +99,21 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem mntmAlterarSenha = new JMenuItem("Visualizar Ranking");
 		mntmAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rankingPanel = new RankingPanel();
 				contentPane.add(rankingPanel, 2, 0);
 				rankingPanel.setVisible(true);
 			}
 		});
 		mnInformaesPessoais.add(mntmAlterarSenha);
+		
+		JMenuItem telaInicialMenuItem  = new JMenuItem("Voltar para Tela Inicial");
+		telaInicialMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rankingPanel.setVisible(false);
+				infoPanel.setVisible(false);
+				
+			}
+		});
+		mnInformaesPessoais.add(telaInicialMenuItem);
 		
 		JMenu menuApostas = new JMenu("Apostas");
 		menuBar.add(menuApostas);
