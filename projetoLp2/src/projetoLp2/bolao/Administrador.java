@@ -7,11 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-//add exeptions?
 
 public class Administrador extends Usuario {
 	/**
@@ -87,6 +85,7 @@ public class Administrador extends Usuario {
 		return partidas;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void atualizaRanking() throws IOException {
 		List<Jogador> jogadores = null;
 		try {
@@ -108,6 +107,7 @@ public class Administrador extends Usuario {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void atualizaPontuacao(int indicePartida) throws IOException {
 
 		List<Jogador> jogadores = null;
