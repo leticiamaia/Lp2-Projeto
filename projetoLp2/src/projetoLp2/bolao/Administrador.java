@@ -25,18 +25,19 @@ public class Administrador extends Usuario {
 		super(username, senha);
 	}
 
-	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1, TimeCopa time2, GregorianCalendar data) throws Exception {
+	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
+			TimeCopa time2, GregorianCalendar data) throws Exception {
 		if (indicePartida < 0)
 			throw new Exception("Indice da partida invalido!");
 		if (time1 == null || time2 == null)
 			throw new Exception("Time(s) invalido(s)!");
-		
+
 		Partida[] partidas = null;
 		Partida partida = new Partida(time1, time2, data);
 		try {
 			createIos("partidas.bin");
-			partidas  = (Partida[]) ois.readObject();
-		}  catch (Exception ex) {
+			partidas = (Partida[]) ois.readObject();
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			ois.close();
@@ -53,13 +54,37 @@ public class Administrador extends Usuario {
 		return partidas;
 	}
 
-	/*public void atualizaPartida(int indicePartida, int resultadoTime1,
+	public Partida[] atualizaPartida(int indicePartida, int resultadoTime1,
 			int resultadoTime2) throws Exception {
+		if (indicePartida < 0 || indicePartida > 63)
+			throw new Exception("Indice da partida invalido!");
+		if (resultadoTime1 < 0 || resultadoTime2 < 0)
+			throw new Exception("Resultado(s) invalido(s)!");
+		Partida[] partidas = null;
+
+		try {
+			createIos("partidas.bin");
+			partidas = (Partida[]) ois.readObject();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			ois.close();
+		}
+		if (partidas[indicePartida] == null) {
+			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
+		}
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
-		atualizaPontucao(indicePartida);
-		atualizaRanking();
+		try {
+			createOut("partidas.bin");
+			out.writeObject(partidas);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			out.close();
+		}
+		return partidas;
 	}
-*/
+
 	private void atualizaRanking() throws IOException {
 		List<Jogador> jogadores = null;
 		try {
@@ -67,8 +92,7 @@ public class Administrador extends Usuario {
 			jogadores = (List<Jogador>) ois.readObject();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
-		finally {
+		} finally {
 			ois.close();
 		}
 		try {
@@ -88,7 +112,7 @@ public class Administrador extends Usuario {
 		try {
 			createIos("usuarios.bin");
 			jogadores = (List<Jogador>) ois.readObject();
-		}  catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			ois.close();
@@ -123,5 +147,5 @@ public class Administrador extends Usuario {
 			System.out.println("Arquivo nao Existe");
 		}
 	}
-	
+
 }

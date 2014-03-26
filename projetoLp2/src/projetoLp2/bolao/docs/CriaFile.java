@@ -48,7 +48,5 @@ public class CriaFile {
 		} finally {
 			out.close();
 		}
-
 	}
-
 }

@@ -55,7 +55,7 @@ public class TimeCopa implements Serializable {
 	public void addPartidaJogada(Partida p) throws Exception{
 		if (p == null)
 			throw new Exception("Partida invalida!");
-		if (!(p.getTime1().equals(nomeDoTime) || p.getTime2().equals(nomeDoTime)))
+		if (!(p.getTime1().equals(this) || p.getTime2().equals(this)))
 			throw new Exception("O time nao esta nesta partida!");
 		try {
 			p.getGolsTime1();
@@ -93,6 +93,57 @@ public class TimeCopa implements Serializable {
 
 	public int getNumEmpates() {
 		return numEmpates;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result
+				+ ((abreviacaoNomeTime == null) ? 0 : abreviacaoNomeTime
+						.hashCode());
+		result = prime * result
+				+ ((nomeDoTime == null) ? 0 : nomeDoTime.hashCode());
+		result = prime * result + numDerrotas;
+		result = prime * result + numEmpates;
+		result = prime * result + numVitorias;
+		result = prime * result
+				+ ((partidas == null) ? 0 : partidas.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimeCopa other = (TimeCopa) obj;
+		if (abreviacaoNomeTime == null) {
+			if (other.abreviacaoNomeTime != null)
+				return false;
+		} else if (!abreviacaoNomeTime.equals(other.abreviacaoNomeTime))
+			return false;
+		if (nomeDoTime == null) {
+			if (other.nomeDoTime != null)
+				return false;
+		} else if (!nomeDoTime.equals(other.nomeDoTime))
+			return false;
+		if (numDerrotas != other.numDerrotas)
+			return false;
+		if (numEmpates != other.numEmpates)
+			return false;
+		if (numVitorias != other.numVitorias)
+			return false;
+		if (partidas == null) {
+			if (other.partidas != null)
+				return false;
+		} else if (!partidas.equals(other.partidas))
+			return false;
+		return true;
 	}
 	
 	
