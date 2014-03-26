@@ -29,7 +29,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaEsqueciDados telaEsqueceu;
 	String getSenha;
 	String getLogin;
-	//teste
+
 
 	/**
 	 * Launch the application.
