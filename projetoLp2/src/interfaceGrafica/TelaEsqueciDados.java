@@ -59,7 +59,7 @@ public class TelaEsqueciDados extends JFrame {
 		setBounds(300, 150, 759, 448); 
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		setTitle("Esqueci minha senha");
+		setTitle("Bet2Beat - Esqueci minha senha");
 		setContentPane(contentPane);
 		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

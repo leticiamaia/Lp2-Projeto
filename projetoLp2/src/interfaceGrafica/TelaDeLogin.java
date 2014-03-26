@@ -52,7 +52,7 @@ public class TelaDeLogin extends JFrame {
 	public TelaDeLogin() {
 		final MeuBolao bolao = new MeuBolao();
 		setResizable(false);
-		setTitle("Bol\u00E3o Copa do Mundo 2014 - Bem Vindo!"); 
+		setTitle("Bet2Beat - Seja bem Vindo!"); 
 		setBackground(Color.WHITE); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(300, 150, 759, 448); 

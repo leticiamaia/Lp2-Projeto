@@ -93,27 +93,37 @@ public class NewJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
         setBackground(Color.WHITE);
         
-        JLabel lblRaking = new JLabel("Ranking - Jogadores com Melhor Pontua\u00E7\u00E3o");
+        JLabel lblRaking = new JLabel("Jogadores com as melhores pontua\u00E7\u00F5es");
         lblRaking.setFont(new Font("Calibri Light", Font.PLAIN, 30));
+        
+        label = new JLabel("");
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addContainerGap()
-        					.addComponent(lblRaking, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
-        					.addGap(8))
-        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        					.addGap(16)
+        					.addComponent(label))
+        				.addGroup(layout.createSequentialGroup()
         					.addContainerGap()
         					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap(70, Short.MAX_VALUE)
+        			.addComponent(lblRaking)
+        			.addGap(72))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(5)
-        			.addComponent(lblRaking, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(52)
+        					.addComponent(label))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(5)
+        					.addComponent(lblRaking, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
         );
@@ -124,5 +134,6 @@ public class NewJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private JLabel label;
     // End of variables declaration//GEN-END:variables
 }

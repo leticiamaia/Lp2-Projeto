@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Color;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
 import javax.swing.Box;
 import javax.swing.JMenuItem;
@@ -40,11 +41,15 @@ import javax.swing.border.LineBorder;
 
 import projetoLp2.bolao.MeuBolao;
 
+import javax.swing.UIManager;
+
 public class TelaDoUsuario extends JFrame {
 
-	private JPanel contentPane;
+	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
+	private AlterarInfoPanel infoPanel;
+	private RankingPanel rankingPanel;
 
 	/**
 	 * Launch the application.
@@ -67,7 +72,7 @@ public class TelaDoUsuario extends JFrame {
 	 * 
 	 */
 	public TelaDoUsuario(String user) {
-		setTitle("Tela do Usu\u00E1rio");
+		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,12 +90,21 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
 		mntmVisualizarInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				infoPanel = new AlterarInfoPanel();
+				contentPane.add(infoPanel, 2, 0);
+				infoPanel.setVisible(true);
 			}
 		});
 		mnInformaesPessoais.add(mntmVisualizarInformaes);
 		
 		JMenuItem mntmAlterarSenha = new JMenuItem("Visualizar Ranking");
+		mntmAlterarSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rankingPanel = new RankingPanel();
+				contentPane.add(rankingPanel, 2, 0);
+				rankingPanel.setVisible(true);
+			}
+		});
 		mnInformaesPessoais.add(mntmAlterarSenha);
 		
 		JMenu menuApostas = new JMenu("Apostas");
@@ -108,10 +122,10 @@ public class TelaDoUsuario extends JFrame {
 		JMenu menuSobre = new JMenu("Sobre");
 		menuBar.add(menuSobre);
 		
-		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o programa");
+		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o Bet2Beat");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Program designed by:\n- Letícia Maia \n- Lucas de Matos \n- Marcela Tejo \n- Órion Winter \nVersion: 1.0 (2014) ©", "Sobre nós", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
+				JOptionPane.showMessageDialog(null, "Program designed by:\n- Letícia Maia \n- Lucas de Matos \n- Marcela Tejo \n- Órion Winter \nVersion: 1.0 (2014) ©", "Sobre o Bet2Beat", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
 			}
 		});
 		 menuSobre.add(sobreMenuItem);
@@ -136,7 +150,7 @@ public class TelaDoUsuario extends JFrame {
 		mntmSair.addActionListener(new exitaction());
 		
 		
-		contentPane = new JPanel();
+		contentPane = new JLayeredPane();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -146,11 +160,11 @@ public class TelaDoUsuario extends JFrame {
 		JLabel bemVindoLabel = new JLabel();
 		bemVindoLabel.setText("Você está logado como " + user + ".");
 		menuBar.add(bemVindoLabel);
-		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13)); 
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1284, 191);
+		panel.setBounds(0, 0, 1284, 640);
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
@@ -163,19 +177,19 @@ public class TelaDoUsuario extends JFrame {
 			
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(335, 0, 113, 161);
+		lblNewLabel.setBounds(335, 11, 113, 161);
 		panel.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 		
 		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblBemVindoEssa.setBounds(261, 160, 817, 25);
+		lblBemVindoEssa.setBounds(263, 169, 817, 25);
 		panel.add(lblBemVindoEssa);
 		
-		JLabel rankingLabel = new JLabel("Ranking");
-		rankingLabel.setBounds(323, 234, 317, 61);
-		panel.add(rankingLabel);
-		rankingLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		JLabel lblBetbeat = new JLabel("Bet2Beat");
+		lblBetbeat.setFont(new Font("Calibri Light", Font.PLAIN, 16));
+		lblBetbeat.setBounds(656, 134, 124, 14);
+		panel.add(lblBetbeat);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
@@ -183,9 +197,12 @@ public class TelaDoUsuario extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		NewJPanel tablePanel = new NewJPanel();
-	    tablePanel.setBounds(327, 202, 665, 386);
+		tablePanel.setBounds(341, 205, 640, 388);
+		panel.add(tablePanel);
+		tablePanel.setBackground(Color.WHITE);
+		tablePanel.setBorder(null);
 	    tablePanel.setVisible(true);
-	    contentPane.add(tablePanel);
+
 		
 	 /*  JButton btnNewButton = new JButton("Atualizar Tabela");
 		btnNewButton.addActionListener(new ActionListener() {

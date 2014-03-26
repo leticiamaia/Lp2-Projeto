@@ -72,7 +72,7 @@ public class TelaDeCadastro extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
-		setTitle("Cadastro de Novo  Usu\u00E1rio");
+		setTitle("Bet2Beat - Cadastro de Novo  Usu\u00E1rio");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
