@@ -42,6 +42,8 @@ import javax.swing.border.LineBorder;
 import projetoLp2.bolao.MeuBolao;
 
 import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaDoUsuario extends JFrame {
 
@@ -84,8 +86,26 @@ public class TelaDoUsuario extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnInformaesPessoais = new JMenu("Usu\u00E1rio");
+	    JLabel espaco = new JLabel("");
+	    espaco.setText("  ");
+	    menuBar.add(espaco);
+	
+		JLabel casinha = new JLabel("");
+		casinha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				rankingPanel.setVisible(false);
+				infoPanel.setVisible(false);
+			}
+		});
+		casinha.setForeground(new Color(0, 0, 0));
+		casinha.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/casinha.png")));
+		casinha.setBounds(64, 134, 103, 49);
+	    menuBar.add(casinha);
+		
+		JMenu mnInformaesPessoais = new JMenu(" Usu\u00E1rio");
 		menuBar.add(mnInformaesPessoais);
+		
 		
 		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
 		mntmVisualizarInformaes.addActionListener(new ActionListener() {
@@ -104,17 +124,7 @@ public class TelaDoUsuario extends JFrame {
 			}
 		});
 		mnInformaesPessoais.add(mntmAlterarSenha);
-		
-		JMenuItem telaInicialMenuItem  = new JMenuItem("Voltar para Tela Inicial");
-		telaInicialMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rankingPanel.setVisible(false);
-				infoPanel.setVisible(false);
 				
-			}
-		});
-		mnInformaesPessoais.add(telaInicialMenuItem);
-		
 		JMenu menuApostas = new JMenu("Apostas");
 		menuBar.add(menuApostas);
 		
@@ -210,7 +220,6 @@ public class TelaDoUsuario extends JFrame {
 		tablePanel.setBackground(Color.WHITE);
 		tablePanel.setBorder(null);
 	    tablePanel.setVisible(true);
-
 		
 	 /*  JButton btnNewButton = new JButton("Atualizar Tabela");
 		btnNewButton.addActionListener(new ActionListener() {
