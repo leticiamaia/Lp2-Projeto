@@ -65,7 +65,7 @@ public class TimeCopa implements Serializable {
 		
 		partidas.add(p);
 		
-		if (p.getTime1().equals(nomeDoTime)){
+		if (p.getTime1().equals(this)){
 			if (p.resultado() == 1)
 				numVitorias++;
 			else if (p.resultado() == 0)
@@ -73,7 +73,7 @@ public class TimeCopa implements Serializable {
 			else
 				numDerrotas++;
 		}
-		else if (p.getTime2().equals(nomeDoTime)){
+		else if (p.getTime2().equals(this)){
 			if (p.resultado() == -1)
 				numVitorias++;
 			else if (p.resultado() == 0)

@@ -38,9 +38,9 @@ public class TestaPartida {
 		
 		try {
 			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-			Assert.assertEquals("Alemanha", partida.getTime1());
-			Assert.assertEquals("Brasil", partida.getTime2());
-			Assert.assertEquals("15/09/2014", partida.getData());
+			Assert.assertEquals("Alemanha", partida.getTime1().getNomeDoTime());
+			Assert.assertEquals("Brasil", partida.getTime2().getNomeDoTime());
+			Assert.assertEquals("15/09/2014", partida.getDataFormatada());
 		} catch (Exception e) {
 			Assert.fail();
 		}
