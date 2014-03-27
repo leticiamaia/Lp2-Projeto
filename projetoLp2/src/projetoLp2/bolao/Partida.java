@@ -7,7 +7,6 @@ import java.util.GregorianCalendar;
 public class Partida implements Serializable{
 
 	private static final long serialVersionUID = -2980340733258351497L;
-	//Usei o GregorianCalendar, pois quase todos os metodos de Date estao obsoletos.
 	GregorianCalendar data;
 	TimeCopa time1, time2;
 	int golsTime1, golsTime2;
@@ -69,11 +68,9 @@ public class Partida implements Serializable{
 		return golsTime2;
 	}
 
-	//Metodo para facilitar na avaliacao da aposta
 	public int resultado() throws Exception{
 		Integer g1 = getGolsTime1();
 		Integer g2 = getGolsTime2();
-		
 		return g1.compareTo(g2);
 	}
 }

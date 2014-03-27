@@ -12,7 +12,7 @@ import projetoLp2.bolao.Partida;
 
 public class CriaFile {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ObjectOutputStream out = null;
 		try {
 			out = new ObjectOutputStream(new FileOutputStream("admin.bin"));

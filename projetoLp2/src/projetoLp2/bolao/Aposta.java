@@ -6,6 +6,37 @@ import java.io.Serializable;
 
 public abstract class Aposta implements Serializable{
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + palpiteGolsTime1;
+		result = prime * result + palpiteGolsTime2;
+		result = prime * result + ((partida == null) ? 0 : partida.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aposta other = (Aposta) obj;
+		if (palpiteGolsTime1 != other.palpiteGolsTime1)
+			return false;
+		if (palpiteGolsTime2 != other.palpiteGolsTime2)
+			return false;
+		if (partida == null) {
+			if (other.partida != null)
+				return false;
+		} else if (!partida.equals(other.partida))
+			return false;
+		return true;
+	}
+
 	/**
 	 * 
 	 */
@@ -71,7 +102,6 @@ public abstract class Aposta implements Serializable{
 	 * Retorna o ganhador do jogo: -1, 0, 1, caso o time 1 ganhe, seja empate, ou o time 2 ganhe, respectivamente.
 	 * @return o ganhador do jogo: -1, 0, 1, caso o time 1 ganhe, seja empate, ou o time 2 ganhe, respectivamente.
 	 */
-	//Metodo para ajuda no resultado
 	private int palpiteGanhador(){
 		Integer p1 = palpiteGolsTime1;
 		Integer p2 = palpiteGolsTime2;

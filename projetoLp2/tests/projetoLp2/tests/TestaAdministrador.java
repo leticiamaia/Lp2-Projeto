@@ -119,7 +119,7 @@ public class TestaAdministrador {
 	}
 	
 	@After
-	public void clean() throws IOException {
+	public void clean() throws Exception {
 		CriaFile.main(null);
 	}
 }

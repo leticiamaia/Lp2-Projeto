@@ -2,39 +2,38 @@ package projetoLp2.bolao;
 
 import java.io.Serializable;
 
-public abstract class Usuario implements Serializable{
-	
-	 /**
+public abstract class Usuario implements Serializable {
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 493334626607355526L;
 	protected String username;
 	protected String senha;
-	 
-	public Usuario(String username, String senha) {
+
+	public Usuario(String username, String senha) throws Exception {
+		if (username == null || username == "")
+			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		this.username = username;
 		this.senha = senha;
-		
+
 	}
-	
-	public void mudaSenha(String novaSenha){
+
+	public void mudaSenha(String novaSenha) {
 		this.senha = novaSenha;
-		
+
 	}
-	
-	/*
-	public String getSenha() {
-		return senha;
-	}
-	*/
+
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public boolean login(String usernameInput, String senhaInput) {
-		if (usernameInput.equals(this.username) && senhaInput.equals(this.senha)) {
+		if (usernameInput.equals(this.username)
+				&& senhaInput.equals(this.senha)) {
 			return true;
-		} else return false;
+		} else
+			return false;
 	}
 
 	@Override
@@ -45,6 +44,5 @@ public abstract class Usuario implements Serializable{
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-	
-	
+
 }

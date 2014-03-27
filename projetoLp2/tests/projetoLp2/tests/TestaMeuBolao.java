@@ -14,7 +14,7 @@ public class TestaMeuBolao {
 	private MeuBolao bolao;
 
 	@Before
-	public void set() throws IOException {
+	public void set() throws Exception {
 		bolao = new MeuBolao();
 		CriaFile.main(null);
 	}
@@ -117,7 +117,7 @@ public class TestaMeuBolao {
 	}
 
 	@After
-	public void clean() throws IOException {
+	public void clean() throws Exception {
 		CriaFile.main(null);
 		bolao.desloga();
 	}

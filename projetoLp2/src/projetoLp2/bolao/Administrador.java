@@ -18,7 +18,7 @@ public class Administrador extends Usuario {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public Administrador(String username, String senha) {
+	public Administrador(String username, String senha) throws Exception {
 		super(username, senha);
 	}
 
