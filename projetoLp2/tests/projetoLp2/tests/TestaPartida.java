@@ -16,21 +16,21 @@ public class TestaPartida {
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		
 		try {
-			Partida partida = new Partida(null, time2, new GregorianCalendar());
+			new Partida(null, time2, new GregorianCalendar());
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Time invalido!", e.getMessage());
 		}
 		
 		try {
-			Partida partida = new Partida(time2, null, new GregorianCalendar());
+			new Partida(time2, null, new GregorianCalendar());
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Time invalido!", e.getMessage());
 		}
 		
 		try {
-			Partida partida = new Partida(time1, time2, new GregorianCalendar(2000, 2, 13, 15, 30));
+			new Partida(time1, time2, new GregorianCalendar(2000, 2, 13, 15, 30));
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Nao e possivel adicionar jogo com data anterior a atual!", e.getMessage());

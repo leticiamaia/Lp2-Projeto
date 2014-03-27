@@ -15,49 +15,49 @@ public class TestaTimeCopa {
 	@Test
 	public void testaConstrutor(){
 		try {
-			TimeCopa time = new TimeCopa(null, "Alemanha", "ALE");
+			new TimeCopa(null, "Alemanha", "ALE");
 		} catch (Exception e) {
 			Assert.assertEquals("Caminho da bandeira invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("", "Alemanha", "ALE");
+			new TimeCopa("", "Alemanha", "ALE");
 		} catch (Exception e) {
 			Assert.assertEquals("Caminho da bandeira invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraAlemanha.png", null, "ALE");
+			new TimeCopa("bandeiraAlemanha.png", null, "ALE");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome do time invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraAlemanha.png", "", "ALE");
+			new TimeCopa("bandeiraAlemanha.png", "", "ALE");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome do time invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraAlemanha.png", "Alemanha", null);
+			new TimeCopa("bandeiraAlemanha.png", "Alemanha", null);
 		} catch (Exception e) {
 			Assert.assertEquals("Abreciacao do nome do time invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "");
+			new TimeCopa("bandeiraAlemanha.png", "Alemanha", "");
 		} catch (Exception e) {
 			Assert.assertEquals("Abreciacao do nome do time invalido!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "alemanha");
+			new TimeCopa("bandeiraAlemanha.png", "Alemanha", "alemanha");
 		} catch (Exception e) {
 			Assert.assertEquals("Abreviacao do nome do time deve ter 3 caracteres!", e.getMessage());
 		}
 		
 		try {
-			TimeCopa time = new TimeCopa("bandeiraQueNaoExiste.png", "Time que nao existe", "ABV");
+			new TimeCopa("bandeiraQueNaoExiste.png", "Time que nao existe", "ABV");
 		} catch (Exception e) {
 			Assert.assertEquals("Imagem invalida!", e.getMessage());
 		}

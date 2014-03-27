@@ -23,21 +23,21 @@ public class TestaAposta {
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		
 		try {
-			Aposta aposta = new ApostaPrimeiraFase(null, 1, 2);
+			new ApostaPrimeiraFase(null, 1, 2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Partida invalida!", e.getMessage());
 		}
 	
 		try {
-			Aposta aposta = new ApostaPrimeiraFase(partida, -1, 2);
+			new ApostaPrimeiraFase(partida, -1, 2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Palpite de gols invalido!", e.getMessage());
 		}
 		
 		try {
-			Aposta aposta = new ApostaPrimeiraFase(partida, 1, -2);
+			new ApostaPrimeiraFase(partida, 1, -2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Palpite de gols invalido!", e.getMessage());

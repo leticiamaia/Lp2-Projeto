@@ -37,6 +37,7 @@ public class MeuBolao {
 			}
 		try {
 			createIos("usuarios.bin");
+			@SuppressWarnings("unchecked")
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
 			for (Jogador j : jogadores) {
@@ -82,6 +83,7 @@ public class MeuBolao {
 
 		try {
 			createIos("usuarios.bin");
+			@SuppressWarnings("unchecked")
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
 			for (Jogador j : jogadores) {
@@ -120,6 +122,7 @@ public class MeuBolao {
 		boolean retorno = false;
 		try {
 			createIos("usuarios.bin");
+			@SuppressWarnings("unchecked")
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
 			System.out.println(jogadores.size());
@@ -186,6 +189,7 @@ public class MeuBolao {
 		return retorno;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public boolean mudarSenhaUsuario() throws IOException {
 		ArrayList<Jogador> jogadores = null;
 		boolean retorno = false;

@@ -16,8 +16,7 @@ public class TestaMeuBolao {
 	@Before
 	public void set() throws IOException {
 		bolao = new MeuBolao();
-		CriaFile c = new CriaFile();
-		c.main(null);
+		CriaFile.main(null);
 	}
 
 	@Test
@@ -75,15 +74,14 @@ public class TestaMeuBolao {
 
 	}
 
-
 	@Test
 	public void testaCheckUsuario() throws Exception {
 		Assert.assertFalse(bolao.checkUsuario("Leticia", "Qual?", "patos",
 				"lmt@gmail.com"));
 		bolao.cadastraJogador("Leticia", "Leticia", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
-		bolao.cadastraJogador("amor", "amor", "amor", "amor@gmail.com",
-				"amor", "amor");
+		bolao.cadastraJogador("amor", "amor", "amor", "amor@gmail.com", "amor",
+				"amor");
 		Assert.assertTrue(bolao.checkUsuario("amor", "amor", "amor",
 				"amor@gmail.com"));
 		Assert.assertTrue(bolao.checkUsuario("Leticia", "Qual?", "patos",
@@ -101,10 +99,10 @@ public class TestaMeuBolao {
 		Assert.assertTrue(bolao.checkUsuario("casal20", "namorada?", "Leticia",
 				"lucas@gmail.com"));
 	}
-	
+
 	@Test
 	public void testaMudarSenha() throws Exception {
-		Assert.assertEquals(bolao.login2("admin", "1234"),1);
+		Assert.assertEquals(bolao.login2("admin", "1234"), 1);
 		bolao.mudarSenha("123");
 		bolao.desloga();
 		Assert.assertEquals(bolao.login2("admin", "123"), 1);
@@ -114,14 +112,13 @@ public class TestaMeuBolao {
 		bolao.login2("Let", "1234");
 		bolao.mudarSenha("123");
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("Let", "123"),1);
+		Assert.assertEquals(bolao.login2("Let", "123"), 1);
 		bolao.desloga();
 	}
-	
+
 	@After
 	public void clean() throws IOException {
-		CriaFile c = new CriaFile();
-		c.main(null);
+		CriaFile.main(null);
 		bolao.desloga();
 	}
 
