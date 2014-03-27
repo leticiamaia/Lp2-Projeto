@@ -5,11 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,6 +23,10 @@ import projetoLp2.bolao.MeuBolao;
 
 public class TelaEsqueciDados extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3106983905403077506L;
 	private JPanel contentPane;
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta, eMail, novaSenha; 
@@ -117,6 +116,7 @@ public class TelaEsqueciDados extends JFrame {
 		lblNewLabel_3.setBounds(152, 205, 104, 20);
 		contentPane.add(lblNewLabel_3);
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
@@ -149,6 +149,7 @@ public class TelaEsqueciDados extends JFrame {
 		confirma.setIcon(new ImageIcon(TelaEsqueciDados.class.getResource("/projetoLp2/bolao/docs/tick.png")));
 		confirma.setBounds(292, 273, 121, 34);	
 		confirma.addActionListener(new ActionListener() {
+			@SuppressWarnings({ "deprecation", "static-access" })
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				usuario = recebeLogin.getText().trim();

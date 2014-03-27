@@ -1,52 +1,35 @@
 package interfaceGrafica;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Color;
-
-import javax.swing.JLayeredPane;
-import javax.swing.JMenuBar;
-import javax.swing.Box;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-
 import java.awt.Font;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import java.awt.Choice;
-
-import javax.swing.ImageIcon;
-import javax.swing.JTable;
-import javax.swing.JTabbedPane;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import javax.swing.JInternalFrame;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.LineBorder;
-
-import projetoLp2.bolao.MeuBolao;
-
-import javax.swing.UIManager;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import projetoLp2.bolao.MeuBolao;
+
 public class TelaDoUsuario extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2567460421508989944L;
 	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
@@ -157,6 +140,7 @@ public class TelaDoUsuario extends JFrame {
 		
 			
 		class exitaction implements ActionListener {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed (ActionEvent e) {
 				bolao = new MeuBolao();
 				bolao.desloga();
@@ -221,16 +205,6 @@ public class TelaDoUsuario extends JFrame {
 		tablePanel.setBorder(null);
 	    tablePanel.setVisible(true);
 		
-	 /*  JButton btnNewButton = new JButton("Atualizar Tabela");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
-		btnNewButton.setBounds(583, 578, 152, 35);
-		contentPane.add(btnNewButton);
-		contentPane.add(tablePanel);*/
-	
 	}
 }
 			

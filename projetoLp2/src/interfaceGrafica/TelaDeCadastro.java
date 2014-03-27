@@ -1,41 +1,31 @@
 package interfaceGrafica;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.ItemSelectable;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.Color;
-
 import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.awt.FlowLayout;
-
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JCheckBox;
+import javax.swing.border.EmptyBorder;
 
 import projetoLp2.bolao.MeuBolao;
 
 public class TelaDeCadastro extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1278752757107632458L;
 	private JPanel contentPane;
 	private JTextField recebeNomeField;
 	private JTextField recebeEmailField;
@@ -172,6 +162,7 @@ public class TelaDeCadastro extends JFrame {
 		label_2.setBounds(580, 246, 53, 18);
 		contentPane.add(label_2);
 
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
@@ -208,6 +199,7 @@ public class TelaDeCadastro extends JFrame {
 		JButton botaoConfirma = new JButton(" Confirmar");
 		botaoConfirma.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/tick.png")));
 		botaoConfirma.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				nome = recebeNomeField.getText().trim();
 				senha = recebeSenhaField.getText().trim();

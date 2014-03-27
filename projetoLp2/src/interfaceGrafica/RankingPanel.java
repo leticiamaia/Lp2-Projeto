@@ -1,22 +1,23 @@
 package interfaceGrafica;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import java.awt.Font;
-
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class RankingPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7796197211046315244L;
 	/**
 	 * Create the panel.
 	 */

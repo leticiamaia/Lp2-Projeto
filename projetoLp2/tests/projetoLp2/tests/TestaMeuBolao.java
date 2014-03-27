@@ -19,25 +19,42 @@ public class TestaMeuBolao {
 
 	@Test
 	public void testaLoginAdmin() throws Exception {
-		Assert.assertEquals(bolao.login2("admin", "1234"), 1);
+		Assert.assertTrue(bolao.login2("admin", "1234"));
 		try {
-			bolao.login2("Admin", "1234");
+			bolao.login2("admin", "1234");
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Mensagem Errada",
+			Assert.assertEquals(
 					"Nao e possivel logar com um usuario ja logado",
 					e.getMessage());
 		}
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("admin", "123"), 2);
+		try {
+			bolao.login2("admin", "123");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals(
+					"Senha incorreta(s).",
+					e.getMessage());
+		}
 	}
 
 	@Test
 	public void testaLoginUsuario() throws Exception {
 		bolao.cadastraJogador("Leticia", "Leticia", "1234", "let@gmail.com",
 				"Qual?", "patos");
-		Assert.assertEquals(bolao.login2("Leticia", "123"), 2);
-		Assert.assertEquals(bolao.login2("Leticia", "1234"), 1);
+		
+		try {
+			bolao.login2("Leticia", "123");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals(
+					"Senha incorreta(s).",
+					e.getMessage());
+		}
+		
+		Assert.assertTrue(bolao.login2("Leticia", "1234"));
+		
 		try {
 			bolao.login2("Leticia", "1234");
 			Assert.fail();
@@ -46,14 +63,21 @@ public class TestaMeuBolao {
 					"Nao e possivel logar com um usuario ja logado",
 					e.getMessage());
 		}
+		try {
+			bolao.login2("Leti", "1234");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Mensagem Errada",
+					"Nao e possivel logar com um usuario ja logado",
+					e.getMessage());
+		}
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("Leticia", "1234"), 1);
+		Assert.assertTrue(bolao.login2("Leticia", "1234"));
 		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("Let", "1234"), 1);
+		Assert.assertTrue(bolao.login2("Let", "1234"));
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("Leti", "1234"), 3);
 
 	}
 
@@ -100,17 +124,24 @@ public class TestaMeuBolao {
 
 	@Test
 	public void testaMudarSenha() throws Exception {
-		Assert.assertEquals(bolao.login2("admin", "1234"), 1);
+		Assert.assertTrue(bolao.login2("admin", "1234"));
 		bolao.mudarSenha("123");
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("admin", "123"), 1);
+		Assert.assertTrue(bolao.login2("admin", "123"));
 		bolao.desloga();
 		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
 		bolao.login2("Let", "1234");
 		bolao.mudarSenha("123");
 		bolao.desloga();
-		Assert.assertEquals(bolao.login2("Let", "123"), 1);
+		try {
+			bolao.login2("Let", "1234");
+		} catch (Exception e) {
+			Assert.assertEquals(
+					"Senha incorreta(s).",
+					e.getMessage());
+		}
+		Assert.assertTrue(bolao.login2("Let", "123"));
 		bolao.desloga();
 	}
 

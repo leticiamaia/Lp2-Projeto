@@ -14,8 +14,8 @@ public class MeuBolao {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public int login2(String username, String senha) throws Exception {
-		int retorno = 3;
+	public boolean login2(String username, String senha) throws Exception {
+		boolean retorno = false;
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado");
 		if (username == null || username.equals("") || senha == null
@@ -26,12 +26,10 @@ public class MeuBolao {
 				Administrador admin = (Administrador) ois.readObject();
 				if (admin.login(username, senha)) {
 					usuarioLogado = admin;
-					retorno = 1;
+					retorno = true;
 				} else if (admin.getUsername().equals(username)) {
-					retorno = 2;
+					throw new Exception("Senha incorreta(s).");
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			} finally {
 				ois.close();
 			}
@@ -43,16 +41,15 @@ public class MeuBolao {
 			for (Jogador j : jogadores) {
 				if (j.login(username, senha)) {
 					usuarioLogado = j;
-					retorno = 1;
+					retorno = true;
 				} else if (j.getUsername().equals(username)) {
-					retorno = 2;
+					throw new Exception("Senha incorreta(s).");
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			ois.close();
 		}
+		if (!retorno) throw new Exception("Usuario nao encontrado.");
 		return retorno;
 	}
 

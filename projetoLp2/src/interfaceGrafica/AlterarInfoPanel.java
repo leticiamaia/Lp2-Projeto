@@ -1,23 +1,22 @@
 package interfaceGrafica;
 
-import javax.swing.JPanel;
-
 import java.awt.Color;
-
-import javax.swing.JLabel;
-
 import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 public class AlterarInfoPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -337804168890997381L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JPasswordField passwordField;
@@ -86,6 +85,7 @@ public class AlterarInfoPanel extends JPanel {
 		passwordField.setBounds(171, 219, 437, 20);
 		add(passwordField);
 		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(171, 251, 437, 20);
 		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");

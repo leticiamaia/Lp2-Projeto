@@ -1,24 +1,32 @@
 package interfaceGrafica;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.MeuBolao;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-
-
 public class TelaDeLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1351227738501426505L;
 	private JPanel contentPane;
 	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
@@ -88,6 +96,7 @@ public class TelaDeLogin extends JFrame {
 		JButton botaoEntrar = new JButton(" Entrar"); 
 		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
 		botaoEntrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 
 						getLogin = recebeLogin.getText().trim();
@@ -95,11 +104,10 @@ public class TelaDeLogin extends JFrame {
 						
 
 							try {
-								int sucesso = bolao.login2(getLogin, getSenha);
-								if (sucesso == 1) {
+								boolean sucesso = bolao.login2(getLogin, getSenha);
+								if (sucesso) {
 									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
 									dispose(); 
-
 									if(bolao.getUsuarioLogado() instanceof Administrador)
 									{
 										telaAdmin = new TelaDoAdmin();
@@ -108,16 +116,11 @@ public class TelaDeLogin extends JFrame {
 									else {
 									telaUser = new TelaDoUsuario(getLogin);
 									telaUser.show();
-								}
-								}
-								else if (getLogin.isEmpty()== false && getSenha.isEmpty()==false && sucesso == 2){
-									JOptionPane.showMessageDialog(null, "Senha incorreta(s).");
-								} else {
-									JOptionPane.showMessageDialog(null, "Usuario nao encontrado.");
+									}
 								}
 							} catch (Exception e1) {
-								JOptionPane.showMessageDialog(null,e1.getMessage());
-							}
+									JOptionPane.showMessageDialog(null,e1.getMessage());
+							} 
 			}
 		});
 		botaoEntrar.setBounds(104, 98, 99, 23);
@@ -130,6 +133,7 @@ public class TelaDeLogin extends JFrame {
 		});
 		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				telaDeCadastro = new TelaDeCadastro();
@@ -143,6 +147,7 @@ public class TelaDeLogin extends JFrame {
 		JButton botaoEsqueciDados = new JButton("Esqueci senha");
 		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
 		botaoEsqueciDados.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				telaEsqueceu = new TelaEsqueciDados();
 				telaEsqueceu.show();
