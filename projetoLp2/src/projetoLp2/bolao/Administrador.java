@@ -10,6 +10,12 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/**
+ * Essa classe representa o administrador do Nosso Bolao
+ * 
+ * @author Marcela, Leticia, Orion, Lucas
+ * 
+ */
 public class Administrador extends Usuario {
 	/**
 	 * 
@@ -18,10 +24,35 @@ public class Administrador extends Usuario {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param username
+	 *            Username do admin
+	 * @param senha
+	 *            Senha do Admin
+	 * @throws Exception
+	 *             Caso os paramentros sejam Invalidos.
+	 */
 	public Administrador(String username, String senha) throws Exception {
 		super(username, senha);
 	}
 
+	/**
+	 * Esse Metodo e usado para cadastrar uma partida da Copa no sistema
+	 * 
+	 * @param indicePartida
+	 *            Indice da partida
+	 * @param time1
+	 *            Time que Jogara a partida.
+	 * @param time2
+	 *            Outro Time que Jogara a partida.
+	 * @param data
+	 *            Data de realzacao da partida.
+	 * @return Um array de Pertidas da Copa
+	 * @throws Exception
+	 *             caso os Parametros sejam Invalidos.
+	 */
 	public Partida[] cadastraPartida(int indicePartida, TimeCopa time1,
 			TimeCopa time2, GregorianCalendar data) throws Exception {
 		if (indicePartida < 0)
@@ -51,6 +82,20 @@ public class Administrador extends Usuario {
 		return partidas;
 	}
 
+	/**
+	 * Esse Metodo Coloca o resultado de uma partida no bolao.
+	 * 
+	 * @param indicePartida
+	 *            Indice da Partida
+	 * @param resultadoTime1
+	 *            Numero de gols feitos pelo time1
+	 * @param resultadoTime2
+	 *            Numero de gols feitos pelo time2
+	 * @return O array de partidas da copa
+	 * @throws Exception
+	 *             Caso os parametros sejam invalidos e/ou a partida nao foi
+	 *             cadastrada ainda.
+	 */
 	public Partida[] atualizaPartida(int indicePartida, int resultadoTime1,
 			int resultadoTime2) throws Exception {
 		if (indicePartida < 0 || indicePartida > 63)
@@ -84,6 +129,12 @@ public class Administrador extends Usuario {
 		return partidas;
 	}
 
+	/**
+	 * Esse metodo atuliza o ranking dos jogadores quando um resultado de uma
+	 * partida e adicionado.
+	 * 
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	private void atualizaRanking() throws IOException {
 		List<Jogador> jogadores = null;
@@ -106,6 +157,13 @@ public class Administrador extends Usuario {
 		}
 	}
 
+	/**
+	 * Esse metodo atuliza a pontucao dos jogadores do bolao quando o resultado
+	 * de uma partida e atualizado.
+	 * 
+	 * @param indicePartida
+	 * @throws IOException
+	 */
 	@SuppressWarnings("unchecked")
 	private void atualizaPontuacao(int indicePartida) throws IOException {
 
@@ -133,6 +191,13 @@ public class Administrador extends Usuario {
 
 	}
 
+	/**
+	 * Esse Metodo cria um Objeto de Input
+	 * 
+	 * @param fileName
+	 *            Nome do arquivo
+	 * @throws IOException
+	 */
 	private void createIos(String fileName) throws IOException {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
@@ -141,6 +206,13 @@ public class Administrador extends Usuario {
 		}
 	}
 
+	/**
+	 * Esse Metodo cria um Objeto de Output
+	 * 
+	 * @param fileName
+	 *            Nome do arquivo
+	 * @throws IOException
+	 */
 	private void createOut(String fileName) throws IOException {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(fileName));
