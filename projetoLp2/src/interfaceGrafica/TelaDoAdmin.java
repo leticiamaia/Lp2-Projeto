@@ -1,4 +1,4 @@
-package projetoLp2.bolao;
+package interfaceGrafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;

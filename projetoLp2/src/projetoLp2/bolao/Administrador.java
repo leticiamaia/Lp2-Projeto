@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-
 public class Administrador extends Usuario {
 	/**
 	 * 
@@ -89,7 +88,7 @@ public class Administrador extends Usuario {
 	private void atualizaRanking() throws IOException {
 		List<Jogador> jogadores = null;
 		try {
-			createIos("jogadores.bin");
+			createIos("usuarios.bin");
 			jogadores = (List<Jogador>) ois.readObject();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -138,7 +137,7 @@ public class Administrador extends Usuario {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo nao Existe");
+			e.printStackTrace();
 		}
 	}
 
@@ -146,7 +145,7 @@ public class Administrador extends Usuario {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(fileName));
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo nao Existe");
+			e.printStackTrace();
 		}
 	}
 

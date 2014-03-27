@@ -6,7 +6,6 @@ import javax.swing.border.TitledBorder;
 
 import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.MeuBolao;
-import projetoLp2.bolao.TelaDoAdmin;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

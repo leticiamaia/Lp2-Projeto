@@ -49,7 +49,6 @@ public class MeuBolao {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("aqui2");
 			e.printStackTrace();
 		} finally {
 			ois.close();
@@ -125,10 +124,7 @@ public class MeuBolao {
 			@SuppressWarnings("unchecked")
 			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
 					.readObject();
-			System.out.println(jogadores.size());
-			System.out.println(usuario + pergunta + respostaSecreta + email);
 			for (Jogador j : jogadores) {
-				System.out.println(j.getUsername()+ j.getPerguntaSecreta() + j.getResposta()+j.getEmail());
 				if (j.getUsername().equals(usuario)
 						&& j.getPerguntaSecreta().equals(pergunta)
 						&& j.getResposta().equals(respostaSecreta)
@@ -143,8 +139,6 @@ public class MeuBolao {
 		} finally {
 			ois.close();
 		}
-		
-		System.out.println(retorno);
 		return retorno;
 	}
 	
@@ -232,7 +226,7 @@ public class MeuBolao {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(fileName));
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo nao Existe");
+			e.printStackTrace();
 		}
 	}
 
@@ -240,7 +234,7 @@ public class MeuBolao {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(fileName));
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo nao Existe");
+			e.printStackTrace();
 		}
 	}
 }
