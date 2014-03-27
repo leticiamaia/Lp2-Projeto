@@ -1,6 +1,5 @@
 package projetoLp2.tests;
 
-import java.io.IOException;
 import java.util.GregorianCalendar;
 
 import org.junit.After;
