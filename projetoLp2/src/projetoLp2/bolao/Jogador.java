@@ -35,6 +35,9 @@ public class Jogador extends Usuario {
 	}
 
 	public boolean novaAposta(int idx, Partida partida, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+		if (idx < 0) throw new Exception("Indice invalido");
+		if (partida == null) throw new Exception("Partida Inexistente");
+		
 		if(apostas[idx] != null) {
 			apostas[idx].setPalpiteGolsTime1(palpiteGolsTime1);
 			apostas[idx].setPalpiteGolsTime2(palpiteGolsTime2);
@@ -68,6 +71,13 @@ public class Jogador extends Usuario {
 		
 		return false;
 		
+	}
+	
+	public boolean cancelarAposta(int idx) throws Exception {
+		if (idx < 0) throw new Exception("Indice invalido");
+		if (apostas[idx] == null) throw new Exception("Aposta Inexistente");
+		apostas[idx] = null;
+		return true;
 	}
 	
 	public String getPerguntaSecreta() {

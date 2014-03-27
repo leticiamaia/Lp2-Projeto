@@ -64,7 +64,7 @@ public class MeuBolao {
 				|| email.equals("") || perguntaSecreta == null
 				|| resposta == null)
 			throw new Exception(
-					"Campos nao podem ser nulos, alguns não devem estar vazios.");
+					"Campos nao podem ser nulos, alguns nï¿½o devem estar vazios.");
 
 		int retorno = 1;
 
@@ -144,13 +144,13 @@ public class MeuBolao {
 		System.out.println(retorno);
 		return retorno;
 	}
-
+	
 	public boolean mudarSenha(String novaSenha) throws Exception {
 		if (usuarioLogado == null)
 			throw new Exception(
 					"Usuario precisa estar logado para realizar esta operacao");
 		if (novaSenha == null || novaSenha == "" || novaSenha.contains(" "))
-			throw new Exception("Senha nao pode ser nula, vazia e nem conter espaços");
+			throw new Exception("Senha nao pode ser nula, vazia e nem conter espaï¿½os");
 		boolean retorno = false;
 		usuarioLogado.mudaSenha(novaSenha);
 		if(usuarioLogado instanceof Administrador) {
