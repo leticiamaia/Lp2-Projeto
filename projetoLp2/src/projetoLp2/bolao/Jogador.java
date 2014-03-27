@@ -1,5 +1,11 @@
 package projetoLp2.bolao;
 
+/**
+ * Essa classe representa um jogador do bolao.
+ * 
+ * @author Leticia
+ * 
+ */
 public class Jogador extends Usuario {
 	private static final long serialVersionUID = 776610356730575144L;
 	private Aposta[] apostas = new Aposta[64];
@@ -9,6 +15,24 @@ public class Jogador extends Usuario {
 	private String resposta;
 	private String nome;
 
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param nome
+	 *            nome do Jogador
+	 * @param username
+	 *            Username do Jogador
+	 * @param senha
+	 *            Senha definida pelo Jogador
+	 * @param email
+	 *            Email do Jogador
+	 * @param perguntaSecreta
+	 *            Pergunta Secreta escohida pelo jogador
+	 * @param resposta
+	 *            Resposta da pergunta secreta escolhida.
+	 * @throws Exception
+	 *             caso os parametros sejam invalidos.
+	 */
 	public Jogador(String nome, String username, String senha, String email,
 			String perguntaSecreta, String resposta) throws Exception {
 		super(username, senha);
@@ -23,50 +47,71 @@ public class Jogador extends Usuario {
 		this.nome = nome;
 	}
 
+	/**
+	 * Retorna as apostas do Jogador
+	 * 
+	 * @return as apostas do Jogador
+	 */
 	public Aposta[] getApostas() {
 		return apostas;
 	}
 
-	public boolean novaAposta(int idx, Partida partida, int palpiteGolsTime1,
-			int palpiteGolsTime2) throws Exception {
-		if (idx < 0)
+	/**
+	 * Cria/edita uma nova Aposta
+	 * 
+	 * @param indiceAposta
+	 *            indice da Aposta
+	 * @param partida
+	 *            Partida em que o jogador vai apostar
+	 * @param palpiteGolsTime1
+	 *            Palpite do Jogador quanto ao numero de gols do time1
+	 * @param palpiteGolsTime2
+	 *            Palpite do Jogador quanto ao numero de gols do time2
+	 * @return Verdadeiro se a operacao foi realizada com sucesso
+	 * @throws Exception
+	 *             Caso os parametros sejam invalidos
+	 */
+	public boolean novaAposta(int indiceAposta, Partida partida,
+			int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+		if (indiceAposta < 0)
 			throw new Exception("Indice invalido");
 		if (partida == null)
 			throw new Exception("Partida Inexistente");
 
-		if (apostas[idx] != null) {
-			apostas[idx].setPalpiteGolsTime1(palpiteGolsTime1);
-			apostas[idx].setPalpiteGolsTime2(palpiteGolsTime2);
+		if (apostas[indiceAposta] != null) {
+			apostas[indiceAposta].setPalpiteGolsTime1(palpiteGolsTime1);
+			apostas[indiceAposta].setPalpiteGolsTime2(palpiteGolsTime2);
 			return true;
 		}
 
-		if (idx >= 0 && idx < 48) {
-			apostas[idx] = new ApostaPrimeiraFase(partida, palpiteGolsTime2,
-					palpiteGolsTime2);
+		if (indiceAposta >= 0 && indiceAposta < 48) {
+			apostas[indiceAposta] = new ApostaPrimeiraFase(partida,
+					palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 
-		if (idx >= 48 && idx < 56) {
-			apostas[idx] = new ApostaOitavasDeFinal(partida, palpiteGolsTime2,
-					palpiteGolsTime2);
+		if (indiceAposta >= 48 && indiceAposta < 56) {
+			apostas[indiceAposta] = new ApostaOitavasDeFinal(partida,
+					palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 
-		if (idx >= 56 && idx < 60) {
-			apostas[idx] = new ApostaQuartasDeFinal(partida, palpiteGolsTime2,
-					palpiteGolsTime2);
+		if (indiceAposta >= 56 && indiceAposta < 60) {
+			apostas[indiceAposta] = new ApostaQuartasDeFinal(partida,
+					palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 
-		if (idx >= 60 && idx < 63) { // terceiro lugar tera mesmo peso que
-										// semifinal
-			apostas[idx] = new ApostaSemiFinal(partida, palpiteGolsTime2,
-					palpiteGolsTime2);
+		if (indiceAposta >= 60 && indiceAposta < 63) { // terceiro lugar tera
+														// mesmo peso que
+			// semifinal
+			apostas[indiceAposta] = new ApostaSemiFinal(partida,
+					palpiteGolsTime2, palpiteGolsTime2);
 			return true;
 		}
 
-		if (idx == 63) {
-			apostas[idx] = new ApostaFinal(partida, palpiteGolsTime2,
+		if (indiceAposta == 63) {
+			apostas[indiceAposta] = new ApostaFinal(partida, palpiteGolsTime2,
 					palpiteGolsTime2);
 			return true;
 		}
@@ -75,55 +120,108 @@ public class Jogador extends Usuario {
 
 	}
 
-	public boolean cancelarAposta(int idx) throws Exception {
-		if (idx < 0)
+	/**
+	 * Cancela uma aposta ja feita
+	 * 
+	 * @param indiceAposta
+	 * @throws Exception
+	 */
+	public void cancelarAposta(int indiceAposta) throws Exception {
+		if (indiceAposta < 0)
 			throw new Exception("Indice invalido");
-		if (apostas[idx] == null)
+		if (apostas[indiceAposta] == null)
 			throw new Exception("Aposta Inexistente");
-		apostas[idx] = null;
-		return true;
+		apostas[indiceAposta] = null;
 	}
 
+	/**
+	 * Retorna a pergunta secreta escolhida pelo Jogador
+	 * 
+	 * @returna A pergunta secreta escolhida pelo Jogador
+	 */
 	public String getPerguntaSecreta() {
 		return perguntaSecreta;
 	}
 
+	/**
+	 * Muda a pergunta Secreta do jogador
+	 * 
+	 * @param perguntaSecreta
+	 *            A nova pergunta secreta escolhida pelo Jogador
+	 */
 	public void setPerguntaSecreta(String perguntaSecreta) {
 		this.perguntaSecreta = perguntaSecreta;
 	}
 
+	/**
+	 * Retorna a resposta da pergunta secreta escolhida pelo Jogador
+	 * @return  A resposta da pergunta secreta escolhida pelo Jogador
+	 */
 	public String getResposta() {
 		return resposta;
 	}
-
+	
+	/**
+	 * Muda a resposta da pergunta secreta escolhida pelo Jogador
+	 * @param resposta A nova resposta da pergunta secreta escolhida pelo Jogador
+	 */
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
 	}
-
+	
+	/**
+	 * Retorna o Nome do jogador
+	 * @return Nome do Jogador
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Muda o nome do Jogador
+	 * @param nome Novo Nome escolhido
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+	/**
+	 * Adiciona pontos de uma aposta ao total de pontos
+	 * @param resultadoAposta Pontos ganhos com uma aposta.
+	 */
 	public void adicionaPontos(int resultadoAposta) {
 		totalPontos += resultadoAposta;
 	}
 
+	/**
+	 * Reorna uma aposta.
+	 * @param indiceAposta indice da Aposta a ser retornada.
+	 * @return A aposta
+	 */
 	public Aposta getAposta(int indiceAposta) {
 		return apostas[indiceAposta];
 	}
 
+	/**
+	 * Retorna o numero de pontos atual do Jogador no bolao
+	 * @return Numero de pontos Atual
+	 */
 	public int getPontos() {
 		return totalPontos;
 	}
-
-	public void setPontos(int num) {
-		totalPontos = num;
+	
+	/**
+	 * Muda o total de pontos do jogador
+	 * @param pontos
+	 */
+	public void setPontos(int pontos) {
+		totalPontos = pontos;
 	}
-
+	
+	/**
+	 * Retorna o e-mail do Jogador
+	 * @return E-mail do Jogador
+	 */
 	public String getEmail() {
 		return this.email;
 	}
