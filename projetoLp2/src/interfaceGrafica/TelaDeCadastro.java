@@ -208,53 +208,42 @@ public class TelaDeCadastro extends JFrame {
 				usuario = recebeUserField.getText().trim();
 				respostaSecreta = respostaSecretaField.getText().trim();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
-				int sucesso = 0;
+				boolean sucesso = true;
 				if (usuario.equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"O campo 'usuario' é obrigatorio!");
-					sucesso = -1;
+					sucesso = false;
 				}
 				if (email.equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"O campo 'email' é obrigatorio!");
-					sucesso = -1;
+					sucesso = false;
 				}
 				if (senha.equals("") || senhaConfirmada.equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"Os campos de senha são obrigatorios!");
-					sucesso = -1;
+					sucesso = false;
 				}
 				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
 					JOptionPane.showMessageDialog(null,
 							"E-mail Invalido.");
-					sucesso = -1;
+					sucesso = false;
 				}
 				
 				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
 						|| senhaConfirmada.isEmpty()) {
 					JOptionPane.showMessageDialog(null,
 							"As senhas nao conferem!");
-					sucesso = -1;
+					sucesso = false;
 					
 				}
-				if (sucesso == 0) {
-					
+				if (sucesso) {
 					try {
 						sucesso = bolao.cadastraJogador(nome, usuario, senha, email,
 								pergunta, respostaSecreta);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null,e.getMessage());
 					}
-					if (sucesso == 1) {
-						JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
-						dispose();
-					}
-					else if (sucesso == 2)
-						JOptionPane.showMessageDialog(null,
-								"Usuario ja existente, escolha outro."); 
-					else if (sucesso == 3)
-						JOptionPane.showMessageDialog(null,
-								"E-mail ja existente, escolha outro.");
 				} 
 			}
 		});

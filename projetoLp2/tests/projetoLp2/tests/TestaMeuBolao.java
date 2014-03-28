@@ -5,11 +5,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaMeuBolao {
 	private MeuBolao bolao;
+	private final String NOME = "nome";
+	private final String USERNAME = "user";
+	private final String SENHA = "senha";
+	private final String EMAIL = "email@.";
+	private final String PERGUNTA = "pergunta?";
+	private final String RESPOSTA = "resposta";
+	private final String VAZIO = "";
+	private final String NULO = null;
 
 	@Before
 	public void set() throws Exception {
@@ -33,9 +42,7 @@ public class TestaMeuBolao {
 			bolao.login2("admin", "123");
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals(
-					"Senha incorreta(s).",
-					e.getMessage());
+			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
 		}
 	}
 
@@ -43,18 +50,16 @@ public class TestaMeuBolao {
 	public void testaLoginUsuario() throws Exception {
 		bolao.cadastraJogador("Leticia", "Leticia", "1234", "let@gmail.com",
 				"Qual?", "patos");
-		
+
 		try {
 			bolao.login2("Leticia", "123");
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals(
-					"Senha incorreta(s).",
-					e.getMessage());
+			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
 		}
-		
+
 		Assert.assertTrue(bolao.login2("Leticia", "1234"));
-		
+
 		try {
 			bolao.login2("Leticia", "1234");
 			Assert.fail();
@@ -83,16 +88,112 @@ public class TestaMeuBolao {
 
 	@Test
 	public void testaCadastro() throws Exception {
-		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Leticia", "1234",
-				"let@gmail.com", "Qual?", "patos"), 1);
-		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Leticia", "1234",
-				"lmt@gmail.com", "Qual?", "patos"), 2);
-		Assert.assertEquals(bolao.cadastraJogador("Leticica", "Let", "1234",
-				"lmt@gmail.com", "Qual?", "patos"), 1);
-		Assert.assertEquals(bolao.cadastraJogador("Leticia", "admin", "1234",
-				"leti@gmail.com", "Qual?", "patos"), 2);
-		Assert.assertEquals(bolao.cadastraJogador("Leticia", "Outro", "1234",
-				"lmt@gmail.com", "Qual?", "patos"), 3);
+		try {
+			bolao.cadastraJogador(NOME, NULO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, VAZIO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, NULO, EMAIL, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, VAZIO, EMAIL, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, NULO, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, VAZIO, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, NULO, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, VAZIO, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, NULO);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, VAZIO);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, "admin", SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Usuario ja existente.",
+					e.getMessage());
+		}
+		
+		Assert.assertTrue(bolao.cadastraJogador(NOME, USERNAME, SENHA,EMAIL, PERGUNTA, RESPOSTA));
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Usuario ja existente.",
+					e.getMessage());
+		}
+		
+		try {
+			bolao.cadastraJogador(NOME, USERNAME + "1", SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Email ja cadastrado.",
+					e.getMessage());
+		}
+		Assert.assertTrue(bolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA));
 
 	}
 
@@ -137,9 +238,7 @@ public class TestaMeuBolao {
 		try {
 			bolao.login2("Let", "1234");
 		} catch (Exception e) {
-			Assert.assertEquals(
-					"Senha incorreta(s).",
-					e.getMessage());
+			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
 		}
 		Assert.assertTrue(bolao.login2("Let", "123"));
 		bolao.desloga();

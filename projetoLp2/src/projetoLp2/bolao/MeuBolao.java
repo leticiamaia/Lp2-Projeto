@@ -19,20 +19,22 @@ public class MeuBolao {
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado");
 		if (username == null || username.equals("") || senha == null
-				|| senha.equals("")) throw new Exception("Username e Senha nao devem ser nulos ou vazios");
+				|| senha.equals(""))
+			throw new Exception(
+					"Username e Senha nao devem ser nulos ou vazios");
 
-			try {
-				createIos("admin.bin");
-				Administrador admin = (Administrador) ois.readObject();
-				if (admin.login(username, senha)) {
-					usuarioLogado = admin;
-					retorno = true;
-				} else if (admin.getUsername().equals(username)) {
-					throw new Exception("Senha incorreta(s).");
-				}
-			} finally {
-				ois.close();
+		try {
+			createIos("admin.bin");
+			Administrador admin = (Administrador) ois.readObject();
+			if (admin.login(username, senha)) {
+				usuarioLogado = admin;
+				retorno = true;
+			} else if (admin.getUsername().equals(username)) {
+				throw new Exception("Senha incorreta(s).");
 			}
+		} finally {
+			closeOis();
+		}
 		try {
 			createIos("usuarios.bin");
 			@SuppressWarnings("unchecked")
@@ -47,34 +49,37 @@ public class MeuBolao {
 				}
 			}
 		} finally {
-			ois.close();
+			closeOis();
 		}
-		if (!retorno) throw new Exception("Usuario nao encontrado.");
+		if (!retorno)
+			throw new Exception("Usuario nao encontrado.");
 		return retorno;
 	}
 
-	public int cadastraJogador(String nome, String username, String senha,
+	public boolean cadastraJogador(String nome, String username, String senha,
 			String email, String perguntaSecreta, String resposta)
 			throws Exception {
-		if (nome == null || username == null || username.equals("")
-				|| senha == null || senha.equals("") || email == null
-				|| email.equals("") || perguntaSecreta == null
-				|| resposta == null)
-			throw new Exception(
-					"Campos nao podem ser nulos, alguns n�o devem estar vazios.");
+		boolean retorno = true;
 
-		int retorno = 1;
+		if (username == null || username == "" || senha == null || senha == ""
+				|| email == null || email.equals("") || senha == null
+				|| senha.equals("") || perguntaSecreta == null
+				|| perguntaSecreta.equals("") || resposta == null
+				|| resposta.equals("")) {
+			retorno = false;
+			throw new Exception("Campos nao podem ser nulos ou vazios.");
+		}
 
-		try {
+		
+		try {	
 			createIos("admin.bin");
 			Administrador admin = (Administrador) ois.readObject();
 			if (username.equals(admin.getUsername())) {
-				retorno = 2;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+				retorno = false;
+				throw new Exception("Usuario ja existente.");
+			} 
 		} finally {
-			ois.close();
+			closeOis();
 		}
 
 		try {
@@ -84,25 +89,26 @@ public class MeuBolao {
 					.readObject();
 			for (Jogador j : jogadores) {
 				if (j.getUsername().equals(username)) {
-					retorno = 2;
+					retorno = false;
+					throw new Exception("Usuario ja existente.");
 				}
 				if (j.getEmail().equals(email)) {
-					retorno = 3;
+					retorno = false;
+					throw new Exception("Email ja cadastrado.");
 				}
 			}
-			if (retorno == 1) {
+			if (retorno) {
 				Jogador j = new Jogador(nome, username, senha, email,
 						perguntaSecreta, resposta);
+				System.out.println(j.getUsername());
 				jogadores.add(j);
 			}
 
 			createOut("usuarios.bin");
 			out.writeObject(jogadores);
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
-			ois.close();
-			out.close();
+			closeOis();
+			closeOut();
 		}
 
 		return retorno;
@@ -126,7 +132,7 @@ public class MeuBolao {
 						&& j.getPerguntaSecreta().equals(pergunta)
 						&& j.getResposta().equals(respostaSecreta)
 						&& j.getEmail().equals(email)) {
-						
+
 					usuarioLogado = j;
 					retorno = true;
 				}
@@ -138,23 +144,25 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
-	
+
 	public boolean mudarSenha(String novaSenha) throws Exception {
 		if (usuarioLogado == null)
 			throw new Exception(
 					"Usuario precisa estar logado para realizar esta operacao");
 		if (novaSenha == null || novaSenha == "" || novaSenha.contains(" "))
-			throw new Exception("Senha nao pode ser nula, vazia e nem conter espa�os");
+			throw new Exception(
+					"Senha nao pode ser nula, vazia e nem conter espa�os");
 		boolean retorno = false;
 		usuarioLogado.mudaSenha(novaSenha);
-		if(usuarioLogado instanceof Administrador) {
+		if (usuarioLogado instanceof Administrador) {
 			retorno = mudarSenhaAdmin();
 		} else {
 			retorno = mudarSenhaUsuario();
 		}
 		return retorno;
-		
+
 	}
+
 	public boolean mudarSenhaAdmin() throws IOException {
 		Administrador admin = null;
 		boolean retorno = false;
@@ -179,15 +187,14 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public boolean mudarSenhaUsuario() throws IOException {
 		ArrayList<Jogador> jogadores = null;
 		boolean retorno = false;
 		try {
 			createIos("usuarios.bin");
-			jogadores = (ArrayList<Jogador>) ois
-					.readObject();
+			jogadores = (ArrayList<Jogador>) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -211,6 +218,7 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
+
 	public void desloga() {
 		usuarioLogado = null;
 	}
@@ -231,6 +239,23 @@ public class MeuBolao {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream(fileName));
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void closeOis() {
+		try {
+			ois.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void closeOut() {
+		try {
+			out.close();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
