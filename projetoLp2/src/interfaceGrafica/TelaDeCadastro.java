@@ -241,6 +241,8 @@ public class TelaDeCadastro extends JFrame {
 					try {
 						sucesso = bolao.cadastraJogador(nome, usuario, senha, email,
 								pergunta, respostaSecreta);
+						JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+						dispose();
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null,e.getMessage());
 					}
