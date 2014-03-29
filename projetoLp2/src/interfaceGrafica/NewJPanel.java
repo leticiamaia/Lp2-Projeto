@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 
 import java.awt.Font;
-import java.io.IOException;
+
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
