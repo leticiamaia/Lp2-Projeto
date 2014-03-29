@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MeuBolao {
 	private Usuario usuarioLogado;
-
+	private int indexUsuarioLogado;
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
@@ -28,6 +28,7 @@ public class MeuBolao {
 			Administrador admin = (Administrador) ois.readObject();
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
+				indexUsuarioLogado = -1;
 				retorno = true;
 			} else if (admin.getUsername().equals(username)) {
 				throw new Exception("Senha incorreta(s).");
@@ -42,6 +43,7 @@ public class MeuBolao {
 					.readObject();
 			for (Jogador j : jogadores) {
 				if (j.login(username, senha)) {
+					indexUsuarioLogado = jogadores.indexOf(j);
 					usuarioLogado = j;
 					retorno = true;
 				} else if (j.getUsername().equals(username)) {
@@ -242,12 +244,48 @@ public class MeuBolao {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//falta teste
+	@SuppressWarnings("unchecked")
+	public String[][] getRanking() throws IOException, ClassNotFoundException {
+		ArrayList<Jogador> jogadores;
+		try {
+			createIos("usuarios.bin");
+		    jogadores = (ArrayList<Jogador>) ois.readObject();
+		} finally {
+			ois.close();
+		}
+		String[][] tabela = new String[10][3];
+		for (int i = 0; i < 10; i++) {
+			tabela[i][0] = "" + i+1;
+			if(i < jogadores.size()) {
+				tabela[i][1] = jogadores.get(i).getUsername();
+				tabela[i][2] = "" + jogadores.get(i).getPontos();
+			}
+			else {
+				tabela[i][1] = null;
+				tabela[i][2] = null;
+			}
+		}
+		return tabela;
+	}
+	
+	//falta teste, nao consegui colocar no ranking panel
+	public String[][] getRankingUsuario() throws Exception {
+		if (usuarioLogado instanceof Administrador) {
+			throw new Exception ("Admin nao possua ranking.");
+		}
+		String[][] tabela = new String[1][3];
+		tabela[0][0] = "" + indexUsuarioLogado;
+		tabela[0][1] = usuarioLogado.getUsername();
+		tabela[0][2] = "" + ((Jogador) usuarioLogado).getPontos();
+		return tabela;
+	}
+	
 	private void closeOis() {
 		try {
 			ois.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -259,4 +297,5 @@ public class MeuBolao {
 			e.printStackTrace();
 		}
 	}
+
 }

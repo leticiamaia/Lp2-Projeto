@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.CriaFile;
@@ -115,6 +116,16 @@ public class TestaAdministrador {
 		Assert.assertEquals(partidas[1].getGolsTime1(),0);
 		Assert.assertEquals(partidas[1].getGolsTime2(),0);
 		partidas = admin.cadastraPartida(2, time2, time1, data);
+	}
+	
+	@Test
+	public void testaAtualizaPontucao() throws Exception {
+		admin.cadastraPartida(1, time1, time2, data);
+		admin.atualizaPartida(1, 1, 1);
+		MeuBolao bolao = new MeuBolao();
+		bolao.cadastraJogador("nome", "username", "senha", "email", "perguntaSecreta", "resposta");
+		//continua depoi que bolao estiver pronto
+		
 	}
 	
 	@After

@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.docs.CriaFile;
 
