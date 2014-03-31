@@ -49,7 +49,7 @@ public class TelaDeLogin extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} //09
+				} 
 			}
 		});
 	}
@@ -70,11 +70,97 @@ public class TelaDeLogin extends JFrame {
 		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setLayout(null); 
 		
+		criaTelaBoasVindas();
+		
 		JPanel quadroDeLogin = new JPanel();
 		quadroDeLogin.setBounds(230, 195, 450, 164); 
 		contentPane.add(quadroDeLogin); 
 		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		quadroDeLogin.setLayout(null);
+		
+		criaQuadroDeLogin(quadroDeLogin);
+		
+		JButton botaoEntrar = new JButton(" Entrar"); 
+		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
+		botaoEntrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+						getLogin = recebeLogin.getText().trim();
+						getSenha = recebeSenhaEncriptada.getText().trim(); 
+							try {
+								boolean sucesso = bolao.login2(getLogin, getSenha);
+								if (sucesso) {
+									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
+									dispose(); 
+									if(bolao.getUsuarioLogado() instanceof Administrador)
+									{
+										telaAdmin = new TelaDoAdmin();
+										telaAdmin.setVisible(true);									
+									}
+									else {
+									telaUser = new TelaDoUsuario(getLogin);
+									telaUser.setVisible(true);
+									}
+								}
+							} catch (Exception e1) {
+									JOptionPane.showMessageDialog(null,e1.getMessage());
+							} 
+			}
+		});
+		botaoEntrar.setBounds(104, 98, 99, 23);
+		quadroDeLogin.add(botaoEntrar); 
+		
+		JButton botaoCadastrar = new JButton("Cadastrar");
+		botaoCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		botaoCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				telaDeCadastro = new TelaDeCadastro();
+				telaDeCadastro.setVisible(true);
+			}
+		});
+		botaoCadastrar.setBounds(219, 98, 111, 23);
+		quadroDeLogin.add(botaoCadastrar);
+		
+		JButton botaoEsqueciDados = new JButton("Esqueci senha");
+		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
+		botaoEsqueciDados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				telaEsqueceu = new TelaEsqueciDados();
+				telaEsqueceu.setVisible(true);
+			}
+		});
+		botaoEsqueciDados.setBounds(145, 130, 140, 23);
+		quadroDeLogin.add(botaoEsqueciDados);	
+	}
+
+	private void criaTelaBoasVindas() {
+		JLabel bolaoCopa2014 = new JLabel("Bol\u00E3o Copa do Mundo 2014");
+		bolaoCopa2014.setFont(new Font("Calibri Light", Font.PLAIN, 38));
+		bolaoCopa2014.setBounds(241, 77, 525, 58);
+		contentPane.add(bolaoCopa2014);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setBounds(171, 109, 510, 31);
+		contentPane.add(label);
+		
+		JLabel fuleco = new JLabel("");
+		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
+		fuleco.setBounds(-44, 11, 255, 272);
+		contentPane.add(fuleco);		
+		
+		JLabel boasVindas = new JLabel("Seja bem vindo!");
+		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		boasVindas.setBounds(409, 135, 133, 19);
+		contentPane.add(boasVindas);
+	}
+
+	private void criaQuadroDeLogin(JPanel quadroDeLogin) {
 		
 		JLabel login = new JLabel(); 
 		login.setBounds(104, 36, 49, 20);
@@ -93,92 +179,9 @@ public class TelaDeLogin extends JFrame {
 		senha.setText("Senha: ");
 		senha.setBackground(new Color(240, 240, 240));
 		
-		JButton botaoEntrar = new JButton(" Entrar"); 
-		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
-		botaoEntrar.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
-
-						getLogin = recebeLogin.getText().trim();
-						getSenha = recebeSenhaEncriptada.getText().trim(); 
-						
-
-							try {
-								boolean sucesso = bolao.login2(getLogin, getSenha);
-								if (sucesso) {
-									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
-									dispose(); 
-									if(bolao.getUsuarioLogado() instanceof Administrador)
-									{
-										telaAdmin = new TelaDoAdmin();
-										telaAdmin.show();										
-									}
-									else {
-									telaUser = new TelaDoUsuario(getLogin);
-									telaUser.show();
-									}
-								}
-							} catch (Exception e1) {
-									JOptionPane.showMessageDialog(null,e1.getMessage());
-							} 
-			}
-		});
-		botaoEntrar.setBounds(104, 98, 99, 23);
-		quadroDeLogin.add(botaoEntrar); 
-		
-		JButton botaoCadastrar = new JButton("Cadastrar");
-		botaoCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
-		botaoCadastrar.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				telaDeCadastro = new TelaDeCadastro();
-				telaDeCadastro.show();
-
-			}
-		});
-		botaoCadastrar.setBounds(219, 98, 111, 23);
-		quadroDeLogin.add(botaoCadastrar);
-		
-		JButton botaoEsqueciDados = new JButton("Esqueci senha");
-		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
-		botaoEsqueciDados.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
-				telaEsqueceu = new TelaEsqueciDados();
-				telaEsqueceu.show();
-			}
-		});
-		botaoEsqueciDados.setBounds(145, 130, 140, 23);
-		quadroDeLogin.add(botaoEsqueciDados);
-		
 		recebeSenhaEncriptada = new JPasswordField(); 
 		recebeSenhaEncriptada.setBounds(156, 67, 174, 20);
 		quadroDeLogin.add(recebeSenhaEncriptada);
-		
-		JLabel boasVindas = new JLabel("Seja bem vindo!");
-		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		boasVindas.setBounds(409, 135, 133, 19);
-		contentPane.add(boasVindas);
-		
-		JLabel bolaoCopa2014 = new JLabel("Bol\u00E3o Copa do Mundo 2014");
-		bolaoCopa2014.setFont(new Font("Calibri Light", Font.PLAIN, 38));
-		bolaoCopa2014.setBounds(241, 77, 525, 58);
-		contentPane.add(bolaoCopa2014);
-		
-				JLabel fuleco = new JLabel("");
-				fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
-				fuleco.setBounds(-44, 11, 255, 272);
-				contentPane.add(fuleco);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		label.setBounds(171, 109, 510, 31);
-		contentPane.add(label);
 		
 	}
 }
