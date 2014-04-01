@@ -8,6 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import projetoLp2.bolao.docs.ControladorAdmin;
+import projetoLp2.bolao.docs.ControladorJogador;
+
 public class MeuBolao {
 	private Usuario usuarioLogado;
 	private int indexUsuarioLogado;
@@ -22,9 +25,8 @@ public class MeuBolao {
 				|| senha.equals(""))
 			throw new Exception(
 					"Username e Senha nao devem ser nulos ou vazios");
-		try {
-			createIos("admin.bin");
-			Administrador admin = (Administrador) ois.readObject();
+		
+			Administrador admin = ControladorAdmin.ler();
 			if (admin.login(username, senha)) {
 				usuarioLogado = admin;
 				indexUsuarioLogado = -1;
@@ -32,14 +34,8 @@ public class MeuBolao {
 			} else if (admin.getUsername().equals(username)) {
 				throw new Exception("Senha incorreta(s).");
 			}
-		} finally {
-			closeOis();
-		}
-		try {
-			createIos("usuarios.bin");
-			@SuppressWarnings("unchecked")
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
-					.readObject();
+	
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
 			for (Jogador j : jogadores) {
 				if (j.login(username, senha)) {
 					indexUsuarioLogado = jogadores.indexOf(j);
@@ -49,9 +45,6 @@ public class MeuBolao {
 					throw new Exception("Senha incorreta(s).");
 				}
 			}
-		} finally {
-			closeOis();
-		}
 		if (!retorno)
 			throw new Exception("Usuario nao encontrado.");
 		return retorno;
@@ -267,13 +260,12 @@ public class MeuBolao {
 		return tabela;
 	}
 
-	// falta teste, nao consegui colocar no ranking panel
 	public String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
 			throw new Exception("Admin nao possua ranking.");
 		}
 		String[][] tabela = new String[1][3];
-		tabela[0][0] = "" + indexUsuarioLogado;
+		tabela[0][0] = "" + (indexUsuarioLogado + 1);
 		tabela[0][1] = usuarioLogado.getUsername();
 		tabela[0][2] = "" + ((Jogador) usuarioLogado).getPontos();
 		return tabela;
