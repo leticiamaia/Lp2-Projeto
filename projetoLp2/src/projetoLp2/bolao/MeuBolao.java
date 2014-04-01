@@ -255,7 +255,7 @@ public class MeuBolao {
 		}
 		String[][] tabela = new String[10][3];
 		for (int i = 0; i < 10; i++) {
-			tabela[i][0] = "" + i + 1;
+			tabela[i][0] = "" + (i + 1);
 			if (i < jogadores.size()) {
 				tabela[i][1] = jogadores.get(i).getUsername();
 				tabela[i][2] = "" + jogadores.get(i).getPontos();

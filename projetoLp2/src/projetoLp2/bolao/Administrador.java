@@ -148,7 +148,7 @@ public class Administrador extends Usuario {
 		}
 		try {
 			createOut("usuarios.bin");
-			Collections.sort(jogadores, new OrdenaJogadores());
+			Collections.sort(jogadores);
 			out.writeObject(jogadores);
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -191,7 +191,7 @@ public class TelaEsqueciDados extends JFrame {
 							novaSenha = txt.getText().trim();
 							bolao.mudarSenha(novaSenha);
 						} while (novaSenha.compareTo("") == 0);
-						telaUser = new TelaDoUsuario(usuario);
+						telaUser = new TelaDoUsuario(bolao);
 						telaUser.setVisible(true);
 						dispose();
 					} else {

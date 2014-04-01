@@ -26,7 +26,7 @@ public class TestaOrdenaJogadores {
 		listaDeJogadores.get(3).setPontos(17);
 		
 		OrdenaJogadores comparator = new OrdenaJogadores();
-		Collections.sort(listaDeJogadores, comparator);
+		Collections.sort(listaDeJogadores);
 		
 		Assert.assertEquals("Orion", listaDeJogadores.get(0).getUsername());
 		Assert.assertEquals("MarcelaDosLeites", listaDeJogadores.get(1).getUsername());

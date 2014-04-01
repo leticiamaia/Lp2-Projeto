@@ -34,6 +34,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu;
+	private final MeuBolao bolao;
 	String getSenha;
 	String getLogin;
 
@@ -58,7 +59,7 @@ public class TelaDeLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeLogin() {
-		final MeuBolao bolao = new MeuBolao();
+		bolao = new MeuBolao();
 		setResizable(false);
 		setTitle("Bet2Beat - Seja bem Vindo!"); 
 		setBackground(Color.WHITE); 
@@ -81,7 +82,7 @@ public class TelaDeLogin extends JFrame {
 		criaQuadroDeLogin(quadroDeLogin);
 		
 		JButton botaoEntrar = new JButton(" Entrar"); 
-		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
+		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projestatictoLp2/bolao/docs/bullet_key.png")));
 		botaoEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -98,7 +99,7 @@ public class TelaDeLogin extends JFrame {
 										telaAdmin.setVisible(true);									
 									}
 									else {
-									telaUser = new TelaDoUsuario(getLogin);
+									telaUser = new TelaDoUsuario(bolao);
 									telaUser.setVisible(true);
 									}
 								}

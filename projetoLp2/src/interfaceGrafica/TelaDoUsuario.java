@@ -32,9 +32,9 @@ public class TelaDoUsuario extends JFrame {
 	private static final long serialVersionUID = -2567460421508989944L;
 	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
-	private MeuBolao bolao;
+	private static MeuBolao bolao;
 	private AlterarInfoPanel infoPanel = new AlterarInfoPanel();
-	private RankingPanel rankingPanel = new RankingPanel();;
+	private RankingPanel rankingPanel;
 
 	/**
 	 * Launch the application.
@@ -43,8 +43,7 @@ public class TelaDoUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDoUsuario frame = new TelaDoUsuario(
-							new TelaDeLogin().getLogin);
+					TelaDoUsuario frame = new TelaDoUsuario(bolao);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +56,7 @@ public class TelaDoUsuario extends JFrame {
 	 * Create the frame.
 	 * 
 	 */
-	public TelaDoUsuario(String user) {
+	public TelaDoUsuario(final MeuBolao bolao) {
 		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
@@ -78,6 +77,11 @@ public class TelaDoUsuario extends JFrame {
 		menuBar.add(espaco);
 
 		JLabel casinha = new JLabel("");
+		try {
+			rankingPanel = new RankingPanel(bolao);
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage());
+		}
 		casinha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -154,7 +158,6 @@ public class TelaDoUsuario extends JFrame {
 		class exitaction implements ActionListener {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				bolao = new MeuBolao();
 				bolao.desloga();
 				dispose();
 				telaLogin = new TelaDeLogin();
@@ -169,9 +172,8 @@ public class TelaDoUsuario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Voc� est� logado como " + user + ".");
+		bemVindoLabel.setText("Voc� est� logado como " + bolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 

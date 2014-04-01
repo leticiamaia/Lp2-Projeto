@@ -58,12 +58,6 @@ public class NewJPanel extends javax.swing.JPanel {
 		jTable1.setDefaultRenderer(String.class, centerRenderer);
 		try {
 			jTable1.setModel(new DefaultTableModel(bolao.getRanking(),
-			/*
-			 * new String[][] { {"1�", null, null}, {"2�", null, null}, {"3�",
-			 * null, null}, {"4�", null, null}, {"5�", null, null}, {"6�", null,
-			 * null}, {"7�", null, null}, {"8�", null, null}, {"9�", null,
-			 * null}, {"10�", null, null}, },
-			 */
 			new String[] { "Posi\u00E7\u00E3o", "Usu\u00E1rio",
 					"Pontua\u00E7\u00E3o" }) {
 				/**

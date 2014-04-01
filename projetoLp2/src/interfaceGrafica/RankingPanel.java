@@ -12,17 +12,22 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import projetoLp2.bolao.MeuBolao;
+
 public class RankingPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7796197211046315244L;
+	private MeuBolao bolao;
 
 	/**
 	 * Create the panel.
+	 * @throws Exception 
 	 */
-	public RankingPanel() {
+	public RankingPanel(MeuBolao bolao) throws Exception {
+		this.bolao = bolao;
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
@@ -48,7 +53,7 @@ public class RankingPanel extends JPanel {
 		initComponents();
 	}
 
-	private void initComponents() {
+	private void initComponents() throws Exception {
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
 		jTable1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -57,9 +62,9 @@ public class RankingPanel extends JPanel {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		jTable1.setDefaultRenderer(String.class, centerRenderer);
-		jTable1.setModel(new DefaultTableModel(new String[][] { { "Posi��o",
-				null, null } }, new String[] { "Sua Posi\u00E7\u00E3o",
-				"Seu Usu\u00E1rio", "Sua Pontua\u00E7\u00E3o" }) {
+		jTable1.setModel(new DefaultTableModel(bolao.getRankingUsuario(),
+				new String[] { "Sua Posi\u00E7\u00E3o", "Seu Usu\u00E1rio",
+						"Sua Pontua\u00E7\u00E3o" }) {
 			/**
 			 * 
 			 */
