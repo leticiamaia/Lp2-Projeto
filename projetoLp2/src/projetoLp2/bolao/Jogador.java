@@ -6,7 +6,7 @@ package projetoLp2.bolao;
  * @author Leticia
  * 
  */
-public class Jogador extends Usuario {
+public class Jogador extends Usuario implements Comparable{
 	private static final long serialVersionUID = 776610356730575144L;
 	private Aposta[] apostas = new Aposta[64];
 	private int totalPontos = 0;
@@ -224,5 +224,14 @@ public class Jogador extends Usuario {
 	 */
 	public String getEmail() {
 		return this.email;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		Jogador outroJogador = (Jogador)arg0;
+		if (this.getPontos() == outroJogador.getPontos())
+			return this.getUsername().compareTo(outroJogador.getUsername());
+		
+		return outroJogador.getPontos() - this.getPontos();
 	}
 }
