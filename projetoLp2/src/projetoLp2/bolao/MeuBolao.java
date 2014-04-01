@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
@@ -64,22 +65,14 @@ public class MeuBolao {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
 
-		try {
-			createIos("admin.bin");
-			Administrador admin = (Administrador) ois.readObject();
+		
+		Administrador admin = ControladorAdmin.ler();
 			if (username.equals(admin.getUsername())) {
 				retorno = false;
 				throw new Exception("Usuario ja existente.");
 			}
-		} finally {
-			closeOis();
-		}
-
-		try {
-			createIos("usuarios.bin");
-			@SuppressWarnings("unchecked")
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
-					.readObject();
+			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
+			
 			for (Jogador j : jogadores) {
 				if (j.getUsername().equals(username)) {
 					retorno = false;
@@ -93,18 +86,11 @@ public class MeuBolao {
 			if (retorno) {
 				Jogador j = new Jogador(nome, username, senha, email,
 						perguntaSecreta, resposta);
-				System.out.println(j.getUsername());
 				jogadores.add(j);
 			}
 
-			createOut("usuarios.bin");
-			out.writeObject(jogadores);
-		} finally {
-			closeOis();
-			closeOut();
-		}
-
-		return retorno;
+			ControladorJogador.escreve(jogadores);
+			return retorno;
 	}
 
 	public boolean checkUsuario(String usuario, String pergunta,
@@ -115,26 +101,17 @@ public class MeuBolao {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
 		boolean retorno = false;
-		try {
-			createIos("usuarios.bin");
-			@SuppressWarnings("unchecked")
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ois
-					.readObject();
-			for (Jogador j : jogadores) {
-				if (j.getUsername().equals(usuario)
-						&& j.getPerguntaSecreta().equals(pergunta)
-						&& j.getResposta().equals(respostaSecreta)
-						&& j.getEmail().equals(email)) {
-
+		
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
+		for (Jogador j : jogadores) {
+			if (j.getUsername().equals(usuario)
+					&& j.getPerguntaSecreta().equals(pergunta)
+					&& j.getResposta().equals(respostaSecreta)
+					&& j.getEmail().equals(email)) {
 					usuarioLogado = j;
 					retorno = true;
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ois.close();
-		}
 		return retorno;
 	}
 
@@ -159,55 +136,27 @@ public class MeuBolao {
 	public boolean mudarSenhaAdmin() throws IOException {
 		Administrador admin = null;
 		boolean retorno = false;
-		try {
-			createIos("admin.bin");
-			admin = (Administrador) ois.readObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ois.close();
-		}
-		try {
-			createOut("admin.bin");
-			if (admin.getUsername().equals(usuarioLogado.getUsername())) {
-				out.writeObject((Administrador) usuarioLogado);
-				retorno = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			out.close();
+		
+		admin = (Administrador) ControladorAdmin.ler();
+		
+		if (admin.getUsername().equals(usuarioLogado.getUsername())) {
+			ControladorAdmin.escreve((Administrador) usuarioLogado);
+			retorno = true;
 		}
 		return retorno;
 	}
 
-	@SuppressWarnings("unchecked")
-	public boolean mudarSenhaUsuario() throws IOException {
-		ArrayList<Jogador> jogadores = null;
+	public boolean mudarSenhaUsuario() throws IOException {	
+		ArrayList <Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
 		boolean retorno = false;
-		try {
-			createIos("usuarios.bin");
-			jogadores = (ArrayList<Jogador>) ois.readObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ois.close();
-		}
-		try {
-			createOut("usuarios.bin");
-			for (int i = 0; i < jogadores.size(); i++) {
-				if (jogadores.get(i).getUsername()
-						.equals(usuarioLogado.getUsername())) {
-					jogadores.set(i, (Jogador) usuarioLogado);
-					out.writeObject(jogadores);
-					retorno = true;
-				}
+		
+		for (int i = 0; i < jogadores.size(); i++) {
+			if (jogadores.get(i).getUsername()
+					.equals(usuarioLogado.getUsername())) {
+				jogadores.set(i, (Jogador) usuarioLogado);
+				ControladorJogador.escreve(jogadores);
+				retorno = true;
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			out.close();
 		}
 		return retorno;
 	}
@@ -220,33 +169,11 @@ public class MeuBolao {
 		return this.usuarioLogado;
 	}
 
-	private void createIos(String fileName) throws IOException {
-		try {
-			ois = new ObjectInputStream(new FileInputStream(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void createOut(String fileName) throws IOException {
-		try {
-			out = new ObjectOutputStream(new FileOutputStream(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
 	// falta teste
-	@SuppressWarnings("unchecked")
 	public String[][] getRanking() throws IOException, ClassNotFoundException {
-		ArrayList<Jogador> jogadores;
-		try {
-			createIos("usuarios.bin");
-			jogadores = (ArrayList<Jogador>) ois.readObject();
-		} finally {
-			ois.close();
-		}
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>)ControladorJogador.ler();
 		String[][] tabela = new String[10][3];
+		
 		for (int i = 0; i < 10; i++) {
 			tabela[i][0] = "" + (i + 1);
 			if (i < jogadores.size()) {
@@ -259,7 +186,8 @@ public class MeuBolao {
 		}
 		return tabela;
 	}
-
+	
+	//falta teste
 	public String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
 			throw new Exception("Admin nao possua ranking.");
@@ -269,22 +197,6 @@ public class MeuBolao {
 		tabela[0][1] = usuarioLogado.getUsername();
 		tabela[0][2] = "" + ((Jogador) usuarioLogado).getPontos();
 		return tabela;
-	}
-
-	private void closeOis() {
-		try {
-			ois.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void closeOut() {
-		try {
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

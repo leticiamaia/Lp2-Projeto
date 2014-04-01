@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import projetoLp2.bolao.docs.ControladorPartidas;
+
 /**
  * Essa classe representa o administrador do Nosso Bolao
  * 
@@ -60,25 +62,11 @@ public class Administrador extends Usuario {
 		if (time1 == null || time2 == null)
 			throw new Exception("Time(s) invalido(s)!");
 
-		Partida[] partidas = null;
 		Partida partida = new Partida(time1, time2, data);
-		try {
-			createIos("partidas.bin");
-			partidas = (Partida[]) ois.readObject();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			ois.close();
-		}
+		Partida[] partidas = (Partida[]) ControladorPartidas.ler();
 		partidas[indicePartida] = partida;
-		try {
-			createOut("partidas.bin");
-			out.writeObject(partidas);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			out.close();
-		}
+		ControladorPartidas.escreve(partidas);
+		
 		return partidas;
 	}
 
@@ -102,28 +90,14 @@ public class Administrador extends Usuario {
 			throw new Exception("Indice da partida invalido!");
 		if (resultadoTime1 < 0 || resultadoTime2 < 0)
 			throw new Exception("Resultado(s) invalido(s)!");
-		Partida[] partidas = null;
 
-		try {
-			createIos("partidas.bin");
-			partidas = (Partida[]) ois.readObject();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			ois.close();
-		}
+		Partida[] partidas = (Partida[])ControladorPartidas.ler();
+		
 		if (partidas[indicePartida] == null) {
 			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
 		}
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
-		try {
-			createOut("partidas.bin");
-			out.writeObject(partidas);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			out.close();
-		}
+		ControladorPartidas.escreve(partidas);
 		atualizaPontuacao(indicePartida);
 		atualizaRanking();
 		return partidas;
