@@ -11,6 +11,5 @@ public class OrdenaJogadores implements Comparator<Jogador> {
 			return arg0.getUsername().compareTo(arg1.getUsername());
 		
 		return arg1.getPontos() - arg0.getPontos();
-		
 	}
 }

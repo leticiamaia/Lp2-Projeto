@@ -220,5 +220,4 @@ public class Administrador extends Usuario {
 			e.printStackTrace();
 		}
 	}
-
 }

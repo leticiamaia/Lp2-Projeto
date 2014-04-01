@@ -22,7 +22,6 @@ public class MeuBolao {
 				|| senha.equals(""))
 			throw new Exception(
 					"Username e Senha nao devem ser nulos ou vazios");
-
 		try {
 			createIos("admin.bin");
 			Administrador admin = (Administrador) ois.readObject();
@@ -72,14 +71,13 @@ public class MeuBolao {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
 
-		
-		try {	
+		try {
 			createIos("admin.bin");
 			Administrador admin = (Administrador) ois.readObject();
 			if (username.equals(admin.getUsername())) {
 				retorno = false;
 				throw new Exception("Usuario ja existente.");
-			} 
+			}
 		} finally {
 			closeOis();
 		}
@@ -244,36 +242,35 @@ public class MeuBolao {
 			e.printStackTrace();
 		}
 	}
-	
-	//falta teste
+
+	// falta teste
 	@SuppressWarnings("unchecked")
 	public String[][] getRanking() throws IOException, ClassNotFoundException {
 		ArrayList<Jogador> jogadores;
 		try {
 			createIos("usuarios.bin");
-		    jogadores = (ArrayList<Jogador>) ois.readObject();
+			jogadores = (ArrayList<Jogador>) ois.readObject();
 		} finally {
 			ois.close();
 		}
 		String[][] tabela = new String[10][3];
 		for (int i = 0; i < 10; i++) {
-			tabela[i][0] = "" + i+1;
-			if(i < jogadores.size()) {
+			tabela[i][0] = "" + i + 1;
+			if (i < jogadores.size()) {
 				tabela[i][1] = jogadores.get(i).getUsername();
 				tabela[i][2] = "" + jogadores.get(i).getPontos();
-			}
-			else {
+			} else {
 				tabela[i][1] = null;
 				tabela[i][2] = null;
 			}
 		}
 		return tabela;
 	}
-	
-	//falta teste, nao consegui colocar no ranking panel
+
+	// falta teste, nao consegui colocar no ranking panel
 	public String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
-			throw new Exception ("Admin nao possua ranking.");
+			throw new Exception("Admin nao possua ranking.");
 		}
 		String[][] tabela = new String[1][3];
 		tabela[0][0] = "" + indexUsuarioLogado;
@@ -281,7 +278,7 @@ public class MeuBolao {
 		tabela[0][2] = "" + ((Jogador) usuarioLogado).getPontos();
 		return tabela;
 	}
-	
+
 	private void closeOis() {
 		try {
 			ois.close();

@@ -34,7 +34,7 @@ public class TelaDoUsuario extends JFrame {
 	private TelaDeLogin telaLogin;
 	private MeuBolao bolao;
 	private AlterarInfoPanel infoPanel = new AlterarInfoPanel();
-	private RankingPanel rankingPanel =  new RankingPanel();;
+	private RankingPanel rankingPanel = new RankingPanel();;
 
 	/**
 	 * Launch the application.
@@ -43,7 +43,8 @@ public class TelaDoUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDoUsuario frame = new TelaDoUsuario(new TelaDeLogin().getLogin);
+					TelaDoUsuario frame = new TelaDoUsuario(
+							new TelaDeLogin().getLogin);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,18 +62,21 @@ public class TelaDoUsuario extends JFrame {
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
-/*		Toolkit tk = Toolkit.getDefaultToolkit();  
-		int xSize = ((int) tk.getScreenSize().getWidth());  
-		int ySize = ((int) tk.getScreenSize().getHeight());*/  
-		setBounds(0, 0, 1300, 700);	
+		setIconImage(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		/*
+		 * Toolkit tk = Toolkit.getDefaultToolkit(); int xSize = ((int)
+		 * tk.getScreenSize().getWidth()); int ySize = ((int)
+		 * tk.getScreenSize().getHeight());
+		 */
+		setBounds(0, 0, 1300, 700);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
-	    JLabel espaco = new JLabel("");
-	    espaco.setText("  ");
-	    menuBar.add(espaco);
-	
+
+		JLabel espaco = new JLabel("");
+		espaco.setText("  ");
+		menuBar.add(espaco);
+
 		JLabel casinha = new JLabel("");
 		casinha.addMouseListener(new MouseAdapter() {
 			@Override
@@ -82,15 +86,16 @@ public class TelaDoUsuario extends JFrame {
 			}
 		});
 		casinha.setForeground(new Color(0, 0, 0));
-		casinha.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/casinha.png")));
+		casinha.setIcon(new ImageIcon(TelaDoUsuario.class
+				.getResource("/projetoLp2/bolao/docs/casinha.png")));
 		casinha.setBounds(64, 134, 103, 49);
-	    menuBar.add(casinha);
-		
+		menuBar.add(casinha);
+
 		JMenu mnInformaesPessoais = new JMenu(" Usu\u00E1rio");
 		menuBar.add(mnInformaesPessoais);
-		
-		
-		JMenuItem mntmVisualizarInformaes = new JMenuItem("Alterar Informa\u00E7\u00F5es");
+
+		JMenuItem mntmVisualizarInformaes = new JMenuItem(
+				"Alterar Informa\u00E7\u00F5es");
 		mntmVisualizarInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.add(infoPanel, 2, 0);
@@ -98,7 +103,7 @@ public class TelaDoUsuario extends JFrame {
 			}
 		});
 		mnInformaesPessoais.add(mntmVisualizarInformaes);
-		
+
 		JMenuItem mntmAlterarSenha = new JMenuItem("Visualizar Ranking");
 		mntmAlterarSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,41 +112,48 @@ public class TelaDoUsuario extends JFrame {
 			}
 		});
 		mnInformaesPessoais.add(mntmAlterarSenha);
-				
+
 		JMenu menuApostas = new JMenu("Apostas");
 		menuBar.add(menuApostas);
-		
-		JMenuItem fazerApostaMenuItem  = new JMenuItem("Fazer nova aposta");
+
+		JMenuItem fazerApostaMenuItem = new JMenuItem("Fazer nova aposta");
 		menuApostas.add(fazerApostaMenuItem);
-		
-		JMenuItem verApostaMenuItem  = new JMenuItem("Visualizar apostas");
+
+		JMenuItem verApostaMenuItem = new JMenuItem("Visualizar apostas");
 		menuApostas.add(verApostaMenuItem);
-		
-		JMenuItem editarApostaMenuItem  = new JMenuItem("Editar uma aposta");
+
+		JMenuItem editarApostaMenuItem = new JMenuItem("Editar uma aposta");
 		menuApostas.add(editarApostaMenuItem);
-		
+
 		JMenu menuSobre = new JMenu("Sobre");
 		menuBar.add(menuSobre);
-		
-		JMenuItem sobreMenuItem  = new JMenuItem("Sobre o Bet2Beat");
+
+		JMenuItem sobreMenuItem = new JMenuItem("Sobre o Bet2Beat");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Program designed by:\n- Letícia Maia \n- Lucas de Matos \n- Marcela Tejo \n- Órion Winter \nVersion: 1.0 (2014) ©", "Sobre o Bet2Beat", 0, new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"Program designed by:\n- Letï¿½cia Maia \n- Lucas de Matos \n- Marcela Tejo \n- ï¿½rion Winter \nVersion: 1.0 (2014) ï¿½",
+								"Sobre o Bet2Beat",
+								0,
+								new ImageIcon(
+										TelaDoUsuario.class
+												.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
 			}
 		});
-		 menuSobre.add(sobreMenuItem);
-		
-		 JMenu mnSair = new JMenu("Sair");
-		 menuBar.add(mnSair);
-		 JMenuItem mntmSair = new JMenuItem("Sair");
-		 mnSair.add(mntmSair);
-		
+		menuSobre.add(sobreMenuItem);
+
+		JMenu mnSair = new JMenu("Sair");
+		menuBar.add(mnSair);
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mnSair.add(mntmSair);
+
 		menuBar.add(Box.createHorizontalGlue());
-		
-			
+
 		class exitaction implements ActionListener {
 			@SuppressWarnings("deprecation")
-			public void actionPerformed (ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				bolao = new MeuBolao();
 				bolao.desloga();
 				dispose();
@@ -150,61 +162,62 @@ public class TelaDoUsuario extends JFrame {
 			}
 		}
 		mntmSair.addActionListener(new exitaction());
-		
-		
+
 		contentPane = new JLayeredPane();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		bolao = new MeuBolao();
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Você está logado como " + user + ".");
+		bemVindoLabel.setText("Vocï¿½ estï¿½ logado como " + user + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(0, 0, 1284, 640);
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
-		
+
 		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
 		lblBoloCopaDo.setBackground(Color.WHITE);
 		lblBoloCopaDo.setBounds(458, 62, 492, 61);
 		panel.add(lblBoloCopaDo);
 		lblBoloCopaDo.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-		
-			
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setBounds(335, 11, 113, 161);
 		panel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
-		
-		JLabel lblBemVindoEssa = new JLabel("Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
+		lblNewLabel
+				.setIcon(new ImageIcon(
+						TelaDoUsuario.class
+								.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
+
+		JLabel lblBemVindoEssa = new JLabel(
+				"Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
 		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblBemVindoEssa.setBounds(263, 169, 817, 25);
 		panel.add(lblBemVindoEssa);
-		
+
 		JLabel lblBetbeat = new JLabel("Bet2Beat");
 		lblBetbeat.setFont(new Font("Calibri Light", Font.PLAIN, 16));
 		lblBetbeat.setBounds(656, 134, 124, 14);
 		panel.add(lblBetbeat);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaDoUsuario.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		lblNewLabel_1.setBounds(420, 106, 530, 28);
 		panel.add(lblNewLabel_1);
-		
+
 		NewJPanel tablePanel = new NewJPanel();
 		tablePanel.setBounds(341, 205, 640, 388);
 		panel.add(tablePanel);
 		tablePanel.setBackground(Color.WHITE);
 		tablePanel.setBorder(null);
-	    tablePanel.setVisible(true);
-		
+		tablePanel.setVisible(true);
 	}
 }
-			

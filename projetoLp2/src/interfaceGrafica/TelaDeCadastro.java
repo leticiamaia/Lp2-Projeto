@@ -66,7 +66,8 @@ public class TelaDeCadastro extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -165,13 +166,17 @@ public class TelaDeCadastro extends JFrame {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estima��o?");
-		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu primeiro animal de estima��o?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que voc� visitou?");
+		perguntaSecretaComboBox
+				.addItem("Qual a primeira praia que voc� visitou?");
 		perguntaSecretaComboBox.addItem("Qual era seu apelido de inf�ncia?");
 		perguntaSecretaComboBox.addItem("Qual � o emprego dos seus sonhos?");
-		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");		
+		perguntaSecretaComboBox
+				.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
@@ -197,7 +202,8 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.add(label_4);
 
 		JButton botaoConfirma = new JButton(" Confirmar");
-		botaoConfirma.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/tick.png")));
+		botaoConfirma.setIcon(new ImageIcon(TelaDeCadastro.class
+				.getResource("/projetoLp2/bolao/docs/tick.png")));
 		botaoConfirma.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -225,25 +231,24 @@ public class TelaDeCadastro extends JFrame {
 					sucesso = false;
 				}
 				/*
-				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
-			
-					JOptionPane.showMessageDialog(null,
-							"E-mail Invalido.");
-					sucesso = false;
-				} */
-				
+				 * if (!email.contains("@") || !email.contains(".") ||
+				 * email.contains(" ")) {
+				 * 
+				 * JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+				 * sucesso = false; }
+				 */
+
 				int idx = email.lastIndexOf("@");
-				if(idx == 0) {
-					JOptionPane.showMessageDialog(null,
-							"E-mail Invalido.");
+				if (idx == 0) {
+					JOptionPane.showMessageDialog(null, "E-mail Invalido.");
 					sucesso = false;
-				} 
-				
+				}
+
 				else {
 					int last = -1;
-					for(; idx < email.length(); idx++) {
-						if(email.charAt(idx) == '.') {
-							if(idx-last == 1) {
+					for (; idx < email.length(); idx++) {
+						if (email.charAt(idx) == '.') {
+							if (idx - last == 1) {
 								JOptionPane.showMessageDialog(null,
 										"E-mail Invalido.");
 								sucesso = false;
@@ -253,31 +258,33 @@ public class TelaDeCadastro extends JFrame {
 						}
 					}
 				}
-				
+
 				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
 						|| senhaConfirmada.isEmpty()) {
 					JOptionPane.showMessageDialog(null,
 							"As senhas nao conferem!");
 					sucesso = false;
-					
+
 				}
 				if (sucesso) {
 					try {
-						sucesso = bolao.cadastraJogador(nome, usuario, senha, email,
-								pergunta, respostaSecreta);
-						JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
+						sucesso = bolao.cadastraJogador(nome, usuario, senha,
+								email, pergunta, respostaSecreta);
+						JOptionPane.showMessageDialog(null,
+								"Cadastro feito com sucesso!");
 						dispose();
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null,e.getMessage());
+						JOptionPane.showMessageDialog(null, e.getMessage());
 					}
-				} 
+				}
 			}
 		});
 		botaoConfirma.setBounds(264, 351, 121, 34);
 		contentPane.add(botaoConfirma);
 
 		JButton botaoCancela = new JButton(" Cancelar");
-		botaoCancela.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
+		botaoCancela.setIcon(new ImageIcon(TelaDeCadastro.class
+				.getResource("/projetoLp2/bolao/docs/cancel.png")));
 		botaoCancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -290,16 +297,17 @@ public class TelaDeCadastro extends JFrame {
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
-		
-		JLabel lblMemorizeSuaPergunta = new JLabel("<html>Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.</html>");
+
+		JLabel lblMemorizeSuaPergunta = new JLabel(
+				"<html>Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.</html>");
 		lblMemorizeSuaPergunta.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblMemorizeSuaPergunta.setBounds(145, 326, 432, 14);
 		contentPane.add(lblMemorizeSuaPergunta);
-		
+
 		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(TelaDeCadastro.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label_5.setIcon(new ImageIcon(TelaDeCadastro.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		label_5.setBounds(94, 39, 504, 14);
 		contentPane.add(label_5);
-
 	}
 }

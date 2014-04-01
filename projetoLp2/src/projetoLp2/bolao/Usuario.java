@@ -44,5 +44,4 @@ public abstract class Usuario implements Serializable {
 				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 }
