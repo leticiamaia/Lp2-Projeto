@@ -58,7 +58,6 @@ public class TelaDeCadastro extends JFrame {
 	 */
 	public TelaDeCadastro() {
 		bolao = new MeuBolao();
-
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
@@ -70,11 +69,32 @@ public class TelaDeCadastro extends JFrame {
 				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+			
+		JLabel divisorLabel = new JLabel("");
+		divisorLabel.setIcon(new ImageIcon(TelaDeCadastro.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		divisorLabel.setBounds(94, 39, 504, 14);
+		contentPane.add(divisorLabel);
 
 		JLabel cadastroUserLabel = new JLabel("Cadastro de novo Usu\u00E1rio");
 		cadastroUserLabel.setBounds(207, 0, 391, 54);
 		cadastroUserLabel.setFont(new Font("Calibri", Font.PLAIN, 33));
 		contentPane.add(cadastroUserLabel);
+		
+		JLabel informacaoLabel = new JLabel(
+				"Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
+		informacaoLabel.setLabelFor(this);
+		informacaoLabel.setToolTipText("");
+		informacaoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		informacaoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		informacaoLabel.setBounds(214, 65, 327, 21);
+		contentPane.add(informacaoLabel);
+		
+		JLabel informacao2Label = new JLabel(
+				"Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
+		informacao2Label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		informacao2Label.setBounds(196, 82, 386, 21);
+		contentPane.add(informacao2Label);
 
 		JLabel nomeLabel = new JLabel("Nome Completo: ");
 		nomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -85,21 +105,6 @@ public class TelaDeCadastro extends JFrame {
 		recebeNomeField.setBounds(241, 122, 336, 20);
 		contentPane.add(recebeNomeField);
 		recebeNomeField.setColumns(10);
-
-		JLabel informacaoLabel = new JLabel(
-				"Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
-		informacaoLabel.setLabelFor(this);
-		informacaoLabel.setToolTipText("");
-		informacaoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		informacaoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		informacaoLabel.setBounds(214, 65, 327, 21);
-		contentPane.add(informacaoLabel);
-
-		JLabel informacao2Label = new JLabel(
-				"Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
-		informacao2Label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		informacao2Label.setBounds(196, 82, 386, 21);
-		contentPane.add(informacao2Label);
 
 		JLabel emailLabel = new JLabel("*E-mail:");
 		emailLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -199,18 +204,11 @@ public class TelaDeCadastro extends JFrame {
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
-
-		JLabel anotaMemorizeSenhaLabel = new JLabel(
-				"<html>Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.</html>");
-		anotaMemorizeSenhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		anotaMemorizeSenhaLabel.setBounds(145, 326, 432, 14);
-		contentPane.add(anotaMemorizeSenhaLabel);
-
-		JLabel divisorLabel = new JLabel("");
-		divisorLabel.setIcon(new ImageIcon(TelaDeCadastro.class
-				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		divisorLabel.setBounds(94, 39, 504, 14);
-		contentPane.add(divisorLabel);
+		
+		JLabel notaMemorizeSenhaLabel = new JLabel("Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.");
+		notaMemorizeSenhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		notaMemorizeSenhaLabel.setBounds(145, 326, 432, 14);
+		contentPane.add(notaMemorizeSenhaLabel);
 	}
 	
 	public boolean verificaCampos() {

@@ -81,7 +81,7 @@ public class TelaDeLogin extends JFrame {
 		criaQuadroDeLogin(quadroDeLogin);
 		
 		JButton botaoEntrar = new JButton(" Entrar"); 
-		botaoEntrar.setIcon(new ImageIcon("/projestatictoLp2/bolao/docs/bullet_key.png"));
+		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
 		botaoEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
