@@ -82,7 +82,7 @@ public class TelaDeLogin extends JFrame {
 		criaQuadroDeLogin(quadroDeLogin);
 		
 		JButton botaoEntrar = new JButton(" Entrar"); 
-		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projestatictoLp2/bolao/docs/bullet_key.png")));
+		botaoEntrar.setIcon(new ImageIcon("/projestatictoLp2/bolao/docs/bullet_key.png"));
 		botaoEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
@@ -145,16 +145,15 @@ public class TelaDeLogin extends JFrame {
 		bolaoCopa2014.setBounds(241, 77, 525, 58);
 		contentPane.add(bolaoCopa2014);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		label.setBounds(171, 109, 510, 31);
-		contentPane.add(label);
-		
 		JLabel fuleco = new JLabel("");
 		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
 		fuleco.setBounds(-44, 11, 255, 272);
 		contentPane.add(fuleco);		
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setBounds(171, 109, 510, 31);
+		contentPane.add(label);
 		JLabel boasVindas = new JLabel("Seja bem vindo!");
 		boasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		boasVindas.setBounds(409, 135, 133, 19);
