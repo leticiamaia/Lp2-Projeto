@@ -165,12 +165,12 @@ public class TelaDeCadastro extends JFrame {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimação?");
+		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estimaï¿½ï¿½o?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que você visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de infância?");
-		perguntaSecretaComboBox.addItem("Qual é o emprego dos seus sonhos?");
+		perguntaSecretaComboBox.addItem("Qual a primeira praia que vocï¿½ visitou?");
+		perguntaSecretaComboBox.addItem("Qual era seu apelido de infï¿½ncia?");
+		perguntaSecretaComboBox.addItem("Qual ï¿½ o emprego dos seus sonhos?");
 		perguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");		
 		contentPane.add(perguntaSecretaComboBox);
 
@@ -211,23 +211,47 @@ public class TelaDeCadastro extends JFrame {
 				boolean sucesso = true;
 				if (usuario.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'usuario' é obrigatorio!");
+							"O campo 'usuario' ï¿½ obrigatorio!");
 					sucesso = false;
 				}
 				if (email.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"O campo 'email' é obrigatorio!");
+							"O campo 'email' ï¿½ obrigatorio!");
 					sucesso = false;
 				}
 				if (senha.equals("") || senhaConfirmada.equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Os campos de senha são obrigatorios!");
+							"Os campos de senha sï¿½o obrigatorios!");
 					sucesso = false;
 				}
+				/*
 				if (!email.contains("@") || !email.contains(".") || email.contains(" ")) {
+			
 					JOptionPane.showMessageDialog(null,
 							"E-mail Invalido.");
 					sucesso = false;
+				} */
+				
+				int idx = email.lastIndexOf("@");
+				if(idx == 0) {
+					JOptionPane.showMessageDialog(null,
+							"E-mail Invalido.");
+					sucesso = false;
+				} 
+				
+				else {
+					int last = -1;
+					for(; idx < email.length(); idx++) {
+						if(email.charAt(idx) == '.') {
+							if(idx-last == 1) {
+								JOptionPane.showMessageDialog(null,
+										"E-mail Invalido.");
+								sucesso = false;
+								break;
+							}
+							last = idx;
+						}
+					}
 				}
 				
 				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
