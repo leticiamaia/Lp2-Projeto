@@ -31,7 +31,7 @@ public class TelaEsqueciDados extends JFrame {
 	private JPanel mostraSenha;
 	private String usuario, respostaSecreta, pergunta, eMail, novaSenha;
 	private TelaDoUsuario telaUser;
-	private TelaDeLogin telaLogin;
+	private static TelaDeLogin telaLogin;
 	MeuBolao bolao;
 
 	/**
@@ -41,7 +41,7 @@ public class TelaEsqueciDados extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEsqueciDados frame = new TelaEsqueciDados();
+					TelaEsqueciDados frame = new TelaEsqueciDados(telaLogin);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,15 +53,15 @@ public class TelaEsqueciDados extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaEsqueciDados() {
+	public TelaEsqueciDados(final TelaDeLogin telaLogin) {
+		TelaEsqueciDados.telaLogin = telaLogin;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		setTitle("Bet2Beat - Esqueci minha senha");
 		setContentPane(contentPane);
-		setIconImage(new ImageIcon(this.getClass().getResource(
-				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 
@@ -180,9 +180,7 @@ public class TelaEsqueciDados extends JFrame {
 						panel.add(lbl);
 						panel.add(txt);
 						pane.setVisible(true);
-						telaLogin = new TelaDeLogin();
 						telaLogin.setVisible(false);
-						telaLogin.dispose();
 						do {
 							pane.showOptionDialog(null, panel,
 									"Redefinir Senha", JOptionPane.NO_OPTION,

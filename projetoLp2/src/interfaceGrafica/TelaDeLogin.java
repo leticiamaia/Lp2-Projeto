@@ -33,12 +33,11 @@ public class TelaDeLogin extends JFrame {
 	private TelaDeCadastro telaDeCadastro;
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
-	private TelaEsqueciDados telaEsqueceu;
+	private TelaEsqueciDados telaEsqueceu = new TelaEsqueciDados(this);
 	private final MeuBolao bolao;
 	String getSenha;
 	String getLogin;
-
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,15 +69,15 @@ public class TelaDeLogin extends JFrame {
 		setContentPane(contentPane);
 		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setLayout(null); 
-		
+
 		criaTelaBoasVindas();
-		
+
 		JPanel quadroDeLogin = new JPanel();
 		quadroDeLogin.setBounds(230, 195, 450, 164); 
 		contentPane.add(quadroDeLogin); 
 		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		quadroDeLogin.setLayout(null);
-		
+
 		criaQuadroDeLogin(quadroDeLogin);
 		
 		JButton botaoEntrar = new JButton(" Entrar"); 
@@ -86,31 +85,31 @@ public class TelaDeLogin extends JFrame {
 		botaoEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-						getLogin = recebeLogin.getText().trim();
-						getSenha = recebeSenhaEncriptada.getText().trim(); 
-							try {
-								boolean sucesso = bolao.login2(getLogin, getSenha);
-								if (sucesso) {
-									JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
-									dispose(); 
-									if(bolao.getUsuarioLogado() instanceof Administrador)
-									{
-										telaAdmin = new TelaDoAdmin();
-										telaAdmin.setVisible(true);									
-									}
-									else {
-									telaUser = new TelaDoUsuario(bolao);
-									telaUser.setVisible(true);
-									}
-								}
-							} catch (Exception e1) {
-									JOptionPane.showMessageDialog(null,e1.getMessage());
-							} 
+				getLogin = recebeLogin.getText().trim();
+				getSenha = recebeSenhaEncriptada.getText().trim(); 
+				try {
+					boolean sucesso = bolao.login2(getLogin, getSenha);
+					if (sucesso) {
+						JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
+						dispose(); 
+						if(bolao.getUsuarioLogado() instanceof Administrador)
+						{
+							telaAdmin = new TelaDoAdmin();
+							telaAdmin.setVisible(true);									
+						}
+						else {
+							telaUser = new TelaDoUsuario(bolao);
+							telaUser.setVisible(true);
+						}
+					}
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null,e1.getMessage());
+				} 
 			}
 		});
 		botaoEntrar.setBounds(104, 98, 99, 23);
 		quadroDeLogin.add(botaoEntrar); 
-		
+
 		JButton botaoCadastrar = new JButton("Cadastrar");
 		botaoCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,12 +125,11 @@ public class TelaDeLogin extends JFrame {
 		});
 		botaoCadastrar.setBounds(219, 98, 111, 23);
 		quadroDeLogin.add(botaoCadastrar);
-		
+
 		JButton botaoEsqueciDados = new JButton("Esqueci senha");
 		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
 		botaoEsqueciDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				telaEsqueceu = new TelaEsqueciDados();
 				telaEsqueceu.setVisible(true);
 			}
 		});
@@ -144,12 +142,12 @@ public class TelaDeLogin extends JFrame {
 		bolaoCopa2014.setFont(new Font("Calibri Light", Font.PLAIN, 38));
 		bolaoCopa2014.setBounds(241, 77, 525, 58);
 		contentPane.add(bolaoCopa2014);
-		
+
 		JLabel fuleco = new JLabel("");
 		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
 		fuleco.setBounds(-44, 11, 255, 272);
 		contentPane.add(fuleco);		
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		label.setBounds(171, 109, 510, 31);
@@ -161,27 +159,25 @@ public class TelaDeLogin extends JFrame {
 	}
 
 	private void criaQuadroDeLogin(JPanel quadroDeLogin) {
-		
 		JLabel login = new JLabel(); 
 		login.setBounds(104, 36, 49, 20);
 		quadroDeLogin.add(login);
 		login.setText("Login:"); 
 		login.setBackground(new Color(240, 240, 240));
-		
+
 		recebeLogin = new JTextField(); 
 		recebeLogin.setBounds(156, 36, 174, 20);
 		quadroDeLogin.add(recebeLogin);
 		recebeLogin.setColumns(10);
-		
+
 		JLabel senha = new JLabel();
 		senha.setBounds(104, 67, 43, 20);
 		quadroDeLogin.add(senha);
 		senha.setText("Senha: ");
 		senha.setBackground(new Color(240, 240, 240));
-		
+
 		recebeSenhaEncriptada = new JPasswordField(); 
 		recebeSenhaEncriptada.setBounds(156, 67, 174, 20);
 		quadroDeLogin.add(recebeSenhaEncriptada);
-		
 	}
 }

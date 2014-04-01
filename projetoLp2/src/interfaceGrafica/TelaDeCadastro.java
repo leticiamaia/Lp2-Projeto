@@ -71,15 +71,15 @@ public class TelaDeCadastro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel cadastroDeNovo = new JLabel("Cadastro de novo Usu\u00E1rio");
-		cadastroDeNovo.setBounds(207, 0, 391, 54);
-		cadastroDeNovo.setFont(new Font("Calibri", Font.PLAIN, 33));
-		contentPane.add(cadastroDeNovo);
+		JLabel cadastroUserLabel = new JLabel("Cadastro de novo Usu\u00E1rio");
+		cadastroUserLabel.setBounds(207, 0, 391, 54);
+		cadastroUserLabel.setFont(new Font("Calibri", Font.PLAIN, 33));
+		contentPane.add(cadastroUserLabel);
 
-		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
-		lblNomeCompleto.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNomeCompleto.setBounds(132, 122, 101, 21);
-		contentPane.add(lblNomeCompleto);
+		JLabel nomeLabel = new JLabel("Nome Completo: ");
+		nomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		nomeLabel.setBounds(131, 122, 102, 21);
+		contentPane.add(nomeLabel);
 
 		recebeNomeField = new JTextField();
 		recebeNomeField.setBounds(241, 122, 336, 20);
@@ -101,70 +101,46 @@ public class TelaDeCadastro extends JFrame {
 		informacao2Label.setBounds(196, 82, 386, 21);
 		contentPane.add(informacao2Label);
 
-		JLabel lblNewLabel = new JLabel("*");
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(580, 153, 53, 18);
-		contentPane.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("E-mail: ");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(188, 154, 45, 18);
-		contentPane.add(lblNewLabel_1);
+		JLabel emailLabel = new JLabel("*E-mail:");
+		emailLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		emailLabel.setBounds(180, 154, 53, 18);
+		contentPane.add(emailLabel);
 
 		recebeEmailField = new JTextField();
 		recebeEmailField.setColumns(10);
 		recebeEmailField.setBounds(241, 153, 336, 20);
 		contentPane.add(recebeEmailField);
 
-		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
-		lblUsurio.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblUsurio.setBounds(180, 183, 53, 21);
-		contentPane.add(lblUsurio);
+		JLabel userLabel = new JLabel("*Usu\u00E1rio:");
+		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		userLabel.setBounds(169, 183, 64, 21);
+		contentPane.add(userLabel);
 
 		recebeUserField = new JTextField();
 		recebeUserField.setColumns(10);
 		recebeUserField.setBounds(241, 183, 336, 20);
 		contentPane.add(recebeUserField);
 
-		JLabel label = new JLabel("*");
-		label.setForeground(Color.RED);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label.setBounds(580, 182, 53, 18);
-		contentPane.add(label);
-
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSenha.setBounds(188, 217, 45, 18);
-		contentPane.add(lblSenha);
-
-		JLabel lblNewLabel_2 = new JLabel("Confirmar Senha:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(124, 246, 102, 14);
-		contentPane.add(lblNewLabel_2);
-
+		JLabel senhaLabel = new JLabel("*Senha:");
+		senhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		senhaLabel.setBounds(179, 217, 54, 18);
+		contentPane.add(senhaLabel);
+		
 		recebeSenhaField = new JPasswordField();
 		recebeSenhaField.setBounds(241, 214, 336, 20);
 		contentPane.add(recebeSenhaField);
+
+		JLabel confirmaSenhaLabel = new JLabel("*Confirmar Senha:");
+		confirmaSenhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		confirmaSenhaLabel.setBounds(117, 246, 116, 14);
+		contentPane.add(confirmaSenhaLabel);
 
 		recebeConfirmaSenhaField = new JPasswordField();
 		recebeConfirmaSenhaField.setBounds(241, 244, 336, 20);
 		contentPane.add(recebeConfirmaSenhaField);
 
-		JLabel label_1 = new JLabel("*");
-		label_1.setForeground(Color.RED);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_1.setBounds(580, 214, 53, 18);
-		contentPane.add(label_1);
 
-		JLabel label_2 = new JLabel("*");
-		label_2.setForeground(Color.RED);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_2.setBounds(580, 246, 53, 18);
-		contentPane.add(label_2);
-
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		final JComboBox<String> perguntaSecretaComboBox = new JComboBox();
+		final JComboBox<String> perguntaSecretaComboBox = new JComboBox<String>();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
 		perguntaSecretaComboBox
 				.addItem("Qual o nome do seu primeiro animal de estima��o?");
@@ -179,27 +155,15 @@ public class TelaDeCadastro extends JFrame {
 				.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
 		contentPane.add(perguntaSecretaComboBox);
 
-		JLabel lblNewLabel_3 = new JLabel("Pergunta Secreta:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(124, 271, 109, 20);
-		contentPane.add(lblNewLabel_3);
+		JLabel perguntaSecretaLabel = new JLabel("*Pergunta Secreta:");
+		perguntaSecretaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		perguntaSecretaLabel.setBounds(117, 271, 116, 20);
+		contentPane.add(perguntaSecretaLabel);
 
-		JLabel lblResposta = new JLabel("Resposta:");
-		lblResposta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblResposta.setBounds(168, 304, 57, 21);
-		contentPane.add(lblResposta);
-
-		JLabel label_3 = new JLabel("*");
-		label_3.setForeground(Color.RED);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_3.setBounds(580, 275, 53, 18);
-		contentPane.add(label_3);
-
-		JLabel label_4 = new JLabel("*");
-		label_4.setForeground(Color.RED);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_4.setBounds(580, 305, 53, 18);
-		contentPane.add(label_4);
+		JLabel respostaLabel = new JLabel("*Resposta:");
+		respostaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		respostaLabel.setBounds(168, 305, 65, 21);
+		contentPane.add(respostaLabel);
 
 		JButton botaoConfirma = new JButton(" Confirmar");
 		botaoConfirma.setIcon(new ImageIcon(TelaDeCadastro.class
@@ -214,69 +178,7 @@ public class TelaDeCadastro extends JFrame {
 				usuario = recebeUserField.getText().trim();
 				respostaSecreta = respostaSecretaField.getText().trim();
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
-				boolean sucesso = true;
-				if (usuario.equals("")) {
-					JOptionPane.showMessageDialog(null,
-							"O campo 'usuario' � obrigatorio!");
-					sucesso = false;
-				}
-				if (email.equals("")) {
-					JOptionPane.showMessageDialog(null,
-							"O campo 'email' � obrigatorio!");
-					sucesso = false;
-				}
-				if (senha.equals("") || senhaConfirmada.equals("")) {
-					JOptionPane.showMessageDialog(null,
-							"Os campos de senha s�o obrigatorios!");
-					sucesso = false;
-				}
-				/*
-				 * if (!email.contains("@") || !email.contains(".") ||
-				 * email.contains(" ")) {
-				 * 
-				 * JOptionPane.showMessageDialog(null, "E-mail Invalido.");
-				 * sucesso = false; }
-				 */
-
-				int idx = email.lastIndexOf("@");
-				if (idx == 0) {
-					JOptionPane.showMessageDialog(null, "E-mail Invalido.");
-					sucesso = false;
-				}
-
-				else {
-					int last = -1;
-					for (; idx < email.length(); idx++) {
-						if (email.charAt(idx) == '.') {
-							if (idx - last == 1) {
-								JOptionPane.showMessageDialog(null,
-										"E-mail Invalido.");
-								sucesso = false;
-								break;
-							}
-							last = idx;
-						}
-					}
-				}
-
-				if (!senha.equals(senhaConfirmada) || senha.isEmpty()
-						|| senhaConfirmada.isEmpty()) {
-					JOptionPane.showMessageDialog(null,
-							"As senhas nao conferem!");
-					sucesso = false;
-
-				}
-				if (sucesso) {
-					try {
-						sucesso = bolao.cadastraJogador(nome, usuario, senha,
-								email, pergunta, respostaSecreta);
-						JOptionPane.showMessageDialog(null,
-								"Cadastro feito com sucesso!");
-						dispose();
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage());
-					}
-				}
+				verificaCampos();
 			}
 		});
 		botaoConfirma.setBounds(264, 351, 121, 34);
@@ -298,16 +200,80 @@ public class TelaDeCadastro extends JFrame {
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
 
-		JLabel lblMemorizeSuaPergunta = new JLabel(
+		JLabel anotaMemorizeSenhaLabel = new JLabel(
 				"<html>Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.</html>");
-		lblMemorizeSuaPergunta.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		lblMemorizeSuaPergunta.setBounds(145, 326, 432, 14);
-		contentPane.add(lblMemorizeSuaPergunta);
+		anotaMemorizeSenhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		anotaMemorizeSenhaLabel.setBounds(145, 326, 432, 14);
+		contentPane.add(anotaMemorizeSenhaLabel);
 
-		JLabel label_5 = new JLabel("");
-		label_5.setIcon(new ImageIcon(TelaDeCadastro.class
+		JLabel divisorLabel = new JLabel("");
+		divisorLabel.setIcon(new ImageIcon(TelaDeCadastro.class
 				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		label_5.setBounds(94, 39, 504, 14);
-		contentPane.add(label_5);
+		divisorLabel.setBounds(94, 39, 504, 14);
+		contentPane.add(divisorLabel);
 	}
-}
+	
+	public boolean verificaCampos() {
+		boolean sucesso = true;
+		if (usuario.equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"O campo 'usuario' � obrigatorio!");
+			sucesso = false;
+		}
+		if (email.equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"O campo 'email' � obrigatorio!");
+			sucesso = false;
+		}
+		sucesso = verificaEmail();
+		if (senha.equals("") || senhaConfirmada.equals("")) {
+			JOptionPane.showMessageDialog(null,
+					"Os campos de senha s�o obrigatorios!");
+			sucesso = false;
+		}
+		if (!senha.equals(senhaConfirmada) || senha.isEmpty()
+				|| senhaConfirmada.isEmpty()) {
+			JOptionPane.showMessageDialog(null,
+					"As senhas nao conferem!");
+			sucesso = false;
+		}
+		if (sucesso) {
+			try {
+				sucesso = bolao.cadastraJogador(nome, usuario, senha, email, pergunta, respostaSecreta);
+				JOptionPane.showMessageDialog(null,
+						"Cadastro feito com sucesso!");
+				dispose();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+			}
+		}
+		return sucesso;
+	}
+	
+	public boolean verificaEmail() { 
+	int idx = email.lastIndexOf("@");
+	if (idx == 0) {
+		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+		return false;
+	}
+
+	else {
+		int last = idx;
+		for (idx = idx+1; idx < email.length(); idx++) {
+			if (email.charAt(idx) == '.') {
+				if (idx - last == 1 || idx == email.length()-1) {
+					JOptionPane.showMessageDialog(null,
+							"E-mail Invalido.");
+					return false;
+				}
+				last = idx;
+			}
+		}
+		return true;
+	}
+	}
+	}
+
+
+
+
