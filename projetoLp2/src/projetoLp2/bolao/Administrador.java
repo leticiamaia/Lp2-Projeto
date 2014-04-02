@@ -1,15 +1,10 @@
 package projetoLp2.bolao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import projetoLp2.bolao.docs.ControladorJogador;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
 /**
@@ -23,8 +18,6 @@ public class Administrador extends Usuario {
 	 * 
 	 */
 	private static final long serialVersionUID = 2088632941739437245L;
-	ObjectInputStream ois;
-	ObjectOutputStream out;
 
 	/**
 	 * Construtor da classe
@@ -107,28 +100,12 @@ public class Administrador extends Usuario {
 	 * Esse metodo atuliza o ranking dos jogadores quando um resultado de uma
 	 * partida e adicionado.
 	 * 
-	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
-	private void atualizaRanking() throws IOException {
-		List<Jogador> jogadores = null;
-		try {
-			createIos("usuarios.bin");
-			jogadores = (List<Jogador>) ois.readObject();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			ois.close();
-		}
-		try {
-			createOut("usuarios.bin");
-			Collections.sort(jogadores);
-			out.writeObject(jogadores);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			out.close();
-		}
+	private void atualizaRanking() {
+		List<Jogador> jogadores = ControladorJogador.ler();
+		Collections.sort(jogadores);
+		ControladorJogador.escreve(jogadores);
 	}
 
 	/**
@@ -136,32 +113,16 @@ public class Administrador extends Usuario {
 	 * de uma partida e atualizado.
 	 * 
 	 * @param indicePartida
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	@SuppressWarnings("unchecked")
-	private void atualizaPontuacao(int indicePartida) throws IOException {
+	private void atualizaPontuacao(int indicePartida) throws Exception {
 
-		List<Jogador> jogadores = null;
-		try {
-			createIos("usuarios.bin");
-			jogadores = (List<Jogador>) ois.readObject();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			ois.close();
+		List<Jogador> jogadores = ControladorJogador.ler();
+		for (Jogador j : jogadores) {
+			Aposta aposta = j.getAposta(indicePartida);
+			j.adicionaPontos(aposta.resultadoAposta());
 		}
-		try {
-			createOut("usuarios.bin");
-			for (Jogador j : jogadores) {
-				Aposta aposta = j.getAposta(indicePartida);
-				j.adicionaPontos(aposta.resultadoAposta());
-			}
-			out.writeObject(jogadores);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			out.close();
-		}
+		ControladorJogador.escreve(jogadores);
 
 	}
 
@@ -172,26 +133,4 @@ public class Administrador extends Usuario {
 	 *            Nome do arquivo
 	 * @throws IOException
 	 */
-	private void createIos(String fileName) throws IOException {
-		try {
-			ois = new ObjectInputStream(new FileInputStream(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Esse Metodo cria um Objeto de Output
-	 * 
-	 * @param fileName
-	 *            Nome do arquivo
-	 * @throws IOException
-	 */
-	private void createOut(String fileName) throws IOException {
-		try {
-			out = new ObjectOutputStream(new FileOutputStream(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 }
