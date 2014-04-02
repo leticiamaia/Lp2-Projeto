@@ -57,12 +57,12 @@ public class TelaDoUsuario extends JFrame {
 	 * 
 	 */
 	public TelaDoUsuario(final MeuBolao bolao) {
+		TelaDoUsuario.bolao = bolao;
 		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setIconImage(new ImageIcon(this.getClass().getResource(
-				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		/*
 		 * Toolkit tk = Toolkit.getDefaultToolkit(); int xSize = ((int)
 		 * tk.getScreenSize().getWidth()); int ySize = ((int)
@@ -135,15 +135,8 @@ public class TelaDoUsuario extends JFrame {
 		JMenuItem sobreMenuItem = new JMenuItem("Sobre o Bet2Beat");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Program designed by:\n- Let�cia Maia \n- Lucas de Matos \n- Marcela Tejo \n- �rion Winter \nVersion: 1.0 (2014) �",
-								"Sobre o Bet2Beat",
-								0,
-								new ImageIcon(
-										TelaDoUsuario.class
-												.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
+				JOptionPane.showMessageDialog(null,"Program designed by:\n- Let\u00edcia Maia \n- Lucas de Matos \n- Marcela Tejo \n- \u00d2rion Winter \nVersion: 1.0 (2014) \u00A9",
+								"Sobre o Bet2Beat",	0,new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
 			}
 		});
 		menuSobre.add(sobreMenuItem);
@@ -156,12 +149,11 @@ public class TelaDoUsuario extends JFrame {
 		menuBar.add(Box.createHorizontalGlue());
 
 		class exitaction implements ActionListener {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				bolao.desloga();
 				dispose();
 				telaLogin = new TelaDeLogin();
-				telaLogin.show();
+				telaLogin.setVisible(true);
 			}
 		}
 		mntmSair.addActionListener(new exitaction());
@@ -173,7 +165,7 @@ public class TelaDoUsuario extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Voc� est� logado como " + bolao.getUsuarioLogado().getUsername() + ".");
+		bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + bolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
@@ -193,10 +185,7 @@ public class TelaDoUsuario extends JFrame {
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setBounds(335, 11, 113, 161);
 		panel.add(lblNewLabel);
-		lblNewLabel
-				.setIcon(new ImageIcon(
-						TelaDoUsuario.class
-								.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 
 		JLabel lblBemVindoEssa = new JLabel(
 				"Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
