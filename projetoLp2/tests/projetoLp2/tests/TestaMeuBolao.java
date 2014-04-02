@@ -242,7 +242,41 @@ public class TestaMeuBolao {
 		Assert.assertTrue(bolao.login2("Let", "123"));
 		bolao.desloga();
 	}
-
+	
+	@Test
+	public void testaGetRankingJogador() throws Exception {
+		bolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
+		bolao.login2(USERNAME, SENHA);
+		String[][] ranking = bolao.getRankingUsuario();
+		Assert.assertEquals("1", ranking[0][0]);
+		Assert.assertEquals(USERNAME, ranking[0][1]);
+		Assert.assertEquals("0", ranking[0][2]);
+		
+		bolao.desloga();
+		bolao.login2("admin", "1234");
+		try {
+			bolao.getRankingUsuario();
+		} catch (Exception e) {
+			Assert.assertEquals("Admin nao possua ranking.", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testaGetRanking() throws Exception {
+		bolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
+		String[][] ranking = bolao.getRanking();
+		Assert.assertEquals("1", ranking[0][0]);
+		Assert.assertEquals(USERNAME, ranking[0][1]);
+		Assert.assertEquals("0", ranking[0][2]);
+		bolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA);
+		ranking = bolao.getRanking();
+		Assert.assertEquals("2", ranking[1][0]);
+		Assert.assertEquals(USERNAME + "1", ranking[1][1]);
+		Assert.assertEquals("0", ranking[1][2]);
+		Assert.assertEquals("3", ranking[2][0]);
+		Assert.assertEquals(null, ranking[2][1]);
+		Assert.assertEquals(null, ranking[2][2]);
+	}
 	@After
 	public void clean() throws Exception {
 		CriaFile.main(null);

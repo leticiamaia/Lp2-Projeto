@@ -1,13 +1,9 @@
 package projetoLp2.bolao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
@@ -169,7 +165,6 @@ public class MeuBolao {
 		return this.usuarioLogado;
 	}
 
-	// falta teste
 	public String[][] getRanking() throws IOException, ClassNotFoundException {
 		ArrayList<Jogador> jogadores = (ArrayList<Jogador>)ControladorJogador.ler();
 		String[][] tabela = new String[10][3];
@@ -187,7 +182,7 @@ public class MeuBolao {
 		return tabela;
 	}
 	
-	//falta teste
+
 	public String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
 			throw new Exception("Admin nao possua ranking.");
