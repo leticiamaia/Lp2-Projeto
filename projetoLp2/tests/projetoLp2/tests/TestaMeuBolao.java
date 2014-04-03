@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.MeuBolao;
+import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaMeuBolao {
@@ -274,6 +275,22 @@ public class TestaMeuBolao {
 		Assert.assertEquals("3", ranking[2][0]);
 		Assert.assertEquals(null, ranking[2][1]);
 		Assert.assertEquals(null, ranking[2][2]);
+	}
+	
+	@Test
+	public void testaAlterarInfo() throws Exception {
+		MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, RESPOSTA);
+		MeuBolao.login2(USERNAME, SENHA);
+		MeuBolao.alterarInfo(NOME+"1", EMAIL+ "1", SENHA+"1", PERGUNTA+"1", RESPOSTA+"1");
+		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getNome(), NOME+"1");
+		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getEmail(), EMAIL+"1");
+		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getPerguntaSecreta(), PERGUNTA+"1");
+		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getResposta(), RESPOSTA+"1");
+		MeuBolao.desloga();
+		Assert.assertTrue(MeuBolao.login2(USERNAME, SENHA+"1"));
+		MeuBolao.desloga();
+	
+		
 	}
 	@After
 	public void clean() throws Exception {

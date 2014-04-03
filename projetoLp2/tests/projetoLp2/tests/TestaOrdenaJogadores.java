@@ -12,7 +12,6 @@ import projetoLp2.bolao.OrdenaJogadores;
 
 public class TestaOrdenaJogadores {
 
-	@SuppressWarnings({ "unchecked", "unused" })
 	@Test
 	public void test() throws Exception {
 		List<Jogador> listaDeJogadores = new ArrayList<Jogador>();
@@ -27,7 +26,7 @@ public class TestaOrdenaJogadores {
 		listaDeJogadores.get(3).setPontos(17);
 		
 		OrdenaJogadores comparator = new OrdenaJogadores();
-		Collections.sort(listaDeJogadores);
+		Collections.sort(listaDeJogadores, comparator);
 		
 		Assert.assertEquals("Orion", listaDeJogadores.get(0).getUsername());
 		Assert.assertEquals("MarcelaDosLeites", listaDeJogadores.get(1).getUsername());

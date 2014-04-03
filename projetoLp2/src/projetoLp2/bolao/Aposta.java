@@ -12,16 +12,6 @@ import java.util.GregorianCalendar;
 public abstract class Aposta implements Serializable {
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + palpiteGolsTime1;
-		result = prime * result + palpiteGolsTime2;
-		result = prime * result + ((partida == null) ? 0 : partida.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

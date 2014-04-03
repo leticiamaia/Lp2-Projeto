@@ -120,7 +120,8 @@ public class Administrador extends Usuario {
 		List<Jogador> jogadores = ControladorJogador.ler();
 		for (Jogador j : jogadores) {
 			Aposta aposta = j.getAposta(indicePartida);
-			j.adicionaPontos(aposta.resultadoAposta());
+			if (aposta!= null)
+				j.adicionaPontos(aposta.resultadoAposta());
 		}
 		ControladorJogador.escreve(jogadores);
 

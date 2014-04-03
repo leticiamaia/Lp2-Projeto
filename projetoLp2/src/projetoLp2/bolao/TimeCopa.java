@@ -141,24 +141,6 @@ public class TimeCopa implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime
-				* result
-				+ ((abreviacaoNomeTime == null) ? 0 : abreviacaoNomeTime
-						.hashCode());
-		result = prime * result
-				+ ((nomeDoTime == null) ? 0 : nomeDoTime.hashCode());
-		result = prime * result + numDerrotas;
-		result = prime * result + numEmpates;
-		result = prime * result + numVitorias;
-		result = prime * result
-				+ ((partidasJogadas == null) ? 0 : partidasJogadas.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
