@@ -13,13 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
-
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class AlterarInfoPanel extends JPanel {
 	/**
@@ -31,9 +27,11 @@ public class AlterarInfoPanel extends JPanel {
 	private JPasswordField recebeNovaSenhaField;
 	private JTextField recebNovaRespostaLabel;
 	private JComboBox<String> novaPerguntaSecretaComboBox;
+	private JLabel nomeAtual, emailAtual, perguntaSecreta, respostaSecreta;
 	private JPanel imagemPanel;
 	private JPanel formularioAlteraInfoPanel;
 	private Jogador user;
+	private String novoNome, novoEmail, novaPergunta, novaResposta;
 
 	/**
 	 * Create the panel.
@@ -80,18 +78,21 @@ public class AlterarInfoPanel extends JPanel {
 		botaoConfirmar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
+				novoNome = recebeNovoNomeField.getText();
+				novoEmail =  recebeNovoEmailField.getText();
+				novaPergunta = (String) novaPerguntaSecretaComboBox.getSelectedItem();
+				novaResposta = recebNovaRespostaLabel.getText();
 				try {
-					if(MeuBolao.alterarInfo(recebeNovoNomeField.getText(), recebeNovoEmailField.getText(), recebeNovaSenhaField.getText(),
-					(String) novaPerguntaSecretaComboBox.getSelectedItem(), recebNovaRespostaLabel.getText())) {
+					if(MeuBolao.alterarInfo(novoNome,novoEmail, recebeNovaSenhaField.getText(),
+					novaPergunta, novaResposta)) {
 						JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
 						imagemPanel.setVisible(true); 
 						setVisible(false);
-						
+						ehVazio();			
 		}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
-				
 			}
 		});
 		botaoConfirmar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/tick.png")));
@@ -155,7 +156,7 @@ public class AlterarInfoPanel extends JPanel {
 		nomeAtualLabel.setBounds(102, 192, 41, 21);
 		add(nomeAtualLabel);
 		
-		JLabel nomeAtual = new JLabel(user.getNome());
+		nomeAtual = new JLabel(user.getNome());
 		nomeAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		nomeAtual.setBounds(153, 192, 388, 18);
 		add(nomeAtual);
@@ -165,7 +166,7 @@ public class AlterarInfoPanel extends JPanel {
 		emailAtualLabel.setBounds(107, 224, 48, 21);
 		add(emailAtualLabel);
 		
-		JLabel emailAtual = new JLabel(user.getEmail());
+		emailAtual = new JLabel(user.getEmail());
 		emailAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		emailAtual.setBounds(153, 223, 388, 20);
 		add(emailAtual);
@@ -175,7 +176,7 @@ public class AlterarInfoPanel extends JPanel {
 		perguntaSecretaLabel.setBounds(41, 256, 114, 21);
 		add(perguntaSecretaLabel);
 		
-		JLabel perguntaSecreta = new JLabel(user.getPerguntaSecreta());
+		perguntaSecreta = new JLabel(user.getPerguntaSecreta());
 		perguntaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		perguntaSecreta.setBounds(153, 257, 388, 17);
 		add(perguntaSecreta);
@@ -185,7 +186,7 @@ public class AlterarInfoPanel extends JPanel {
 		respostaSecretaLabel.setBounds(41, 288, 124, 21);
 		add(respostaSecretaLabel);
 		
-		JLabel respostaSecreta = new JLabel(user.getResposta());
+		respostaSecreta = new JLabel(user.getResposta());
 		respostaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		respostaSecreta.setBounds(153, 287, 388, 21);
 		add(respostaSecreta);
@@ -277,5 +278,12 @@ public class AlterarInfoPanel extends JPanel {
 		recebeNovoEmailField.setText("");
 		recebeNovaSenhaField.setText("");
 		recebNovaRespostaLabel.setText("");
+	}
+	
+	private void ehVazio() {
+		if (!novoNome.equals("")) nomeAtual.setText(novoNome);
+		if (!novoEmail.equals("")) emailAtual.setText(novoEmail);
+		if (!novaPergunta.equals("")) perguntaSecreta.setText(novaPergunta);
+		if (!novaResposta.equals("")) respostaSecreta.setText(novaResposta);
 	}
 }
