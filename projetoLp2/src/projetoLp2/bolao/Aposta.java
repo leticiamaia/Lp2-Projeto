@@ -1,6 +1,8 @@
 package projetoLp2.bolao;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public abstract class Aposta implements Serializable {
 
@@ -56,9 +58,14 @@ public abstract class Aposta implements Serializable {
 	 */
 	public Aposta(Partida partida, int numGolsTime1, int numGolsTime2)
 			throws Exception {
-		if (partida == null)
+		if (partida == null) {
 			throw new Exception("Partida invalida!");
-
+		}
+		GregorianCalendar dataAceita = partida.getData();
+		dataAceita.add(Calendar.DATE,-1);
+		if (dataAceita.before(new GregorianCalendar())) {
+			throw new Exception("Nao e mais possivel fazer uma aposta nessa partida.");
+		}
 		setPalpiteGolsTime1(numGolsTime1);
 		setPalpiteGolsTime2(numGolsTime2);
 		this.partida = partida;

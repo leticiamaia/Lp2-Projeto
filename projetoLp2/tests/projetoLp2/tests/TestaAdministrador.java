@@ -120,14 +120,19 @@ public class TestaAdministrador {
 	
 	@Test
 	public void testaAtualizaPontucao() throws Exception {
-		admin.cadastraPartida(1, time1, time2, data);
-		admin.atualizaPartida(1, 1, 1);
 		MeuBolao bolao = new MeuBolao();
 		bolao.cadastraJogador("nome", "username", "senha", "email", "perguntaSecreta", "resposta");
+		admin.cadastraPartida(1, time1, time2, data);
+		admin.atualizaPartida(1, 1, 1);
+		
 		//continua depoi que bolao estiver pronto
 		
 	}
 	
+	@Test
+	public void testaAtualizaRanking() {
+		
+	}
 	@After
 	public void clean() throws Exception {
 		CriaFile.main(null);
