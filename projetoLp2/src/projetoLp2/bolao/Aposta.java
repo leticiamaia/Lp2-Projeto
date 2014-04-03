@@ -62,9 +62,10 @@ public abstract class Aposta implements Serializable {
 			throw new Exception("Partida invalida!");
 		}
 		GregorianCalendar dataAceita = partida.getData();
-		dataAceita.add(Calendar.DATE,-1);
+		dataAceita.add(Calendar.DATE, -1);
 		if (dataAceita.before(new GregorianCalendar())) {
-			throw new Exception("Nao e mais possivel fazer uma aposta nessa partida.");
+			throw new Exception(
+					"Nao e mais possivel fazer uma aposta nessa partida.");
 		}
 		setPalpiteGolsTime1(numGolsTime1);
 		setPalpiteGolsTime2(numGolsTime2);
@@ -118,11 +119,12 @@ public abstract class Aposta implements Serializable {
 	}
 
 	/**
-	 * Retorna o ganhador do jogo: -1, 0, 1, caso o time 1 ganhe, seja empate,
-	 * ou o time 2 ganhe, respectivamente.
+	 * Retorna o palpite do ganhador da partida: -1, 0, 1, caso o palpite seja que
+	 * o time 1 ganhe, seja empate, ou que o time 2 ganhe, respectivamente.
 	 * 
-	 * @return o ganhador do jogo: -1, 0, 1, caso o time 1 ganhe, seja empate,
-	 *         ou o time 2 ganhe, respectivamente.
+	 * @return o palpite ganhador da partida: -1, 0, 1, caso o palpite seja que o
+	 *         time 1 ganhe, seja empate, ou que o time 2 ganhe,
+	 *         respectivamente.
 	 */
 	private int palpiteGanhador() {
 		Integer p1 = palpiteGolsTime1;
