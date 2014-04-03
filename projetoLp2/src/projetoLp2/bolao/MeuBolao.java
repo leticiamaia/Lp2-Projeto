@@ -9,12 +9,12 @@ import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
 
 public class MeuBolao {
-	private Usuario usuarioLogado;
-	private int indexUsuarioLogado;
+	private static Usuario usuarioLogado;
+	private static int indexUsuarioLogado;
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public boolean login2(String username, String senha) throws Exception {
+	public static boolean login2(String username, String senha) throws Exception {
 		boolean retorno = false;
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado");
@@ -47,7 +47,7 @@ public class MeuBolao {
 		return retorno;
 	}
 
-	public boolean cadastraJogador(String nome, String username, String senha,
+	public static boolean cadastraJogador(String nome, String username, String senha,
 			String email, String perguntaSecreta, String resposta)
 			throws Exception {
 		boolean retorno = true;
@@ -89,7 +89,7 @@ public class MeuBolao {
 			return retorno;
 	}
 
-	public boolean checkUsuario(String usuario, String pergunta,
+	public static boolean checkUsuario(String usuario, String pergunta,
 			String respostaSecreta, String email) throws Exception {
 		if (usuario == null || usuario == "" || pergunta == null
 				|| pergunta == "" || respostaSecreta == null
@@ -111,7 +111,7 @@ public class MeuBolao {
 		return retorno;
 	}
 
-	public boolean mudarSenha(String novaSenha) throws Exception {
+	public static boolean mudarSenha(String novaSenha) throws Exception {
 		if (usuarioLogado == null)
 			throw new Exception(
 					"Usuario precisa estar logado para realizar esta operacao");
@@ -129,7 +129,7 @@ public class MeuBolao {
 
 	}
 
-	public boolean mudarSenhaAdmin() throws IOException {
+	public static boolean mudarSenhaAdmin() throws IOException {
 		Administrador admin = null;
 		boolean retorno = false;
 		
@@ -142,7 +142,7 @@ public class MeuBolao {
 		return retorno;
 	}
 
-	public boolean mudarSenhaUsuario() throws IOException {	
+	public static boolean mudarSenhaUsuario() throws IOException {	
 		ArrayList <Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
 		boolean retorno = false;
 		
@@ -157,15 +157,15 @@ public class MeuBolao {
 		return retorno;
 	}
 
-	public void desloga() {
+	public static void desloga() {
 		usuarioLogado = null;
 	}
 
-	public Usuario getUsuarioLogado() {
-		return this.usuarioLogado;
+	public static Usuario getUsuarioLogado() {
+		return usuarioLogado;
 	}
 
-	public String[][] getRanking() throws IOException, ClassNotFoundException {
+	public static String[][] getRanking() throws IOException, ClassNotFoundException {
 		ArrayList<Jogador> jogadores = (ArrayList<Jogador>)ControladorJogador.ler();
 		String[][] tabela = new String[10][3];
 		
@@ -183,7 +183,7 @@ public class MeuBolao {
 	}
 	
 
-	public String[][] getRankingUsuario() throws Exception {
+	public static String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
 			throw new Exception("Admin nao possua ranking.");
 		}

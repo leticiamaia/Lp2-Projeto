@@ -9,7 +9,6 @@ import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaMeuBolao {
-	private MeuBolao bolao;
 	private final String NOME = "nome";
 	private final String USERNAME = "user";
 	private final String SENHA = "senha";
@@ -21,24 +20,23 @@ public class TestaMeuBolao {
 
 	@Before
 	public void set() throws Exception {
-		bolao = new MeuBolao();
 		CriaFile.main(null);
 	}
 
 	@Test
 	public void testaLoginAdmin() throws Exception {
-		Assert.assertTrue(bolao.login2("admin", "1234"));
+		Assert.assertTrue(MeuBolao.login2("admin", "1234"));
 		try {
-			bolao.login2("admin", "1234");
+			MeuBolao.login2("admin", "1234");
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Nao e possivel logar com um usuario ja logado",
 					e.getMessage());
 		}
-		bolao.desloga();
+		MeuBolao.desloga();
 		try {
-			bolao.login2("admin", "123");
+			MeuBolao.login2("admin", "123");
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
@@ -47,20 +45,20 @@ public class TestaMeuBolao {
 
 	@Test
 	public void testaLoginUsuario() throws Exception {
-		bolao.cadastraJogador("Leticia", "Leticia", "1234", "let@gmail.com",
+		MeuBolao.cadastraJogador("Leticia", "Leticia", "1234", "let@gmail.com",
 				"Qual?", "patos");
 
 		try {
-			bolao.login2("Leticia", "123");
+			MeuBolao.login2("Leticia", "123");
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
 		}
 
-		Assert.assertTrue(bolao.login2("Leticia", "1234"));
+		Assert.assertTrue(MeuBolao.login2("Leticia", "1234"));
 
 		try {
-			bolao.login2("Leticia", "1234");
+			MeuBolao.login2("Leticia", "1234");
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Mensagem Errada",
@@ -68,27 +66,27 @@ public class TestaMeuBolao {
 					e.getMessage());
 		}
 		try {
-			bolao.login2("Leti", "1234");
+			MeuBolao.login2("Leti", "1234");
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Mensagem Errada",
 					"Nao e possivel logar com um usuario ja logado",
 					e.getMessage());
 		}
-		bolao.desloga();
-		Assert.assertTrue(bolao.login2("Leticia", "1234"));
-		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
+		MeuBolao.desloga();
+		Assert.assertTrue(MeuBolao.login2("Leticia", "1234"));
+		MeuBolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
-		bolao.desloga();
-		Assert.assertTrue(bolao.login2("Let", "1234"));
-		bolao.desloga();
+		MeuBolao.desloga();
+		Assert.assertTrue(MeuBolao.login2("Let", "1234"));
+		MeuBolao.desloga();
 
 	}
 
 	@Test
 	public void testaCadastro() throws Exception {
 		try {
-			bolao.cadastraJogador(NOME, NULO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, NULO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -96,7 +94,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, VAZIO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, VAZIO, SENHA, EMAIL, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -104,7 +102,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, NULO, EMAIL, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, NULO, EMAIL, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -112,7 +110,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, VAZIO, EMAIL, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, VAZIO, EMAIL, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -120,7 +118,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, NULO, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, NULO, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -128,7 +126,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, VAZIO, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, VAZIO, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -136,7 +134,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, NULO, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, NULO, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -144,7 +142,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, VAZIO, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, VAZIO, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -152,7 +150,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, NULO);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, NULO);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -160,7 +158,7 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, VAZIO);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, VAZIO);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Campos nao podem ser nulos ou vazios.",
@@ -168,17 +166,17 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, "admin", SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, "admin", SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Usuario ja existente.",
 					e.getMessage());
 		}
 		
-		Assert.assertTrue(bolao.cadastraJogador(NOME, USERNAME, SENHA,EMAIL, PERGUNTA, RESPOSTA));
+		Assert.assertTrue(MeuBolao.cadastraJogador(NOME, USERNAME, SENHA,EMAIL, PERGUNTA, RESPOSTA));
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME, SENHA, EMAIL + "1", PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Usuario ja existente.",
@@ -186,76 +184,76 @@ public class TestaMeuBolao {
 		}
 		
 		try {
-			bolao.cadastraJogador(NOME, USERNAME + "1", SENHA, EMAIL, PERGUNTA, RESPOSTA);
+			MeuBolao.cadastraJogador(NOME, USERNAME + "1", SENHA, EMAIL, PERGUNTA, RESPOSTA);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Email ja cadastrado.",
 					e.getMessage());
 		}
-		Assert.assertTrue(bolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA));
+		Assert.assertTrue(MeuBolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA));
 
 	}
 
 	@Test
 	public void testaCheckUsuario() throws Exception {
-		Assert.assertFalse(bolao.checkUsuario("Leticia", "Qual?", "patos",
+		Assert.assertFalse(MeuBolao.checkUsuario("Leticia", "Qual?", "patos",
 				"lmt@gmail.com"));
-		bolao.cadastraJogador("Leticia", "Leticia", "1234", "lmt@gmail.com",
+		MeuBolao.cadastraJogador("Leticia", "Leticia", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
-		bolao.cadastraJogador("amor", "amor", "amor", "amor@gmail.com", "amor",
+		MeuBolao.cadastraJogador("amor", "amor", "amor", "amor@gmail.com", "amor",
 				"amor");
-		Assert.assertTrue(bolao.checkUsuario("amor", "amor", "amor",
+		Assert.assertTrue(MeuBolao.checkUsuario("amor", "amor", "amor",
 				"amor@gmail.com"));
-		Assert.assertTrue(bolao.checkUsuario("Leticia", "Qual?", "patos",
+		Assert.assertTrue(MeuBolao.checkUsuario("Leticia", "Qual?", "patos",
 				"lmt@gmail.com"));
-		Assert.assertFalse(bolao.checkUsuario("Leticia", "Qual?",
+		Assert.assertFalse(MeuBolao.checkUsuario("Leticia", "Qual?",
 				"campina grande", "lmt@gmail.com"));
-		Assert.assertFalse(bolao.checkUsuario("Let", "Qual?", "patos",
+		Assert.assertFalse(MeuBolao.checkUsuario("Let", "Qual?", "patos",
 				"lmt@gmail.com"));
-		Assert.assertFalse(bolao.checkUsuario("Leticia", "Qual?", "Patos",
+		Assert.assertFalse(MeuBolao.checkUsuario("Leticia", "Qual?", "Patos",
 				"let@gmail.com"));
-		bolao.cadastraJogador("Lucas", "casal20", "1234", "lucas@gmail.com",
+		MeuBolao.cadastraJogador("Lucas", "casal20", "1234", "lucas@gmail.com",
 				"namorada?", "Leticia");
-		Assert.assertFalse(bolao.checkUsuario("Leticia", "namorada?",
+		Assert.assertFalse(MeuBolao.checkUsuario("Leticia", "namorada?",
 				"Leticia", "lmt@gmail.com"));
-		Assert.assertTrue(bolao.checkUsuario("casal20", "namorada?", "Leticia",
+		Assert.assertTrue(MeuBolao.checkUsuario("casal20", "namorada?", "Leticia",
 				"lucas@gmail.com"));
 	}
 
 	@Test
 	public void testaMudarSenha() throws Exception {
-		Assert.assertTrue(bolao.login2("admin", "1234"));
-		bolao.mudarSenha("123");
-		bolao.desloga();
-		Assert.assertTrue(bolao.login2("admin", "123"));
-		bolao.desloga();
-		bolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
+		Assert.assertTrue(MeuBolao.login2("admin", "1234"));
+		MeuBolao.mudarSenha("123");
+		MeuBolao.desloga();
+		Assert.assertTrue(MeuBolao.login2("admin", "123"));
+		MeuBolao.desloga();
+		MeuBolao.cadastraJogador("Leticia", "Let", "1234", "lmt@gmail.com",
 				"Qual?", "patos");
-		bolao.login2("Let", "1234");
-		bolao.mudarSenha("123");
-		bolao.desloga();
+		MeuBolao.login2("Let", "1234");
+		MeuBolao.mudarSenha("123");
+		MeuBolao.desloga();
 		try {
-			bolao.login2("Let", "1234");
+			MeuBolao.login2("Let", "1234");
 		} catch (Exception e) {
 			Assert.assertEquals("Senha incorreta(s).", e.getMessage());
 		}
-		Assert.assertTrue(bolao.login2("Let", "123"));
-		bolao.desloga();
+		Assert.assertTrue(MeuBolao.login2("Let", "123"));
+		MeuBolao.desloga();
 	}
 	
 	@Test
 	public void testaGetRankingJogador() throws Exception {
-		bolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
-		bolao.login2(USERNAME, SENHA);
-		String[][] ranking = bolao.getRankingUsuario();
+		MeuBolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
+		MeuBolao.login2(USERNAME, SENHA);
+		String[][] ranking = MeuBolao.getRankingUsuario();
 		Assert.assertEquals("1", ranking[0][0]);
 		Assert.assertEquals(USERNAME, ranking[0][1]);
 		Assert.assertEquals("0", ranking[0][2]);
 		
-		bolao.desloga();
-		bolao.login2("admin", "1234");
+		MeuBolao.desloga();
+		MeuBolao.login2("admin", "1234");
 		try {
-			bolao.getRankingUsuario();
+			MeuBolao.getRankingUsuario();
 		} catch (Exception e) {
 			Assert.assertEquals("Admin nao possua ranking.", e.getMessage());
 		}
@@ -263,13 +261,13 @@ public class TestaMeuBolao {
 	
 	@Test
 	public void testaGetRanking() throws Exception {
-		bolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
-		String[][] ranking = bolao.getRanking();
+		MeuBolao.cadastraJogador(NOME, USERNAME, SENHA,  EMAIL, PERGUNTA, RESPOSTA);
+		String[][] ranking = MeuBolao.getRanking();
 		Assert.assertEquals("1", ranking[0][0]);
 		Assert.assertEquals(USERNAME, ranking[0][1]);
 		Assert.assertEquals("0", ranking[0][2]);
-		bolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA);
-		ranking = bolao.getRanking();
+		MeuBolao.cadastraJogador(NOME, USERNAME + "1", SENHA,  EMAIL + "1", PERGUNTA, RESPOSTA);
+		ranking = MeuBolao.getRanking();
 		Assert.assertEquals("2", ranking[1][0]);
 		Assert.assertEquals(USERNAME + "1", ranking[1][1]);
 		Assert.assertEquals("0", ranking[1][2]);
@@ -280,7 +278,7 @@ public class TestaMeuBolao {
 	@After
 	public void clean() throws Exception {
 		CriaFile.main(null);
-		bolao.desloga();
+		MeuBolao.desloga();
 	}
 
 }

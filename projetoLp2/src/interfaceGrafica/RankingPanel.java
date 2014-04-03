@@ -20,14 +20,12 @@ public class RankingPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7796197211046315244L;
-	private MeuBolao bolao;
 
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
-	public RankingPanel(MeuBolao bolao) throws Exception {
-		this.bolao = bolao;
+	public RankingPanel() throws Exception {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
@@ -62,7 +60,7 @@ public class RankingPanel extends JPanel {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		jTable1.setDefaultRenderer(String.class, centerRenderer);
-		jTable1.setModel(new DefaultTableModel(bolao.getRankingUsuario(),
+		jTable1.setModel(new DefaultTableModel(MeuBolao.getRankingUsuario(),
 				new String[] { "Sua Posi\u00E7\u00E3o", "Seu Usu\u00E1rio",
 						"Sua Pontua\u00E7\u00E3o" }) {
 			/**

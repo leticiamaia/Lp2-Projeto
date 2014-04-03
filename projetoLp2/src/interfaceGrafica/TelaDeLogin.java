@@ -34,7 +34,6 @@ public class TelaDeLogin extends JFrame {
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu = new TelaEsqueciDados(this);
-	private final MeuBolao bolao;
 	String getSenha;
 	String getLogin;
 	
@@ -58,7 +57,6 @@ public class TelaDeLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeLogin() {
-		bolao = new MeuBolao();
 		setResizable(false);
 		setTitle("Bet2Beat - Seja bem Vindo!"); 
 		setBackground(Color.WHITE); 
@@ -88,17 +86,17 @@ public class TelaDeLogin extends JFrame {
 				getLogin = recebeLogin.getText().trim();
 				getSenha = recebeSenhaEncriptada.getText().trim(); 
 				try {
-					boolean sucesso = bolao.login2(getLogin, getSenha);
+					boolean sucesso = MeuBolao.login2(getLogin, getSenha);
 					if (sucesso) {
 						JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
 						dispose(); 
-						if(bolao.getUsuarioLogado() instanceof Administrador)
+						if(MeuBolao.getUsuarioLogado() instanceof Administrador)
 						{
 							telaAdmin = new TelaDoAdmin();
 							telaAdmin.setVisible(true);									
 						}
 						else {
-							telaUser = new TelaDoUsuario(bolao);
+							telaUser = new TelaDoUsuario();
 							telaUser.setVisible(true);
 						}
 					}

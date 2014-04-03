@@ -120,8 +120,7 @@ public class TestaAdministrador {
 	
 	@Test
 	public void testaAtualizaPontucao() throws Exception {
-		MeuBolao bolao = new MeuBolao();
-		bolao.cadastraJogador("nome", "username", "senha", "email", "perguntaSecreta", "resposta");
+		MeuBolao.cadastraJogador("nome", "username", "senha", "email", "perguntaSecreta", "resposta");
 		admin.cadastraPartida(1, time1, time2, data);
 		admin.atualizaPartida(1, 1, 1);
 		

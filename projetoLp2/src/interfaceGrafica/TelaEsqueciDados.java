@@ -32,7 +32,6 @@ public class TelaEsqueciDados extends JFrame {
 	private String usuario, respostaSecreta, pergunta, eMail, novaSenha;
 	private TelaDoUsuario telaUser;
 	private static TelaDeLogin telaLogin;
-	MeuBolao bolao;
 
 	/**
 	 * Launch the application.
@@ -155,9 +154,8 @@ public class TelaEsqueciDados extends JFrame {
 				pergunta = (String) perguntaSecretaComboBox.getSelectedItem();
 				respostaSecreta = respostaSecretaField.getText().trim();
 				eMail = recebeEmail.getText().trim();
-				bolao = new MeuBolao();
 				try {
-					if (bolao.checkUsuario(usuario, pergunta, respostaSecreta,
+					if (MeuBolao.checkUsuario(usuario, pergunta, respostaSecreta,
 							eMail)) {
 						JOptionPane.showMessageDialog(null,
 								"Usuario(a) encontrado(a)! \nSeja bem vindo "
@@ -174,9 +172,9 @@ public class TelaEsqueciDados extends JFrame {
 						do {
 							pane.showOptionDialog(null, panel,"Redefinir Senha", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,	options, options[0]);
 							novaSenha = txt.getText().trim();
-							bolao.mudarSenha(novaSenha);
+							MeuBolao.mudarSenha(novaSenha);
 						} while (novaSenha.compareTo("") == 0);
-						telaUser = new TelaDoUsuario(bolao);
+						telaUser = new TelaDoUsuario();
 						telaUser.setVisible(true);
 						dispose();
 					} else {

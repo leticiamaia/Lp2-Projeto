@@ -35,7 +35,6 @@ public class TelaDeCadastro extends JFrame {
 	private String senha, senhaConfirmada, email, usuario, respostaSecreta,
 			pergunta, nome;
 	private JTextField respostaSecretaField;
-	private static MeuBolao bolao;
 
 	/**
 	 * Launch the application.
@@ -57,7 +56,6 @@ public class TelaDeCadastro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDeCadastro() {
-		bolao = new MeuBolao();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 150, 759, 448);
@@ -248,7 +246,7 @@ public class TelaDeCadastro extends JFrame {
 		}
 		if (sucesso) {
 			try {
-				sucesso = bolao.cadastraJogador(nome, usuario, senha, email, pergunta, respostaSecreta);
+				sucesso = MeuBolao.cadastraJogador(nome, usuario, senha, email, pergunta, respostaSecreta);
 				JOptionPane.showMessageDialog(null,
 						"Cadastro feito com sucesso!");
 				dispose();

@@ -33,7 +33,6 @@ public class TelaDoUsuario extends JFrame {
 	private static final long serialVersionUID = -2567460421508989944L;
 	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
-	private static MeuBolao bolao;
 	private AlterarInfoPanel infoPanel;
 	private RankingPanel rankingPanel;
 
@@ -44,7 +43,7 @@ public class TelaDoUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaDoUsuario frame = new TelaDoUsuario(bolao);
+					TelaDoUsuario frame = new TelaDoUsuario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,9 +56,8 @@ public class TelaDoUsuario extends JFrame {
 	 * Create the frame.
 	 * 
 	 */
-	public TelaDoUsuario(final MeuBolao bolao) {
-		TelaDoUsuario.bolao = bolao;
-		infoPanel = new AlterarInfoPanel((Jogador) bolao.getUsuarioLogado());
+	public TelaDoUsuario() {
+		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
@@ -75,7 +73,7 @@ public class TelaDoUsuario extends JFrame {
 
 		JLabel casinha = new JLabel("");
 		try {
-			rankingPanel = new RankingPanel(bolao);
+			rankingPanel = new RankingPanel();
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}
@@ -147,7 +145,7 @@ public class TelaDoUsuario extends JFrame {
 
 		class exitaction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				bolao.desloga();
+				MeuBolao.desloga();
 				dispose();
 				telaLogin = new TelaDeLogin();
 				telaLogin.setVisible(true);
@@ -162,7 +160,7 @@ public class TelaDoUsuario extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel bemVindoLabel = new JLabel();
-		bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + bolao.getUsuarioLogado().getUsername() + ".");
+		bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + MeuBolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 

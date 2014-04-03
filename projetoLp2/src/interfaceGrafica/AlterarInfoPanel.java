@@ -2,22 +2,20 @@ package interfaceGrafica;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 import projetoLp2.bolao.Jogador;
-import projetoLp2.bolao.Usuario;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class AlterarInfoPanel extends JPanel {
 	/**
@@ -129,6 +127,7 @@ public class AlterarInfoPanel extends JPanel {
 		passwordField.setBounds(131, 238, 437, 20);
 		panel.add(passwordField);
 		
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(131, 266, 437, 20);
 		panel.add(comboBox);

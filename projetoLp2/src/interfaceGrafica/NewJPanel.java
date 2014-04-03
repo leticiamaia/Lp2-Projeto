@@ -47,7 +47,6 @@ public class NewJPanel extends javax.swing.JPanel {
 	 */
 
 	private void initComponents() {
-		MeuBolao bolao = new MeuBolao();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
 		jTable1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -57,7 +56,7 @@ public class NewJPanel extends javax.swing.JPanel {
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		jTable1.setDefaultRenderer(String.class, centerRenderer);
 		try {
-			jTable1.setModel(new DefaultTableModel(bolao.getRanking(),
+			jTable1.setModel(new DefaultTableModel(MeuBolao.getRanking(),
 			new String[] { "Posi\u00E7\u00E3o", "Usu\u00E1rio",
 					"Pontua\u00E7\u00E3o" }) {
 				/**
