@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -22,10 +23,12 @@ public class AlterarInfoPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -337804168890997381L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JPasswordField passwordField;
-	private JTextField textField_2;
+	private JTextField recebeNovoNomeField;
+	private JTextField recebeNovoEmailField;
+	private JPasswordField recebeNovaSenhaField;
+	private JTextField recebNovaRespostaLabel;
+	private JPanel imagemPanel;
+	private JPanel formularioAlteraInfoPanel;
 	private Jogador user;
 
 	/**
@@ -38,193 +41,222 @@ public class AlterarInfoPanel extends JPanel {
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
-		final JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(627, 11, 647, 606);
-		panel_1.setVisible(true);
-		add(panel_1);
-		panel_1.setLayout(null);
+		criaImagemPanel();		
+		criaTituloDadosAtuais();
+		mostraDadosAtuais();
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/verticalDivider.png")));
-		label.setBounds(579, -32, 48, 715);
-		add(label);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		label_1.setBounds(-73, 85, 658, 21);
-		add(label_1);
-		
-		JLabel lblSeusDadosAtuais = new JLabel("Seus dados atuais");
-		lblSeusDadosAtuais.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-		lblSeusDadosAtuais.setBounds(120, 40, 304, 66);
-		add(lblSeusDadosAtuais);
-		
-		JLabel label_2 = new JLabel("Nome: ");
-		label_2.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_2.setBounds(102, 192, 41, 21);
-		add(label_2);
-		
-		JLabel label_3 = new JLabel("Email: ");
-		label_3.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_3.setBounds(107, 224, 48, 21);
-		add(label_3);
-		
-		JLabel label_5 = new JLabel("Pergunta Secreta: ");
-		label_5.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_5.setBounds(41, 256, 114, 21);
-		add(label_5);
-		
-		JLabel label_6 = new JLabel("Resposta Secreta: ");
-		label_6.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_6.setBounds(41, 288, 124, 21);
-		add(label_6);
-		
-		final JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(626, 11, 648, 606);
-		panel.setVisible(false);
-		add(panel);
-		panel.setLayout(null);
-		
-		JLabel label_7 = new JLabel("Alterar Informa\u00E7\u00F5es do Usu\u00E1rio");
-		label_7.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-		label_7.setBounds(36, 24, 658, 66);
-		panel.add(label_7);
-		
-		JLabel label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		label_8.setBounds(-20, 75, 658, 21);
-		panel.add(label_8);
-		
-		textField = new JTextField();
-		textField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				textField.setText(null);
-			}
-		});
-		textField.setText("Digite seu nome aqui");
-		textField.setForeground(Color.LIGHT_GRAY);
-		textField.setColumns(10);
-		textField.setBounds(131, 176, 437, 20);
-		panel.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				textField_1.setText(null);
-			}
-		});
-		textField_1.setText("Digite seu novo email");
-		textField_1.setForeground(Color.LIGHT_GRAY);
-		textField_1.setColumns(10);
-		textField_1.setBounds(131, 207, 437, 20);
-		panel.add(textField_1);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(131, 238, 437, 20);
-		panel.add(passwordField);
-		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(131, 266, 437, 20);
-		panel.add(comboBox);
-		
-		textField_2 = new JTextField();
-		textField_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				textField_2.setText(null);
-			}
-		});
-		textField_2.setText("Digite sua nova resposta secreta aqui");
-		textField_2.setForeground(Color.LIGHT_GRAY);
-		textField_2.setColumns(10);
-		textField_2.setBounds(131, 297, 437, 20);
-		panel.add(textField_2);
-		
-		JLabel label_9 = new JLabel("Nome: ");
-		label_9.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_9.setBounds(82, 176, 41, 21);
-		panel.add(label_9);
-		
-		JLabel label_10 = new JLabel("Email: ");
-		label_10.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_10.setBounds(82, 207, 48, 21);
-		panel.add(label_10);
-		
-		JLabel label_11 = new JLabel("Senha: ");
-		label_11.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_11.setBounds(82, 238, 41, 21);
-		panel.add(label_11);
-		
-		JLabel label_12 = new JLabel("Pergunta Secreta: ");
-		label_12.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_12.setBounds(21, 269, 114, 21);
-		panel.add(label_12);
-		
-		JLabel label_13 = new JLabel("Resposta Secreta: ");
-		label_13.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		label_13.setBounds(21, 297, 124, 21);
-		panel.add(label_13);
-		
-		JButton button = new JButton(" Confirmar");
-		button.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/tick.png")));
-		button.setBounds(189, 369, 121, 34);
-		panel.add(button);
-		
-		JButton button_1 = new JButton(" Cancelar");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panel_1.setVisible(true);
-				panel.setVisible(false);
-			}
-		});
-		button_1.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
-		button_1.setBounds(367, 369, 121, 34);
-		panel.add(button_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("Os campos das informações que permanecerão iguais não devem ser preenchidos.");
-		lblNewLabel_1.setBounds(92, 89, 476, 86);
-		panel.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JButton btnNewButton = new JButton("Editar Dados");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton botaoEditarDados = new JButton("Editar Dados");
+		botaoEditarDados.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/register_icon.gif")));
+		botaoEditarDados.setBounds(240, 382, 132, 36);
+		botaoEditarDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel_1.setVisible(false);
-				panel.setVisible(true);
+				imagemPanel.setVisible(false);
+				formularioAlteraInfoPanel.setVisible(true);
+			}
+		});
+		add(botaoEditarDados);
+		
+		JLabel verticalDivisorLabel = new JLabel("");
+		verticalDivisorLabel.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/verticalDivider.png")));
+		verticalDivisorLabel.setBounds(579, -32, 48, 715);
+		add(verticalDivisorLabel);
+		
+		formularioAlteraInfoPanel = new JPanel();
+		formularioAlteraInfoPanel.setBackground(Color.WHITE);
+		formularioAlteraInfoPanel.setBounds(626, 11, 648, 606);
+		formularioAlteraInfoPanel.setVisible(false);
+		add(formularioAlteraInfoPanel);
+		formularioAlteraInfoPanel.setLayout(null);
+		
+		criaTituloAlterarInfo();
+		
+		
+		recebeNovoNomeField = new JTextField();
+		recebeNovoNomeField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				recebeNovoNomeField.setText(null);
 			}
 		});
 		
-		JLabel label_16 = new JLabel("");
-		label_16.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/segura-trofeu.jpg")));
-		label_16.setBounds(55, 0, 554, 598);
-		panel_1.add(label_16);
-		btnNewButton.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/register_icon.gif")));
-		btnNewButton.setBounds(240, 382, 132, 36);
-		add(btnNewButton);
+		criaAlterarInfoLabels();		
+		criaAlterarInfoFields();		
 		
-		JLabel lblNewLabel = new JLabel(user.getUsername());
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(153, 195, 388, 14);
-		add(lblNewLabel);
+		JButton botaoConfirmar = new JButton(" Confirmar");
+		botaoConfirmar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/tick.png")));
+		botaoConfirmar.setBounds(189, 369, 121, 34);
+		formularioAlteraInfoPanel.add(botaoConfirmar);
 		
-		JLabel label_14 = new JLabel(user.getEmail());
-		label_14.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_14.setBounds(153, 227, 388, 14);
-		add(label_14);
+		JButton botaoCancelar = new JButton(" Cancelar");
+		botaoCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imagemPanel.setVisible(true);
+				formularioAlteraInfoPanel.setVisible(false);
+			}
+		});
+		botaoCancelar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
+		botaoCancelar.setBounds(367, 369, 121, 34);
+		formularioAlteraInfoPanel.add(botaoCancelar);
+	}
+
+	private void criaImagemPanel() {
+		imagemPanel = new JPanel();
+		imagemPanel.setBackground(Color.WHITE);
+		imagemPanel.setBounds(627, 11, 647, 606);
+		imagemPanel.setVisible(true);
+		add(imagemPanel);
+		imagemPanel.setLayout(null);
 		
-		JLabel label_4 = new JLabel(user.getPerguntaSecreta());
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_4.setBounds(153, 259, 388, 14);
-		add(label_4);
+		JLabel imagemGanhadorLabel = new JLabel("");
+		imagemGanhadorLabel.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/segura-trofeu.jpg")));
+		imagemGanhadorLabel.setBounds(55, 0, 554, 598);
+		imagemPanel.add(imagemGanhadorLabel);
+	}
+	
+	private void criaTituloDadosAtuais() {
+		JLabel seusDadosAtuaisLabel = new JLabel("Seus dados atuais");
+		seusDadosAtuaisLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
+		seusDadosAtuaisLabel.setBounds(120, 40, 304, 66);
+		add(seusDadosAtuaisLabel); 
 		
-		JLabel label_15 = new JLabel(user.getResposta());
-		label_15.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_15.setBounds(153, 291, 388, 14);
-		add(label_15);
+		JLabel horizontalDivisorLabel = new JLabel("");
+		horizontalDivisorLabel.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		horizontalDivisorLabel.setBounds(-73, 85, 658, 21);
+		add(horizontalDivisorLabel);
+	}
+	
+	private void mostraDadosAtuais() {
+		JLabel nomeAtualLabel = new JLabel("Nome: ");
+		nomeAtualLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		nomeAtualLabel.setBounds(102, 192, 41, 21);
+		add(nomeAtualLabel);
+		
+		JLabel nomeAtual = new JLabel(user.getNome());
+		nomeAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		nomeAtual.setBounds(153, 195, 388, 14);
+		add(nomeAtual);
+		
+		JLabel emailAtualLabel = new JLabel("Email: ");
+		emailAtualLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		emailAtualLabel.setBounds(107, 224, 48, 21);
+		add(emailAtualLabel);
+		
+		JLabel emailAtual = new JLabel(user.getEmail());
+		emailAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		emailAtual.setBounds(153, 227, 388, 14);
+		add(emailAtual);
+		
+		JLabel perguntaSecretaLabel = new JLabel("Pergunta Secreta: ");
+		perguntaSecretaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		perguntaSecretaLabel.setBounds(41, 256, 114, 21);
+		add(perguntaSecretaLabel);
+		
+		JLabel perguntaSecreta = new JLabel(user.getPerguntaSecreta());
+		perguntaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		perguntaSecreta.setBounds(153, 259, 388, 14);
+		add(perguntaSecreta);
+		
+		JLabel respostaSecretaLabel = new JLabel("Resposta Secreta: ");
+		respostaSecretaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		respostaSecretaLabel.setBounds(41, 288, 124, 21);
+		add(respostaSecretaLabel);
+		
+		JLabel respostaSecreta = new JLabel(user.getResposta());
+		respostaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		respostaSecreta.setBounds(153, 291, 388, 14);
+		add(respostaSecreta);
+	}
+	
+	private void criaTituloAlterarInfo() {
+		JLabel alterarInfoLabel = new JLabel("Alterar Informa\u00E7\u00F5es do Usu\u00E1rio");
+		alterarInfoLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
+		alterarInfoLabel.setBounds(36, 24, 658, 66);
+		formularioAlteraInfoPanel.add(alterarInfoLabel);
+		
+		JLabel horizontaDivisorAlteraInfoLabel = new JLabel("");
+		horizontaDivisorAlteraInfoLabel.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		horizontaDivisorAlteraInfoLabel.setBounds(-20, 75, 658, 21);
+		formularioAlteraInfoPanel.add(horizontaDivisorAlteraInfoLabel);
+		
+		JLabel instrucaoAlteraInfo = new JLabel("Os campos das informações que permanecerão iguais não devem ser preenchidos.");
+		instrucaoAlteraInfo.setBounds(92, 89, 476, 86);
+		formularioAlteraInfoPanel.add(instrucaoAlteraInfo);
+		instrucaoAlteraInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	}
+
+	private void criaAlterarInfoLabels() {
+		JLabel novoNomeLabel = new JLabel("Nome: ");
+		novoNomeLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		novoNomeLabel.setBounds(82, 176, 41, 21);
+		formularioAlteraInfoPanel.add(novoNomeLabel);
+		
+		JLabel novoEmailLabel = new JLabel("Email: ");
+		novoEmailLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		novoEmailLabel.setBounds(82, 207, 48, 21);
+		formularioAlteraInfoPanel.add(novoEmailLabel);
+		
+		JLabel novaSenha = new JLabel("Senha: ");
+		novaSenha.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		novaSenha.setBounds(82, 238, 41, 21);
+		formularioAlteraInfoPanel.add(novaSenha);
+		
+		JLabel novaPerguntaSecretaLabel = new JLabel("Pergunta Secreta: ");
+		novaPerguntaSecretaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		novaPerguntaSecretaLabel.setBounds(21, 269, 114, 21);
+		formularioAlteraInfoPanel.add(novaPerguntaSecretaLabel);
+		
+		JLabel novaRespostaLabel = new JLabel("Resposta Secreta: ");
+		novaRespostaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		novaRespostaLabel.setBounds(21, 297, 124, 21);
+		formularioAlteraInfoPanel.add(novaRespostaLabel);	
+	}
+	
+	private void criaAlterarInfoFields() {
+		recebeNovoNomeField.setText("Digite seu nome aqui");
+		recebeNovoNomeField.setForeground(Color.LIGHT_GRAY);
+		recebeNovoNomeField.setColumns(10);
+		recebeNovoNomeField.setBounds(131, 176, 437, 20);
+		formularioAlteraInfoPanel.add(recebeNovoNomeField);
+		
+		recebeNovoEmailField = new JTextField();
+		recebeNovoEmailField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				recebeNovoEmailField.setText(null);
+			}
+		});
+		recebeNovoEmailField.setText("Digite seu novo email");
+		recebeNovoEmailField.setForeground(Color.LIGHT_GRAY);
+		recebeNovoEmailField.setColumns(10);
+		recebeNovoEmailField.setBounds(131, 207, 437, 20);
+		formularioAlteraInfoPanel.add(recebeNovoEmailField);
+		
+		recebeNovaSenhaField = new JPasswordField();
+		recebeNovaSenhaField.setBounds(131, 238, 437, 20);
+		formularioAlteraInfoPanel.add(recebeNovaSenhaField);
+		
+		JComboBox<Object> novaPerguntaSecretaComboBox = new JComboBox<Object>();
+		novaPerguntaSecretaComboBox.setBounds(131, 266, 437, 20);
+		novaPerguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
+		novaPerguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
+		novaPerguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
+		novaPerguntaSecretaComboBox.addItem("Qual a primeira praia que voc\u00ea visitou?");
+		novaPerguntaSecretaComboBox.addItem("Qual era seu apelido de inf\u00e2ncia?");
+		novaPerguntaSecretaComboBox.addItem("Qual \u00e9 o emprego dos seus sonhos?");
+		novaPerguntaSecretaComboBox	.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
+		formularioAlteraInfoPanel.add(novaPerguntaSecretaComboBox);
+		
+		recebNovaRespostaLabel = new JTextField();
+		recebNovaRespostaLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				recebNovaRespostaLabel.setText(null);
+			}
+		});
+		recebNovaRespostaLabel.setText("Digite sua nova resposta secreta aqui");
+		recebNovaRespostaLabel.setForeground(Color.LIGHT_GRAY);
+		recebNovaRespostaLabel.setColumns(10);
+		recebNovaRespostaLabel.setBounds(131, 297, 437, 20);
+		formularioAlteraInfoPanel.add(recebNovaRespostaLabel);
 	}
 }
