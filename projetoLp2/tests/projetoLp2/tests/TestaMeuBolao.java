@@ -12,7 +12,7 @@ public class TestaMeuBolao {
 	private final String NOME = "nome";
 	private final String USERNAME = "user";
 	private final String SENHA = "senha";
-	private final String EMAIL = "email@.";
+	private final String EMAIL = "email@as.as";
 	private final String PERGUNTA = "pergunta?";
 	private final String RESPOSTA = "resposta";
 	private final String VAZIO = "";
