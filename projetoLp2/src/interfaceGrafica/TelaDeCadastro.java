@@ -259,8 +259,12 @@ public class TelaDeCadastro extends JFrame {
 	}
 	
 	public boolean verificaEmail() { 
+	if(!email.contains("@")) {
+		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+		return false;
+	}
 	int idx = email.lastIndexOf("@");
-	if (idx == 0) {
+	if (idx == 0 || idx == email.length()-1) {
 		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
 		return false;
 	}
