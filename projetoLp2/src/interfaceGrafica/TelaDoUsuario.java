@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 
 public class TelaDoUsuario extends JFrame {
@@ -33,7 +34,7 @@ public class TelaDoUsuario extends JFrame {
 	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
 	private static MeuBolao bolao;
-	private AlterarInfoPanel infoPanel = new AlterarInfoPanel();
+	private AlterarInfoPanel infoPanel;
 	private RankingPanel rankingPanel;
 
 	/**
@@ -58,16 +59,12 @@ public class TelaDoUsuario extends JFrame {
 	 */
 	public TelaDoUsuario(final MeuBolao bolao) {
 		TelaDoUsuario.bolao = bolao;
+		infoPanel = new AlterarInfoPanel((Jogador) bolao.getUsuarioLogado());
 		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
 		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
 		getContentPane().setLayout(flow);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
-		/*
-		 * Toolkit tk = Toolkit.getDefaultToolkit(); int xSize = ((int)
-		 * tk.getScreenSize().getWidth()); int ySize = ((int)
-		 * tk.getScreenSize().getHeight());
-		 */
 		setBounds(0, 0, 1300, 700);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

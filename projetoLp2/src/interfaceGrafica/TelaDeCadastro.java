@@ -70,7 +70,6 @@ public class TelaDeCadastro extends JFrame {
 		contentPane.setLayout(null);
 			
 		criaComponentesInstrucoes();
-
 		final JComboBox<String> perguntaSecretaComboBox = criaFormularioDeCadastro();
 
 		JButton botaoConfirma = new JButton(" Confirmar");
@@ -102,7 +101,6 @@ public class TelaDeCadastro extends JFrame {
 		});
 		botaoCancela.setBounds(410, 351, 121, 34);
 		contentPane.add(botaoCancela);
-
 	}
 
 	private void criaComponentesInstrucoes() {
@@ -236,7 +234,7 @@ public class TelaDeCadastro extends JFrame {
 					"O campo 'email' \u00e9 obrigatorio!");
 			sucesso = false;
 		}
-		sucesso = verificaEmail();
+
 		if (senha.equals("") || senhaConfirmada.equals("")) {
 			JOptionPane.showMessageDialog(null,
 					"Os campos de senha s\u00e3o obrigatorios!");
@@ -258,6 +256,7 @@ public class TelaDeCadastro extends JFrame {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		}
+		sucesso = verificaEmail();
 		return sucesso;
 	}
 	
@@ -267,14 +266,12 @@ public class TelaDeCadastro extends JFrame {
 		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
 		return false;
 	}
-
 	else {
 		int last = idx;
 		for (idx = idx+1; idx < email.length(); idx++) {
 			if (email.charAt(idx) == '.') {
 				if (idx - last == 1 || idx == email.length()-1) {
-					JOptionPane.showMessageDialog(null,
-							"E-mail Invalido.");
+					JOptionPane.showMessageDialog(null,	"E-mail Invalido.");
 					return false;
 				}
 				last = idx;
@@ -283,8 +280,4 @@ public class TelaDeCadastro extends JFrame {
 		return true;
 	}
 	}
-	}
-
-
-
-
+	} 
