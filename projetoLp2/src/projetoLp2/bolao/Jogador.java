@@ -6,6 +6,7 @@ package projetoLp2.bolao;
  * @author Leticia
  * 
  */
+@SuppressWarnings("rawtypes")
 public class Jogador extends Usuario implements Comparable {
 	private static final long serialVersionUID = 776610356730575144L;
 	private Aposta[] apostas = new Aposta[64];

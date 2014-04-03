@@ -12,6 +12,7 @@ import projetoLp2.bolao.OrdenaJogadores;
 
 public class TestaOrdenaJogadores {
 
+	@SuppressWarnings({ "unchecked", "unused" })
 	@Test
 	public void test() throws Exception {
 		List<Jogador> listaDeJogadores = new ArrayList<Jogador>();
