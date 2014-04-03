@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
@@ -14,7 +15,8 @@ public class MeuBolao {
 	ObjectInputStream ois;
 	ObjectOutputStream out;
 
-	public static boolean login2(String username, String senha) throws Exception {
+	public static boolean login2(String username, String senha)
+			throws Exception {
 		boolean retorno = false;
 		if (usuarioLogado != null)
 			throw new Exception("Nao e possivel logar com um usuario ja logado");
@@ -22,33 +24,34 @@ public class MeuBolao {
 				|| senha.equals(""))
 			throw new Exception(
 					"Username e Senha nao devem ser nulos ou vazios");
-		
-			Administrador admin = ControladorAdmin.ler();
-			if (admin.login(username, senha)) {
-				usuarioLogado = admin;
-				indexUsuarioLogado = -1;
+
+		Administrador admin = ControladorAdmin.ler();
+		if (admin.login(username, senha)) {
+			usuarioLogado = admin;
+			indexUsuarioLogado = -1;
+			retorno = true;
+		} else if (admin.getUsername().equals(username)) {
+			throw new Exception("Senha incorreta(s).");
+		}
+
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
+				.ler();
+		for (Jogador j : jogadores) {
+			if (j.login(username, senha)) {
+				indexUsuarioLogado = jogadores.indexOf(j);
+				usuarioLogado = j;
 				retorno = true;
-			} else if (admin.getUsername().equals(username)) {
+			} else if (j.getUsername().equals(username)) {
 				throw new Exception("Senha incorreta(s).");
 			}
-	
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
-			for (Jogador j : jogadores) {
-				if (j.login(username, senha)) {
-					indexUsuarioLogado = jogadores.indexOf(j);
-					usuarioLogado = j;
-					retorno = true;
-				} else if (j.getUsername().equals(username)) {
-					throw new Exception("Senha incorreta(s).");
-				}
-			}
+		}
 		if (!retorno)
 			throw new Exception("Usuario nao encontrado.");
 		return retorno;
 	}
 
-	public static boolean cadastraJogador(String nome, String username, String senha,
-			String email, String perguntaSecreta, String resposta)
+	public static boolean cadastraJogador(String nome, String username,
+			String senha, String email, String perguntaSecreta, String resposta)
 			throws Exception {
 		boolean retorno = true;
 
@@ -61,32 +64,32 @@ public class MeuBolao {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
 
-		
 		Administrador admin = ControladorAdmin.ler();
-			if (username.equals(admin.getUsername())) {
+		if (username.equals(admin.getUsername())) {
+			retorno = false;
+			throw new Exception("Usuario ja existente.");
+		}
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
+				.ler();
+
+		for (Jogador j : jogadores) {
+			if (j.getUsername().equals(username)) {
 				retorno = false;
 				throw new Exception("Usuario ja existente.");
 			}
-			ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
-			
-			for (Jogador j : jogadores) {
-				if (j.getUsername().equals(username)) {
-					retorno = false;
-					throw new Exception("Usuario ja existente.");
-				}
-				if (j.getEmail().equals(email)) {
-					retorno = false;
-					throw new Exception("Email ja cadastrado.");
-				}
+			if (j.getEmail().equals(email)) {
+				retorno = false;
+				throw new Exception("Email ja cadastrado.");
 			}
-			if (retorno) {
-				Jogador j = new Jogador(nome, username, senha, email,
-						perguntaSecreta, resposta);
-				jogadores.add(j);
-			}
+		}
+		if (retorno) {
+			Jogador j = new Jogador(nome, username, senha, email,
+					perguntaSecreta, resposta);
+			jogadores.add(j);
+		}
 
-			ControladorJogador.escreve(jogadores);
-			return retorno;
+		ControladorJogador.escreve(jogadores);
+		return retorno;
 	}
 
 	public static boolean checkUsuario(String usuario, String pergunta,
@@ -97,17 +100,18 @@ public class MeuBolao {
 			throw new Exception("Campos nao podem ser nulos ou vazios.");
 		}
 		boolean retorno = false;
-		
-		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
+
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
+				.ler();
 		for (Jogador j : jogadores) {
 			if (j.getUsername().equals(usuario)
 					&& j.getPerguntaSecreta().equals(pergunta)
 					&& j.getResposta().equals(respostaSecreta)
 					&& j.getEmail().equals(email)) {
-					usuarioLogado = j;
-					retorno = true;
-				}
+				usuarioLogado = j;
+				retorno = true;
 			}
+		}
 		return retorno;
 	}
 
@@ -132,9 +136,9 @@ public class MeuBolao {
 	public static boolean mudarSenhaAdmin() throws IOException {
 		Administrador admin = null;
 		boolean retorno = false;
-		
+
 		admin = (Administrador) ControladorAdmin.ler();
-		
+
 		if (admin.getUsername().equals(usuarioLogado.getUsername())) {
 			ControladorAdmin.escreve((Administrador) usuarioLogado);
 			retorno = true;
@@ -142,10 +146,11 @@ public class MeuBolao {
 		return retorno;
 	}
 
-	public static boolean mudarSenhaUsuario() throws IOException {	
-		ArrayList <Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador.ler();
+	public static boolean mudarSenhaUsuario() throws IOException {
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
+				.ler();
 		boolean retorno = false;
-		
+
 		for (int i = 0; i < jogadores.size(); i++) {
 			if (jogadores.get(i).getUsername()
 					.equals(usuarioLogado.getUsername())) {
@@ -165,10 +170,12 @@ public class MeuBolao {
 		return usuarioLogado;
 	}
 
-	public static String[][] getRanking() throws IOException, ClassNotFoundException {
-		ArrayList<Jogador> jogadores = (ArrayList<Jogador>)ControladorJogador.ler();
+	public static String[][] getRanking() throws IOException,
+			ClassNotFoundException {
+		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
+				.ler();
 		String[][] tabela = new String[10][3];
-		
+
 		for (int i = 0; i < 10; i++) {
 			tabela[i][0] = "" + (i + 1);
 			if (i < jogadores.size()) {
@@ -181,7 +188,6 @@ public class MeuBolao {
 		}
 		return tabela;
 	}
-	
 
 	public static String[][] getRankingUsuario() throws Exception {
 		if (usuarioLogado instanceof Administrador) {
@@ -194,4 +200,16 @@ public class MeuBolao {
 		return tabela;
 	}
 
+	public static boolean alterarInfo(String nome, String email, String senha,
+			String pergunta, String resposta) throws Exception {
+		if (senha != null) mudarSenha(senha);
+		if (nome != null) ((Jogador) usuarioLogado).setNome(nome);
+		if (email != null) ((Jogador) usuarioLogado).setEmail(email);
+		if (pergunta != null)((Jogador) usuarioLogado).setPerguntaSecreta(pergunta);
+		if (resposta != null) ((Jogador) usuarioLogado).setResposta(resposta);
+		List<Jogador> jogadores = ControladorJogador.ler();
+		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
+		ControladorJogador.escreve(jogadores);
+		return true;
+	}
 }

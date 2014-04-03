@@ -235,4 +235,12 @@ public class Jogador extends Usuario implements Comparable {
 		
 		return outroJogador.getPontos() - this.getPontos();
 	}
+	
+	/**
+	 * Muda o e-mail do Jogador
+	 * @param email Nomo e-mail do Jogador
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
