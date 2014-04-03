@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+/**
+ * Essa classe que representa uma partida da copa
+ * @author Marcela, Leticia, Orion, Lucas
+ */
 public class Partida implements Serializable {
 
 	private static final long serialVersionUID = -2980340733258351497L;
@@ -12,28 +16,22 @@ public class Partida implements Serializable {
 	int golsTime1, golsTime2;
 
 	/**
-	 * Construtor da Partida
-	 * 
-	 * @param time1
-	 *            - Time 1 da partida
-	 * @param time2
-	 *            - Time 2 da partida
-	 * @param data
-	 *            - Data do jogo
+	 * Construtor da classe
+	 * @param time1 - Time 1 da partida
+	 * @param time2 - Time 2 da partida
+	 * @param data - Data do jogo
 	 * @throws Exception
 	 *             Lança excessao caso o time 1 ou 2 sejam invalidos ou a data
 	 *             da partida é anterior ao dia atual
 	 */
-	public Partida(TimeCopa time1, TimeCopa time2, GregorianCalendar data)
-			throws Exception {
+	public Partida(TimeCopa time1, TimeCopa time2, GregorianCalendar data) throws Exception {
 		if (time1 == null || time2 == null)
 			throw new Exception("Time invalido!");
 
 		GregorianCalendar dataDeHoje = new GregorianCalendar();
 
 		if (data.before(dataDeHoje))
-			throw new Exception(
-					"Nao e possivel adicionar jogo com data anterior a atual!");
+			throw new Exception("Nao e possivel adicionar jogo com data anterior a atual!");
 
 		this.data = data;
 		this.time1 = time1;
@@ -44,14 +42,10 @@ public class Partida implements Serializable {
 
 	/**
 	 * Define os gols do time 1 e 2
-	 * 
-	 * @param golsTime1
-	 *            - Numero de gols do time 1
-	 * @param golsTime2
-	 *            - Numero de gols do time 2
+	 * @param golsTime1 - Numero de gols do time 1
+	 * @param golsTime2 - Numero de gols do time 2
 	 * @return um boolean se a operacao foi concluida
-	 * @throws Exception
-	 *             caso os gols do time 1 ou 2 sejam menor do que 0
+	 * @throws Exception caso os gols do time 1 ou 2 sejam menor do que 0
 	 */
 	public boolean setGols(int golsTime1, int golsTime2) throws Exception {
 		if (golsTime1 < 0 || golsTime2 < 0)
@@ -68,7 +62,6 @@ public class Partida implements Serializable {
 	/**
 	 * Retorna uma string da data da partida formatada no modelo dia, mes,
 	 * ano(dd/mm/aaaa)
-	 * 
 	 * @return string da data formatada
 	 */
 	public String getDataFormatada() {
@@ -78,7 +71,6 @@ public class Partida implements Serializable {
 
 	/**
 	 * Retorna a data do jogo sendo a data um gregorian calendar
-	 * 
 	 * @return a data do jogo
 	 */
 	public GregorianCalendar getData() {
@@ -87,7 +79,6 @@ public class Partida implements Serializable {
 
 	/**
 	 * Retorna o time 1
-	 * 
 	 * @return o time 1
 	 */
 	public TimeCopa getTime1() {
@@ -96,7 +87,6 @@ public class Partida implements Serializable {
 
 	/**
 	 * Retorna o time 2
-	 * 
 	 * @return o time 2
 	 */
 	public TimeCopa getTime2() {
@@ -105,10 +95,8 @@ public class Partida implements Serializable {
 
 	/**
 	 * Retorna o numero de gols que o time 1 fez durante a partida
-	 * 
 	 * @return o numero de gols do time 1
-	 * @throws Exception
-	 *             caso o jogo ainda nao tenha sido realizado
+	 * @throws Exception caso o jogo ainda nao tenha sido realizado
 	 */
 	public int getGolsTime1() throws Exception {
 		if (golsTime1 == -1)
@@ -118,10 +106,8 @@ public class Partida implements Serializable {
 
 	/**
 	 * Retorna o numero de gols que o time 2 fez durante a partida
-	 * 
 	 * @return o numero de gols do time 2
-	 * @throws Exception
-	 *             caso o jogo ainda nao tenha sido realizado
+	 * @throws Exception caso o jogo ainda nao tenha sido realizado
 	 */
 	public int getGolsTime2() throws Exception {
 		if (golsTime2 == -1)
@@ -132,11 +118,9 @@ public class Partida implements Serializable {
 	/**
 	 * Retorna o ganhador da partida: -1, 0, 1, caso o time 1 ganhe, seja
 	 * empate, ou que o time 2 ganhe, respectivamente.
-	 * 
 	 * @return o ganhador da partida: -1, 0, 1, caso o time 1 ganhe, seja
 	 *         empate, ou que o time 2 ganhe, respectivamente.
-	 * @throws Exception
-	 *             Caso a partida ainda não tenha acontecido
+	 * @throws Exception Caso a partida ainda não tenha acontecido
 	 */
 	public int resultado() throws Exception {
 		Integer g1 = getGolsTime1();

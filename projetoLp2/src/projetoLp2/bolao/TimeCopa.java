@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Essa classe representa um time da copa
+ * @author Marcela, Leticia, Orion, Lucas
+ */
 public class TimeCopa implements Serializable {
 	/**
 	 * 
@@ -13,9 +17,18 @@ public class TimeCopa implements Serializable {
 	private static final long serialVersionUID = 553510963983020232L;
 	private String nomeDoTime, abreviacaoNomeTime;
 	private ImageIcon bandeiraDoTime;
-	private List<Partida> partidas;
+	private List<Partida> partidasJogadas;
 	private int numVitorias, numDerrotas, numEmpates;
 
+	/**
+	 * Construtor da classe
+	 * @param caminhoBandeira - Caminho para a imagem da bandeira do time
+	 * @param nomeDoTime - Nome do time
+	 * @param abreviacaoNomeTime - Abreviacao do nome do time (com 3 caracteres)
+	 * @throws Exception
+	 *             se o caminho da bandeira, o nome do time ou a abreviacao
+	 *             forem invalidos
+	 */
 	public TimeCopa(String caminhoBandeira, String nomeDoTime,
 			String abreviacaoNomeTime) throws Exception {
 		if (caminhoBandeira == null || caminhoBandeira.length() == 0)
@@ -25,38 +38,54 @@ public class TimeCopa implements Serializable {
 		if (abreviacaoNomeTime == null || abreviacaoNomeTime.length() == 0)
 			throw new Exception("Abreciacao do nome do time invalido!");
 		if (abreviacaoNomeTime.length() != 3)
-			throw new Exception(
-					"Abreviacao do nome do time deve ter 3 caracteres!");
+			throw new Exception("Abreviacao do nome do time deve ter 3 caracteres!");
 
 		try {
 			bandeiraDoTime = new ImageIcon(
-					TimeCopa.class
-							.getResource("/projetoLp2/bolao/docs/bandeiras/"
-									+ caminhoBandeira));
+					TimeCopa.class.getResource("/projetoLp2/bolao/docs/bandeiras/"+ caminhoBandeira));
 		} catch (Exception e) {
 			throw new Exception("Imagem invalida!");
 		}
 
 		this.abreviacaoNomeTime = abreviacaoNomeTime.toUpperCase();
 		this.nomeDoTime = nomeDoTime;
-		partidas = new ArrayList<Partida>();
+		partidasJogadas = new ArrayList<Partida>();
 		numVitorias = 0;
 		numDerrotas = 0;
 		numEmpates = 0;
 	}
 
+	/**
+	 * Retorna o nome do time
+	 * @return nome do time
+	 */
 	public String getNomeDoTime() {
 		return nomeDoTime;
 	}
 
+	/**
+	 * Retorna a abreviacao do nome do time
+	 * @return a abreviacao do nome do time
+	 */
 	public String getAbreviacaoNomeTime() {
 		return abreviacaoNomeTime;
 	}
 
+	/**
+	 * Retorna a imagem da bandeira do time
+	 * @return imagem da bandeira do time
+	 */
 	public ImageIcon getBandeiraDoTime() {
 		return bandeiraDoTime;
 	}
 
+	/**
+	 * Adiciona a lista de partidas jogadas uma partida
+	 * @param p - Partida a ser adicionada
+	 * @throws Exception se a partida for invalida, se nenhum dos times
+	 * 			   da partida for o time referente ou se a partida ainda
+	 * 			   nao tiver sido realizada
+	 */
 	public void addPartidaJogada(Partida p) throws Exception {
 		if (p == null)
 			throw new Exception("Partida invalida!");
@@ -68,7 +97,7 @@ public class TimeCopa implements Serializable {
 			throw e;
 		}
 
-		partidas.add(p);
+		partidasJogadas.add(p);
 
 		if (p.getTime1().equals(this)) {
 			if (p.resultado() == 1)
@@ -87,14 +116,26 @@ public class TimeCopa implements Serializable {
 		}
 	}
 
+	/**
+	 * Retorna o numero de vitorias
+	 * @return numero de vitorias
+	 */
 	public int getNumVitorias() {
 		return numVitorias;
 	}
 
+	/**
+	 * Retorna o numero de derrotas
+	 * @return numero de derrotas
+	 */
 	public int getNumDerrotas() {
 		return numDerrotas;
 	}
 
+	/**
+	 * Retorna o numero de empates
+	 * @return numero de empates
+	 */
 	public int getNumEmpates() {
 		return numEmpates;
 	}
@@ -113,7 +154,7 @@ public class TimeCopa implements Serializable {
 		result = prime * result + numEmpates;
 		result = prime * result + numVitorias;
 		result = prime * result
-				+ ((partidas == null) ? 0 : partidas.hashCode());
+				+ ((partidasJogadas == null) ? 0 : partidasJogadas.hashCode());
 		return result;
 	}
 
@@ -142,10 +183,10 @@ public class TimeCopa implements Serializable {
 			return false;
 		if (numVitorias != other.numVitorias)
 			return false;
-		if (partidas == null) {
-			if (other.partidas != null)
+		if (partidasJogadas == null) {
+			if (other.partidasJogadas != null)
 				return false;
-		} else if (!partidas.equals(other.partidas))
+		} else if (!partidasJogadas.equals(other.partidasJogadas))
 			return false;
 		return true;
 	}
