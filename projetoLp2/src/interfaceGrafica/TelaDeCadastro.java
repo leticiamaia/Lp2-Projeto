@@ -244,6 +244,7 @@ public class TelaDeCadastro extends JFrame {
 					"As senhas n\u00e3o conferem!");
 			sucesso = false;
 		}
+		sucesso &= verificaEmail();
 		if (sucesso) {
 			try {
 				sucesso = MeuBolao.cadastraJogador(nome, usuario, senha, email, pergunta, respostaSecreta);
@@ -254,7 +255,6 @@ public class TelaDeCadastro extends JFrame {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		}
-		sucesso = verificaEmail();
 		return sucesso;
 	}
 	
