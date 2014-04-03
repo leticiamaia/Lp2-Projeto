@@ -4,19 +4,22 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import projetoLp2.bolao.Jogador;
+import projetoLp2.bolao.MeuBolao;
+
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class AlterarInfoPanel extends JPanel {
 	/**
@@ -27,6 +30,7 @@ public class AlterarInfoPanel extends JPanel {
 	private JTextField recebeNovoEmailField;
 	private JPasswordField recebeNovaSenhaField;
 	private JTextField recebNovaRespostaLabel;
+	private JComboBox<String> novaPerguntaSecretaComboBox;
 	private JPanel imagemPanel;
 	private JPanel formularioAlteraInfoPanel;
 	private Jogador user;
@@ -41,6 +45,13 @@ public class AlterarInfoPanel extends JPanel {
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
+		formularioAlteraInfoPanel = new JPanel();
+		formularioAlteraInfoPanel.setBackground(Color.WHITE);
+		formularioAlteraInfoPanel.setBounds(626, 11, 648, 606);
+		formularioAlteraInfoPanel.setVisible(false);
+		add(formularioAlteraInfoPanel);
+		formularioAlteraInfoPanel.setLayout(null);
+			
 		criaImagemPanel();		
 		criaTituloDadosAtuais();
 		mostraDadosAtuais();
@@ -60,47 +71,60 @@ public class AlterarInfoPanel extends JPanel {
 		verticalDivisorLabel.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/verticalDivider.png")));
 		verticalDivisorLabel.setBounds(579, -32, 48, 715);
 		add(verticalDivisorLabel);
-		
-		formularioAlteraInfoPanel = new JPanel();
-		formularioAlteraInfoPanel.setBackground(Color.WHITE);
-		formularioAlteraInfoPanel.setBounds(626, 11, 648, 606);
-		formularioAlteraInfoPanel.setVisible(false);
-		add(formularioAlteraInfoPanel);
-		formularioAlteraInfoPanel.setLayout(null);
-		
-		criaTituloAlterarInfo();
-		
-		
-		recebeNovoNomeField = new JTextField();
-		recebeNovoNomeField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				recebeNovoNomeField.setText(null);
-			}
-		});
-		
+				
+		criaTituloAlterarInfo();			
 		criaAlterarInfoLabels();		
 		criaAlterarInfoFields();		
 		
 		JButton botaoConfirmar = new JButton(" Confirmar");
+		botaoConfirmar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(MeuBolao.alterarInfo(recebeNovoNomeField.getText(), recebeNovoEmailField.getText(), recebeNovaSenhaField.getText(),
+					(String) novaPerguntaSecretaComboBox.getSelectedItem(), recebNovaRespostaLabel.getText())) {
+						JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
+						imagemPanel.setVisible(true); 
+						setVisible(false);
+						
+		}
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				
+			}
+		});
 		botaoConfirmar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/tick.png")));
-		botaoConfirmar.setBounds(189, 369, 121, 34);
+		botaoConfirmar.setBounds(255, 369, 121, 34);
 		formularioAlteraInfoPanel.add(botaoConfirmar);
 		
 		JButton botaoCancelar = new JButton(" Cancelar");
 		botaoCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				imagemPanel.setVisible(true);
-				formularioAlteraInfoPanel.setVisible(false);
+				refresh();
 			}
 		});
 		botaoCancelar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
-		botaoCancelar.setBounds(367, 369, 121, 34);
+		botaoCancelar.setBounds(428, 369, 121, 34);
 		formularioAlteraInfoPanel.add(botaoCancelar);
+		
+		JButton limparFormulario = new JButton(" Limpar");
+		limparFormulario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				recebeNovoNomeField.setText(null);
+				recebeNovoEmailField.setText(null);
+				recebeNovaSenhaField.setText(null);
+				recebNovaRespostaLabel.setText(null);				
+			}
+		});
+		limparFormulario.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/broom arrow.png")));
+		limparFormulario.setBounds(82, 369, 121, 34);
+		formularioAlteraInfoPanel.add(limparFormulario);
 	}
 
 	private void criaImagemPanel() {
 		imagemPanel = new JPanel();
+		
 		imagemPanel.setBackground(Color.WHITE);
 		imagemPanel.setBounds(627, 11, 647, 606);
 		imagemPanel.setVisible(true);
@@ -133,7 +157,7 @@ public class AlterarInfoPanel extends JPanel {
 		
 		JLabel nomeAtual = new JLabel(user.getNome());
 		nomeAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		nomeAtual.setBounds(153, 195, 388, 14);
+		nomeAtual.setBounds(153, 192, 388, 18);
 		add(nomeAtual);
 		
 		JLabel emailAtualLabel = new JLabel("Email: ");
@@ -143,7 +167,7 @@ public class AlterarInfoPanel extends JPanel {
 		
 		JLabel emailAtual = new JLabel(user.getEmail());
 		emailAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		emailAtual.setBounds(153, 227, 388, 14);
+		emailAtual.setBounds(153, 223, 388, 20);
 		add(emailAtual);
 		
 		JLabel perguntaSecretaLabel = new JLabel("Pergunta Secreta: ");
@@ -153,7 +177,7 @@ public class AlterarInfoPanel extends JPanel {
 		
 		JLabel perguntaSecreta = new JLabel(user.getPerguntaSecreta());
 		perguntaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		perguntaSecreta.setBounds(153, 259, 388, 14);
+		perguntaSecreta.setBounds(153, 257, 388, 17);
 		add(perguntaSecreta);
 		
 		JLabel respostaSecretaLabel = new JLabel("Resposta Secreta: ");
@@ -163,7 +187,7 @@ public class AlterarInfoPanel extends JPanel {
 		
 		JLabel respostaSecreta = new JLabel(user.getResposta());
 		respostaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		respostaSecreta.setBounds(153, 291, 388, 14);
+		respostaSecreta.setBounds(153, 287, 388, 21);
 		add(respostaSecreta);
 	}
 	
@@ -212,21 +236,14 @@ public class AlterarInfoPanel extends JPanel {
 	}
 	
 	private void criaAlterarInfoFields() {
-		recebeNovoNomeField.setText("Digite seu nome aqui");
-		recebeNovoNomeField.setForeground(Color.LIGHT_GRAY);
+		recebeNovoNomeField = new JTextField();
+		recebeNovoNomeField.setForeground(Color.BLACK);
 		recebeNovoNomeField.setColumns(10);
 		recebeNovoNomeField.setBounds(131, 176, 437, 20);
 		formularioAlteraInfoPanel.add(recebeNovoNomeField);
 		
 		recebeNovoEmailField = new JTextField();
-		recebeNovoEmailField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				recebeNovoEmailField.setText(null);
-			}
-		});
-		recebeNovoEmailField.setText("Digite seu novo email");
-		recebeNovoEmailField.setForeground(Color.LIGHT_GRAY);
+		recebeNovoEmailField.setForeground(Color.BLACK);
 		recebeNovoEmailField.setColumns(10);
 		recebeNovoEmailField.setBounds(131, 207, 437, 20);
 		formularioAlteraInfoPanel.add(recebeNovoEmailField);
@@ -235,7 +252,7 @@ public class AlterarInfoPanel extends JPanel {
 		recebeNovaSenhaField.setBounds(131, 238, 437, 20);
 		formularioAlteraInfoPanel.add(recebeNovaSenhaField);
 		
-		JComboBox<Object> novaPerguntaSecretaComboBox = new JComboBox<Object>();
+		novaPerguntaSecretaComboBox = new JComboBox<String>();
 		novaPerguntaSecretaComboBox.setBounds(131, 266, 437, 20);
 		novaPerguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
 		novaPerguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
@@ -247,16 +264,18 @@ public class AlterarInfoPanel extends JPanel {
 		formularioAlteraInfoPanel.add(novaPerguntaSecretaComboBox);
 		
 		recebNovaRespostaLabel = new JTextField();
-		recebNovaRespostaLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				recebNovaRespostaLabel.setText(null);
-			}
-		});
-		recebNovaRespostaLabel.setText("Digite sua nova resposta secreta aqui");
-		recebNovaRespostaLabel.setForeground(Color.LIGHT_GRAY);
+		recebNovaRespostaLabel.setForeground(Color.BLACK);
 		recebNovaRespostaLabel.setColumns(10);
 		recebNovaRespostaLabel.setBounds(131, 297, 437, 20);
 		formularioAlteraInfoPanel.add(recebNovaRespostaLabel);
+	}
+	
+	public void refresh() {
+		imagemPanel.setVisible(true);
+		formularioAlteraInfoPanel.setVisible(false);
+		recebeNovoNomeField.setText("");
+		recebeNovoEmailField.setText("");
+		recebeNovaSenhaField.setText("");
+		recebNovaRespostaLabel.setText("");
 	}
 }

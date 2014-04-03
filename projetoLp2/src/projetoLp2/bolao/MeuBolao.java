@@ -202,11 +202,11 @@ public class MeuBolao {
 
 	public static boolean alterarInfo(String nome, String email, String senha,
 			String pergunta, String resposta) throws Exception {
-		if (senha != null) mudarSenha(senha);
-		if (nome != null) ((Jogador) usuarioLogado).setNome(nome);
-		if (email != null) ((Jogador) usuarioLogado).setEmail(email);
-		if (pergunta != null)((Jogador) usuarioLogado).setPerguntaSecreta(pergunta);
-		if (resposta != null) ((Jogador) usuarioLogado).setResposta(resposta);
+		if (!senha.equals("")) mudarSenha(senha);
+		if (!nome.equals("")) ((Jogador) usuarioLogado).setNome(nome);
+		if (!email.equals("")) ((Jogador) usuarioLogado).setEmail(email);
+		if (!pergunta.equals(""))((Jogador) usuarioLogado).setPerguntaSecreta(pergunta);
+		if (!resposta.equals("")) ((Jogador) usuarioLogado).setResposta(resposta);
 		List<Jogador> jogadores = ControladorJogador.ler();
 		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
 		ControladorJogador.escreve(jogadores);

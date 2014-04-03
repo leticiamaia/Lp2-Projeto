@@ -81,6 +81,7 @@ public class TelaDoUsuario extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				rankingPanel.setVisible(false);
+				infoPanel.refresh();
 				infoPanel.setVisible(false);
 			}
 		});
@@ -98,6 +99,8 @@ public class TelaDoUsuario extends JFrame {
 		mntmVisualizarInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.add(infoPanel, 2, 0);
+				infoPanel.refresh();
+				infoPanel.revalidate();
 				infoPanel.setVisible(true);
 			}
 		});
