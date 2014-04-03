@@ -40,6 +40,13 @@ public class AlterarInfoPanel extends JPanel {
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
+		final JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(627, 11, 647, 606);
+		panel_1.setVisible(true);
+		add(panel_1);
+		panel_1.setLayout(null);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/verticalDivider.png")));
 		label.setBounds(579, -32, 48, 715);
@@ -79,18 +86,6 @@ public class AlterarInfoPanel extends JPanel {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(626, 11, 648, 606);
 		panel.setVisible(false);
-		
-		final JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(627, 11, 647, 606);
-		panel_1.setVisible(true);
-		add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel label_16 = new JLabel("");
-		label_16.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/segura-trofeu.jpg")));
-		label_16.setBounds(55, 0, 554, 598);
-		panel_1.add(label_16);
 		add(panel);
 		panel.setLayout(null);
 		
@@ -192,6 +187,11 @@ public class AlterarInfoPanel extends JPanel {
 		button_1.setBounds(367, 369, 121, 34);
 		panel.add(button_1);
 		
+		JLabel lblNewLabel_1 = new JLabel("Os campos das informações que permanecerão iguais não devem ser preenchidos.");
+		lblNewLabel_1.setBounds(92, 89, 476, 86);
+		panel.add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
 		JButton btnNewButton = new JButton("Editar Dados");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -199,6 +199,11 @@ public class AlterarInfoPanel extends JPanel {
 				panel.setVisible(true);
 			}
 		});
+		
+		JLabel label_16 = new JLabel("");
+		label_16.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/segura-trofeu.jpg")));
+		label_16.setBounds(55, 0, 554, 598);
+		panel_1.add(label_16);
 		btnNewButton.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/register_icon.gif")));
 		btnNewButton.setBounds(240, 382, 132, 36);
 		add(btnNewButton);
