@@ -8,6 +8,7 @@ import java.util.List;
 
 import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
+import projetoLp2.bolao.docs.ControladorPartidas;
 
 public class MeuBolao {
 	private static Usuario usuarioLogado;
@@ -211,5 +212,22 @@ public class MeuBolao {
 		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 		return true;
+	}
+	
+	public static void apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+		Partida partida = ControladorPartidas.ler()[indiceAposta];
+		List<Jogador> jogadores = ControladorJogador.ler();
+		Jogador jogador = jogadores.get(indexUsuarioLogado);
+		jogador.novaAposta(indiceAposta, partida, palpiteGolsTime1, palpiteGolsTime2);
+		jogadores.set(indexUsuarioLogado, jogador);
+		ControladorJogador.escreve(jogadores);
+	}
+	
+	public static void CancelarAposta(int indiceAposta) throws Exception {
+		List<Jogador> jogadores = ControladorJogador.ler();
+		Jogador jogador = jogadores.get(indexUsuarioLogado);
+		jogador.cancelarAposta(indiceAposta);
+		jogadores.set(indexUsuarioLogado, jogador);
+		ControladorJogador.escreve(jogadores);
 	}
 }
