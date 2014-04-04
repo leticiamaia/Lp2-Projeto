@@ -96,7 +96,7 @@ public class AlterarInfoPanel extends JPanel {
 			}
 		});
 		botaoConfirmar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/tick.png")));
-		botaoConfirmar.setBounds(255, 369, 121, 34);
+		botaoConfirmar.setBounds(411, 377, 121, 34);
 		formularioAlteraInfoPanel.add(botaoConfirmar);
 		
 		JButton botaoCancelar = new JButton(" Cancelar");
@@ -106,7 +106,7 @@ public class AlterarInfoPanel extends JPanel {
 			}
 		});
 		botaoCancelar.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
-		botaoCancelar.setBounds(428, 369, 121, 34);
+		botaoCancelar.setBounds(115, 377, 121, 34);
 		formularioAlteraInfoPanel.add(botaoCancelar);
 		
 		JButton limparFormulario = new JButton(" Limpar");
@@ -119,7 +119,7 @@ public class AlterarInfoPanel extends JPanel {
 			}
 		});
 		limparFormulario.setIcon(new ImageIcon(AlterarInfoPanel.class.getResource("/projetoLp2/bolao/docs/broom arrow.png")));
-		limparFormulario.setBounds(82, 369, 121, 34);
+		limparFormulario.setBounds(265, 377, 121, 34);
 		formularioAlteraInfoPanel.add(limparFormulario);
 	}
 
@@ -153,42 +153,42 @@ public class AlterarInfoPanel extends JPanel {
 	private void mostraDadosAtuais() {
 		JLabel nomeAtualLabel = new JLabel("Nome: ");
 		nomeAtualLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		nomeAtualLabel.setBounds(102, 192, 41, 21);
+		nomeAtualLabel.setBounds(111, 194, 41, 21);
 		add(nomeAtualLabel);
 		
 		nomeAtual = new JLabel(user.getNome());
 		nomeAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		nomeAtual.setBounds(153, 192, 388, 18);
+		nomeAtual.setBounds(162, 194, 388, 18);
 		add(nomeAtual);
 		
 		JLabel emailAtualLabel = new JLabel("Email: ");
 		emailAtualLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		emailAtualLabel.setBounds(107, 224, 48, 21);
+		emailAtualLabel.setBounds(116, 226, 48, 21);
 		add(emailAtualLabel);
 		
 		emailAtual = new JLabel(user.getEmail());
 		emailAtual.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		emailAtual.setBounds(153, 223, 388, 20);
+		emailAtual.setBounds(162, 225, 388, 20);
 		add(emailAtual);
 		
 		JLabel perguntaSecretaLabel = new JLabel("Pergunta Secreta: ");
 		perguntaSecretaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		perguntaSecretaLabel.setBounds(41, 256, 114, 21);
+		perguntaSecretaLabel.setBounds(50, 258, 114, 21);
 		add(perguntaSecretaLabel);
 		
 		perguntaSecreta = new JLabel(user.getPerguntaSecreta());
 		perguntaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		perguntaSecreta.setBounds(153, 257, 388, 17);
+		perguntaSecreta.setBounds(162, 259, 388, 17);
 		add(perguntaSecreta);
 		
 		JLabel respostaSecretaLabel = new JLabel("Resposta Secreta: ");
 		respostaSecretaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 14));
-		respostaSecretaLabel.setBounds(41, 288, 124, 21);
+		respostaSecretaLabel.setBounds(50, 290, 124, 21);
 		add(respostaSecretaLabel);
 		
 		respostaSecreta = new JLabel(user.getResposta());
 		respostaSecreta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		respostaSecreta.setBounds(153, 287, 388, 21);
+		respostaSecreta.setBounds(162, 289, 388, 21);
 		add(respostaSecreta);
 	}
 	
@@ -203,7 +203,7 @@ public class AlterarInfoPanel extends JPanel {
 		horizontaDivisorAlteraInfoLabel.setBounds(-20, 75, 658, 21);
 		formularioAlteraInfoPanel.add(horizontaDivisorAlteraInfoLabel);
 		
-		JLabel instrucaoAlteraInfo = new JLabel("Os campos das informações que permanecerão iguais não devem ser preenchidos.");
+		JLabel instrucaoAlteraInfo = new JLabel("Os campos das informações que permanecerão iguais não devem ser alterados.");
 		instrucaoAlteraInfo.setBounds(92, 89, 476, 86);
 		formularioAlteraInfoPanel.add(instrucaoAlteraInfo);
 		instrucaoAlteraInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -261,7 +261,8 @@ public class AlterarInfoPanel extends JPanel {
 		novaPerguntaSecretaComboBox.addItem("Qual a primeira praia que voc\u00ea visitou?");
 		novaPerguntaSecretaComboBox.addItem("Qual era seu apelido de inf\u00e2ncia?");
 		novaPerguntaSecretaComboBox.addItem("Qual \u00e9 o emprego dos seus sonhos?");
-		novaPerguntaSecretaComboBox	.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
+		novaPerguntaSecretaComboBox.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
+		novaPerguntaSecretaComboBox.setSelectedItem(user.getPerguntaSecreta());
 		formularioAlteraInfoPanel.add(novaPerguntaSecretaComboBox);
 		
 		recebNovaRespostaLabel = new JTextField();
