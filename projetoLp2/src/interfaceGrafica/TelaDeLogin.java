@@ -30,7 +30,7 @@ public class TelaDeLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField recebeLogin;
 	private JPasswordField recebeSenhaEncriptada;
-	private TelaDeCadastro telaDeCadastro;
+	private TelaDeCadastro telaDeCadastro = new TelaDeCadastro();
 	private TelaDoUsuario telaUser;
 	private TelaDoAdmin telaAdmin;
 	private TelaEsqueciDados telaEsqueceu = new TelaEsqueciDados(this);
@@ -98,6 +98,7 @@ public class TelaDeLogin extends JFrame {
 						else {
 							telaUser = new TelaDoUsuario();
 							telaUser.setVisible(true);
+							telaDeCadastro.setVisible(false);
 						}
 					}
 				} catch (Exception e1) {
@@ -117,7 +118,6 @@ public class TelaDeLogin extends JFrame {
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				telaDeCadastro = new TelaDeCadastro();
 				telaDeCadastro.setVisible(true);
 			}
 		});

@@ -1,9 +1,7 @@
 package interfaceGrafica;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +17,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import projetoLp2.bolao.Jogador;
@@ -31,10 +28,10 @@ public class TelaDoUsuario extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -2567460421508989944L;
-	private JLayeredPane contentPane;
 	private TelaDeLogin telaLogin;
 	private AlterarInfoPanel infoPanel;
 	private RankingPanel rankingPanel;
+	private TelaUserBoasVindas telaBoasVindas;
 
 	/**
 	 * Launch the application.
@@ -58,62 +55,49 @@ public class TelaDoUsuario extends JFrame {
 	 */
 	public TelaDoUsuario() {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
-		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
-		FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
-		getContentPane().setLayout(flow);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
-		setBounds(0, 0, 1300, 700);
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JLabel espaco = new JLabel("");
-		espaco.setText("  ");
-		menuBar.add(espaco);
-
-		JLabel casinha = new JLabel("");
+		telaBoasVindas = new TelaUserBoasVindas();
 		try {
 			rankingPanel = new RankingPanel();
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}
-		casinha.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				rankingPanel.setVisible(false);
-				infoPanel.refresh();
-				infoPanel.setVisible(false);
-			}
-		});
-		casinha.setForeground(new Color(0, 0, 0));
-		casinha.setIcon(new ImageIcon(TelaDoUsuario.class
-				.getResource("/projetoLp2/bolao/docs/casinha.png")));
-		casinha.setBounds(64, 134, 103, 49);
-		menuBar.add(casinha);
+		setTitle("Bet2Beat - Tela do Usu\u00E1rio");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setBounds(0, 0, 1300, 700);
+		setResizable(false);
+		add(telaBoasVindas);
+		add(infoPanel);
+		add(rankingPanel);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
 
-		JMenu mnInformaesPessoais = new JMenu(" Usu\u00E1rio");
-		menuBar.add(mnInformaesPessoais);
+		criaIconeHome(menuBar);
 
-		JMenuItem mntmVisualizarInformaes = new JMenuItem(
+		JMenu informaesPessoaisMenu = new JMenu(" Usu\u00E1rio");
+		menuBar.add(informaesPessoaisMenu);
+
+		JMenuItem visualizarInformacoesMenuItem = new JMenuItem(
 				"Alterar Informa\u00E7\u00F5es");
-		mntmVisualizarInformaes.addActionListener(new ActionListener() {
+		visualizarInformacoesMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.add(infoPanel, 2, 0);
-				infoPanel.refresh();
-				infoPanel.revalidate();
+				rankingPanel.setVisible(false);
+				telaBoasVindas.setVisible(false);
 				infoPanel.setVisible(true);
 			}
 		});
-		mnInformaesPessoais.add(mntmVisualizarInformaes);
+		 informaesPessoaisMenu.add(visualizarInformacoesMenuItem);
 
-		JMenuItem mntmAlterarSenha = new JMenuItem("Visualizar Ranking");
-		mntmAlterarSenha.addActionListener(new ActionListener() {
+		JMenuItem alterarSenhaMenuItem = new JMenuItem("Visualizar Ranking");
+		alterarSenhaMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane.add(rankingPanel, 2, 0);
+				infoPanel.setVisible(false);
+				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
 		});
-		mnInformaesPessoais.add(mntmAlterarSenha);
+		 informaesPessoaisMenu.add(alterarSenhaMenuItem);
 
 		JMenu menuApostas = new JMenu("Apostas");
 		menuBar.add(menuApostas);
@@ -139,74 +123,43 @@ public class TelaDoUsuario extends JFrame {
 		});
 		menuSobre.add(sobreMenuItem);
 
-		JMenu mnSair = new JMenu("Sair");
-		menuBar.add(mnSair);
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnSair.add(mntmSair);
-
-		menuBar.add(Box.createHorizontalGlue());
-
-		class exitaction implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
+		JMenu sairMenu = new JMenu("Sair");
+		sairMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				MeuBolao.desloga();
 				dispose();
 				telaLogin = new TelaDeLogin();
 				telaLogin.setVisible(true);
 			}
-		}
-		mntmSair.addActionListener(new exitaction());
-
-		contentPane = new JLayeredPane();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		});
+		menuBar.add(sairMenu);
+		
+		menuBar.add(Box.createHorizontalGlue());
 
 		JLabel bemVindoLabel = new JLabel();
 		bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + MeuBolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
-		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));	
+	}
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 1284, 640);
-		contentPane.add(panel, BorderLayout.NORTH);
-		panel.setLayout(null);
+	private void criaIconeHome(JMenuBar menuBar) {
+		JLabel espaco = new JLabel("");
+		espaco.setText("  ");
+		menuBar.add(espaco);
 
-		JLabel lblBoloCopaDo = new JLabel("Bol\u00E3o Copa do Mundo 2014");
-		lblBoloCopaDo.setBackground(Color.WHITE);
-		lblBoloCopaDo.setBounds(458, 62, 492, 61);
-		panel.add(lblBoloCopaDo);
-		lblBoloCopaDo.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(335, 11, 113, 161);
-		panel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
-
-		JLabel lblBemVindoEssa = new JLabel(
-				"Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");
-		lblBemVindoEssa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblBemVindoEssa.setBounds(263, 169, 817, 25);
-		panel.add(lblBemVindoEssa);
-
-		JLabel lblBetbeat = new JLabel("Bet2Beat");
-		lblBetbeat.setFont(new Font("Calibri Light", Font.PLAIN, 16));
-		lblBetbeat.setBounds(656, 134, 124, 14);
-		panel.add(lblBetbeat);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaDoUsuario.class
-				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		lblNewLabel_1.setBounds(420, 106, 530, 28);
-		panel.add(lblNewLabel_1);
-
-		NewJPanel tablePanel = new NewJPanel();
-		tablePanel.setBounds(341, 205, 640, 388);
-		panel.add(tablePanel);
-		tablePanel.setBackground(Color.WHITE);
-		tablePanel.setBorder(null);
-		tablePanel.setVisible(true);
+		JLabel casinha = new JLabel("");
+		casinha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				infoPanel.setVisible(false);
+				rankingPanel.setVisible(false);
+				telaBoasVindas.setVisible(true);	
+			}
+		});
+		casinha.setForeground(new Color(0, 0, 0));
+		casinha.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/casinha.png")));
+		casinha.setBounds(64, 134, 103, 49);
+		menuBar.add(casinha);
 	}
 }

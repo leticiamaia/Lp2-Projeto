@@ -42,6 +42,7 @@ public class AlterarInfoPanel extends JPanel {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
+		setVisible(false);
 		
 		formularioAlteraInfoPanel = new JPanel();
 		formularioAlteraInfoPanel.setBackground(Color.WHITE);

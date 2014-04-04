@@ -29,6 +29,7 @@ public class RankingPanel extends JPanel {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
+		setVisible(false);
 
 		JLabel lblNewLabel = new JLabel("Ranking");
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
