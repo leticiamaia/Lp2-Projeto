@@ -11,27 +11,6 @@ import java.util.GregorianCalendar;
  */
 public abstract class Aposta implements Serializable {
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aposta other = (Aposta) obj;
-		if (palpiteGolsTime1 != other.palpiteGolsTime1)
-			return false;
-		if (palpiteGolsTime2 != other.palpiteGolsTime2)
-			return false;
-		if (partida == null) {
-			if (other.partida != null)
-				return false;
-		} else if (!partida.equals(other.partida))
-			return false;
-		return true;
-	}
-
 	/**
 	 * 
 	 */
@@ -131,4 +110,24 @@ public abstract class Aposta implements Serializable {
 		return resultado;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aposta other = (Aposta) obj;
+		if (palpiteGolsTime1 != other.palpiteGolsTime1)
+			return false;
+		if (palpiteGolsTime2 != other.palpiteGolsTime2)
+			return false;
+		if (partida == null) {
+			if (other.partida != null)
+				return false;
+		} else if (!partida.equals(other.partida))
+			return false;
+		return true;
+	}
 }

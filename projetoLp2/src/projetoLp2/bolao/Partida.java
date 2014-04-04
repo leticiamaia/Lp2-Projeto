@@ -11,9 +11,9 @@ import java.util.GregorianCalendar;
 public class Partida implements Serializable {
 
 	private static final long serialVersionUID = -2980340733258351497L;
-	GregorianCalendar data;
-	TimeCopa time1, time2;
-	int golsTime1, golsTime2;
+	private GregorianCalendar data;
+	private TimeCopa time1, time2;
+	private int golsTime1, golsTime2;
 
 	/**
 	 * Construtor da classe
@@ -99,8 +99,7 @@ public class Partida implements Serializable {
 	 * @throws Exception caso o jogo ainda nao tenha sido realizado
 	 */
 	public int getGolsTime1() throws Exception {
-		if (golsTime1 == -1)
-			throw new Exception("Jogo ainda nao foi realizado!");
+		testaJogoNaoRealizado();
 		return golsTime1;
 	}
 
@@ -110,8 +109,7 @@ public class Partida implements Serializable {
 	 * @throws Exception caso o jogo ainda nao tenha sido realizado
 	 */
 	public int getGolsTime2() throws Exception {
-		if (golsTime2 == -1)
-			throw new Exception("Jogo ainda nao foi realizado!");
+		testaJogoNaoRealizado();
 		return golsTime2;
 	}
 
@@ -126,5 +124,22 @@ public class Partida implements Serializable {
 		Integer g1 = getGolsTime1();
 		Integer g2 = getGolsTime2();
 		return g1.compareTo(g2);
+	}
+	
+	/**
+	 * Testa se uma partida ja foi realizada
+	 * @throws Exception se a partida ainda não foi realizada.
+	 */
+	protected void testaJogoNaoRealizado() throws Exception{
+		if (golsTime1 == -1 || golsTime2 == -1)
+			throw new Exception("Jogo ainda nao foi realizado!");
+	}
+	
+	/**
+	 * Retorna a string contendo a abreviacao do time 1 X abreviacao do time 2
+	 */
+	@Override
+	public String toString(){
+		return getTime1().getAbreviacaoNomeTime() + " X " + getTime2().getAbreviacaoNomeTime();
 	}
 }
