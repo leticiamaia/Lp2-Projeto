@@ -214,6 +214,11 @@ public class MeuBolao {
 		return true;
 	}
 	
+	public static Partida[] getPartidas() {
+		Partida[] partidas = ControladorPartidas.ler();
+		return partidas;
+	}
+	
 	public static boolean apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
 		boolean retorno = false;
 		Partida partida = ControladorPartidas.ler()[indiceAposta];
