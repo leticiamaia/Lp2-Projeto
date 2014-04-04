@@ -214,20 +214,20 @@ public class MeuBolao {
 		return true;
 	}
 	
-	public static void apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+	public static boolean apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+		boolean retorno = false;
 		Partida partida = ControladorPartidas.ler()[indiceAposta];
 		List<Jogador> jogadores = ControladorJogador.ler();
-		Jogador jogador = jogadores.get(indexUsuarioLogado);
-		jogador.novaAposta(indiceAposta, partida, palpiteGolsTime1, palpiteGolsTime2);
-		jogadores.set(indexUsuarioLogado, jogador);
+		if (((Jogador)usuarioLogado).novaAposta(indiceAposta, partida, palpiteGolsTime1, palpiteGolsTime2)) retorno = true;
+		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
 		ControladorJogador.escreve(jogadores);
+		return retorno;
 	}
 	
 	public static void CancelarAposta(int indiceAposta) throws Exception {
 		List<Jogador> jogadores = ControladorJogador.ler();
-		Jogador jogador = jogadores.get(indexUsuarioLogado);
-		jogador.cancelarAposta(indiceAposta);
-		jogadores.set(indexUsuarioLogado, jogador);
+		((Jogador) usuarioLogado).cancelarAposta(indiceAposta);
+		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 	}
 }

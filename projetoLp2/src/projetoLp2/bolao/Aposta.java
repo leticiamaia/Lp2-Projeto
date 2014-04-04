@@ -83,7 +83,7 @@ public abstract class Aposta implements Serializable {
 
 	/**
 	 * Retorna o valor do palpite do numero de gols do time 2.
-	 * @return valor do palpite do numero de gols do time 1.
+	 * @return valor do palpite do numero de gols do time 2.
 	 */
 	public int getPalpiteGolsTime2() {
 		return palpiteGolsTime2;

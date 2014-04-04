@@ -76,7 +76,7 @@ public class Jogador extends Usuario implements Comparable {
 			int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
 		if (indiceAposta < 0)
 			throw new Exception("Indice invalido");
-		if (partida == null)
+		if (partida == null)		
 			throw new Exception("Partida Inexistente");
 
 		if (apostas[indiceAposta] != null) {
@@ -87,19 +87,19 @@ public class Jogador extends Usuario implements Comparable {
 
 		if (indiceAposta >= 0 && indiceAposta < 48) {
 			apostas[indiceAposta] = new ApostaPrimeiraFase(partida,
-					palpiteGolsTime2, palpiteGolsTime2);
+					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 48 && indiceAposta < 56) {
 			apostas[indiceAposta] = new ApostaOitavasDeFinal(partida,
-					palpiteGolsTime2, palpiteGolsTime2);
+					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 56 && indiceAposta < 60) {
 			apostas[indiceAposta] = new ApostaQuartasDeFinal(partida,
-					palpiteGolsTime2, palpiteGolsTime2);
+					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
@@ -107,12 +107,12 @@ public class Jogador extends Usuario implements Comparable {
 														// mesmo peso que
 			// semifinal
 			apostas[indiceAposta] = new ApostaSemiFinal(partida,
-					palpiteGolsTime2, palpiteGolsTime2);
+					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta == 63) {
-			apostas[indiceAposta] = new ApostaFinal(partida, palpiteGolsTime2,
+			apostas[indiceAposta] = new ApostaFinal(partida, palpiteGolsTime1,
 					palpiteGolsTime2);
 			return true;
 		}
