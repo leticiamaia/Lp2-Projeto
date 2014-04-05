@@ -14,11 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-
-import projetoLp2.bolao.MeuBolao;
 
 public class TelaDoAdmin extends JFrame {
 

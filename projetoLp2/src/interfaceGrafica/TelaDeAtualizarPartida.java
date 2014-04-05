@@ -2,9 +2,13 @@ package interfaceGrafica;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import projetoLp2.bolao.Partida;
@@ -40,12 +44,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 		inicializaComboPartidas(partidas);
 		add(partidas);
 		
-		JComboBox gols1 = new JComboBox();
+		final JComboBox gols1 = new JComboBox();
 		gols1.setBounds(383, 323, 67, 43);
 		inicializaCombo(gols1);
 		add(gols1);
 		
-		JComboBox gols2 = new JComboBox();
+		final JComboBox gols2 = new JComboBox();
 		gols2.setBounds(960, 323, 67, 43);
 		inicializaCombo(gols2);
 		add(gols2);
@@ -57,6 +61,31 @@ public class TelaDeAtualizarPartida extends JPanel {
 		JLabel label = new JLabel("Gols 2");
 		label.setBounds(958, 281, 70, 28);
 		add(label);
+		
+		JButton btnCadastrar = new JButton("ATUALIZAR!");
+		btnCadastrar.setBounds(522, 411, 246, 52);
+		btnCadastrar.addActionListener(new ActionListener() {
+			private Integer nGols1;
+			private Integer nGols2;
+			private String data;
+
+			public void actionPerformed(ActionEvent arg0) {
+				nGols1 = (Integer) gols1.getSelectedItem();
+				nGols2 = (Integer) gols2.getSelectedItem();
+				JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
+			}
+		});
+		add(btnCadastrar);
+		
+		JButton button = new JButton("voltar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				contentPane.setVisible(true);
+			}
+		});
+		button.setBounds(518, 521, 246, 52);
+		add(button);
 		
 	}
 
@@ -71,7 +100,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 	}
 
 	private void inicializaCombo(JComboBox gols) {
-		for(int i = 0; i<=15; i++) {
+		for(Integer i = 0; i<=15; i++) {
 			gols.addItem(i);
 		}
 	}
