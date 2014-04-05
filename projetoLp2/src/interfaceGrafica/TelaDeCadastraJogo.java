@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 public class TelaDeCadastraJogo extends JPanel {
 
+	private JPanel contentPane;
+	
 	private JTextField abrevTime1;
 	private JTextField abrevTime2;
 	private JTextField textField;
@@ -20,7 +22,10 @@ public class TelaDeCadastraJogo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo() {
+	public TelaDeCadastraJogo(final JPanel contentPane) {
+		
+		this.contentPane = contentPane;
+		
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -61,6 +66,16 @@ public class TelaDeCadastraJogo extends JPanel {
 		JButton btnCadastrar = new JButton("CADASTRAR!");
 		btnCadastrar.setBounds(522, 411, 246, 52);
 		add(btnCadastrar);
+		
+		JButton button = new JButton("voltar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				contentPane.setVisible(true);
+			}
+		});
+		button.setBounds(518, 521, 246, 52);
+		add(button);
 		btnCadastrar.addActionListener(new ActionListener() {
 			private String time1;
 			private String time2;
