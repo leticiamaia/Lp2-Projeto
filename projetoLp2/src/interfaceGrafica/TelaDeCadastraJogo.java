@@ -12,12 +12,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.ControladorTimes;
+
 public class TelaDeCadastraJogo extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 834875740282875192L;
+
 	private JPanel contentPane;
-	
-	private JTextField abrevTime1;
-	private JTextField abrevTime2;
+
 	private JTextField textField;
 	
 	/**
@@ -36,16 +42,6 @@ public class TelaDeCadastraJogo extends JPanel {
 		TelaDoAdministradorLabel.setBounds(502, 23, 378, 52);
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
 		add(TelaDoAdministradorLabel);
-
-		abrevTime1 = new JTextField();
-		abrevTime1.setBounds(319, 302, 137, 36);
-		abrevTime1.setColumns(10);
-		add(abrevTime1);
-
-		abrevTime2 = new JTextField();
-		abrevTime2.setColumns(10);
-		abrevTime2.setBounds(839, 302, 137, 36);
-		add(abrevTime2);
 
 		JLabel lblNewLabel = new JLabel("Time1");
 		lblNewLabel.setBounds(286+33, 250, 223, 40);
@@ -79,12 +75,12 @@ public class TelaDeCadastraJogo extends JPanel {
 		add(button);
 		
 		final JComboBox comboTime1 = new JComboBox();
-		comboTime1.setBounds(313, 383, 143, 36);
+		comboTime1.setBounds(319, 302, 143, 36);
 		adicionaTimesCombo(comboTime1);
 		add(comboTime1);
 		
 		final JComboBox comboTime2 = new JComboBox();
-		comboTime2.setBounds(839, 383, 143, 36);
+		comboTime2.setBounds(836, 302, 143, 36);
 		adicionaTimesCombo(comboTime2);
 		add(comboTime2);
 		
@@ -104,7 +100,11 @@ public class TelaDeCadastraJogo extends JPanel {
 	}
 
 	private void adicionaTimesCombo(JComboBox comboTime) {
-		 comboTime.addItem("Brasil");
-		 comboTime.addItem("Argentina");
+		ControladorTimes controlador = new ControladorTimes();
+		TimeCopa[] times = controlador.ler();
+		
+		//for(int i = 0; i < 32; i++) {
+		//	comboTime.addItem(times[i].getAbreviacaoNomeTime());
+		//}
 	}
 }
