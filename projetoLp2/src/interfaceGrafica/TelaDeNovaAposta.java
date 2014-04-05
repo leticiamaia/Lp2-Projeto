@@ -69,7 +69,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelTeste.add(tLabel);
 		
-		final JPanel panelPrimeiraFase = new JPanel();
+		final JPanel panelPrimeiraFase = new JPanel(new GridBagLayout());
 		panelPrimeiraFase.setBounds(0, 0, 822, 452);
 		mainPanel.add(panelPrimeiraFase, comboItens[1]);
 		
@@ -86,7 +86,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		
 		GridBagConstraints cons = new GridBagConstraints();
 		cons = new GridBagConstraints();
-		cons.fill = GridBagConstraints.LINE_START;
+		cons.fill = GridBagConstraints.CENTER;
 		cons.gridwidth = 1;
 		cons.gridx = 0;
 		
@@ -98,15 +98,16 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		
 		for(int i=0; i < 48; i++){
 			if(ControladorPartidas.ler()[i] != null){
-				JLabel numLabel = new JLabel(i + 1 + ".");
+/*				JLabel numLabel = new JLabel(i + 1 + ".");
 				numLabel.setBounds(281, 103, 278, 16);
-				panelPrimeiraFase.add(numLabel);
+				panelPrimeiraFase.add(numLabel);*/
                 JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
 			panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
-			panelPrimeiraFase.add(numLabel, cons);
+			//panelPrimeiraFase.add(numLabel, cons);
+			panelPrimeiraFase.add(time, cons);
 			}
 		}
 
