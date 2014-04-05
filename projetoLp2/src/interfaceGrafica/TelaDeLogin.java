@@ -110,10 +110,6 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(botaoEntrar); 
 
 		JButton botaoCadastrar = new JButton("Cadastrar");
-		botaoCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
 			@Override

@@ -32,6 +32,7 @@ public class AlterarInfoPanel extends JPanel {
 	private JPanel formularioAlteraInfoPanel;
 	private Jogador user;
 	private String novoNome, novoEmail, novaPergunta, novaResposta;
+	private JPanel telaBoaVindas;
 
 	/**
 	 * Create the panel.
@@ -75,8 +76,10 @@ public class AlterarInfoPanel extends JPanel {
 		criaAlterarInfoLabels();		
 		criaAlterarInfoFields();		
 		
+		telaBoaVindas = new TelaUserBoasVindas();
 		JButton botaoConfirmar = new JButton(" Confirmar");
 		botaoConfirmar.addActionListener(new ActionListener() {
+
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				novoNome = recebeNovoNomeField.getText();
@@ -89,7 +92,8 @@ public class AlterarInfoPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
 						imagemPanel.setVisible(true); 
 						setVisible(false);
-						ehVazio();			
+						ehVazio();
+						telaBoaVindas.setVisible(true);
 		}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -287,5 +291,6 @@ public class AlterarInfoPanel extends JPanel {
 		if (!novoEmail.equals("")) emailAtual.setText(novoEmail);
 		if (!novaPergunta.equals("")) perguntaSecreta.setText(novaPergunta);
 		if (!novaResposta.equals("")) respostaSecreta.setText(novaResposta);
+		refresh();
 	}
 }

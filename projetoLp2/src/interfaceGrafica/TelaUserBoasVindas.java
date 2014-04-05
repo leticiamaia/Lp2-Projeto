@@ -21,6 +21,7 @@ public class TelaUserBoasVindas extends JPanel {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
+		setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);

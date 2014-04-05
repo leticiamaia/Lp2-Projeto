@@ -55,6 +55,7 @@ public class TelaDoUsuario extends JFrame {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		telaBoasVindas = new TelaUserBoasVindas();
 		telaAposta = new TelaDeNovaAposta();
+		telaBoasVindas.setVisible(true);
 		try {
 			rankingPanel = new RankingPanel();
 		} catch (Exception e1) {
@@ -67,7 +68,6 @@ public class TelaDoUsuario extends JFrame {
 		setBackground(Color.WHITE);
 		setResizable(false);
 		add(telaBoasVindas);
-		telaBoasVindas.setVisible(true);
 		add(infoPanel);
 		add(rankingPanel);
 		add(telaAposta);
