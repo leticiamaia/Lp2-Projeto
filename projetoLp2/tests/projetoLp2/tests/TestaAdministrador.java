@@ -1,6 +1,5 @@
 package projetoLp2.tests;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.junit.After;
@@ -9,11 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
-import projetoLp2.bolao.Jogador;
-import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
-import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaAdministrador {
