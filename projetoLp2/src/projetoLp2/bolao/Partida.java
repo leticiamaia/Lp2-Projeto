@@ -153,6 +153,7 @@ public class Partida implements Serializable {
 	 */
 	public JPanel panelDaPartida(){
 		JPanel container = new JPanel();
+		container.setVisible(true);
 		
 		container.add(new JLabel(getTime1().getBandeiraDoTime()));
 		container.add(new JLabel(getTime1().getNomeDoTime() + " X"));
@@ -162,10 +163,10 @@ public class Partida implements Serializable {
 		return container;
 	}
 	
-	public static void main(String[] args) throws Exception {
+/*	public static void main(String[] args) throws Exception {
 		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-	}
+	}*/
 	
 }

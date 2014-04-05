@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,14 +18,16 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import projetoLp2.bolao.MeuBolao;
+
 public class TelaDoAdmin extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -494761158154562268L;
-	private JPanel contentPane;
-	private TelaDeCadastrarJogo telaDeCadastro;
+	private JPanel contentPane, mainPane;
+	private TelaDeCadastraJogo telaDeCadastro;
 
 	/**
 	 * Launch the application.
@@ -48,12 +51,18 @@ public class TelaDoAdmin extends JFrame {
 	public TelaDoAdmin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1300, 700);	
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		mainPane = new JPanel();
+		telaDeCadastro = new TelaDeCadastraJogo();
+		mainPane.setBackground(Color.WHITE);
+		mainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainPane);
+		mainPane.setLayout(null);
 		
+		contentPane = new JPanel(null);
+		contentPane.setVisible(true);
+		contentPane.setBounds(0, 0, 1284, 660);	
+		contentPane.setBackground(Color.WHITE);
+		 
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela do Administrador");
 		TelaDoAdministradorLabel.setBounds(436, 22, 378, 52);
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
@@ -63,24 +72,6 @@ public class TelaDoAdmin extends JFrame {
 		lblNewLabel.setBounds(104, 85, 1047, 32);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(lblNewLabel);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(70, 152, 866, 453);
-		scrollPane.setLayout(null);
-		contentPane.add(scrollPane);
-		
-		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
-		btnCadastrarJogo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				telaDeCadastro = new TelaDeCadastrarJogo();
-				telaDeCadastro.setVisible(true);
-			}
-		});
-		btnCadastrarJogo.setBounds(1033, 213, 164, 49);
-		contentPane.add(btnCadastrarJogo);
 		
 		JButton btnAtualizarRanking = new JButton("Atualizar Ranking");
 		btnAtualizarRanking.setBounds(1033, 368, 164, 49);
@@ -94,6 +85,19 @@ public class TelaDoAdmin extends JFrame {
 		});
 		contentPane.add(btnAtualizarPartida);
 		
+		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
+		btnCadastrarJogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setVisible(false);
+				telaDeCadastro.setVisible(true);
+			}
+		});
+		btnCadastrarJogo.setBounds(1033, 213, 164, 49);
+		contentPane.add(btnCadastrarJogo);
+		
+		mainPane.add(contentPane);
+		mainPane.add(telaDeCadastro);
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -102,6 +106,13 @@ public class TelaDoAdmin extends JFrame {
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		mnSair.add(mntmSair);
+		
+		menuBar.add(Box.createHorizontalGlue());
+
+		JLabel bemVindoLabel = new JLabel();
+		//bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + MeuBolao.getUsuarioLogado().getUsername() + ".");
+		menuBar.add(bemVindoLabel);
+		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));	
 		
 	}
 }

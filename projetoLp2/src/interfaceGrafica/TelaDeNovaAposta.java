@@ -4,11 +4,14 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.CardLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
 
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
@@ -33,14 +36,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 	 */
 	
 	private  final JPanel mainPanel;
-	//private static Partida[] partidas;
 	
-/*	public static void main(String[] args) throws Exception {
-		partidas[0] = new Partida(ControladorTimes.ler()[0], ControladorTimes.ler()[1], new GregorianCalendar(2014, 8, 15, 15, 30));
-		ControladorPartidas.escreve(partidas);
-		partidas = ControladorPartidas.ler();
-	}
-	*/
 	public TelaDeNovaAposta() {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
@@ -64,7 +60,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelTeste.add(tLabel);
 		
-		final JPanel panelPrimeiraFase = new JPanel(null);
+		final JPanel panelPrimeiraFase = new JPanel(new GridBagLayout());
 		panelPrimeiraFase.setBounds(0, 0, 822, 452);
 		mainPanel.add(panelPrimeiraFase, comboItens[1]);
 		
@@ -77,26 +73,23 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		testeLabel.setBounds(281, 103, 278, 16);
 		panelOitavaFinal.add(testeLabel);
 		
-		JLabel testLabel = new JLabel("Selecione a fase do jogo que voc\u00EA quer apostar:");
-		testLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		testLabel.setBounds(281, 103, 278, 16);
-		panelPrimeiraFase.add(testLabel);
-		//panelPrimeiraFase.add(partidas[0].panelDaPartida());
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaDeNovaAposta.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
-		label.setBounds(154, 103, 291, 251);
-		panelPrimeiraFase.add(label);
+		for(int i=0; i < 48; i++){
+			if(ControladorPartidas.ler()[i] != null){
+				GridBagConstraints c = new GridBagConstraints();
+				c = new GridBagConstraints();
+				c.fill = GridBagConstraints.CENTER;
+				c.gridwidth = 2;
+				c.gridx = 0;
+				c.gridy = i;
+			panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
+			//JRadioButton
+			}
+		}
 
 		final JComboBox comboBox = new JComboBox(comboItens);
 		comboBox.addItemListener(this);
 		comboBox.setBounds(600, 110, 360, 26);
 		add(comboBox);
-		
-		JLabel lblSelecioneAFase = new JLabel("Selecione a fase do jogo que voc\u00EA quer apostar:");
-		lblSelecioneAFase.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSelecioneAFase.setBounds(320, 112, 385, 20);
-		add(lblSelecioneAFase);
 
 		JLabel fazerApostaLabel = new JLabel("Fazer uma Nova Aposta");
 		fazerApostaLabel.setBackground(Color.WHITE);
