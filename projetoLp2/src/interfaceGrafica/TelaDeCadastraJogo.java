@@ -78,12 +78,12 @@ public class TelaDeCadastraJogo extends JPanel {
 		button.setBounds(518, 521, 246, 52);
 		add(button);
 		
-		JComboBox comboTime1 = new JComboBox();
+		final JComboBox comboTime1 = new JComboBox();
 		comboTime1.setBounds(313, 383, 143, 36);
 		adicionaTimesCombo(comboTime1);
 		add(comboTime1);
 		
-		JComboBox comboTime2 = new JComboBox();
+		final JComboBox comboTime2 = new JComboBox();
 		comboTime2.setBounds(839, 383, 143, 36);
 		adicionaTimesCombo(comboTime2);
 		add(comboTime2);
@@ -95,10 +95,10 @@ public class TelaDeCadastraJogo extends JPanel {
 			private String data;
 
 			public void actionPerformed(ActionEvent arg0) {
-				time1 = abrevTime1.getText();
-				time2 = abrevTime2.getText();
+				time1 = (String) comboTime1.getSelectedItem();
+				time2 = (String) comboTime2.getSelectedItem();
 				data = textField.getText();
-				JOptionPane.showMessageDialog(null, "Nada foi feito com sucesso!");
+				JOptionPane.showMessageDialog(null, "Time1:" + time1 + "\n" + "Time2:" + time2);
 			}
 		});
 	}
