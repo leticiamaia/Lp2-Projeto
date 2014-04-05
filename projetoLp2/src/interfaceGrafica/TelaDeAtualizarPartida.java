@@ -19,7 +19,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4071085146304599749L;
+	private static final long serialVersionUID = 213413234132321L;
 	private JPanel contentPane;
 	
 	/**
