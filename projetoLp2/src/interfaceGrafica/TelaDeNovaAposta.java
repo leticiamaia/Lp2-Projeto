@@ -8,10 +8,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
@@ -19,11 +24,15 @@ import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.ControladorTimes;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.GregorianCalendar;
+import javax.swing.JScrollBar;
+import java.awt.Insets;
 
 public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
@@ -60,7 +69,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelTeste.add(tLabel);
 		
-		final JPanel panelPrimeiraFase = new JPanel(new GridBagLayout());
+		final JPanel panelPrimeiraFase = new JPanel();
 		panelPrimeiraFase.setBounds(0, 0, 822, 452);
 		mainPanel.add(panelPrimeiraFase, comboItens[1]);
 		
@@ -73,16 +82,31 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		testeLabel.setBounds(281, 103, 278, 16);
 		panelOitavaFinal.add(testeLabel);
 		
+		ButtonGroup grupo = new ButtonGroup();		
+		
+		GridBagConstraints cons = new GridBagConstraints();
+		cons = new GridBagConstraints();
+		cons.fill = GridBagConstraints.LINE_START;
+		cons.gridwidth = 1;
+		cons.gridx = 0;
+		
+		GridBagConstraints c = new GridBagConstraints();
+		c = new GridBagConstraints();
+		c.fill = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.gridx = 1;
+		
 		for(int i=0; i < 48; i++){
 			if(ControladorPartidas.ler()[i] != null){
-				GridBagConstraints c = new GridBagConstraints();
-				c = new GridBagConstraints();
-				c.fill = GridBagConstraints.CENTER;
-				c.gridwidth = 2;
-				c.gridx = 0;
+				JLabel numLabel = new JLabel(i + 1 + ".");
+				numLabel.setBounds(281, 103, 278, 16);
+				panelPrimeiraFase.add(numLabel);
+              /*JRadioButton time = new JRadioButton();
+				grupo.add(time);*/
 				c.gridy = i;
+				cons.gridy = i;
 			panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
-			//JRadioButton
+			panelPrimeiraFase.add(numLabel, cons);
 			}
 		}
 
