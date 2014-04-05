@@ -10,9 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class TelaDeCadastraJogo extends JPanel {
 
+	private JPanel contentPane;
+	
 	private JTextField abrevTime1;
 	private JTextField abrevTime2;
 	private JTextField textField;
@@ -20,7 +23,10 @@ public class TelaDeCadastraJogo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo() {
+	public TelaDeCadastraJogo(final JPanel contentPane) {
+		
+		this.contentPane = contentPane;
+		
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -61,18 +67,44 @@ public class TelaDeCadastraJogo extends JPanel {
 		JButton btnCadastrar = new JButton("CADASTRAR!");
 		btnCadastrar.setBounds(522, 411, 246, 52);
 		add(btnCadastrar);
+		
+		JButton button = new JButton("voltar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				contentPane.setVisible(true);
+			}
+		});
+		button.setBounds(518, 521, 246, 52);
+		add(button);
+		
+		final JComboBox comboTime1 = new JComboBox();
+		comboTime1.setBounds(313, 383, 143, 36);
+		adicionaTimesCombo(comboTime1);
+		add(comboTime1);
+		
+		final JComboBox comboTime2 = new JComboBox();
+		comboTime2.setBounds(839, 383, 143, 36);
+		adicionaTimesCombo(comboTime2);
+		add(comboTime2);
+		
+		
 		btnCadastrar.addActionListener(new ActionListener() {
 			private String time1;
 			private String time2;
 			private String data;
 
 			public void actionPerformed(ActionEvent arg0) {
-				time1 = abrevTime1.getText();
-				time2 = abrevTime2.getText();
+				time1 = (String) comboTime1.getSelectedItem();
+				time2 = (String) comboTime2.getSelectedItem();
 				data = textField.getText();
-				JOptionPane.showMessageDialog(null, "Nada foi feito com sucesso!");
+				JOptionPane.showMessageDialog(null, "Time1:" + time1 + "\n" + "Time2:" + time2);
 			}
 		});
 	}
 
+	private void adicionaTimesCombo(JComboBox comboTime) {
+		 comboTime.addItem("Brasil");
+		 comboTime.addItem("Argentina");
+	}
 }

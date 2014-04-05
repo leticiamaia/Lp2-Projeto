@@ -52,13 +52,13 @@ public class TelaDoAdmin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1300, 700);	
 		mainPane = new JPanel();
-		telaDeCadastro = new TelaDeCadastraJogo();
 		mainPane.setBackground(Color.WHITE);
 		mainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPane);
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
+		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
 		contentPane.setVisible(true);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
