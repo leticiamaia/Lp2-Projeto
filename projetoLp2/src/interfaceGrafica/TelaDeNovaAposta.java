@@ -10,6 +10,7 @@ import java.awt.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.ControladorPartidas;
@@ -28,11 +30,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.GregorianCalendar;
+
 import javax.swing.JScrollBar;
+
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
 
 public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
@@ -96,6 +102,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		c.gridwidth = 2;
 		c.gridx = 1;
 		
+		final ArrayList<JRadioButton> radios = new ArrayList<JRadioButton>();
+		
 		for(int i=0; i < 48; i++){
 			if(ControladorPartidas.ler()[i] != null){
 /*				JLabel numLabel = new JLabel(i + 1 + ".");
@@ -108,9 +116,16 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
 			//panelPrimeiraFase.add(numLabel, cons);
 			panelPrimeiraFase.add(time, cons);
+			radios.add(time);
 			}
 		}
+		
+		JButton botaoSubmeter = new JButton("Submeter");
+		botaoSubmeter.setBounds(104, 98, 99, 23);
+		mainPanel.add(botaoSubmeter); 
 
+		botaoSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		
 		final JComboBox comboBox = new JComboBox(comboItens);
 		comboBox.addItemListener(this);
 		comboBox.setBounds(600, 110, 360, 26);
@@ -126,6 +141,24 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		add(divisorHorizontalLabel);
 		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		divisorHorizontalLabel.setBounds(-88, 59, 700, 21);
+		
+		JButton btnSubmeter = new JButton("Submeter");
+		btnSubmeter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				for (int i = 0; i < radios.size();i++) {
+					if (radios.get(i).isEnabled()) {
+						try {
+							MeuBolao.apostar(i, 0, 0);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btnSubmeter.setBounds(523, 617, 89, 23);
+		add(btnSubmeter);
 		
 	/*	itemSelecionado = (String) comboBox.getSelectedItem();
 		if(!itemSelecionado.equals("Selecione uma fase") && itemSelecionado.equals("Primeira Fase"))

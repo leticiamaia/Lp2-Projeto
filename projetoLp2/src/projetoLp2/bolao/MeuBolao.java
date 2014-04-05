@@ -226,6 +226,7 @@ public class MeuBolao {
 		if (((Jogador)usuarioLogado).novaAposta(indiceAposta, partida, palpiteGolsTime1, palpiteGolsTime2)) retorno = true;
 		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
 		ControladorJogador.escreve(jogadores);
+		System.out.println("apostado");
 		return retorno;
 	}
 	
