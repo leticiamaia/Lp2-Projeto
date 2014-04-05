@@ -24,6 +24,7 @@ public class TelaDoAdmin extends JFrame {
 	 */
 	private static final long serialVersionUID = -494761158154562268L;
 	private JPanel contentPane;
+	private TelaDeCadastrarJogo telaDeCadastro;
 
 	/**
 	 * Launch the application.
@@ -73,6 +74,9 @@ public class TelaDoAdmin extends JFrame {
 		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
 		btnCadastrarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				telaDeCadastro = new TelaDeCadastrarJogo();
+				telaDeCadastro.setVisible(true);
 			}
 		});
 		btnCadastrarJogo.setBounds(1033, 213, 164, 49);
