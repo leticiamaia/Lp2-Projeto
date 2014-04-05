@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  * Essa classe que representa uma partida da copa
  * @author Marcela, Leticia, Orion, Lucas
@@ -142,4 +145,32 @@ public class Partida implements Serializable {
 	public String toString(){
 		return getTime1().getAbreviacaoNomeTime() + " X " + getTime2().getAbreviacaoNomeTime();
 	}
+	
+	/**
+	 * Cria um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes
+	 * @return um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes
+	 */
+	public JPanel panelDaPartida(){
+		JPanel container = new JPanel();
+		
+		container.add(new JLabel(getTime1().getBandeiraDoTime()));
+		container.add(new JLabel(getTime1().getAbreviacaoNomeTime() + " X "));
+		container.add(new JLabel(getTime2().getAbreviacaoNomeTime()));
+		container.add(new JLabel(getTime2().getBandeiraDoTime()));
+		
+		return container;
+	}
+	
+	/*public static void main(String[] args) throws Exception {
+		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+		
+		
+		JFrame janela = new JFrame("Teste de Label Partida");
+		janela.setVisible(true);
+		janela.add(partida.panelDaPartida());
+		janela.pack();
+	}
+	*/
 }
