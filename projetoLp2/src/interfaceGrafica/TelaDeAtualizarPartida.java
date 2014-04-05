@@ -7,6 +7,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import projetoLp2.bolao.Partida;
+import projetoLp2.bolao.docs.ControladorPartidas;
+
 public class TelaDeAtualizarPartida extends JPanel {
 
 	/**
@@ -34,6 +37,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		
 		JComboBox partidas = new JComboBox();
 		partidas.setBounds(383, 187, 645, 82);
+		inicializaComboPartidas(partidas);
 		add(partidas);
 		
 		JComboBox gols1 = new JComboBox();
@@ -53,6 +57,16 @@ public class TelaDeAtualizarPartida extends JPanel {
 		JLabel label = new JLabel("Gols 2");
 		label.setBounds(958, 281, 70, 28);
 		add(label);
+		
+	}
+
+	private void inicializaComboPartidas(JComboBox partidas) {
+		Partida[] partidasDisponiveis;
+		ControladorPartidas controlador = new ControladorPartidas();
+		partidasDisponiveis = controlador.ler();
+		for(int i = 0; i < partidasDisponiveis.length; i++) {
+			partidas.addItem(partidasDisponiveis[i]);
+		}
 		
 	}
 

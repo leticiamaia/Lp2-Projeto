@@ -103,7 +103,7 @@ public class TelaDeCadastraJogo extends JPanel {
 		ControladorTimes controlador = new ControladorTimes();
 		TimeCopa[] times = controlador.ler();
 		
-		//for(int i = 0; i < 32; i++) {
+		//for(int i = 0; i < times.length; i++) {
 		//	comboTime.addItem(times[i].getAbreviacaoNomeTime());
 		//}
 	}
