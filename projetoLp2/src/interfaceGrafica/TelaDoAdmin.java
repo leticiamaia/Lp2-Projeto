@@ -14,11 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-
-import projetoLp2.bolao.MeuBolao;
 
 public class TelaDoAdmin extends JFrame {
 
@@ -28,6 +24,7 @@ public class TelaDoAdmin extends JFrame {
 	private static final long serialVersionUID = -494761158154562268L;
 	private JPanel contentPane, mainPane;
 	private TelaDeCadastraJogo telaDeCadastro;
+	private TelaDeAtualizarPartida telaDeAtualizarPartida;
 
 	/**
 	 * Launch the application.
@@ -59,6 +56,7 @@ public class TelaDoAdmin extends JFrame {
 		
 		contentPane = new JPanel(null);
 		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
+		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
 		contentPane.setVisible(true);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
@@ -78,11 +76,13 @@ public class TelaDoAdmin extends JFrame {
 		contentPane.add(btnAtualizarRanking);
 		
 		JButton btnAtualizarPartida = new JButton("Atualizar Partida");
-		btnAtualizarPartida.setBounds(1033, 291, 164, 49);
 		btnAtualizarPartida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setVisible(false);
+				telaDeAtualizarPartida.setVisible(true);
 			}
 		});
+		btnAtualizarPartida.setBounds(1033, 291, 164, 49);
 		contentPane.add(btnAtualizarPartida);
 		
 		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
