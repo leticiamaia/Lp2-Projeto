@@ -101,8 +101,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				JLabel numLabel = new JLabel(i + 1 + ".");
 				numLabel.setBounds(281, 103, 278, 16);
 				panelPrimeiraFase.add(numLabel);
-              /*JRadioButton time = new JRadioButton();
-				grupo.add(time);*/
+                JRadioButton time = new JRadioButton();
+				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
 			panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
