@@ -77,10 +77,27 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		panelOitavaFinal.setBounds(0, 0, 822, 452);
 		mainPanel.add(panelOitavaFinal, comboItens[2]);
 		
+		final JPanel panelQuartaFinal = new JPanel(null);
+		panelQuartaFinal.setBounds(0, 0, 822, 452);
+		mainPanel.add(panelQuartaFinal, comboItens[3]);
+		
+		final JPanel panelSemiFinal = new JPanel(null);
+		panelSemiFinal.setBounds(0, 0, 822, 452);
+		mainPanel.add(panelSemiFinal, comboItens[4]);
+		
+		final JPanel panelFinal = new JPanel(null);
+		panelFinal.setBounds(0, 0, 822, 452);
+		mainPanel.add(panelFinal, comboItens[4]);
+		
 		JLabel testeLabel = new JLabel("Painel Oitava de final");
 		testeLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		testeLabel.setBounds(281, 103, 278, 16);
 		panelOitavaFinal.add(testeLabel);
+		
+		JLabel quartaFinal = new JLabel("Painel Quarta de final");
+		quartaFinal.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		quartaFinal.setBounds(281, 103, 278, 16);
+		panelQuartaFinal.add(quartaFinal);
 		
 		ButtonGroup grupo = new ButtonGroup();		
 		
