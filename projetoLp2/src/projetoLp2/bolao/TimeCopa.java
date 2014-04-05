@@ -1,5 +1,6 @@
 package projetoLp2.bolao;
 
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class TimeCopa implements Serializable {
 			bandeiraDoTime = new ImageIcon(
 					TimeCopa.class.getResource("/projetoLp2/bolao/docs/bandeiras/"+ caminhoBandeira));
 		} catch (Exception e) {
-			throw new Exception("Imagem invalida!");
+			throw new FileNotFoundException("Imagem invalida!");
 		}
 
 		this.abreviacaoNomeTime = abreviacaoNomeTime.toUpperCase();
