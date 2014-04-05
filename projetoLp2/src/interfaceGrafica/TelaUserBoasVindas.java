@@ -21,7 +21,6 @@ public class TelaUserBoasVindas extends JPanel {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
-		setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -34,6 +33,11 @@ public class TelaUserBoasVindas extends JPanel {
 		bolaoCopaLabel.setBounds(458, 62, 492, 61);
 		panel.add(bolaoCopaLabel);
 		bolaoCopaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
+		
+		JLabel divisorHorizontalLabel = new JLabel("");
+		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		divisorHorizontalLabel.setBounds(420, 106, 530, 28);
+		panel.add(divisorHorizontalLabel);
 
 		JLabel logoCopa2014 = new JLabel("");
 		logoCopa2014.setBackground(Color.WHITE);
@@ -51,12 +55,6 @@ public class TelaUserBoasVindas extends JPanel {
 		lblBetbeat.setFont(new Font("Calibri Light", Font.PLAIN, 16));
 		lblBetbeat.setBounds(656, 134, 124, 14);
 		panel.add(lblBetbeat);
-
-		JLabel divisorHorizontalLabel = new JLabel("");
-		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class
-				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
-		divisorHorizontalLabel.setBounds(420, 106, 530, 28);
-		panel.add(divisorHorizontalLabel);
 
 		NewJPanel tablePanel = new NewJPanel();
 		tablePanel.setBounds(341, 205, 640, 388);

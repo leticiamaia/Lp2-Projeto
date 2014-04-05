@@ -12,13 +12,10 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.border.EmptyBorder;
-
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 
@@ -32,6 +29,7 @@ public class TelaDoUsuario extends JFrame {
 	private AlterarInfoPanel infoPanel;
 	private RankingPanel rankingPanel;
 	private TelaUserBoasVindas telaBoasVindas;
+	private TelaDeNovaAposta telaAposta;
 
 	/**
 	 * Launch the application.
@@ -56,6 +54,7 @@ public class TelaDoUsuario extends JFrame {
 	public TelaDoUsuario() {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		telaBoasVindas = new TelaUserBoasVindas();
+		telaAposta = new TelaDeNovaAposta();
 		try {
 			rankingPanel = new RankingPanel();
 		} catch (Exception e1) {
@@ -65,10 +64,13 @@ public class TelaDoUsuario extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		setBounds(0, 0, 1300, 700);
+		setBackground(Color.WHITE);
 		setResizable(false);
 		add(telaBoasVindas);
+		telaBoasVindas.setVisible(true);
 		add(infoPanel);
 		add(rankingPanel);
+		add(telaAposta);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -84,6 +86,7 @@ public class TelaDoUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				rankingPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
+				telaAposta.setVisible(false);
 				infoPanel.setVisible(true);
 			}
 		});
@@ -94,6 +97,7 @@ public class TelaDoUsuario extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				infoPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
+				telaAposta.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
 		});
@@ -103,6 +107,16 @@ public class TelaDoUsuario extends JFrame {
 		menuBar.add(menuApostas);
 
 		JMenuItem fazerApostaMenuItem = new JMenuItem("Fazer nova aposta");
+		fazerApostaMenuItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				infoPanel.setVisible(false);
+				telaBoasVindas.setVisible(false);
+				rankingPanel.setVisible(false);
+				telaAposta.setVisible(true);
+			}
+		});
 		menuApostas.add(fazerApostaMenuItem);
 
 		JMenuItem verApostaMenuItem = new JMenuItem("Visualizar apostas");
@@ -114,6 +128,9 @@ public class TelaDoUsuario extends JFrame {
 		JMenu menuSobre = new JMenu("Sobre");
 		menuBar.add(menuSobre);
 
+		JMenuItem regrasMenuItem = new JMenuItem("Regras do Jogo");
+		menuSobre.add(regrasMenuItem);
+		
 		JMenuItem sobreMenuItem = new JMenuItem("Sobre o Bet2Beat");
 		sobreMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,6 +171,7 @@ public class TelaDoUsuario extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				infoPanel.setVisible(false);
 				rankingPanel.setVisible(false);
+				telaAposta.setVisible(false);
 				telaBoasVindas.setVisible(true);	
 			}
 		});
