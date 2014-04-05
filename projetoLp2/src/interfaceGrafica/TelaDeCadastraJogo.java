@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class TelaDeCadastraJogo extends JPanel {
 
@@ -76,6 +77,18 @@ public class TelaDeCadastraJogo extends JPanel {
 		});
 		button.setBounds(518, 521, 246, 52);
 		add(button);
+		
+		JComboBox comboTime1 = new JComboBox();
+		comboTime1.setBounds(313, 383, 143, 36);
+		adicionaTimesCombo(comboTime1);
+		add(comboTime1);
+		
+		JComboBox comboTime2 = new JComboBox();
+		comboTime2.setBounds(839, 383, 143, 36);
+		adicionaTimesCombo(comboTime2);
+		add(comboTime2);
+		
+		
 		btnCadastrar.addActionListener(new ActionListener() {
 			private String time1;
 			private String time2;
@@ -90,4 +103,8 @@ public class TelaDeCadastraJogo extends JPanel {
 		});
 	}
 
+	private void adicionaTimesCombo(JComboBox comboTime) {
+		 comboTime.addItem("Brasil");
+		 comboTime.addItem("Argentina");
+	}
 }
