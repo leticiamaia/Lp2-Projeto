@@ -102,7 +102,8 @@ public class TelaDeLogin extends JFrame {
 						}
 					}
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null,e1.getMessage());
+					e1.printStackTrace();
+					//JOptionPane.showMessageDialog(null,e1.getMessage());
 				} 
 			}
 		});

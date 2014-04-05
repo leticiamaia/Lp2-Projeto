@@ -15,7 +15,8 @@ public class Partida implements Serializable {
 
 	private static final long serialVersionUID = -2980340733258351497L;
 	private GregorianCalendar data;
-	private TimeCopa time1, time2;
+	private TimeCopa time1;
+	private TimeCopa time2;
 	private int golsTime1, golsTime2;
 
 	/**
@@ -154,23 +155,17 @@ public class Partida implements Serializable {
 		JPanel container = new JPanel();
 		
 		container.add(new JLabel(getTime1().getBandeiraDoTime()));
-		container.add(new JLabel(getTime1().getAbreviacaoNomeTime() + " X "));
-		container.add(new JLabel(getTime2().getAbreviacaoNomeTime()));
+		container.add(new JLabel(getTime1().getNomeDoTime() + " X"));
+		container.add(new JLabel(getTime2().getNomeDoTime()));
 		container.add(new JLabel(getTime2().getBandeiraDoTime()));
 		
 		return container;
 	}
 	
-	/*public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-		
-		
-		JFrame janela = new JFrame("Teste de Label Partida");
-		janela.setVisible(true);
-		janela.add(partida.panelDaPartida());
-		janela.pack();
 	}
-	*/
+	
 }
