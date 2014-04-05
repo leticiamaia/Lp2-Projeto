@@ -1,0 +1,40 @@
+O BeatToBeat é um aplicativo de apostas para a Copa Do Mundo de 2014. Você irá competir com os outros usuários apostando nos jogos, e pode visualizar o ranking geral e sua posição em relação aos demais.
+1 -  Se cadastrando:
+Para se cadastrar, clique no botão cadastrar da tela inical e preencha os campos com as informações pedidas.
+2 - Para Efetuar o Login:
+Para se logar na sua conta, preencha os campos da tela inical com seu username (login) e sua senha e aperte o botão “Entrar”.
+3 - Esquecei senha:
+Caso você tenha esquecido sua senha, clique no botão “Esqueci senha” da tela inicial e preencha os dados pedidos. Se os dados conferirem, o programa vai pedir para você redefinir a sua senha. Preencha o campo com uma nova senha e não se esqueça de anotar!
+4 - Alterar Informações:
+Para alterar seus dados, faça o login com seu username e senha. Quando se logar, vá na barra de menu em cima do programa e clique em usuário -> alterar informações. Essa página irá mostrar seus dados atuais. Para modificá-los, clique no botão “Editar dados”. Preencha os campos que você quer modificar com as novas informações. Se não quiser modificar alguma informação, deixe o campo em branco. Depois, clique em “confirmar” para salvar os novos dados.
+5 - Deslogar:
+Para sair de sua conta, vá na barra de menu em cima do programa e clique em sair->sair. Assim você voltará para tela de login.
+6 - Visualizar o ranking:
+Para visualizar o ranking e sua pontuação no ranking,  vá na barra de menu em cima do programa e clique em Usuario -> Visualizar Ranking. 
+Como funciona o sistema de pontuação:
+1. Para uma aposta feita em um jogo da primeira fase você ganhará:
+	a. 1 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 1 ponto se acertar o número de gols do time A
+	c. 1 ponto se acertar o número de gols do time B
+2. Para uma aposta feita em um jogo das oitavas de final  você ganhará:
+	a. 2 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 2 ponto se acertar o número de gols do time A
+	c. 2 ponto se acertar o número de gols do time B
+3. Para uma aposta feita em um jogo das quaras de final você ganhara:
+	a. 4 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 4 ponto se acertar o número de gols do time A
+	c. 4 ponto se acertar o número de gols do time B
+4. Para uma aposta feita em um jogo da semi-final:
+	a. 8 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 8 ponto se acertar o número de gols do time A
+	c. 8 ponto se acertar o número de gols do time B
+5.Para uma aposta feita em um jogo da disputa de terceiro Lugar:
+	a. 8 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 8 ponto se acertar o número de gols do time A
+	c. 8 ponto se acertar o número de gols do time B
+6.Para uma aposta feita em um jogo da final:
+	a. 8 ponto caso acerte o ganhador (ou empate) do jogo
+	b. 8 ponto se acertar o número de gols do time A
+	c. 8 ponto se acertar o número de gols do time B
+
+

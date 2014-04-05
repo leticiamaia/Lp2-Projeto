@@ -16,8 +16,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
+import projetoLp2.bolao.docs.ControladorRegras;
 
 public class TelaDoUsuario extends JFrame {
 
@@ -130,6 +132,12 @@ public class TelaDoUsuario extends JFrame {
 
 		JMenuItem regrasMenuItem = new JMenuItem("Regras do Jogo");
 		menuSobre.add(regrasMenuItem);
+		regrasMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,ControladorRegras.ler(),
+								"Regras do Bet2Beat",	0,new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
+			}
+		});
 		
 		JMenuItem sobreMenuItem = new JMenuItem("Sobre o Bet2Beat");
 		sobreMenuItem.addActionListener(new ActionListener() {
