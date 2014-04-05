@@ -156,8 +156,8 @@ public class Partida implements Serializable {
 		container.setVisible(true);
 		
 		container.add(new JLabel(getTime1().getBandeiraDoTime()));
-		container.add(new JLabel(getTime1().getNomeDoTime() + " X"));
-		container.add(new JLabel(getTime2().getNomeDoTime()));
+		container.add(new JLabel(getTime1().getAbreviacaoNomeTime() + " X"));
+		container.add(new JLabel(getTime2().getAbreviacaoNomeTime()));
 		container.add(new JLabel(getTime2().getBandeiraDoTime()));
 		
 		return container;

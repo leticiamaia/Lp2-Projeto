@@ -6,25 +6,16 @@ import java.awt.Color;
 import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.List;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
 import projetoLp2.bolao.MeuBolao;
-import projetoLp2.bolao.Partida;
-import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.ControladorPartidas;
-import projetoLp2.bolao.docs.ControladorTimes;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,12 +23,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.GregorianCalendar;
-
-import javax.swing.JScrollBar;
-
-import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 
 public class TelaDeNovaAposta extends JPanel implements ItemListener {
@@ -57,7 +42,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
-		String[] comboItens = new String[]{"Selecione uma fase","Primeira fase","Oitavas de Final",
+		final String[] comboItens = new String[]{"Selecione uma fase","Primeira fase","Oitavas de Final",
 				"Quartas de Final","Semi-final","Final"};		
 		mainPanel = new JPanel(new CardLayout());
 		mainPanel.setBackground(new Color(240, 240, 240));
@@ -77,7 +62,6 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		
 		final JPanel panelPrimeiraFase = new JPanel(new GridBagLayout());
 		panelPrimeiraFase.setBounds(0, 0, 822, 452);
-		mainPanel.add(panelPrimeiraFase, comboItens[1]);
 		
 		final JPanel panelOitavaFinal = new JPanel(null);
 		panelOitavaFinal.setBounds(0, 0, 822, 452);
@@ -107,20 +91,28 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		
 		ButtonGroup grupo = new ButtonGroup();		
 		
+	    JScrollPane area = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	    mainPanel.add(area, comboItens[1]);
+		
 		GridBagConstraints cons = new GridBagConstraints();
-		cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.CENTER;
 		cons.gridwidth = 1;
 		cons.gridx = 0;
 		
 		GridBagConstraints c = new GridBagConstraints();
-		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.CENTER;
 		c.gridwidth = 2;
 		c.gridx = 1;
 		
+		GridBagConstraints co = new GridBagConstraints();
+		co.fill = GridBagConstraints.CENTER;
+		co.gridwidth = 3;
+		co.gridx = 1;
+		
 		final ArrayList<JRadioButton> radios = new ArrayList<JRadioButton>();
 		
+		int valor=0;
 		for(int i=0; i < 48; i++){
 			if(ControladorPartidas.ler()[i] != null){
 /*				JLabel numLabel = new JLabel(i + 1 + ".");
@@ -135,15 +127,11 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			panelPrimeiraFase.add(time, cons);
 			radios.add(time);
 			}
+			valor = i;
 		}
+		co.gridy = valor + 1;
 		
-		JButton botaoSubmeter = new JButton("Submeter");
-		botaoSubmeter.setBounds(104, 98, 99, 23);
-		mainPanel.add(botaoSubmeter); 
-
-		botaoSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
-		
-		final JComboBox comboBox = new JComboBox(comboItens);
+		final JComboBox<String> comboBox = new JComboBox<>(comboItens);
 		comboBox.addItemListener(this);
 		comboBox.setBounds(600, 110, 360, 26);
 		add(comboBox);
@@ -160,6 +148,10 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		divisorHorizontalLabel.setBounds(-88, 59, 700, 21);
 		
 		JButton btnSubmeter = new JButton("Submeter");
+		btnSubmeter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnSubmeter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -167,15 +159,21 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 					if (radios.get(i).isEnabled()) {
 						try {
 							MeuBolao.apostar(i, 0, 0);
+							JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
+							comboBox.setSelectedItem(comboItens[0]);
+							break;
 						} catch (Exception e1) {
-							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, e1.getMessage());
 						}
+						
 					}
 				}
+				
 			}
 		});
 		btnSubmeter.setBounds(523, 617, 89, 23);
-		add(btnSubmeter);
+		btnSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		panelPrimeiraFase.add(btnSubmeter, co);
 		
 	/*	itemSelecionado = (String) comboBox.getSelectedItem();
 		if(!itemSelecionado.equals("Selecione uma fase") && itemSelecionado.equals("Primeira Fase"))
