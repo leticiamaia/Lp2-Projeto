@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.util.Collection;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,8 +24,9 @@ public class TelaTimeCopa extends JPanel {
 	//private static TimeCopa[] times = (TimeCopa[]) ControladorTimes.ler().values().toArray();
 	//private static Map<String, TimeCopa> mapTimes = (Map<String, TimeCopa>) ControladorTimes.ler();
 	//private static Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) mapTimes.values();
-	private static Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
-	private final static String[] comboItens = arrayComboItens();
+	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
+	private final String[] comboItens = arrayComboItens();
+	private final JComboBox comboBox = new JComboBox(comboItens);
 	
 	/**
 	 * Create the panel.
@@ -60,10 +63,19 @@ public class TelaTimeCopa extends JPanel {
 		tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		panelTeste.add(tLabel);
 		
+		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
+		selecioneFase.setBackground(Color.WHITE);
+		selecioneFase.setBounds(314, 93, 232, 61);
+		add(selecioneFase);
+		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		comboBox.setBounds(552, 111, 366, 26);
+		add(comboBox);
+		
 		
 	}
 	
-	private static String[] arrayComboItens(){
+	private String[] arrayComboItens(){
 		String[] arrayComboItens = new String[33];
 		
 		arrayComboItens[0] = "Selecione um time";
@@ -71,10 +83,22 @@ public class TelaTimeCopa extends JPanel {
 		int i = 1;
 		//ordenaTimes();
 		for (TimeCopa time : listaDeTimes) {
-			arrayComboItens[i] = time.getNomeDoTime();
+			arrayComboItens[i] = time.toString();
 			i++;
 		}
 		return arrayComboItens;
+	}
+	
+	private void adicionaItensAoComboBox(){
+		JPanel panelDoTime;
+		
+		int i = 1;
+		for (TimeCopa time : listaDeTimes) {
+			panelDoTime = new JPanel(null);
+			panelDoTime.setBounds(0, 0, 822, 452);
+			mainPanel.add(panelDoTime, comboItens[i]);
+			i++;
+		}
 	}
 	
 	/*private static void ordenaTimes(){
@@ -83,8 +107,16 @@ public class TelaTimeCopa extends JPanel {
 	
 	
 	public static void main(String[] args) {
-		for (int i = 0; i < comboItens.length; i++) {
+		/*for (int i = 0; i < comboItens.length; i++) {
 			System.out.println(comboItens[i]);
 		}
+		
+		for (TimeCopa time : listaDeTimes) {
+			System.out.println(time);
+		}*/
+		JFrame janela = new JFrame();
+		janela.setVisible(true);
+		janela.add(new TelaTimeCopa());
+		
 	}
 }
