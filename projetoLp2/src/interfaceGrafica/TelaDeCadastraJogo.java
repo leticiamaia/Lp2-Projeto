@@ -34,15 +34,17 @@ public class TelaDeCadastraJogo extends JPanel {
 	private static final long serialVersionUID = 834875740282875192L;
 
 	private JPanel contentPane;
+	private JPanel telaDeAtulizarPartida;
 	private JTextField textField;
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo(final JPanel contentPane) {
+	public TelaDeCadastraJogo(final JPanel contentPane, final TelaDeAtualizarPartida telaDeAtualizarPartida) {
 		
 		this.contentPane = contentPane;
-		setBounds(0, 0, 1300, 700);	
+		setBounds(0, 0, 1300, 700);
+		this.telaDeAtulizarPartida = telaDeAtualizarPartida;
 		setBackground(Color.WHITE);
 		setVisible(false);
 		setLayout(null);
@@ -118,6 +120,7 @@ public class TelaDeCadastraJogo extends JPanel {
 						}
 						break;
 					}
+					telaDeAtualizarPartida.inicializaComboPartidas();
 				}
 				JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 			}

@@ -23,6 +23,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 	 */
 	private static final long serialVersionUID = 213413234132321L;
 	private static JPanel contentPane;
+	final static JComboBox partidas = new JComboBox();
 	/**
 	 * Create the panel.
 	 */
@@ -39,9 +40,9 @@ public class TelaDeAtualizarPartida extends JPanel {
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
 		add(TelaDoAdministradorLabel);
 		
-		final JComboBox partidas = new JComboBox();
+		
 		partidas.setBounds(383, 187, 645, 82);
-		inicializaComboPartidas(partidas);
+		inicializaComboPartidas();
 		add(partidas);
 		
 		final JComboBox gols1 = new JComboBox();
@@ -100,7 +101,8 @@ public class TelaDeAtualizarPartida extends JPanel {
 		
 	}
 
-	private void inicializaComboPartidas(JComboBox partidas) {
+	public void inicializaComboPartidas() {
+		partidas.removeAllItems();
 		Partida[] partidasDisponiveis;
 		partidasDisponiveis = ControladorPartidas.ler();
 		for(Integer i = 0; i < partidasDisponiveis.length && partidasDisponiveis[i] != null; i++) {
@@ -108,7 +110,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		}
 		
 	}
-
+	
 	private void inicializaCombo(JComboBox gols) {
 		for(Integer i = 0; i<=15; i++) {
 			gols.addItem(i);

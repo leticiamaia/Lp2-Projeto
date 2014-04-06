@@ -59,9 +59,9 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
-		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
-		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
 		contentPane.setVisible(true);
+		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
+		telaDeCadastro = new TelaDeCadastraJogo(contentPane, telaDeAtualizarPartida);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
 		 
