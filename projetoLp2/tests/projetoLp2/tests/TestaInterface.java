@@ -14,8 +14,8 @@ public class TestaInterface {
 		partidas = ControladorPartidas.ler();
 		Map<String, TimeCopa> times= ControladorTimes.ler();
 		
-		partidas[0] = new Partida(times.get("ARG"), times.get("AGL"), new GregorianCalendar(2014, 8, 15, 15, 30));
-		partidas[1] = new Partida(times.get("JAP"), times.get("EUA"), new GregorianCalendar(2014, 8, 15, 15, 30));
+		partidas[0] = new Partida(times.get("JAP"), times.get("BRA"), new GregorianCalendar(2012, 8, 15, 15, 30));
+		partidas[1] = new Partida(times.get("RUS"), times.get("EUA"), new GregorianCalendar(2014, 4, 5, 15, 30));
 		partidas[2] = new Partida(times.get("RUS"), times.get("BRA"), new GregorianCalendar(2014, 8, 15, 15, 30));
 		partidas[3] = new Partida(times.get("ARG"), times.get("AGL"), new GregorianCalendar(2014, 8, 15, 15, 30));
 		partidas[4] = new Partida(times.get("JAP"), times.get("EUA"), new GregorianCalendar(2014, 8, 15, 15, 30));
@@ -35,6 +35,9 @@ public class TestaInterface {
 		partidas[18] = new Partida(times.get("ARG"), times.get("AGL"), new GregorianCalendar(2014, 8, 15, 15, 30));
 		partidas[19] = new Partida(times.get("JAP"), times.get("EUA"), new GregorianCalendar(2014, 8, 15, 15, 30));
 		partidas[20] = new Partida(times.get("RUS"), times.get("BRA"), new GregorianCalendar(2014, 8, 15, 15, 30));
+		partidas[21] = new Partida(times.get("ARG"), times.get("AGL"), new GregorianCalendar(2014, 8, 15, 15, 30));
+		partidas[22] = new Partida(times.get("JAP"), times.get("EUA"), new GregorianCalendar(2014, 8, 15, 15, 30));
+		partidas[23] = new Partida(times.get("RUS"), times.get("BRA"), new GregorianCalendar(2014, 8, 15, 15, 30));
 		ControladorPartidas.escreve(partidas);
 		partidas = ControladorPartidas.ler();
 	}

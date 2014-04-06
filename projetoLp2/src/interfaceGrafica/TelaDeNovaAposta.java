@@ -212,8 +212,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			if (i == JOGOS_SEMI-1 && partida == null) {
 				panelFinal.add(vazioLabel1);
 			}
-			else if(ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null && ControladorPartidas.ler()[JOGOS_QUARTAS-1] == null
-					&& ControladorPartidas.ler()[JOGOS_SEMI-1] == null){
+			else if(ControladorPartidas.ler()[0] == null && ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null 
+					&& ControladorPartidas.ler()[JOGOS_QUARTAS-1] == null && ControladorPartidas.ler()[JOGOS_SEMI-1] == null){
 				panelPrimeiraFase.add(vazioLabel1);
 				panelOitavaFinal.add(vazioLabel2);
 				panelQuartaFinal.add(vazioLabel4);
