@@ -86,26 +86,26 @@ public class TelaDeCadastraJogo extends JPanel {
 		
 		
 		btnCadastrar.addActionListener(new ActionListener() {
-			private TimeCopa time1;
-			private TimeCopa time2;
+			private String time1;
+			private String time2;
 			private String data;
 
 			public void actionPerformed(ActionEvent arg0) {
 				Partida[] partidas = ControladorPartidas.ler();
 				
-				time1 = (TimeCopa) comboTime1.getSelectedItem();
-				time2 = (TimeCopa) comboTime2.getSelectedItem();
+				time1 = (String) comboTime1.getSelectedItem();
+				time2 = (String) comboTime2.getSelectedItem();
 				data = textField.getText();
-				for(int i = 0; i < 64; i++) {
+				/*for(int i = 0; i < 64; i++) {
 					if(partidas[i] == null) {
 						try {
-							partidas[i] = new Partida(time1, time2, new GregorianCalendar());
+							//partidas[i] = new Partida(time1, time2, new GregorianCalendar());
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 						break;
 					}
-				}
+				}*/
 				JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 			}
 		});
@@ -115,7 +115,7 @@ public class TelaDeCadastraJogo extends JPanel {
 		TimeCopa[] times = ControladorTimes.ler();
 		
 		for(int i = 0; i < times.length; i++) {
-			comboTime.addItem(times[i]);
+			comboTime.addItem(times[i].getAbreviacaoNomeTime());
 		}
 	}
 }
