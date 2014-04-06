@@ -141,7 +141,8 @@ public class TelaTimeCopa extends JPanel {
 		comboBox.setBounds(552, 111, 366, 26);
 		add(comboBox);
 		
-		comboBox.addMouseListener(new MouseAdapter() {
+		JButton btnOK = new JButton("OK");
+		btnOK.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				timeSelecionadoAtual = (TimeCopa) opcaoComboBox();
@@ -150,11 +151,20 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
+				
+			}
+		});
+		btnOK.setBounds(932, 111, 64, 26);
+		add(btnOK);
+		
+	/*	comboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				//addAPartidasJogadas();
 				//adicionaItensAoComboBox();
 
 			}
-		});
+		});*/
 		
 	}
 	
@@ -213,7 +223,7 @@ public class TelaTimeCopa extends JPanel {
 		return arrayComboItens;
 	}
 	
-	/*private void adicionaItensAoComboBox(){
+	private void adicionaItensAoComboBox(){
 		JPanel panelDoTime;
 		
 		for (int i = 1; i < comboItens.length; i++) {
@@ -221,7 +231,7 @@ public class TelaTimeCopa extends JPanel {
 			panelDoTime.setBounds(0, 0, 822, 452);
 			mainPanel.add(panelDoTime, comboItens[i]);
 		}
-	}*/
+	}
 	
 	private Icon iconeDoTime() {
 		if (timeSelecionadoAtual == null)
