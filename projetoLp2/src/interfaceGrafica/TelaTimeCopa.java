@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.SwingConstants;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -38,7 +39,8 @@ public class TelaTimeCopa extends JPanel {
 	private final JComboBox comboBox = new JComboBox(comboItens);
 	private TimeCopa timeSelecionadoAtual = null;
 	private JLabel labelNomeDoTime = new JLabel();
-	private JList listaDasPartidasJogadas = new JList();
+	private JScrollPane scrollPanelPartidasJogadas = new JScrollPane();
+	//private JList listaDasPartidasJogadas = new JList();
 	/**
 	 * Create the panel.
 	 */
@@ -124,9 +126,9 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
-		listaDasPartidasJogadas = new JList();
-		listaDasPartidasJogadas.setBounds(332, 60, 460, 360);
-		panelTeste.add(listaDasPartidasJogadas);
+		final JScrollPane scrollPanelPartidasJogadas = new JScrollPane();
+		scrollPanelPartidasJogadas.setBounds(332, 55, 460, 375);
+		panelTeste.add(scrollPanelPartidasJogadas);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -146,14 +148,12 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
-				addAListaDePartida();
+				addAPartidasJogadas();
+				//adicionaItensAoComboBox();
+
 			}
-
-
-
 		});
 		
-		//adicionaItensAoComboBox();
 
 	}
 	
@@ -234,13 +234,13 @@ public class TelaTimeCopa extends JPanel {
 		Arrays.sort(arrayTimes);
 	}*/
 	
-	private void addAListaDePartida(){
+	private void addAPartidasJogadas(){
 		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
 		if (partidasJogadas.size() == 0)
-			listaDasPartidasJogadas.add(new JLabel("Nenhum jogo foi realizado!"));
+			scrollPanelPartidasJogadas.add(new JLabel("Nenhum jogo foi realizado!"));
 		else{
 			for (Partida partida : partidasJogadas) {
-				listaDasPartidasJogadas.add(partida.panelDaPartida());
+				scrollPanelPartidasJogadas.add(partida.panelDaPartida());
 			}
 		}
 	}
