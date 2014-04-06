@@ -25,6 +25,8 @@ import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.ControladorTimes;
+import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 public class TelaDeCadastraJogo extends JPanel {
 
@@ -41,6 +43,7 @@ public class TelaDeCadastraJogo extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaDeCadastraJogo(final JPanel contentPane, final TelaDeAtualizarPartida telaDeAtualizarPartida) {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		
 		this.contentPane = contentPane;
 		setBounds(0, 0, 816, 361);
@@ -49,9 +52,9 @@ public class TelaDeCadastraJogo extends JPanel {
 		setVisible(false);
 		setLayout(null);
 
-		JLabel TelaDoAdministradorLabel = new JLabel("Tela de Cadastro");
-		TelaDoAdministradorLabel.setBounds(202, 11, 378, 52);
-		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
+		JLabel TelaDoAdministradorLabel = new JLabel("Fazer novo cadastro");
+		TelaDoAdministradorLabel.setBounds(259, 11, 378, 52);
+		TelaDoAdministradorLabel.setFont(new Font("Calibri Light", Font.PLAIN, 28));
 		add(TelaDoAdministradorLabel);
 
 		JLabel lblNewLabel = new JLabel("Time1");
@@ -72,18 +75,8 @@ public class TelaDeCadastraJogo extends JPanel {
 		add(lblNewLabel_1);
 
 		JButton btnCadastrar = new JButton("CADASTRAR!");
-		btnCadastrar.setBounds(225, 266, 112, 40);
+		btnCadastrar.setBounds(322, 264, 112, 40);
 		add(btnCadastrar);
-		
-		JButton button = new JButton("voltar");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				contentPane.setVisible(true);
-			}
-		});
-		button.setBounds(408, 266, 112, 40);
-		add(button);
 		
 		final JComboBox comboTime1 = new JComboBox();
 		comboTime1.setBounds(107, 150, 123, 35);
@@ -94,6 +87,11 @@ public class TelaDeCadastraJogo extends JPanel {
 		comboTime2.setBounds(525, 153, 123, 32);
 		adicionaTimesCombo(comboTime2);
 		add(comboTime2);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(TelaDeCadastraJogo.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label_1.setBounds(92, 48, 493, 14);
+		add(label_1);
 		
 		
 		btnCadastrar.addActionListener(new ActionListener() {
