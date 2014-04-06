@@ -100,9 +100,8 @@ public class TelaDeAtualizarPartida extends JPanel {
 	private void inicializaComboPartidas(JComboBox partidas) {
 		Partida[] partidasDisponiveis;
 		partidasDisponiveis = ControladorPartidas.ler();
-		for(Integer i = 0; i < partidasDisponiveis.length; i++) {
-			if (partidasDisponiveis[i] != null)
-				partidas.addItem(i.toString() + ". " + partidasDisponiveis[i].toString());
+		for(Integer i = 0; i < partidasDisponiveis.length && partidasDisponiveis[i] != null; i++) {
+			partidas.addItem(i.toString() + ". " + partidasDisponiveis[i].toString());
 		}
 		
 	}
