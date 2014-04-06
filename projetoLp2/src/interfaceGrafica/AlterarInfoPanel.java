@@ -90,10 +90,7 @@ public class AlterarInfoPanel extends JPanel {
 					if(MeuBolao.alterarInfo(novoNome,novoEmail, recebeNovaSenhaField.getText(),
 					novaPergunta, novaResposta)) {
 						JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
-						imagemPanel.setVisible(true); 
-						setVisible(false);
 						ehVazio();
-						telaBoaVindas.setVisible(true);
 		}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
