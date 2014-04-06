@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -163,10 +164,14 @@ public class Partida implements Serializable {
 		return container;
 	}
 	
-/*	public static void main(String[] args) throws Exception {
+	/*public static void main(String[] args) throws Exception {
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
 		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+		frame.add(partida.panelDaPartida());
+		frame.pack();
 	}*/
 	
 }
