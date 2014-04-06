@@ -180,4 +180,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 			
 		return 0;
 	}
+	
+	@Override
+	public String toString(){
+		return nomeDoTime;
+	}
 }
