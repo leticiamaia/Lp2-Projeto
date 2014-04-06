@@ -28,7 +28,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeAtualizarPartida(final JPanel contentPane) {
+	public TelaDeAtualizarPartida() {
 		
 		this.contentPane = contentPane;
 		setBounds(0, 0, 816, 361);	
