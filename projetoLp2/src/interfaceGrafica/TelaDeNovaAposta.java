@@ -143,7 +143,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 
 		int valor=0;
-		for(int i=0; i>= 0/*decideValor()*/ && i < 6/*decideMaiorValor()*/; i++){
+		for(int i=0; i>= 0/*decideValor()*/ && i < 3/*decideMaiorValor()*/; i++){
 			if(ControladorPartidas.ler()[i] != null){
 				/*JLabel numLabel = new JLabel(i + 1 + ".");
 				numLabel.setBounds(281, 103, 278, 16);
@@ -163,6 +163,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				vazioLabel.setBounds(281, 103, 278, 16);
 				vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 				panelPrimeiraFase.add(vazioLabel);
+				break;
 			}
 			valor = i;
 		}
