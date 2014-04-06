@@ -20,14 +20,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 213413234132321L;
-	private JPanel contentPane;
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeAtualizarPartida(final JPanel contentPane) {
+	public TelaDeAtualizarPartida() {
 		
-		this.contentPane = contentPane;
 		
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
@@ -81,7 +79,6 @@ public class TelaDeAtualizarPartida extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				contentPane.setVisible(true);
 			}
 		});
 		button.setBounds(518, 521, 246, 52);
@@ -91,8 +88,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 
 	private void inicializaComboPartidas(JComboBox partidas) {
 		Partida[] partidasDisponiveis;
-		ControladorPartidas controlador = new ControladorPartidas();
-		partidasDisponiveis = controlador.ler();
+		partidasDisponiveis = ControladorPartidas.ler();
 		for(int i = 0; i < partidasDisponiveis.length; i++) {
 			partidas.addItem(partidasDisponiveis[i]);
 		}

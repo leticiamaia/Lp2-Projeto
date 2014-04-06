@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 
+import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.ControladorTimes;
 
 public class TelaDeCadastraJogo extends JPanel {
@@ -22,16 +25,14 @@ public class TelaDeCadastraJogo extends JPanel {
 	 */
 	private static final long serialVersionUID = 834875740282875192L;
 
-	private JPanel contentPane;
 
 	private JTextField textField;
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo(final JPanel contentPane) {
+	public TelaDeCadastraJogo() {
 		
-		this.contentPane = contentPane;
 		
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
@@ -68,7 +69,6 @@ public class TelaDeCadastraJogo extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				contentPane.setVisible(true);
 			}
 		});
 		button.setBounds(518, 521, 246, 52);
@@ -86,25 +86,36 @@ public class TelaDeCadastraJogo extends JPanel {
 		
 		
 		btnCadastrar.addActionListener(new ActionListener() {
-			private String time1;
-			private String time2;
+			private TimeCopa time1;
+			private TimeCopa time2;
 			private String data;
 
 			public void actionPerformed(ActionEvent arg0) {
-				time1 = (String) comboTime1.getSelectedItem();
-				time2 = (String) comboTime2.getSelectedItem();
+				Partida[] partidas = ControladorPartidas.ler();
+				
+				time1 = (TimeCopa) comboTime1.getSelectedItem();
+				time2 = (TimeCopa) comboTime2.getSelectedItem();
 				data = textField.getText();
+				for(int i = 0; i < 64; i++) {
+					if(partidas[i] == null) {
+						try {
+							partidas[i] = new Partida(time1, time2, new GregorianCalendar());
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						break;
+					}
+				}
 				JOptionPane.showMessageDialog(null, "Time1:" + time1 + "\n" + "Time2:" + time2);
 			}
 		});
 	}
 
 	private void adicionaTimesCombo(JComboBox comboTime) {
-		ControladorTimes controlador = new ControladorTimes();
-		TimeCopa[] times = controlador.ler();
+		TimeCopa[] times = ControladorTimes.ler();
 		
-		//for(int i = 0; i < times.length; i++) {
-		//	comboTime.addItem(times[i].getAbreviacaoNomeTime());
-		//}
+		for(int i = 0; i < times.length; i++) {
+			comboTime.addItem(times[i]);
+		}
 	}
 }

@@ -58,8 +58,8 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
-		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
-		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
+		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
+		telaDeCadastro = new TelaDeCadastraJogo();
 		contentPane.setVisible(true);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
@@ -96,6 +96,7 @@ public class TelaDoAdmin extends JFrame {
 		
 		mainPane.add(contentPane);
 		mainPane.add(telaDeCadastro);
+		mainPane.add(telaDeAtualizarPartida);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
