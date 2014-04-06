@@ -32,7 +32,7 @@ public class TelaDoUsuario extends JFrame {
 	private RankingPanel rankingPanel;
 	private TelaUserBoasVindas telaBoasVindas;
 	private TelaDeNovaAposta telaAposta;
-	//private TelaDeVizualizarAposta telaVizualizarAposta;
+	private TelaDeVizualizarAposta telaVizualizarAposta;
 
 	/**
 	 * Launch the application.
@@ -58,7 +58,7 @@ public class TelaDoUsuario extends JFrame {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		telaBoasVindas = new TelaUserBoasVindas();
 		telaAposta = new TelaDeNovaAposta();
-		//telaVizualizarAposta = new TelaDeVizualizarAposta();
+		telaVizualizarAposta = new TelaDeVizualizarAposta();
 		telaBoasVindas.setVisible(true);
 		
 		try {
@@ -92,6 +92,7 @@ public class TelaDoUsuario extends JFrame {
 				rankingPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
+				telaVizualizarAposta.setVisible(false);
 				infoPanel.setVisible(true);
 			}
 		});
@@ -103,6 +104,7 @@ public class TelaDoUsuario extends JFrame {
 				infoPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
+				telaVizualizarAposta.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
 		});
@@ -120,7 +122,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(true);
-				//telaVizualizarAposta.setVisible(false);
+				telaVizualizarAposta.setVisible(false);
 			}
 		});
 		menuApostas.add(fazerApostaMenuItem);
@@ -134,7 +136,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
-				//telaVizualizarAposta.setVisible(true);
+				telaVizualizarAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);
@@ -151,7 +153,7 @@ public class TelaDoUsuario extends JFrame {
 		regrasMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null,ControladorRegras.ler(),
-								"o Bet2Beat",	0,new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
+								"Regras do Bet2Beat",	0,new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/SoccerDukeSmall.png")));
 			}
 		});
 		

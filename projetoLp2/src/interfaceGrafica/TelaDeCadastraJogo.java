@@ -50,29 +50,29 @@ public class TelaDeCadastraJogo extends JPanel {
 		setLayout(null);
 
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela de Cadastro");
-		TelaDoAdministradorLabel.setBounds(502, 23, 378, 52);
+		TelaDoAdministradorLabel.setBounds(202, 11, 378, 52);
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
 		add(TelaDoAdministradorLabel);
 
 		JLabel lblNewLabel = new JLabel("Time1");
-		lblNewLabel.setBounds(286+33, 250, 223, 40);
+		lblNewLabel.setBounds(132, 111, 48, 28);
 		add(lblNewLabel);
 
 		JLabel label = new JLabel("Time2");
-		label.setBounds(791+45, 250, 223, 40);
+		label.setBounds(544, 105, 223, 40);
 		add(label);
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(577, 302, 137, 36);
+		textField.setBounds(310, 153, 137, 36);
 		add(textField);
 
 		JLabel lblNewLabel_1 = new JLabel("DD/MM/AAAA hh:mm");
-		lblNewLabel_1.setBounds(577, 263, 187, 15);
+		lblNewLabel_1.setBounds(310, 118, 187, 15);
 		add(lblNewLabel_1);
 
 		JButton btnCadastrar = new JButton("CADASTRAR!");
-		btnCadastrar.setBounds(522, 411, 246, 52);
+		btnCadastrar.setBounds(225, 266, 112, 40);
 		add(btnCadastrar);
 		
 		JButton button = new JButton("voltar");
@@ -82,16 +82,16 @@ public class TelaDeCadastraJogo extends JPanel {
 				contentPane.setVisible(true);
 			}
 		});
-		button.setBounds(518, 521, 246, 52);
+		button.setBounds(408, 266, 112, 40);
 		add(button);
 		
 		final JComboBox comboTime1 = new JComboBox();
-		comboTime1.setBounds(319, 302, 143, 36);
+		comboTime1.setBounds(107, 150, 123, 35);
 		adicionaTimesCombo(comboTime1);
 		add(comboTime1);
 		
 		final JComboBox comboTime2 = new JComboBox();
-		comboTime2.setBounds(836, 302, 143, 36);
+		comboTime2.setBounds(525, 153, 123, 32);
 		adicionaTimesCombo(comboTime2);
 		add(comboTime2);
 		
