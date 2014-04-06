@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import projetoLp2.bolao.docs.ControladorTimes;
 import projetoLp2.bolao.TimeCopa;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class TelaTimeCopa extends JPanel {
 
 	/**
@@ -27,7 +30,8 @@ public class TelaTimeCopa extends JPanel {
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
 	private final JComboBox comboBox = new JComboBox(comboItens);
-	
+	private TimeCopa itemSelecionadoAtual = null;
+	private JLabel labelNomeDoTime = new JLabel(nomeDoTime());
 	/**
 	 * Create the panel.
 	 */
@@ -57,22 +61,55 @@ public class TelaTimeCopa extends JPanel {
 		panelTeste.setBounds(0, 0, 822, 452);
 		mainPanel.add( panelTeste, comboItens[0]);
 		panelTeste.setLayout(null);
-
-		JLabel tLabel = new JLabel("<html>Para come\u00E7ar, selecione time que deseja ver!</html>");
-		tLabel.setBounds(218, 21, 385, 38);
-		tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		panelTeste.add(tLabel);
+		
+		JLabel lblTime = new JLabel("Time:");
+		lblTime.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblTime.setBounds(10, 21, 58, 38);
+		panelTeste.add(lblTime);
+				
+		labelNomeDoTime = new JLabel("");
+		labelNomeDoTime.setBounds(63, 29, 309, 30);
+		panelTeste.add(labelNomeDoTime);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
+		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		selecioneFase.setBackground(Color.WHITE);
 		selecioneFase.setBounds(314, 93, 232, 61);
 		add(selecioneFase);
-		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		comboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				itemSelecionadoAtual = (TimeCopa) opcaoComboBox();
+				labelNomeDoTime = new JLabel(nomeDoTime());
+			}
+		});
 		
 		comboBox.setBounds(552, 111, 366, 26);
 		add(comboBox);
 		
+		adicionaItensAoComboBox();
+
+	}
+	
+	private TimeCopa opcaoComboBox(){
+		String opcao = (String) comboBox.getSelectedItem();
+		System.out.println(opcao);
 		
+		for (TimeCopa time : listaDeTimes) {
+			if (opcao.equals(time.toString()))
+				System.out.println(time.getNomeDoTime());
+				return time;
+		}
+		System.out.println("Não funfou!");
+		return null;
+		
+	}
+	
+	private String nomeDoTime(){
+		if (itemSelecionadoAtual == null)
+			return "";
+		return itemSelecionadoAtual.getNomeDoTime();
 	}
 	
 	private String[] arrayComboItens(){
@@ -92,12 +129,10 @@ public class TelaTimeCopa extends JPanel {
 	private void adicionaItensAoComboBox(){
 		JPanel panelDoTime;
 		
-		int i = 1;
-		for (TimeCopa time : listaDeTimes) {
+		for (int i = 1; i < comboItens.length; i++) {
 			panelDoTime = new JPanel(null);
 			panelDoTime.setBounds(0, 0, 822, 452);
 			mainPanel.add(panelDoTime, comboItens[i]);
-			i++;
 		}
 	}
 	
@@ -115,8 +150,9 @@ public class TelaTimeCopa extends JPanel {
 			System.out.println(time);
 		}*/
 		JFrame janela = new JFrame();
+		janela.setBounds(0, 0, 1300, 700);
 		janela.setVisible(true);
-		janela.add(new TelaTimeCopa());
-		
+		TelaTimeCopa panel = new TelaTimeCopa();
+		janela.getContentPane().add(panel);
 	}
 }
