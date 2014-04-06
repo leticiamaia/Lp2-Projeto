@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.Set;
@@ -101,10 +105,15 @@ public class TelaDeCadastraJogo extends JPanel {
 				for(int i = 0; i < 64; i++) {
 					if(partidas[i] == null) {
 						try {
-							partidas[i] = new Partida(time1, time2, new GregorianCalendar());
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							Date date = df.parse(data);
+							GregorianCalendar cal = new GregorianCalendar();
+							cal.setTime(date);
+							partidas[i] = new Partida(time1, time2, cal);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+						ControladorPartidas.escreve(partidas);
 						break;
 					}
 				}
