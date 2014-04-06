@@ -11,12 +11,15 @@ import java.awt.GridBagLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
+import projetoLp2.bolao.ApostaPrimeiraFase;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
@@ -126,7 +129,19 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 					if (radios.get(i).isEnabled()) {
 						try {
 							MeuBolao.apostar(i, 0, 0);
-							JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
+							JTextField golsTime1 = new JTextField();
+							JTextField golsTime2 = new JTextField();
+							final JComponent[] inputs = new JComponent[] {
+									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime1().getNomeDoTime()), golsTime1,
+									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime2().getNomeDoTime()),	golsTime2,
+							};
+							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
+							Integer gols1 = Integer.parseInt(golsTime1.getText());
+							Integer gols2 = Integer.parseInt(golsTime2.getText());
+							if(gols1 instanceof Integer && gols2 instanceof Integer){
+								new ApostaPrimeiraFase(ControladorPartidas.ler()[i], gols1, gols2);	
+								JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
+							}
 							comboBox.setSelectedItem(comboItens[0]);
 							break;
 						} catch (Exception e1) {
@@ -143,7 +158,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 
 		int valor=0;
-		for(int i=0; i>= 0/*decideValor()*/ && i < 3/*decideMaiorValor()*/; i++){
+		for(int i=0;/*decideValor();*/  i < 3/*decideMaiorValor()*/; i++){
 			if(ControladorPartidas.ler()[i] != null){
 				/*JLabel numLabel = new JLabel(i + 1 + ".");
 				numLabel.setBounds(281, 103, 278, 16);
@@ -158,7 +173,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				radios.add(time);
 				panelPrimeiraFase.add(btnSubmeter, co);
 			}
-			else {
+			if(ControladorPartidas.ler()[0] == null){
 				JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
 				vazioLabel.setBounds(281, 103, 278, 16);
 				vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
