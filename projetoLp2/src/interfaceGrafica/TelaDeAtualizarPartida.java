@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
@@ -76,12 +78,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 				Partida[] partidasDisponiveis;
 				partidasDisponiveis = ControladorPartidas.ler();
 				try {
-					partidasDisponiveis[idx].setGols(nGols1, nGols2);
+					((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx, nGols1, nGols2);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				ControladorPartidas.escreve(partidasDisponiveis);
-				JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
+				//JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
 			}
 		});
 		add(btnCadastrar);
