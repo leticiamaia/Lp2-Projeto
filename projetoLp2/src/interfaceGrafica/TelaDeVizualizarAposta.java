@@ -29,7 +29,7 @@ public class TelaDeVizualizarAposta extends JPanel implements ItemListener{
 	public TelaDeVizualizarAposta () {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
-		setLayout(null);
+		setLayout(null) ;
 
 		mainPanel = new JPanel(new CardLayout());
 		mainPanel.setBackground(new Color(240, 240, 240));
