@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -17,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import projetoLp2.bolao.MeuBolao;
+
+import java.awt.SystemColor;
 
 public class TelaDoAdmin extends JFrame {
 
@@ -62,59 +66,62 @@ public class TelaDoAdmin extends JFrame {
 		contentPane.setVisible(true);
 		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
 		telaDeCadastro = new TelaDeCadastraJogo(contentPane, telaDeAtualizarPartida);
-		contentPane.setBounds(0, 0, 1284, 660);	
-		contentPane.setBackground(Color.WHITE);
-		 
+		contentPane.setBounds(70, 216, 816, 361);	
+		contentPane.setBackground(SystemColor.menu);
+		
+		mainPane.add(contentPane);
+		contentPane.add(telaDeCadastro);
+		contentPane.add(telaDeAtualizarPartida);
+		
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela do Administrador");
-		TelaDoAdministradorLabel.setBounds(436, 22, 378, 52);
+		TelaDoAdministradorLabel.setBounds(329, 25, 447, 52);
+		mainPane.add(TelaDoAdministradorLabel);
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
-		contentPane.add(TelaDoAdministradorLabel);
 		
 		JLabel lblNewLabel = new JLabel("<html> Seja muito bem vindo administrador! Voc\u00EA possui um papel muito importante no funcionamento desse sistema. Voc\u00EA ser\u00E1 respons\u00E1vel por cadastrar e atualizar o resultado dos jogos. </html>");
-		lblNewLabel.setBounds(104, 85, 1047, 32);
+		lblNewLabel.setBounds(55, 132, 1047, 32);
+		mainPane.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		contentPane.add(lblNewLabel);
 		
 		JButton btnAtualizarPartida = new JButton("Atualizar Partida");
-		btnAtualizarPartida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
-				telaDeAtualizarPartida.setVisible(true);
-			}
-		});
-		btnAtualizarPartida.setBounds(1033, 291, 164, 49);
-		contentPane.add(btnAtualizarPartida);
+		btnAtualizarPartida.setBounds(994, 422, 164, 49);
+		mainPane.add(btnAtualizarPartida);
 		
 		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
+		btnCadastrarJogo.setBounds(991, 308, 164, 49);
+		mainPane.add(btnCadastrarJogo);
+		
+		JLabel lblMenu = new JLabel("Menu");
+		lblMenu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblMenu.setBounds(1050, 237, 46, 14);
+		mainPane.add(lblMenu);
 		btnCadastrarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setVisible(false);
 				telaDeCadastro.setVisible(true);
 			}
 		});
-		btnCadastrarJogo.setBounds(1033, 213, 164, 49);
-		contentPane.add(btnCadastrarJogo);
-		
-		mainPane.add(contentPane);
-		mainPane.add(telaDeCadastro);
-		mainPane.add(telaDeAtualizarPartida);
+		btnAtualizarPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setVisible(false);
+				telaDeAtualizarPartida.setVisible(true);
+			}
+		});
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnSair = new JMenu("Sair");
-		menuBar.add(mnSair);
-		
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnSair.add(mntmSair);
-		mntmSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JMenu sairMenu = new JMenu("Sair");
+		sairMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				MeuBolao.desloga();
 				dispose();
 				telaDeLogin = new TelaDeLogin();
 				telaDeLogin.setVisible(true);
 			}
 		});
+		menuBar.add(sairMenu);
 		
 		menuBar.add(Box.createHorizontalGlue());
 

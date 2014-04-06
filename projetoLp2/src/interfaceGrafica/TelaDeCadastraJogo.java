@@ -43,7 +43,7 @@ public class TelaDeCadastraJogo extends JPanel {
 	public TelaDeCadastraJogo(final JPanel contentPane, final TelaDeAtualizarPartida telaDeAtualizarPartida) {
 		
 		this.contentPane = contentPane;
-		setBounds(0, 0, 1300, 700);
+		setBounds(0, 0, 816, 361);
 		this.telaDeAtulizarPartida = telaDeAtualizarPartida;
 		setBackground(Color.WHITE);
 		setVisible(false);
