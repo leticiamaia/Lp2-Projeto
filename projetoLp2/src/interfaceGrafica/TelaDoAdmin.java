@@ -16,6 +16,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import projetoLp2.bolao.MeuBolao;
+
 public class TelaDoAdmin extends JFrame {
 
 	/**
@@ -25,6 +27,7 @@ public class TelaDoAdmin extends JFrame {
 	private JPanel contentPane, mainPane;
 	private TelaDeCadastraJogo telaDeCadastro;
 	private TelaDeAtualizarPartida telaDeAtualizarPartida;
+	private TelaDeLogin telaDeLogin;
 
 	/**
 	 * Launch the application.
@@ -55,8 +58,8 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
-		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
-		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
+		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
+		telaDeCadastro = new TelaDeCadastraJogo();
 		contentPane.setVisible(true);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
@@ -70,10 +73,6 @@ public class TelaDoAdmin extends JFrame {
 		lblNewLabel.setBounds(104, 85, 1047, 32);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contentPane.add(lblNewLabel);
-		
-		JButton btnAtualizarRanking = new JButton("Atualizar Ranking");
-		btnAtualizarRanking.setBounds(1033, 368, 164, 49);
-		contentPane.add(btnAtualizarRanking);
 		
 		JButton btnAtualizarPartida = new JButton("Atualizar Partida");
 		btnAtualizarPartida.addActionListener(new ActionListener() {
@@ -97,6 +96,7 @@ public class TelaDoAdmin extends JFrame {
 		
 		mainPane.add(contentPane);
 		mainPane.add(telaDeCadastro);
+		mainPane.add(telaDeAtualizarPartida);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -106,6 +106,14 @@ public class TelaDoAdmin extends JFrame {
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		mnSair.add(mntmSair);
+		mntmSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MeuBolao.desloga();
+				dispose();
+				telaDeLogin = new TelaDeLogin();
+				telaDeLogin.setVisible(true);
+			}
+		});
 		
 		menuBar.add(Box.createHorizontalGlue());
 

@@ -19,15 +19,13 @@ public class TelaDeAtualizarPartida extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4071085146304599749L;
-	private JPanel contentPane;
+	private static final long serialVersionUID = 213413234132321L;
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeAtualizarPartida(final JPanel contentPane) {
+	public TelaDeAtualizarPartida() {
 		
-		this.contentPane = contentPane;
 		
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
@@ -39,7 +37,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
 		add(TelaDoAdministradorLabel);
 		
-		JComboBox partidas = new JComboBox();
+		final JComboBox partidas = new JComboBox();
 		partidas.setBounds(383, 187, 645, 82);
 		inicializaComboPartidas(partidas);
 		add(partidas);
@@ -67,11 +65,21 @@ public class TelaDeAtualizarPartida extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			private Integer nGols1;
 			private Integer nGols2;
-			private String data;
+			private String partida;
 
 			public void actionPerformed(ActionEvent arg0) {
 				nGols1 = (Integer) gols1.getSelectedItem();
 				nGols2 = (Integer) gols2.getSelectedItem();
+				partida = (String) partidas.getSelectedItem();
+				int idx = (partida.charAt(0));
+				idx -= '0';
+				Partida[] partidasDisponiveis;
+				partidasDisponiveis = ControladorPartidas.ler();
+				try {
+					partidasDisponiveis[idx].setGols(nGols1, nGols2);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
 			}
 		});
@@ -81,7 +89,6 @@ public class TelaDeAtualizarPartida extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				contentPane.setVisible(true);
 			}
 		});
 		button.setBounds(518, 521, 246, 52);
@@ -91,10 +98,9 @@ public class TelaDeAtualizarPartida extends JPanel {
 
 	private void inicializaComboPartidas(JComboBox partidas) {
 		Partida[] partidasDisponiveis;
-		ControladorPartidas controlador = new ControladorPartidas();
-		partidasDisponiveis = controlador.ler();
-		for(int i = 0; i < partidasDisponiveis.length; i++) {
-			partidas.addItem(partidasDisponiveis[i]);
+		partidasDisponiveis = ControladorPartidas.ler();
+		for(Integer i = 0; i < partidasDisponiveis.length; i++) {
+			partidas.addItem(i.toString() + ". " + partidasDisponiveis[i].toString());
 		}
 		
 	}
