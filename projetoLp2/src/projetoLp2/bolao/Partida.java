@@ -1,12 +1,17 @@
 package projetoLp2.bolao;
 
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 /**
  * Essa classe que representa uma partida da copa
@@ -153,25 +158,37 @@ public class Partida implements Serializable {
 	 * @return um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes
 	 */
 	public JPanel panelDaPartida(){
+		JPanel mainPanel = new JPanel();
+		mainPanel.setVisible(true);
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+		
 		JPanel container = new JPanel();
 		container.setVisible(true);
+		
+		JPanel containerData = new JPanel();
+		containerData.setVisible(true);
 		
 		container.add(new JLabel(getTime1().getBandeiraDoTime()));
 		container.add(new JLabel(getTime1().getAbreviacaoNomeTime() + " X"));
 		container.add(new JLabel(getTime2().getAbreviacaoNomeTime()));
 		container.add(new JLabel(getTime2().getBandeiraDoTime()));
+		JLabel data = new JLabel(this.getDataFormatada());
+		data.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		mainPanel.add(container);
+		containerData.add(data);
+		mainPanel.add(containerData);
 		
-		return container;
+		return mainPanel;
 	}
 	
-	/*public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-		frame.add(partida.panelDaPartida());
+		frame.getContentPane().add(partida.panelDaPartida());
 		frame.pack();
-	}*/
+	}
 	
 }

@@ -12,12 +12,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import projetoLp2.bolao.ApostaPrimeiraFase;
 import projetoLp2.bolao.MeuBolao;
@@ -29,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 
@@ -126,26 +129,32 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				for (int i = 0; i < radios.size();i++) {
-					if (radios.get(i).isEnabled()) {
+					if (radios.get(i).isSelected()) {
 						try {
-							JTextField golsTime1 = new JTextField();
-							JTextField golsTime2 = new JTextField();
+							
+							JFormattedTextField golsTime1 = new JFormattedTextField(NumberFormat.getInstance());
+							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
+							
 							final JComponent[] inputs = new JComponent[] {
 									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime1().getNomeDoTime()), golsTime1,
 									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime2().getNomeDoTime()),	golsTime2,
 							};
 							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
-							Integer gols1 = Integer.parseInt(golsTime1.getText());
-							Integer gols2 = Integer.parseInt(golsTime2.getText());
-							if(gols1 instanceof Integer && gols2 instanceof Integer){
+
+							if(!golsTime1.getText().equals("") || !golsTime2.getText().equals("") ){
+								Integer gols1 = Integer.parseInt(golsTime1.getText());
+								Integer gols2 = Integer.parseInt(golsTime2.getText());
 								MeuBolao.apostar(i, gols1, gols2);
-								//new ApostaPrimeiraFase(ControladorPartidas.ler()[i], gols1, gols2);	
 								JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
 							}
+							else{
+								JOptionPane.showMessageDialog(null, "Caracteres invalidos, aposta nao feita.");
+								break;
+								}
 							comboBox.setSelectedItem(comboItens[0]);
-							break;
 						} catch (Exception e1) {
-							JOptionPane.showMessageDialog(null, e1.getMessage());
+							JOptionPane.showMessageDialog(null, "Campos nao podem ser vazios, aposta nao feita.");
+							//JOptionPane.showMessageDialog(null, e1.getMessage());
 						}
 
 					}
@@ -160,15 +169,11 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		int valor=0;
 		for(int i=0;  i < 64; i++) {
 			if(ControladorPartidas.ler()[i] != null){
-				/*JLabel numLabel = new JLabel(i + 1 + ".");
-				numLabel.setBounds(281, 103, 278, 16);
-				panelPrimeiraFase.add(numLabel);*/
 				JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
 				decidePanel(i).add(ControladorPartidas.ler()[i].panelDaPartida(), c);
-				//panelPrimeiraFase.add(numLabel, cons);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
 				panelPrimeiraFase.add(btnSubmeter, co);
