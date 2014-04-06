@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Collection;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,10 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import projetoLp2.bolao.docs.ControladorTimes;
+import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.SwingConstants;
+import javax.swing.JList;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -31,8 +36,9 @@ public class TelaTimeCopa extends JPanel {
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
 	private final JComboBox comboBox = new JComboBox(comboItens);
-	private TimeCopa itemSelecionadoAtual = null;
+	private TimeCopa timeSelecionadoAtual = null;
 	private JLabel labelNomeDoTime = new JLabel();
+	private JList listaDasPartidasJogadas = new JList();
 	/**
 	 * Create the panel.
 	 */
@@ -69,7 +75,7 @@ public class TelaTimeCopa extends JPanel {
 		panelTeste.add(lblTime);
 				
 		labelNomeDoTime = new JLabel("");
-		labelNomeDoTime.setBounds(130, 11, 309, 30);
+		labelNomeDoTime.setBounds(130, 11, 160, 30);
 		labelNomeDoTime.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panelTeste.add(labelNomeDoTime);
 		
@@ -112,6 +118,16 @@ public class TelaTimeCopa extends JPanel {
 		labelNumeroDeEmpates.setBounds(130, 184, 115, 27);
 		panelTeste.add(labelNumeroDeEmpates);
 		
+		JLabel lblPartidasJogadas = new JLabel("Partidas Jogadas:");
+		lblPartidasJogadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPartidasJogadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPartidasJogadas.setBounds(332, 11, 460, 33);
+		panelTeste.add(lblPartidasJogadas);
+		
+		listaDasPartidasJogadas = new JList();
+		listaDasPartidasJogadas.setBounds(332, 60, 460, 360);
+		panelTeste.add(listaDasPartidasJogadas);
+		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		selecioneFase.setBackground(Color.WHITE);
@@ -123,20 +139,21 @@ public class TelaTimeCopa extends JPanel {
 		add(comboBox);
 		comboBox.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
-				itemSelecionadoAtual = (TimeCopa) opcaoComboBox();
+			public void mouseClicked(MouseEvent e) {
+				timeSelecionadoAtual = (TimeCopa) opcaoComboBox();
 				labelNomeDoTime.setText(nomeDoTime() + " (" + abrDoTime() + ")");
 				lblIconeBandeira.setIcon(iconeDoTime());
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
+				addAListaDePartida();
 			}
 
 
 
 		});
 		
-		adicionaItensAoComboBox();
+		//adicionaItensAoComboBox();
 
 	}
 	
@@ -154,33 +171,33 @@ public class TelaTimeCopa extends JPanel {
 	}
 	
 	private String nomeDoTime(){
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return "";
-		return itemSelecionadoAtual.getNomeDoTime();
+		return timeSelecionadoAtual.getNomeDoTime();
 	}
 
 	private String abrDoTime() {
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return "";
-		return itemSelecionadoAtual.getAbreviacaoNomeTime();
+		return timeSelecionadoAtual.getAbreviacaoNomeTime();
 	}
 	
 	private String numeroDeVitorias() {
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return "";
-		return itemSelecionadoAtual.getNumVitorias() + " ("+(itemSelecionadoAtual.getPorcentagemVitorias())+"%)";
+		return timeSelecionadoAtual.getNumVitorias() + " ("+(timeSelecionadoAtual.getPorcentagemVitorias())+"%)";
 	}
 	
 	private String numeroDeDerrotas() {
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return "";
-		return itemSelecionadoAtual.getNumDerrotas() + " ("+(itemSelecionadoAtual.getPorcentagemDerrotas())+"%)";
+		return timeSelecionadoAtual.getNumDerrotas() + " ("+(timeSelecionadoAtual.getPorcentagemDerrotas())+"%)";
 	}
 	
 	private String numeroDeEmpates() {
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return "";
-		return itemSelecionadoAtual.getNumEmpates() + " ("+(itemSelecionadoAtual.getPorcentagemEmpates())+"%)";
+		return timeSelecionadoAtual.getNumEmpates() + " ("+(timeSelecionadoAtual.getPorcentagemEmpates())+"%)";
 	}
 	
 	private String[] arrayComboItens(){
@@ -197,7 +214,7 @@ public class TelaTimeCopa extends JPanel {
 		return arrayComboItens;
 	}
 	
-	private void adicionaItensAoComboBox(){
+	/*private void adicionaItensAoComboBox(){
 		JPanel panelDoTime;
 		
 		for (int i = 1; i < comboItens.length; i++) {
@@ -205,18 +222,28 @@ public class TelaTimeCopa extends JPanel {
 			panelDoTime.setBounds(0, 0, 822, 452);
 			mainPanel.add(panelDoTime, comboItens[i]);
 		}
-	}
+	}*/
 	
 	private Icon iconeDoTime() {
-		if (itemSelecionadoAtual == null)
+		if (timeSelecionadoAtual == null)
 			return null;
-		return itemSelecionadoAtual.getBandeiraDoTime();
+		return timeSelecionadoAtual.getBandeiraDoTime();
 	}
 	
 	/*private static void ordenaTimes(){
 		Arrays.sort(arrayTimes);
 	}*/
 	
+	private void addAListaDePartida(){
+		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
+		if (partidasJogadas.size() == 0)
+			listaDasPartidasJogadas.add(new JLabel("Nenhum jogo foi realizado!"));
+		else{
+			for (Partida partida : partidasJogadas) {
+				listaDasPartidasJogadas.add(partida.panelDaPartida());
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		/*for (int i = 0; i < comboItens.length; i++) {
