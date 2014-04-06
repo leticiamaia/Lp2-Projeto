@@ -32,7 +32,7 @@ public abstract class Aposta implements Serializable {
 			throw new Exception("Partida invalida!");
 		}
 		GregorianCalendar dataAceita = partida.getData();
-		dataAceita.add(Calendar.DATE, -1);
+		//dataAceita.add(Calendar.DATE, -1);
 		if (dataAceita.before(new GregorianCalendar())) {
 			throw new Exception("Nao e mais possivel fazer uma aposta nessa partida.");
 		}

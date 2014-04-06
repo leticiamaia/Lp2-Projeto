@@ -1,9 +1,14 @@
 package interfaceGrafica;
 
 import java.awt.Color;
+import projetoLp2.bolao.Administrador;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.ControladorPartidas;
@@ -101,9 +107,13 @@ public class TelaDeCadastraJogo extends JPanel {
 				for(int i = 0; i < 64; i++) {
 					if(partidas[i] == null) {
 						try {
-							partidas[i] = new Partida(time1, time2, new GregorianCalendar());
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							Date date = df.parse(data);
+							GregorianCalendar cal = new GregorianCalendar();
+							cal.setTime(date);
+							((Administrador) MeuBolao.getUsuarioLogado()).cadastraPartida(i, time1, time2, cal);
 						} catch (Exception e) {
-							e.printStackTrace();
+							JOptionPane.showMessageDialog(null, e.getMessage());
 						}
 						break;
 					}
