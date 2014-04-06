@@ -167,6 +167,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 		return (double)(numEmpates)/partidasJogadas.size() * 100;
 	}
 	
+	public List<Partida> getPartidasJogadas(){
+		return partidasJogadas;
+	}
 	
 	@Override
 	public boolean equals(Object obj) {
