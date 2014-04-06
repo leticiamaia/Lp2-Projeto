@@ -36,37 +36,37 @@ public class TelaDeAtualizarPartida extends JPanel {
 		setVisible(false);
 		setLayout(null);
 
-		JLabel TelaDoAdministradorLabel = new JLabel("Tela de Atualizar Cadastro");
-		TelaDoAdministradorLabel.setBounds(153, 11, 500, 52);
-		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
+		JLabel TelaDoAdministradorLabel = new JLabel("Atualizar Cadastro");
+		TelaDoAdministradorLabel.setBounds(312, 11, 247, 52);
+		TelaDoAdministradorLabel.setFont(new Font("Calibri Light", Font.PLAIN, 28));
 		add(TelaDoAdministradorLabel);
 		
 		
-		partidas.setBounds(81, 112, 637, 42);
+		partidas.setBounds(96, 129, 622, 25);
 		inicializaComboPartidas();
 		add(partidas);
 		
 		final JComboBox gols1 = new JComboBox();
-		gols1.setBounds(213, 245, 67, 20);
+		gols1.setBounds(185, 223, 83, 20);
 		inicializaCombo(gols1);
 		add(gols1);
 		
 		final JComboBox gols2 = new JComboBox();
-		gols2.setBounds(548, 245, 67, 20);
+		gols2.setBounds(526, 223, 83, 20);
 		inicializaCombo(gols2);
 		add(gols2);
 		
 		JLabel lblNewLabel = new JLabel("Gols 1");
-		lblNewLabel.setBounds(225, 209, 52, 25);
+		lblNewLabel.setBounds(214, 201, 35, 25);
 		add(lblNewLabel);
 		
 		JLabel label = new JLabel("Gols 2");
-		label.setBounds(562, 213, 67, 20);
+		label.setBounds(551, 203, 42, 20);
 		add(label);
 		
 		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.setIcon(new ImageIcon(TelaDeAtualizarPartida.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
-		btnCadastrar.setBounds(271, 316, 127, 34);
+		btnCadastrar.setBounds(312, 291, 159, 42);
 		btnCadastrar.addActionListener(new ActionListener() {
 			private Integer nGols1;
 			private Integer nGols2;
@@ -89,18 +89,16 @@ public class TelaDeAtualizarPartida extends JPanel {
 				//JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
 			}
 		});
-		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setIcon(new ImageIcon(TelaDeAtualizarPartida.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				contentPane.setVisible(true);
-			}
-		});
-		btnVoltar.setBounds(429, 316, 127, 34);
-		add(btnVoltar);
 		add(btnCadastrar);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(TelaDeAtualizarPartida.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label_1.setBounds(157, 49, 500, 14);
+		add(label_1);
+		
+		JLabel lblSelecioneOJogo = new JLabel("Selecione o jogo que deseja atualizar:");
+		lblSelecioneOJogo.setBounds(312, 112, 261, 14);
+		add(lblSelecioneOJogo);
 		
 	}
 

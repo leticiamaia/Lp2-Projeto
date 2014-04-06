@@ -21,6 +21,8 @@ import javax.swing.border.EmptyBorder;
 import projetoLp2.bolao.MeuBolao;
 
 import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
 
 public class TelaDoAdmin extends JFrame {
 
@@ -63,16 +65,22 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.setVisible(true);
 		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
 		telaDeAtualizarPartida.setBackground(SystemColor.menu);
 		telaDeCadastro = new TelaDeCadastraJogo(mainPane, telaDeAtualizarPartida);
 		contentPane.setBounds(70, 216, 816, 361);	
-		contentPane.setBackground(SystemColor.menu);
+		contentPane.setBackground(Color.WHITE);
 	
 		contentPane.add(telaDeCadastro);
 		contentPane.add(telaDeAtualizarPartida);
 		mainPane.add(contentPane);
+		
+		JLabel lblEscolhaUmaDas = new JLabel("Escolha uma das op\u00E7\u00F5es no menu ao lado.");
+		lblEscolhaUmaDas.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblEscolhaUmaDas.setBounds(162, 144, 436, 43);
+		contentPane.add(lblEscolhaUmaDas);
 		
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela do Administrador");
 		TelaDoAdministradorLabel.setBounds(329, 25, 447, 52);
@@ -85,17 +93,26 @@ public class TelaDoAdmin extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		JButton btnAtualizarPartida = new JButton("Atualizar Partida");
+		btnAtualizarPartida.setBackground(SystemColor.text);
 		btnAtualizarPartida.setBounds(994, 422, 164, 49);
 		mainPane.add(btnAtualizarPartida);
 		
 		JButton btnCadastrarJogo = new JButton("Cadastrar Jogo");
+		btnCadastrarJogo.setBackground(SystemColor.text);
 		btnCadastrarJogo.setBounds(991, 308, 164, 49);
 		mainPane.add(btnCadastrarJogo);
 		
 		JLabel lblMenu = new JLabel("Menu");
+		lblMenu.setForeground(new Color(0, 0, 0));
 		lblMenu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMenu.setBounds(1050, 237, 46, 14);
 		mainPane.add(lblMenu);
+		
+		JPanel menuPanel = new JPanel();
+		menuPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		menuPanel.setBackground(new Color(173, 216, 230));
+		menuPanel.setBounds(949, 216, 248, 361);
+		mainPane.add(menuPanel);
 		btnCadastrarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaDeAtualizarPartida.setVisible(false);
