@@ -80,6 +80,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				ControladorPartidas.escreve(partidasDisponiveis);
 				JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
 			}
 		});
