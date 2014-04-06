@@ -106,7 +106,7 @@ public class TelaDeCadastraJogo extends JPanel {
 						break;
 					}
 				}
-				JOptionPane.showMessageDialog(null, "Time1:" + time1 + "\n" + "Time2:" + time2);
+				JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 			}
 		});
 	}
