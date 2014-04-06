@@ -65,13 +65,14 @@ public class TelaDoAdmin extends JFrame {
 		contentPane = new JPanel(null);
 		contentPane.setVisible(true);
 		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
-		//telaDeCadastro = new TelaDeCadastraJogo();
+		telaDeAtualizarPartida.setBackground(SystemColor.menu);
+		telaDeCadastro = new TelaDeCadastraJogo(mainPane, telaDeAtualizarPartida);
 		contentPane.setBounds(70, 216, 816, 361);	
 		contentPane.setBackground(SystemColor.menu);
-		
-		mainPane.add(contentPane);
+	
 		contentPane.add(telaDeCadastro);
 		contentPane.add(telaDeAtualizarPartida);
+		mainPane.add(contentPane);
 		
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela do Administrador");
 		TelaDoAdministradorLabel.setBounds(329, 25, 447, 52);
@@ -97,13 +98,13 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.add(lblMenu);
 		btnCadastrarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
+				telaDeAtualizarPartida.setVisible(false);
 				telaDeCadastro.setVisible(true);
 			}
 		});
 		btnAtualizarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
+				telaDeCadastro.setVisible(false);
 				telaDeAtualizarPartida.setVisible(true);
 			}
 		});
