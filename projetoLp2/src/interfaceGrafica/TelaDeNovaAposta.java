@@ -58,7 +58,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 		final JPanel panelTeste = new JPanel();
 		panelTeste.setBounds(0, 0, 822, 452);
-		mainPanel.add( panelTeste, comboItens[0]);
+		mainPanel.add(panelTeste, comboItens[0]);
 		panelTeste.setLayout(null);
 
 		JLabel tLabel = new JLabel("<html>Para come\u00E7ar, selecione a fase na qual o jogo que voc\u00EA deseja apostar se encontra.</html>");
@@ -143,18 +143,18 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 
 		int valor=0;
-		for(int i=0; i>= decideValor() && i < decideMaiorValor(); i++){
+		for(int i=0; i>= 0/*decideValor()*/ && i < 6/*decideMaiorValor()*/; i++){
 			if(ControladorPartidas.ler()[i] != null){
-				/*				JLabel numLabel = new JLabel(i + 1 + ".");
+				/*JLabel numLabel = new JLabel(i + 1 + ".");
 				numLabel.setBounds(281, 103, 278, 16);
 				panelPrimeiraFase.add(numLabel);*/
 				JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
-				decidePanel().add(ControladorPartidas.ler()[i].panelDaPartida(), c);
+				/*decidePanel()*/panelPrimeiraFase.add(ControladorPartidas.ler()[i].panelDaPartida(), c);
 				//panelPrimeiraFase.add(numLabel, cons);
-				decidePanel().add(time, cons);
+				/*decidePanel()*/panelPrimeiraFase.add(time, cons);
 				radios.add(time);
 				panelPrimeiraFase.add(btnSubmeter, co);
 			}
