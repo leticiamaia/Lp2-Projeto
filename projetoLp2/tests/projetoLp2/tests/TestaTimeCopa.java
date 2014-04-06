@@ -116,5 +116,18 @@ public class TestaTimeCopa {
 		Assert.assertTrue(time1.getNumDerrotas() == 1);
 		Assert.assertTrue(time2.getNumVitorias() == 1);
 	}
+	
+	@Test
+	public void testaCompareTo() throws Exception{
+		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		TimeCopa time3 = new TimeCopa("bandeiraAustralia.png", "Australia",
+				"AUS");
+		
+		Assert.assertTrue(time1.compareTo(time2) == -1);
+		Assert.assertTrue(time2.compareTo(time2) == 0);
+		Assert.assertTrue(time2.compareTo(time3) == 1);
+		Assert.assertTrue(time1.compareTo(time3) == -1);
+	}
 
 }

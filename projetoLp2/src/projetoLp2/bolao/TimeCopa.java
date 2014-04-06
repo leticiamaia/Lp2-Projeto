@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * Essa classe representa um time da copa
  * @author Marcela, Leticia, Orion, Lucas
  */
-public class TimeCopa implements Serializable {
+public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	/**
 	 * 
 	 */
@@ -168,5 +168,16 @@ public class TimeCopa implements Serializable {
 		} else if (!partidasJogadas.equals(other.partidasJogadas))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(TimeCopa time) {
+		if (this.getNomeDoTime().compareTo(time.getNomeDoTime()) < 0)
+			return -1;
+		
+		else if (this.getNomeDoTime().compareTo(time.getNomeDoTime()) > 0)
+			return 1;
+			
+		return 0;
 	}
 }
