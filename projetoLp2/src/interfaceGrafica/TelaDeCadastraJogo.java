@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -112,10 +114,11 @@ public class TelaDeCadastraJogo extends JPanel {
 	}
 
 	private void adicionaTimesCombo(JComboBox comboTime) {
-		TimeCopa[] times = ControladorTimes.ler();
-		
-		for(int i = 0; i < times.length; i++) {
-			comboTime.addItem(times[i].getAbreviacaoNomeTime());
+		Map<String,TimeCopa> times = ControladorTimes.ler();
+		Set<String> times1 = times.keySet();
+		Object[] times2 = times1.toArray();
+		for(int i = 0; i < times2.length; i++) {
+			comboTime.addItem(times2[i].toString());
 		}
 	}
 }

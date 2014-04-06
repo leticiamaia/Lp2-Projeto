@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 
 import projetoLp2.bolao.TimeCopa;
 
@@ -12,11 +13,12 @@ public class ControladorTimes {
 	private static ObjectInputStream ois;
 	private static ObjectOutputStream out;
 	
-	public static TimeCopa[] ler() {
-		TimeCopa[] times = null;
+	@SuppressWarnings("unchecked")
+	public static Map<String, TimeCopa> ler() {
+		Map<String, TimeCopa> times = null;
 		try {
 			ois = new ObjectInputStream(new FileInputStream("times.bin"));
-			times =  (TimeCopa[])ois.readObject();
+			times =  (Map<String, TimeCopa>)ois.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -29,7 +31,7 @@ public class ControladorTimes {
 		return times;
 	}
 	
-	public static void escreve(TimeCopa[] times) {
+	public static void escreve(Map<String, TimeCopa> times) {
 		try {
 			out = new ObjectOutputStream(new FileOutputStream("times.bin"));
 			out.writeObject(times);
