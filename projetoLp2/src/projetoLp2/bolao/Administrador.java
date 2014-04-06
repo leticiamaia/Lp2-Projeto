@@ -93,6 +93,7 @@ public class Administrador extends Usuario {
 		ControladorPartidas.escreve(partidas);
 		atualizaPontuacao(indicePartida);
 		atualizaRanking();
+		System.out.println("PartidaAtualizada!");
 		return partidas;
 	}
 

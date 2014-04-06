@@ -24,7 +24,8 @@ public class TelaDoAdmin extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -494761158154562268L;
-	private JPanel contentPane, mainPane;
+	private static JPanel contentPane;
+	private JPanel mainPane;
 	private TelaDeCadastraJogo telaDeCadastro;
 	private TelaDeAtualizarPartida telaDeAtualizarPartida;
 	private TelaDeLogin telaDeLogin;
@@ -58,8 +59,8 @@ public class TelaDoAdmin extends JFrame {
 		mainPane.setLayout(null);
 		
 		contentPane = new JPanel(null);
-		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
-		telaDeCadastro = new TelaDeCadastraJogo();
+		telaDeAtualizarPartida = new TelaDeAtualizarPartida(contentPane);
+		telaDeCadastro = new TelaDeCadastraJogo(contentPane);
 		contentPane.setVisible(true);
 		contentPane.setBounds(0, 0, 1284, 660);	
 		contentPane.setBackground(Color.WHITE);
@@ -122,5 +123,9 @@ public class TelaDoAdmin extends JFrame {
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));	
 		
+	}
+	
+	public static void setContentPanel(boolean cond) {
+		contentPane.setVisible(cond);
 	}
 }

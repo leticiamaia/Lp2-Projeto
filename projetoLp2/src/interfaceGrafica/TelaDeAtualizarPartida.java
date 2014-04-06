@@ -22,13 +22,13 @@ public class TelaDeAtualizarPartida extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 213413234132321L;
-	
+	private static JPanel contentPane;
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeAtualizarPartida() {
+	public TelaDeAtualizarPartida(final JPanel contentPane) {
 		
-		
+		this.contentPane = contentPane;
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -92,6 +92,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
+				contentPane.setVisible(true);
 			}
 		});
 		button.setBounds(518, 521, 246, 52);

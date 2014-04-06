@@ -33,15 +33,15 @@ public class TelaDeCadastraJogo extends JPanel {
 	 */
 	private static final long serialVersionUID = 834875740282875192L;
 
-
+	private JPanel contentPane;
 	private JTextField textField;
 	
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo() {
+	public TelaDeCadastraJogo(final JPanel contentPane) {
 		
-		
+		this.contentPane = contentPane;
 		setBounds(0, 0, 1300, 700);	
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -77,6 +77,7 @@ public class TelaDeCadastraJogo extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
+				contentPane.setVisible(true);
 			}
 		});
 		button.setBounds(518, 521, 246, 52);
