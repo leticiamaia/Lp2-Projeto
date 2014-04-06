@@ -120,6 +120,16 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	public int getNumVitorias() {
 		return numVitorias;
 	}
+	
+	/**
+	 * Retorna porcentagem de vitorias
+	 * @return porcentagem de vitorias
+	 */
+	public double getPorcentagemVitorias(){
+		if (partidasJogadas.size() == 0)
+			return 0;
+		return (double)(numVitorias)/partidasJogadas.size() * 100;
+	}
 
 	/**
 	 * Retorna o numero de derrotas
@@ -130,6 +140,16 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	}
 
 	/**
+	 * Retorna porcentagem de derrotas
+	 * @return porcentagem de derrotas
+	 */
+	public double getPorcentagemDerrotas(){
+		if (partidasJogadas.size() == 0)
+			return 0;
+		return (double)(numDerrotas)/partidasJogadas.size() * 100;
+	}
+	
+	/**
 	 * Retorna o numero de empates
 	 * @return numero de empates
 	 */
@@ -137,6 +157,20 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 		return numEmpates;
 	}
 
+	/**
+	 * Retorna porcentagem de empates
+	 * @return porcentagem de empates
+	 */
+	public double getPorcentagemEmpates(){
+		if (partidasJogadas.size() == 0)
+			return 0;
+		return (double)(numEmpates)/partidasJogadas.size() * 100;
+	}
+	
+	public List<Partida> getPartidasJogadas(){
+		return partidasJogadas;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

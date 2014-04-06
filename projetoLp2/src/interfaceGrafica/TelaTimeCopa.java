@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.Collection;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,7 +32,7 @@ public class TelaTimeCopa extends JPanel {
 	private final String[] comboItens = arrayComboItens();
 	private final JComboBox comboBox = new JComboBox(comboItens);
 	private TimeCopa itemSelecionadoAtual = null;
-	private JLabel labelNomeDoTime = new JLabel(nomeDoTime());
+	private JLabel labelNomeDoTime = new JLabel();
 	/**
 	 * Create the panel.
 	 */
@@ -63,13 +64,53 @@ public class TelaTimeCopa extends JPanel {
 		panelTeste.setLayout(null);
 		
 		JLabel lblTime = new JLabel("Time:");
-		lblTime.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblTime.setBounds(10, 21, 58, 38);
+		lblTime.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTime.setBounds(10, 11, 58, 30);
 		panelTeste.add(lblTime);
 				
 		labelNomeDoTime = new JLabel("");
-		labelNomeDoTime.setBounds(63, 29, 309, 30);
+		labelNomeDoTime.setBounds(130, 11, 309, 30);
+		labelNomeDoTime.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panelTeste.add(labelNomeDoTime);
+		
+		JLabel lblBandeira = new JLabel("Bandeira:");
+		lblBandeira.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblBandeira.setBounds(10, 51, 90, 30);
+		panelTeste.add(lblBandeira);
+		
+		final JLabel lblIconeBandeira = new JLabel("");
+		lblIconeBandeira.setBounds(130, 46, 90, 45);
+		panelTeste.add(lblIconeBandeira);
+		
+		JLabel lblNumeroDeVitorias = new JLabel("N\u00B0 Vit\u00F3rias:");
+		lblNumeroDeVitorias.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNumeroDeVitorias.setBounds(10, 92, 90, 30);
+		panelTeste.add(lblNumeroDeVitorias);
+		
+		final JLabel labelNumeroDeVitorias = new JLabel("");
+		labelNumeroDeVitorias.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelNumeroDeVitorias.setBounds(130, 92, 110, 33);
+		panelTeste.add(labelNumeroDeVitorias);
+		
+		JLabel lblNmeroDeDerrotas = new JLabel("N\u00BA de Derrotas:");
+		lblNmeroDeDerrotas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNmeroDeDerrotas.setBounds(10, 133, 150, 30);
+		panelTeste.add(lblNmeroDeDerrotas);
+		
+		final JLabel labelNumeroDeDerrotas = new JLabel("");
+		labelNumeroDeDerrotas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelNumeroDeDerrotas.setBounds(130, 136, 115, 27);
+		panelTeste.add(labelNumeroDeDerrotas);
+		
+		JLabel lblNDeEmpates = new JLabel("N\u00BA de Empates:");
+		lblNDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNDeEmpates.setBounds(10, 181, 155, 30);
+		panelTeste.add(lblNDeEmpates);
+		
+		final JLabel labelNumeroDeEmpates = new JLabel("");
+		labelNumeroDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labelNumeroDeEmpates.setBounds(130, 184, 115, 27);
+		panelTeste.add(labelNumeroDeEmpates);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -77,16 +118,23 @@ public class TelaTimeCopa extends JPanel {
 		selecioneFase.setBounds(314, 93, 232, 61);
 		add(selecioneFase);
 		
-		comboBox.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				itemSelecionadoAtual = (TimeCopa) opcaoComboBox();
-				labelNomeDoTime = new JLabel(nomeDoTime());
-			}
-		});
 		
 		comboBox.setBounds(552, 111, 366, 26);
 		add(comboBox);
+		comboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				itemSelecionadoAtual = (TimeCopa) opcaoComboBox();
+				labelNomeDoTime.setText(nomeDoTime() + " (" + abrDoTime() + ")");
+				lblIconeBandeira.setIcon(iconeDoTime());
+				labelNumeroDeVitorias.setText(numeroDeVitorias());
+				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
+				labelNumeroDeEmpates.setText(numeroDeEmpates());
+			}
+
+
+
+		});
 		
 		adicionaItensAoComboBox();
 
@@ -101,7 +149,6 @@ public class TelaTimeCopa extends JPanel {
 				System.out.println(time.getNomeDoTime());
 				return time;
 		}
-		System.out.println("Não funfou!");
 		return null;
 		
 	}
@@ -110,6 +157,30 @@ public class TelaTimeCopa extends JPanel {
 		if (itemSelecionadoAtual == null)
 			return "";
 		return itemSelecionadoAtual.getNomeDoTime();
+	}
+
+	private String abrDoTime() {
+		if (itemSelecionadoAtual == null)
+			return "";
+		return itemSelecionadoAtual.getAbreviacaoNomeTime();
+	}
+	
+	private String numeroDeVitorias() {
+		if (itemSelecionadoAtual == null)
+			return "";
+		return itemSelecionadoAtual.getNumVitorias() + " ("+(itemSelecionadoAtual.getPorcentagemVitorias())+"%)";
+	}
+	
+	private String numeroDeDerrotas() {
+		if (itemSelecionadoAtual == null)
+			return "";
+		return itemSelecionadoAtual.getNumDerrotas() + " ("+(itemSelecionadoAtual.getPorcentagemDerrotas())+"%)";
+	}
+	
+	private String numeroDeEmpates() {
+		if (itemSelecionadoAtual == null)
+			return "";
+		return itemSelecionadoAtual.getNumEmpates() + " ("+(itemSelecionadoAtual.getPorcentagemEmpates())+"%)";
 	}
 	
 	private String[] arrayComboItens(){
@@ -134,6 +205,12 @@ public class TelaTimeCopa extends JPanel {
 			panelDoTime.setBounds(0, 0, 822, 452);
 			mainPanel.add(panelDoTime, comboItens[i]);
 		}
+	}
+	
+	private Icon iconeDoTime() {
+		if (itemSelecionadoAtual == null)
+			return null;
+		return itemSelecionadoAtual.getBandeiraDoTime();
 	}
 	
 	/*private static void ordenaTimes(){
