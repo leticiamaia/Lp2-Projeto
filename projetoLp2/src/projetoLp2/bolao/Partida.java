@@ -75,7 +75,7 @@ public class Partida implements Serializable {
 	 * @return string da data formatada
 	 */
 	public String getDataFormatada() {
-		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		return dataFormatada.format(data.getTimeInMillis());
 	}
 

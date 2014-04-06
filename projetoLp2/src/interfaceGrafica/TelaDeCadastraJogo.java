@@ -67,7 +67,7 @@ public class TelaDeCadastraJogo extends JPanel {
 		textField.setBounds(577, 302, 137, 36);
 		add(textField);
 
-		JLabel lblNewLabel_1 = new JLabel("DD/MM/AAAA");
+		JLabel lblNewLabel_1 = new JLabel("DD/MM/AAAA hh:mm");
 		lblNewLabel_1.setBounds(577, 263, 187, 15);
 		add(lblNewLabel_1);
 
@@ -110,7 +110,7 @@ public class TelaDeCadastraJogo extends JPanel {
 				for(int i = 0; i < 64; i++) {
 					if(partidas[i] == null) {
 						try {
-							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 							Date date = df.parse(data);
 							GregorianCalendar cal = new GregorianCalendar();
 							cal.setTime(date);

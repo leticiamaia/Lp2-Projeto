@@ -236,4 +236,8 @@ public class MeuBolao {
 		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 	}
+
+	public static Aposta[] getApostas() {
+		return (Aposta[])((Jogador)usuarioLogado).getApostas();
+	}
 }

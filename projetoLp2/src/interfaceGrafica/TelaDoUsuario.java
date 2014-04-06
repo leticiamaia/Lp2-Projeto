@@ -32,6 +32,7 @@ public class TelaDoUsuario extends JFrame {
 	private RankingPanel rankingPanel;
 	private TelaUserBoasVindas telaBoasVindas;
 	private TelaDeNovaAposta telaAposta;
+	private TelaDeVizualizarAposta telaVizualizarAposta;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,9 @@ public class TelaDoUsuario extends JFrame {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		telaBoasVindas = new TelaUserBoasVindas();
 		telaAposta = new TelaDeNovaAposta();
+		telaVizualizarAposta = new TelaDeVizualizarAposta();
 		telaBoasVindas.setVisible(true);
+		
 		try {
 			rankingPanel = new RankingPanel();
 		} catch (Exception e1) {
@@ -117,13 +120,26 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(true);
+				telaVizualizarAposta.setVisible(false);
 			}
 		});
 		menuApostas.add(fazerApostaMenuItem);
 
 		JMenuItem verApostaMenuItem = new JMenuItem("Visualizar apostas");
+		verApostaMenuItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				infoPanel.setVisible(false);
+				telaBoasVindas.setVisible(false);
+				rankingPanel.setVisible(false);
+				telaAposta.setVisible(false);
+				telaVizualizarAposta.setVisible(true);
+			}
+		});
 		menuApostas.add(verApostaMenuItem);
-
+		
+		
 		JMenuItem editarApostaMenuItem = new JMenuItem("Editar uma aposta");
 		menuApostas.add(editarApostaMenuItem);
 
