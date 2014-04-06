@@ -18,19 +18,11 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
-
-import projetoLp2.bolao.ApostaOitavasDeFinal;
-import projetoLp2.bolao.ApostaPrimeiraFase;
-import projetoLp2.bolao.ApostaQuartasDeFinal;
-import projetoLp2.bolao.ApostaSemiFinal;
 import projetoLp2.bolao.MeuBolao;
+import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -51,8 +43,12 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 	private  final JPanel mainPanel;
 	final String[] comboItens =  new String[]{"Selecione uma fase","Primeira fase","Oitavas de Final",
 			"Quartas de Final","Semi-final","Final"};	
-	final JComboBox comboBox = new JComboBox(comboItens);
+	final JComboBox<String> comboBox = new JComboBox<>(comboItens);
 	final JPanel panelPrimeiraFase, panelOitavaFinal, panelQuartaFinal, panelSemiFinal, panelFinal;
+	final int JOGOS_PRIMEIRA_FASE = 48;
+	final int JOGOS_OITAVAS = 56;
+	final int JOGOS_QUARTAS = 60;
+	final int JOGOS_SEMI = 63;
 
 	public TelaDeNovaAposta() {
 		setBackground(Color.WHITE);
@@ -61,7 +57,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 		mainPanel = new JPanel(new CardLayout());
 		mainPanel.setBackground(new Color(240, 240, 240));
-		mainPanel.setBounds(234, 165, 822, 452);
+		mainPanel.setBounds(234, 147, 822, 452);
 		mainPanel.setVisible(true);
 		add(mainPanel);
 
@@ -87,39 +83,28 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		panelSemiFinal = new JPanel(new GridBagLayout());
 		panelSemiFinal.setBounds(0, 0, 822, 452);
 
-		panelFinal = new JPanel(null);
+		panelFinal = new JPanel(new GridBagLayout());
 		panelFinal.setBounds(0, 0, 822, 452);
-		mainPanel.add(panelFinal, comboItens[4]);
-
-		//JLabel testeLabel = new JLabel("Painel Oitava de final");
-		//testeLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		//testeLabel.setBounds(281, 103, 278, 16);
-		//panelOitavaFinal.add(testeLabel);
-
-		//JLabel quartaFinal = new JLabel("Painel Quarta de final");
-		//quartaFinal.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		//quartaFinal.setBounds(281, 103, 278, 16);
-		//panelQuartaFinal.add(quartaFinal);
-
+	
 		ButtonGroup grupo = new ButtonGroup();		
 
 		JScrollPane scrollPrimeiraFase = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainPanel.add(scrollPrimeiraFase, comboItens[1]);
 
-		JScrollPane scrollOitavas = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scrollOitavas = new JScrollPane(panelOitavaFinal, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainPanel.add(scrollOitavas, comboItens[2]);
 
-		JScrollPane scrollQuartas = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scrollQuartas = new JScrollPane(panelQuartaFinal, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainPanel.add(scrollQuartas, comboItens[3]);
 
-		JScrollPane scrollSemi = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scrollSemi = new JScrollPane(panelSemiFinal, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		mainPanel.add( scrollSemi , comboItens[4]);
+		mainPanel.add(scrollSemi , comboItens[4]);
 
-		JScrollPane scrollFinal = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane scrollFinal = new JScrollPane(panelFinal, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainPanel.add(scrollFinal , comboItens[5]);		
 
@@ -133,11 +118,6 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		c.gridwidth = 2;
 		c.gridx = 1;
 
-		GridBagConstraints co = new GridBagConstraints();
-		co.fill = GridBagConstraints.CENTER;
-		co.gridwidth = 3;
-		co.gridx = 1;
-
 		final ArrayList<JRadioButton> radios = new ArrayList<JRadioButton>();
 
 		JButton btnSubmeter = new JButton("Submeter");
@@ -145,6 +125,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				for (int i = 0; i < radios.size();i++) {
+					Partida partida = ControladorPartidas.ler()[i];
 					if (radios.get(i).isSelected()) {
 						try {
 
@@ -152,8 +133,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
 
 							final JComponent[] inputs = new JComponent[] {
-									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime1().getNomeDoTime()), golsTime1,
-									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime2().getNomeDoTime()),	golsTime2,
+									new JLabel("Gols " + partida.getTime1().getNomeDoTime()), golsTime1,
+									new JLabel("Gols " + partida.getTime2().getNomeDoTime()),	golsTime2,
 							};
 							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
 
@@ -169,8 +150,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							}
 							comboBox.setSelectedItem(comboItens[0]);
 						} catch (Exception e1) {
-							JOptionPane.showMessageDialog(null, "Campos nao podem ser vazios, aposta nao feita.");
-							//JOptionPane.showMessageDialog(null, e1.getMessage());
+							JOptionPane.showMessageDialog(null, e1.getMessage());
 						}
 
 					}
@@ -178,64 +158,79 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 			}
 		});
-		btnSubmeter.setBounds(523, 617, 89, 23);
+		add(btnSubmeter);		
+		btnSubmeter.setBounds(506, 606, 303, 32);
 		btnSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		
 		JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
 		vazioLabel.setBounds(281, 103, 278, 16);
 		vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
-		int valor=0;
+		JLabel vazioLabel3 = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
+		vazioLabel3.setBounds(281, 103, 278, 16);
+		vazioLabel3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		
+		JLabel vazioLabel1 = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
+		vazioLabel1.setBounds(281, 103, 278, 16);
+		vazioLabel1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		
+		JLabel vazioLabel2 = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
+		vazioLabel2.setBounds(281, 103, 278, 16);
+		vazioLabel2.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		
+		JLabel vazioLabel4 = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
+		vazioLabel4.setBounds(281, 103, 278, 16);
+		vazioLabel4.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		
 		for(int i=0;  i < 64; i++) {
-			if(ControladorPartidas.ler()[i] != null){
+			Partida partida = ControladorPartidas.ler()[i];
+			if(partida != null){
 				JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
-				decidePanel(i).add(ControladorPartidas.ler()[i].panelDaPartida(), c);
+				decidePanel(i).add(partida.panelDaPartida(), c);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
-				decidePanel(i).add(btnSubmeter, co);
 			}
-			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[0] && ControladorPartidas.ler()[i] == null) {
+			if (i == 0 && partida == null) {
 				panelPrimeiraFase.add(vazioLabel);
 			}
 
-			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[48] && ControladorPartidas.ler()[i] == null) {
-				panelOitavaFinal.add(vazioLabel);
+			if (i == JOGOS_PRIMEIRA_FASE-1  && partida == null) {
+				panelOitavaFinal.add(vazioLabel4);
 			}
 
-			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[56] && ControladorPartidas.ler()[i] == null) {
-				panelQuartaFinal.add(vazioLabel);
+			if (i == JOGOS_OITAVAS-1 && partida == null) {
+				panelQuartaFinal.add(vazioLabel3);
 			}
 
-			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[60] && ControladorPartidas.ler()[i] == null) { 
-				panelSemiFinal.add(vazioLabel);
+			if (i == JOGOS_QUARTAS-1 && partida == null) { 
+				panelSemiFinal.add(vazioLabel2);
 			}
 
-			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[63] && ControladorPartidas.ler()[i] == null) {
-				panelFinal.add(vazioLabel);
+			if (i == JOGOS_SEMI-1 && partida == null) {
+				panelFinal.add(vazioLabel1);
 			}
-			else if(ControladorPartidas.ler()[i] == null && (i == 0 || i == 10)){
-				panelPrimeiraFase.add(vazioLabel);
-				panelOitavaFinal.add(vazioLabel);
-				panelQuartaFinal.add(vazioLabel);
-				panelSemiFinal.add(vazioLabel);
+			else if(ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null && ControladorPartidas.ler()[JOGOS_QUARTAS-1] == null
+					&& ControladorPartidas.ler()[JOGOS_SEMI-1] == null){
+				panelPrimeiraFase.add(vazioLabel1);
+				panelOitavaFinal.add(vazioLabel2);
+				panelQuartaFinal.add(vazioLabel4);
+				panelSemiFinal.add(vazioLabel3);
 				panelFinal.add(vazioLabel);
 				break;
 			}
-			valor = i;
 		}
-		co.gridy = valor;
 
 		JLabel selecioneFase = new JLabel("Selecione a fase do jogo que voc\u00EA quer apostar:");
 		selecioneFase.setBackground(Color.WHITE);
-		selecioneFase.setBounds(314, 93, 303, 61);
+		selecioneFase.setBounds(315, 83, 303, 61);
 		add(selecioneFase);
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
 		comboBox.addItemListener(this);
-		comboBox.setBounds(600, 110, 360, 26);
+		comboBox.setBounds(601, 100, 360, 26);
 		add(comboBox);
 
 		JLabel fazerApostaLabel = new JLabel("Fazer uma Nova Aposta");
@@ -249,52 +244,21 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		divisorHorizontalLabel.setBounds(-88, 59, 700, 21);
 
-		/*	itemSelecionado = (String) comboBox.getSelectedItem();
-		if(!itemSelecionado.equals("Selecione uma fase") && itemSelecionado.equals("Primeira Fase"))
-			panelPrimeiraFase.setVisible(true);*/
-
 	}
 
-	/*private int decideMaiorValor() {
-		if(comboBox.getSelectedItem().equals(comboItens[1]))
-			return 48;
-		else if(comboBox.getSelectedItem().equals(comboItens[2]))
-			return 56;
-		else if(comboBox.getSelectedItem().equals(comboItens[3]))
-			return 60;
-		else if(comboBox.getSelectedItem().equals(comboItens[4]))
-			return 63;
-		else {
-			return 64;
-		}
-	}*/
-
 	private Container decidePanel(int num) {
-		if(num < 4) 
+	
+		if(num < JOGOS_PRIMEIRA_FASE) 
 			return panelPrimeiraFase;
-		else if(num < 10) 
+		else if(num < JOGOS_OITAVAS) 
 			return panelOitavaFinal;
-		else if(num < 60) 
+		else if(num < JOGOS_QUARTAS) 
 			return panelQuartaFinal;
-		else if(num < 63) 
+		else if(num < JOGOS_SEMI) 
 			return panelSemiFinal;
 		else
 			return panelFinal;
 	}
-	/*
-	private int decideValor() {
-		if(comboBox.getSelectedItem().equals(comboItens[1]))
-			return 0;
-		else if(comboBox.getSelectedItem().equals(comboItens[2]))
-			return 48;
-		else if(comboBox.getSelectedItem().equals(comboItens[3]))
-			return 56;
-		else if(comboBox.getSelectedItem().equals(comboItens[4]))
-			return 60;
-		else {
-			return 63;
-		}
-	}*/
 
 	@Override
 	public void itemStateChanged(ItemEvent e){

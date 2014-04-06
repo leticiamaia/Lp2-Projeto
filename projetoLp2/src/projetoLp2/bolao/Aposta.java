@@ -34,7 +34,7 @@ public abstract class Aposta implements Serializable {
 		GregorianCalendar dataAceita = partida.getData();
 		//dataAceita.add(Calendar.DATE, -1);
 		if (dataAceita.before(new GregorianCalendar())) {
-			throw new Exception("Nao e mais possivel fazer uma aposta nessa partida.");
+			throw new Exception("Nao e mais possivel fazer uma aposta nessa partida (observe a data da mesma)");
 		}
 		setPalpiteGolsTime1(numGolsTime1);
 		setPalpiteGolsTime2(numGolsTime2);
