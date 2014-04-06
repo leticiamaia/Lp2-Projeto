@@ -77,15 +77,12 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 
 		panelOitavaFinal = new JPanel(new GridBagLayout());
 		panelOitavaFinal.setBounds(0, 0, 822, 452);
-		mainPanel.add(panelOitavaFinal, comboItens[2]);
 
 		panelQuartaFinal = new JPanel(new GridBagLayout());
 		panelQuartaFinal.setBounds(0, 0, 822, 452);
-		mainPanel.add(panelQuartaFinal, comboItens[3]);
 
 		panelSemiFinal = new JPanel(new GridBagLayout());
 		panelSemiFinal.setBounds(0, 0, 822, 452);
-		mainPanel.add(panelSemiFinal, comboItens[4]);
 
 		panelFinal = new JPanel(null);
 		panelFinal.setBounds(0, 0, 822, 452);
@@ -106,6 +103,22 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		JScrollPane scrollPrimeiraFase = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		mainPanel.add(scrollPrimeiraFase, comboItens[1]);
+
+		JScrollPane scrollOitavas = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainPanel.add(scrollOitavas, comboItens[2]);
+
+		JScrollPane scrollQuartas = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainPanel.add(scrollQuartas, comboItens[3]);
+
+		JScrollPane scrollSemi = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainPanel.add( scrollSemi , comboItens[4]);
+
+		JScrollPane scrollFinal = new JScrollPane(panelPrimeiraFase, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainPanel.add(scrollFinal , comboItens[5]);		
 
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.CENTER;
@@ -131,10 +144,10 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				for (int i = 0; i < radios.size();i++) {
 					if (radios.get(i).isSelected()) {
 						try {
-							
+
 							JFormattedTextField golsTime1 = new JFormattedTextField(NumberFormat.getInstance());
 							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
-							
+
 							final JComponent[] inputs = new JComponent[] {
 									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime1().getNomeDoTime()), golsTime1,
 									new JLabel("Gols " + ControladorPartidas.ler()[i].getTime2().getNomeDoTime()),	golsTime2,
@@ -150,7 +163,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							else{
 								JOptionPane.showMessageDialog(null, "Caracteres invalidos, aposta nao feita.");
 								break;
-								}
+							}
 							comboBox.setSelectedItem(comboItens[0]);
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null, "Campos nao podem ser vazios, aposta nao feita.");
@@ -176,18 +189,23 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				decidePanel(i).add(ControladorPartidas.ler()[i].panelDaPartida(), c);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
-				panelPrimeiraFase.add(btnSubmeter, co);
+				decidePanel(i).add(btnSubmeter, co);
 			}
 			else if(ControladorPartidas.ler()[i] == null && (i == 0 || i == 10)){
 				JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
 				vazioLabel.setBounds(281, 103, 278, 16);
 				vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-				decidePanel(i).add(vazioLabel);
+
+				panelPrimeiraFase.add(vazioLabel);
+				panelOitavaFinal.add(vazioLabel);
+				panelQuartaFinal.add(vazioLabel);
+				panelSemiFinal.add(vazioLabel);
+				panelFinal.add(vazioLabel);
 				break;
 			}
 			valor = i;
 		}
-		co.gridy = valor + 1;
+		co.gridy = valor;
 
 		JLabel selecioneFase = new JLabel("Selecione a fase do jogo que voc\u00EA quer apostar:");
 		selecioneFase.setBackground(Color.WHITE);
@@ -242,7 +260,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		else
 			return panelFinal;
 	}
-/*
+	/*
 	private int decideValor() {
 		if(comboBox.getSelectedItem().equals(comboItens[1]))
 			return 0;

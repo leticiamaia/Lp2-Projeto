@@ -155,7 +155,7 @@ public class Partida implements Serializable {
 	
 	/**
 	 * Cria um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes
-	 * @return um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes
+	 * @return um JPanel que tem as bandeiras dos times da partida com suas respectivas abreviacoes e datas das partidas
 	 */
 	public JPanel panelDaPartida(){
 		JPanel mainPanel = new JPanel();
@@ -181,7 +181,7 @@ public class Partida implements Serializable {
 		return mainPanel;
 	}
 	
-	public static void main(String[] args) throws Exception {
+/*	public static void main(String[] args) throws Exception {
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
@@ -189,6 +189,6 @@ public class Partida implements Serializable {
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		frame.getContentPane().add(partida.panelDaPartida());
 		frame.pack();
-	}
+	}*/
 	
 }
