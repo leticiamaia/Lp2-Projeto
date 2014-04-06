@@ -21,7 +21,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import projetoLp2.bolao.ApostaOitavasDeFinal;
 import projetoLp2.bolao.ApostaPrimeiraFase;
+import projetoLp2.bolao.ApostaQuartasDeFinal;
+import projetoLp2.bolao.ApostaSemiFinal;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
@@ -177,8 +180,11 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		});
 		btnSubmeter.setBounds(523, 617, 89, 23);
 		btnSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
-
-
+		
+		JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
+		vazioLabel.setBounds(281, 103, 278, 16);
+		vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		
 		int valor=0;
 		for(int i=0;  i < 64; i++) {
 			if(ControladorPartidas.ler()[i] != null){
@@ -191,11 +197,26 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				radios.add(time);
 				decidePanel(i).add(btnSubmeter, co);
 			}
-			else if(ControladorPartidas.ler()[i] == null && (i == 0 || i == 10)){
-				JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
-				vazioLabel.setBounds(281, 103, 278, 16);
-				vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[0] && ControladorPartidas.ler()[i] == null) {
+				panelPrimeiraFase.add(vazioLabel);
+			}
 
+			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[48] && ControladorPartidas.ler()[i] == null) {
+				panelOitavaFinal.add(vazioLabel);
+			}
+
+			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[56] && ControladorPartidas.ler()[i] == null) {
+				panelQuartaFinal.add(vazioLabel);
+			}
+
+			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[60] && ControladorPartidas.ler()[i] == null) { 
+				panelSemiFinal.add(vazioLabel);
+			}
+
+			if (ControladorPartidas.ler()[i] == ControladorPartidas.ler()[63] && ControladorPartidas.ler()[i] == null) {
+				panelFinal.add(vazioLabel);
+			}
+			else if(ControladorPartidas.ler()[i] == null && (i == 0 || i == 10)){
 				panelPrimeiraFase.add(vazioLabel);
 				panelOitavaFinal.add(vazioLabel);
 				panelQuartaFinal.add(vazioLabel);
