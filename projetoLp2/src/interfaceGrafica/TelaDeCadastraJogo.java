@@ -96,7 +96,7 @@ public class TelaDeCadastraJogo extends JPanel {
 				time1 = (String) comboTime1.getSelectedItem();
 				time2 = (String) comboTime2.getSelectedItem();
 				data = textField.getText();
-				/*for(int i = 0; i < 64; i++) {
+				for(int i = 0; i < 64; i++) {
 					if(partidas[i] == null) {
 						try {
 							//partidas[i] = new Partida(time1, time2, new GregorianCalendar());
@@ -105,7 +105,7 @@ public class TelaDeCadastraJogo extends JPanel {
 						}
 						break;
 					}
-				}*/
+				}
 				JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 			}
 		});
