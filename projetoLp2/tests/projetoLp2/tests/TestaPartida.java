@@ -98,4 +98,11 @@ public class TestaPartida {
 		Assert.assertFalse(partida.testaJogoNaoRealizado());
 	}
 	
+	@Test
+	public void testaResultadoFormatado() throws Exception {
+		Assert.assertEquals(partida.getResultadoFormatado(), "-1 X -1");
+		partida.setGols(2, 2);
+		Assert.assertEquals(partida.getResultadoFormatado(), "2 X 2");
+	}
+	
 }

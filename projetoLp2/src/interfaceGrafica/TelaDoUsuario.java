@@ -187,6 +187,11 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(false);
+				try {
+					telaResultados.atualizaResultados();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				telaResultados.setVisible(true);
 				
 			}

@@ -57,17 +57,8 @@ public class TelaResultadoDosJogos extends JPanel {
 		mainScroll.setVisible(true);
 	
 		
-		GridBagConstraints cons = new GridBagConstraints();
-		cons.fill = GridBagConstraints.CENTER;
-		cons.gridwidth = 1;
-		cons.gridx = 0;
-
-		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.CENTER;
-		c.gridwidth = 2;
-		c.gridx = 1;
 		
-		atualizaResultados(c, cons);
+		atualizaResultados();
 	}
 
 
@@ -78,10 +69,20 @@ public class TelaResultadoDosJogos extends JPanel {
 				resultadosPanel.add(tLabel);
 			}*/
 
-	public void atualizaResultados(GridBagConstraints c, GridBagConstraints cons) throws Exception {
+	public void atualizaResultados() throws Exception {
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.fill = GridBagConstraints.CENTER;
+		cons.gridwidth = 1;
+		cons.gridx = 0;
+
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.gridx = 1;
+		
 		Partida[] partidas = ControladorPartidas.ler();
 		for(int i=0;  i < partidas.length ; i++) {
-			if(partidas[i] != null && partidas[i].testaJogoNaoRealizado()){
+			if(partidas[i] != null && !partidas[i].testaJogoNaoRealizado()){
 				c.gridy = i;
 				cons.gridy = i;
 				JLabel labelResultado = new JLabel(partidas[i].getResultadoFormatado());
@@ -89,7 +90,6 @@ public class TelaResultadoDosJogos extends JPanel {
 				resultadosPanel.add(labelResultado, cons);
 				resultadosPanel.add(partidas[i].panelDaPartida(), c);
 	}
-			
 		}
 	}
 }

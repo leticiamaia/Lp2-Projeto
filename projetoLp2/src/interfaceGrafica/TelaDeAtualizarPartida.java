@@ -85,7 +85,8 @@ public class TelaDeAtualizarPartida extends JPanel {
 					((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx-1, nGols1, nGols2);
 					JOptionPane.showMessageDialog(null, "Jogo Atualizado com sucesso!");
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					e.printStackTrace();
+					//JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				ControladorPartidas.escreve(partidasDisponiveis); 
 			}

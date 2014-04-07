@@ -53,6 +53,7 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
+		setVisible(false);
 
 		mainPanel = new JPanel(new CardLayout());
 		mainPanel.setBackground(new Color(240, 240, 240));
