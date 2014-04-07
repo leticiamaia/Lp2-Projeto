@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -32,6 +33,7 @@ public class TelaDoUsuario extends JFrame {
 	private RankingPanel rankingPanel;
 	private TelaUserBoasVindas telaBoasVindas;
 	private TelaDeNovaAposta telaAposta;
+	private TelaTimeCopa telaTimes;
 	private TelaDeVizualizarAposta telaVizualizarAposta;
 
 	/**
@@ -59,6 +61,7 @@ public class TelaDoUsuario extends JFrame {
 		telaBoasVindas = new TelaUserBoasVindas();
 		telaAposta = new TelaDeNovaAposta();
 		telaVizualizarAposta = new TelaDeVizualizarAposta();
+		telaTimes = new TelaTimeCopa();
 		telaBoasVindas.setVisible(true);
 		
 		try {
@@ -72,10 +75,12 @@ public class TelaDoUsuario extends JFrame {
 		setBounds(0, 0, 1300, 700);
 		setBackground(Color.WHITE);
 		setResizable(false);
-		add(telaBoasVindas);
-		add(infoPanel);
-		add(rankingPanel);
-		add(telaAposta);
+		getContentPane().add(telaBoasVindas);
+		getContentPane().add(infoPanel);
+		getContentPane().add(rankingPanel);
+		getContentPane().add(telaAposta);
+		getContentPane().add(telaVizualizarAposta);
+		getContentPane().add(telaTimes);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -93,6 +98,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
 				telaVizualizarAposta.setVisible(false);
+				telaTimes.setVisible(false);
 				infoPanel.setVisible(true);
 			}
 		});
@@ -105,6 +111,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
 				telaVizualizarAposta.setVisible(false);
+				telaTimes.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
 		});
@@ -113,7 +120,7 @@ public class TelaDoUsuario extends JFrame {
 		JMenu menuApostas = new JMenu("Apostas");
 		menuBar.add(menuApostas);
 
-		JMenuItem fazerApostaMenuItem = new JMenuItem("Fazer nova aposta");
+		JMenuItem fazerApostaMenuItem = new JMenuItem("Fazer/editar aposta");
 		fazerApostaMenuItem.addActionListener(new ActionListener() {
 			
 			@Override
@@ -121,8 +128,9 @@ public class TelaDoUsuario extends JFrame {
 				infoPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
-				telaAposta.setVisible(true);
+				telaTimes.setVisible(false);
 				telaVizualizarAposta.setVisible(false);
+				telaAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(fazerApostaMenuItem);
@@ -136,14 +144,11 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
+				telaTimes.setVisible(false);
 				telaVizualizarAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);
-		
-		
-		JMenuItem editarApostaMenuItem = new JMenuItem("Editar uma aposta");
-		menuApostas.add(editarApostaMenuItem);
 
 		JMenu menuSobre = new JMenu("Sobre");
 		menuBar.add(menuSobre);
@@ -165,6 +170,22 @@ public class TelaDoUsuario extends JFrame {
 			}
 		});
 		menuSobre.add(sobreMenuItem);
+		
+		JMenu menuTimes = new JMenu("Times");
+		menuBar.add(menuTimes);
+		menuTimes.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				infoPanel.setVisible(false);
+				telaBoasVindas.setVisible(false);
+				rankingPanel.setVisible(false);
+				telaAposta.setVisible(false);
+				telaVizualizarAposta.setVisible(false);
+				telaTimes.setVisible(true);
+				
+			}
+		});
 
 		JMenu sairMenu = new JMenu("Sair");
 		sairMenu.addMouseListener(new MouseAdapter() {
@@ -198,6 +219,8 @@ public class TelaDoUsuario extends JFrame {
 				infoPanel.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
+				telaTimes.setVisible(false);
+				telaVizualizarAposta.setVisible(false);
 				telaBoasVindas.setVisible(true);	
 			}
 		});

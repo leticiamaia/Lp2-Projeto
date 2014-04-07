@@ -150,7 +150,7 @@ public class Partida implements Serializable {
 	 */
 	@Override
 	public String toString(){
-		return getTime1().getAbreviacaoNomeTime() + " X " + getTime2().getAbreviacaoNomeTime();
+		return getTime1().getNomeDoTime() + " X " + getTime2().getNomeDoTime();
 	}
 	
 	/**

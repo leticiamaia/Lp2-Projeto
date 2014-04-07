@@ -104,9 +104,9 @@ public class RankingPanel extends JPanel {
 					.addComponent(lblRaking)
 					.addGap(72))
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(341, Short.MAX_VALUE)
-					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
-					.addGap(323))
+					.addContainerGap(337, Short.MAX_VALUE)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+					.addGap(304))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.LEADING)

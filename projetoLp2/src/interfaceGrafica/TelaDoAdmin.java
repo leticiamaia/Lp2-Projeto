@@ -23,6 +23,7 @@ import projetoLp2.bolao.MeuBolao;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.ImageIcon;
 
 public class TelaDoAdmin extends JFrame {
 
@@ -68,8 +69,7 @@ public class TelaDoAdmin extends JFrame {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.setVisible(true);
 		telaDeAtualizarPartida = new TelaDeAtualizarPartida();
-		telaDeAtualizarPartida.setBackground(SystemColor.menu);
-		telaDeCadastro = new TelaDeCadastraJogo(mainPane, telaDeAtualizarPartida);
+		telaDeCadastro = new TelaDeCadastraJogo(telaDeAtualizarPartida);
 		contentPane.setBounds(70, 216, 816, 361);	
 		contentPane.setBackground(Color.WHITE);
 	
@@ -83,12 +83,12 @@ public class TelaDoAdmin extends JFrame {
 		contentPane.add(lblEscolhaUmaDas);
 		
 		JLabel TelaDoAdministradorLabel = new JLabel("Tela do Administrador");
-		TelaDoAdministradorLabel.setBounds(329, 25, 447, 52);
+		TelaDoAdministradorLabel.setBounds(440, 25, 380, 52);
 		mainPane.add(TelaDoAdministradorLabel);
-		TelaDoAdministradorLabel.setFont(new Font("Segoe Print", Font.PLAIN, 32));
+		TelaDoAdministradorLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
 		
 		JLabel lblNewLabel = new JLabel("<html> Seja muito bem vindo administrador! Voc\u00EA possui um papel muito importante no funcionamento desse sistema. Voc\u00EA ser\u00E1 respons\u00E1vel por cadastrar e atualizar o resultado dos jogos. </html>");
-		lblNewLabel.setBounds(55, 132, 1047, 32);
+		lblNewLabel.setBounds(91, 132, 1047, 32);
 		mainPane.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
@@ -113,6 +113,11 @@ public class TelaDoAdmin extends JFrame {
 		menuPanel.setBackground(new Color(173, 216, 230));
 		menuPanel.setBounds(949, 216, 248, 361);
 		mainPane.add(menuPanel);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaDoAdmin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setBounds(275, 67, 639, 14);
+		mainPane.add(label);
 		btnCadastrarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaDeAtualizarPartida.setVisible(false);
@@ -144,7 +149,7 @@ public class TelaDoAdmin extends JFrame {
 		menuBar.add(Box.createHorizontalGlue());
 
 		JLabel bemVindoLabel = new JLabel();
-		//bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + MeuBolao.getUsuarioLogado().getUsername() + ".");
+		bemVindoLabel.setText("Voc\u00ea est\u00e1 logado como " + MeuBolao.getUsuarioLogado().getUsername() + ".");
 		menuBar.add(bemVindoLabel);
 		bemVindoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));	
 		

@@ -50,6 +50,7 @@ public class TelaTimeCopa extends JPanel {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
+		setVisible(false);
 		
 		mainPanel.setBackground(new Color(240, 240, 240));
 		mainPanel.setBounds(234, 165, 822, 452);
@@ -307,7 +308,7 @@ public class TelaTimeCopa extends JPanel {
 		
 		for (TimeCopa time : listaDeTimes) {
 			System.out.println(time);
-		}*/
+		}*/ 
 		JFrame janela = new JFrame();
 		janela.setBounds(0, 0, 1300, 700);
 		janela.setVisible(true);
