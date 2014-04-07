@@ -5,12 +5,10 @@ package projetoLp2.bolao;
  * @author Marcela, Leticia, Orion, Lucas
  */
 public class ApostaPrimeiraFase extends Aposta{
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2863466470604813070L;
-
 	/**
 	 * Construtor da classe
 	 * @param indicePartida - Partida a ser apostada 
@@ -22,5 +20,4 @@ public class ApostaPrimeiraFase extends Aposta{
 		super(indicePartida, numGolsTime1, numGolsTime2);
 		super.valorPontuacao = 1;
 	}
-
 }

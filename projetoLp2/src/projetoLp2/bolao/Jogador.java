@@ -45,7 +45,7 @@ public class Jogador extends Usuario implements Comparable {
 		this.email = email;
 		this.perguntaSecreta = perguntaSecreta;
 		this.resposta = resposta;
-		this.nome = nome;
+		this.nome = nome; 
 	}
 
 	/**
@@ -56,7 +56,6 @@ public class Jogador extends Usuario implements Comparable {
 	public Aposta[] getApostas() {
 		return apostas;
 	}
-
 	/**
 	 * Cria/edita uma nova Aposta
 	 * 
@@ -101,9 +100,7 @@ public class Jogador extends Usuario implements Comparable {
 			return true;
 		}
 
-		if (indiceAposta >= 60 && indiceAposta < 63) { // terceiro lugar tera
-														// mesmo peso que
-			// semifinal
+		if (indiceAposta >= 60 && indiceAposta < 63) { 
 			apostas[indiceAposta] = new ApostaSemiFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;

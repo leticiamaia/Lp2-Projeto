@@ -92,11 +92,14 @@ public class Administrador extends Usuario {
 			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
 		}
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
+		
 		String abrTime1 = partidas[indicePartida].getTime1().getAbreviacaoNomeTime();
 		String abrTime2 = partidas[indicePartida].getTime2().getAbreviacaoNomeTime();
+		
 		times.get(abrTime1).addPartidaJogada(partidas[indicePartida]);
 		times.get(abrTime2).addPartidaJogada(partidas[indicePartida]);
-		ControladorPartidas.escreve(partidas);
+		
+		ControladorPartidas.escreve(partidas);	
 		ControladorTimes.escreve(times);
 		atualizaPontuacao(indicePartida);
 		atualizaRanking();
@@ -131,8 +134,6 @@ public class Administrador extends Usuario {
 				j.adicionaPontos(aposta.resultadoAposta());
 		}
 		ControladorJogador.escreve(jogadores);
-
 	}
-
 }
 

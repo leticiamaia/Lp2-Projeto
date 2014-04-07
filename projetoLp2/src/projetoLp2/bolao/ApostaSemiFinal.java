@@ -5,12 +5,10 @@ package projetoLp2.bolao;
  * @author Marcela, Leticia, Orion, Lucas
  */
 public class ApostaSemiFinal extends Aposta{
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3170143978393655028L;
-
 	/**
 	 * Construtor da classe
 	 * @param partida - Partida a ser apostada 
