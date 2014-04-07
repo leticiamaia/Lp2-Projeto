@@ -74,9 +74,6 @@ public class TestaAposta {
 
 	@Test
 	public void testaSetPalpite() throws Exception {
-		Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		Aposta aposta = new ApostaPrimeiraFase(0, 1, 2);
 
 		try {

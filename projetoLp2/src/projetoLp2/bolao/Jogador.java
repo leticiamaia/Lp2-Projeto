@@ -72,12 +72,10 @@ public class Jogador extends Usuario implements Comparable {
 	 * @throws Exception
 	 *             Caso os parametros sejam invalidos
 	 */
-	public boolean novaAposta(int indiceAposta, Partida partida,
+	public boolean novaAposta(int indiceAposta,
 			int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
-		if (indiceAposta < 0)
+		if (indiceAposta < 0 || indiceAposta > 64)
 			throw new Exception("Indice invalido");
-		if (partida == null)		
-			throw new Exception("Partida Inexistente");
 
 		if (apostas[indiceAposta] != null) {
 			apostas[indiceAposta].setPalpiteGolsTime1(palpiteGolsTime1);
@@ -86,19 +84,19 @@ public class Jogador extends Usuario implements Comparable {
 		}
 
 		if (indiceAposta >= 0 && indiceAposta < 48) {
-			apostas[indiceAposta] = new ApostaPrimeiraFase(partida,
+			apostas[indiceAposta] = new ApostaPrimeiraFase(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 48 && indiceAposta < 56) {
-			apostas[indiceAposta] = new ApostaOitavasDeFinal(partida,
+			apostas[indiceAposta] = new ApostaOitavasDeFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 56 && indiceAposta < 60) {
-			apostas[indiceAposta] = new ApostaQuartasDeFinal(partida,
+			apostas[indiceAposta] = new ApostaQuartasDeFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
@@ -106,13 +104,13 @@ public class Jogador extends Usuario implements Comparable {
 		if (indiceAposta >= 60 && indiceAposta < 63) { // terceiro lugar tera
 														// mesmo peso que
 			// semifinal
-			apostas[indiceAposta] = new ApostaSemiFinal(partida,
+			apostas[indiceAposta] = new ApostaSemiFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta == 63) {
-			apostas[indiceAposta] = new ApostaFinal(partida, palpiteGolsTime1,
+			apostas[indiceAposta] = new ApostaFinal(indiceAposta, palpiteGolsTime1,
 					palpiteGolsTime2);
 			return true;
 		}
@@ -161,7 +159,7 @@ public class Jogador extends Usuario implements Comparable {
 	public String getResposta() {
 		return resposta;
 	}
-	
+
 	/**
 	 * Muda a resposta da pergunta secreta escolhida pelo Jogador
 	 * @param resposta A nova resposta da pergunta secreta escolhida pelo Jogador
@@ -169,7 +167,7 @@ public class Jogador extends Usuario implements Comparable {
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
 	}
-	
+
 	/**
 	 * Retorna o Nome do jogador
 	 * @return Nome do Jogador
@@ -185,7 +183,7 @@ public class Jogador extends Usuario implements Comparable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	/**
 	 * Adiciona pontos de uma aposta ao total de pontos
 	 * @param resultadoAposta Pontos ganhos com uma aposta.
@@ -210,7 +208,7 @@ public class Jogador extends Usuario implements Comparable {
 	public int getPontos() {
 		return totalPontos;
 	}
-	
+
 	/**
 	 * Muda o total de pontos do jogador
 	 * @param pontos
@@ -218,7 +216,7 @@ public class Jogador extends Usuario implements Comparable {
 	public void setPontos(int pontos) {
 		totalPontos = pontos;
 	}
-	
+
 	/**
 	 * Retorna o e-mail do Jogador
 	 * @return E-mail do Jogador
@@ -232,10 +230,10 @@ public class Jogador extends Usuario implements Comparable {
 		Jogador outroJogador = (Jogador)arg0;
 		if (this.getPontos() == outroJogador.getPontos())
 			return this.getUsername().compareTo(outroJogador.getUsername());
-		
+
 		return outroJogador.getPontos() - this.getPontos();
 	}
-	
+
 	/**
 	 * Muda o e-mail do Jogador
 	 * @param email Nomo e-mail do Jogador

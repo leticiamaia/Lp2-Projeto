@@ -221,9 +221,8 @@ public class MeuBolao {
 	
 	public static boolean apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
 		boolean retorno = false;
-		Partida partida = ControladorPartidas.ler()[indiceAposta];
 		List<Jogador> jogadores = ControladorJogador.ler();
-		if (((Jogador)usuarioLogado).novaAposta(indiceAposta, partida, palpiteGolsTime1, palpiteGolsTime2)) retorno = true;
+		if (((Jogador)usuarioLogado).novaAposta(indiceAposta, palpiteGolsTime1, palpiteGolsTime2)) retorno = true;
 		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 		System.out.println("apostado");

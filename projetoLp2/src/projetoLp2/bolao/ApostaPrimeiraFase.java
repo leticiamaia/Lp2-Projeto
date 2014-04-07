@@ -13,13 +13,13 @@ public class ApostaPrimeiraFase extends Aposta{
 
 	/**
 	 * Construtor da classe
-	 * @param partida - Partida a ser apostada 
+	 * @param indicePartida - Partida a ser apostada 
 	 * @param numGolsTime1 - Palpite do numero de gols do time 1
 	 * @param numGolsTime2 - Palpite do numero de gols do time 0
 	 * @throws Exception se a partida for nula ou numero de gols for menor que 0
 	 */
-	public ApostaPrimeiraFase(Partida partida, int numGolsTime1, int numGolsTime2) throws Exception {
-		super(partida, numGolsTime1, numGolsTime2);
+	public ApostaPrimeiraFase(int indicePartida, int numGolsTime1, int numGolsTime2) throws Exception {
+		super(indicePartida, numGolsTime1, numGolsTime2);
 		super.valorPontuacao = 1;
 	}
 
