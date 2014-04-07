@@ -31,13 +31,13 @@ public class TelaTimeCopa extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel mainPanel;
+	private final JPanel mainPanel = new JPanel(new CardLayout());
 	//private static TimeCopa[] times = (TimeCopa[]) ControladorTimes.ler().values().toArray();
 	//private static Map<String, TimeCopa> mapTimes = (Map<String, TimeCopa>) ControladorTimes.ler();
 	//private static Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) mapTimes.values();
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
-	private JComboBox comboBox;
+	private JComboBox comboBox = new JComboBox(comboItens);
 	private TimeCopa timeSelecionadoAtual;
 	private JPanel panelDasPartidas = new JPanel();
 	//private JList listaDasPartidasJogadas = new JList();
@@ -49,7 +49,6 @@ public class TelaTimeCopa extends JPanel {
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
-		mainPanel = new JPanel(new CardLayout());
 		mainPanel.setBackground(new Color(240, 240, 240));
 		mainPanel.setBounds(234, 165, 822, 452);
 		mainPanel.setVisible(true);
@@ -126,9 +125,9 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
-		panelDasPartidas = new JPanel();
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setBounds(332, 55, 460, 370);
+		panelDasPartidas.setVisible(true);
 		panelTeste.add(panelDasPartidas);
 		panelDasPartidas.setLayout(null);
 		
@@ -138,7 +137,6 @@ public class TelaTimeCopa extends JPanel {
 		selecioneFase.setBounds(314, 93, 232, 61);
 		add(selecioneFase);
 		
-		comboBox = new JComboBox(comboItens);
 		comboBox.setBounds(552, 111, 366, 26);
 		add(comboBox);
 		
@@ -236,8 +234,10 @@ public class TelaTimeCopa extends JPanel {
 	
 	private void addAPartidasJogadas(){
 		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
+		panelDasPartidas.repaint();
+		panelDasPartidas.removeAll();
 		if (partidasJogadas.size() == 0){
-			JLabel label = new JLabel("Nenhum jogo foi realizado!");
+			JLabel label = new JLabel("Nenhum jogo do(a) "+ timeSelecionadoAtual.getNomeDoTime() +" foi realizado!");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			label.setBounds(10, 5, 440, 44);
