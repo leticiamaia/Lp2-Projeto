@@ -89,15 +89,10 @@ public class Administrador extends Usuario {
 		if (partidas[indicePartida] == null) {
 			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
 		}
-		System.out.println("Log2");
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
-		System.out.println("Log4");
 		ControladorPartidas.escreve(partidas);
-		System.out.println("Log5");
 		atualizaPontuacao(indicePartida);
-		System.out.println("Log6");
 		atualizaRanking();
-		System.out.println("PartidaAtualizada!");
 		return partidas;
 	}
 

@@ -112,6 +112,7 @@ public class TelaDeCadastraJogo extends JPanel {
 							Date date = df.parse(data);
 							GregorianCalendar cal = new GregorianCalendar();
 							cal.setTime(date);
+							System.out.println(i);
 							((Administrador) MeuBolao.getUsuarioLogado()).cadastraPartida(i, time1, time2, cal);
 						} catch (Exception e) {
 							JOptionPane.showMessageDialog(null, e.getMessage());
