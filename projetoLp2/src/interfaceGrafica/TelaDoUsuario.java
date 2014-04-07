@@ -1,6 +1,7 @@
 package interfaceGrafica;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -141,6 +142,9 @@ public class TelaDoUsuario extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(telaVisualizarAposta);
+				telaVisualizarAposta = new TelaDeVisualizarAposta();
+				getContentPane().add(telaVisualizarAposta);
 				infoPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);

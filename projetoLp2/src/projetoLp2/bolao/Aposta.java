@@ -135,4 +135,8 @@ public abstract class Aposta implements Serializable {
 		}
 		return true;
 	}
+
+	public int getIndice() {
+		return indicePartida;
+	}
 }

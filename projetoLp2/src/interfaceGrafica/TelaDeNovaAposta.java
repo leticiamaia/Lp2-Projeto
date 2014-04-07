@@ -222,7 +222,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				panelQuartaFinal.add(vazioLabel4);
 				panelSemiFinal.add(vazioLabel3);
 				panelFinal.add(vazioLabel);
-				break;
+				break; 
 			}
 		}
 
