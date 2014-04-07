@@ -34,7 +34,7 @@ public class TelaDoUsuario extends JFrame {
 	private TelaUserBoasVindas telaBoasVindas;
 	private TelaDeNovaAposta telaAposta;
 	private TelaTimeCopa telaTimes;
-	private TelaDeVizualizarAposta telaVizualizarAposta;
+	private TelaDeVisualizarAposta telaVisualizarAposta;
 
 	/**
 	 * Launch the application.
@@ -60,7 +60,7 @@ public class TelaDoUsuario extends JFrame {
 		infoPanel = new AlterarInfoPanel((Jogador) MeuBolao.getUsuarioLogado());
 		telaBoasVindas = new TelaUserBoasVindas();
 		telaAposta = new TelaDeNovaAposta();
-		telaVizualizarAposta = new TelaDeVizualizarAposta();
+		telaVisualizarAposta = new TelaDeVisualizarAposta();
 		telaTimes = new TelaTimeCopa();
 		telaBoasVindas.setVisible(true);
 		
@@ -79,7 +79,7 @@ public class TelaDoUsuario extends JFrame {
 		getContentPane().add(infoPanel);
 		getContentPane().add(rankingPanel);
 		getContentPane().add(telaAposta);
-		getContentPane().add(telaVizualizarAposta);
+		getContentPane().add(telaVisualizarAposta);
 		getContentPane().add(telaTimes);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -97,7 +97,7 @@ public class TelaDoUsuario extends JFrame {
 				rankingPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
-				telaVizualizarAposta.setVisible(false);
+				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(false);
 				infoPanel.setVisible(true);
 			}
@@ -110,7 +110,7 @@ public class TelaDoUsuario extends JFrame {
 				infoPanel.setVisible(false);
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
-				telaVizualizarAposta.setVisible(false);
+				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
@@ -129,7 +129,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaTimes.setVisible(false);
-				telaVizualizarAposta.setVisible(false);
+				telaVisualizarAposta.setVisible(false);
 				telaAposta.setVisible(true);
 			}
 		});
@@ -145,7 +145,7 @@ public class TelaDoUsuario extends JFrame {
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
 				telaTimes.setVisible(false);
-				telaVizualizarAposta.setVisible(true);
+				telaVisualizarAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);
@@ -181,7 +181,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
-				telaVizualizarAposta.setVisible(false);
+				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(true);
 				
 			}
@@ -220,7 +220,7 @@ public class TelaDoUsuario extends JFrame {
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
 				telaTimes.setVisible(false);
-				telaVizualizarAposta.setVisible(false);
+				telaVisualizarAposta.setVisible(false);
 				telaBoasVindas.setVisible(true);	
 			}
 		});
