@@ -29,8 +29,8 @@ public class CriaFile {
 		TimeCopa Alemanha = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		times.put("ALE", Alemanha);
 		//times[0] = Alemanha;
-		TimeCopa Argelia = new TimeCopa("bandeiraArgelia.png", "Argelia", "AGL");
-		times.put("AGL", Argelia);
+		TimeCopa Argelia = new TimeCopa("bandeiraArgelia.png", "Argelia", "ALG");
+		times.put("ALG", Argelia);
 		//times[1] = Argelia;
 		TimeCopa Argentina = new TimeCopa("bandeiraArgentina.png", "Argentina", "ARG");
 		times.put("ARG", Argentina);
@@ -56,14 +56,14 @@ public class CriaFile {
 		TimeCopa Colombia = new TimeCopa("bandeiraColombia.png", "Colombia", "COL");
 		times.put("COL", Colombia);
 		//times[9] = Colombia;
-		TimeCopa Coreia = new TimeCopa("bandeiraCoreiaDoSul.png", "Coreia do Sul", "CRS");
-		times.put("CRS", Coreia);
+		TimeCopa Coreia = new TimeCopa("bandeiraCoreiaDoSul.png", "Coreia do Sul", "CDS");
+		times.put("CDS", Coreia);
 		//times[10] = Coreia;
 		TimeCopa CostaDoMarfim = new TimeCopa("bandeiraCostaDoMarfim.png", "Costa do Marfim", "CMA");
-		times.put("COM", CostaDoMarfim);
+		times.put("CMA", CostaDoMarfim);
 		//times[11] = CostaDoMarfim;
 		TimeCopa CostaRica = new TimeCopa("bandeiraCostaRica.png", "Costa Rica", "COS");
-		times.put("COR", CostaRica);
+		times.put("COS", CostaRica);
 		//times[12] = CostaRica;
 		TimeCopa Croacia = new TimeCopa("bandeiraCroacia.png", "Croacia", "CRO");
 		times.put("CRO", Croacia);
@@ -108,7 +108,7 @@ public class CriaFile {
 		times.put("MEX", Mexico);
 		//times[26] = Mexico;
 		TimeCopa Nigeria = new TimeCopa("bandeiraNigeria.png", "Nigeria", "NGR");
-		times.put("NIG", Nigeria);
+		times.put("NGR", Nigeria);
 		//times[27] = Nigeria;
 		TimeCopa Portugal = new TimeCopa("bandeiraPortugal.png", "Portugal", "POR");
 		times.put("POR", Portugal);
