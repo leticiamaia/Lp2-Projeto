@@ -15,7 +15,9 @@ import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.docs.ControladorPartidas;
+
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 
 public class TelaDeAtualizarPartida extends JPanel {
 
@@ -23,14 +25,13 @@ public class TelaDeAtualizarPartida extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 213413234132321L;
-	private static JPanel contentPane;
-	final static JComboBox partidas = new JComboBox();
+	final static JComboBox<String> partidas = new JComboBox<>();
 	/**
 	 * Create the panel.
 	 */
 	public TelaDeAtualizarPartida() {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		this.contentPane = contentPane;
 		setBounds(0, 0, 816, 361);	
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -46,12 +47,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 		inicializaComboPartidas();
 		add(partidas);
 		
-		final JComboBox gols1 = new JComboBox();
+		final JComboBox<Integer> gols1 = new JComboBox<>();
 		gols1.setBounds(185, 223, 83, 20);
 		inicializaCombo(gols1);
 		add(gols1);
 		
-		final JComboBox gols2 = new JComboBox();
+		final JComboBox<Integer> gols2 = new JComboBox<>();
 		gols2.setBounds(526, 223, 83, 20);
 		inicializaCombo(gols2);
 		add(gols2);
@@ -66,7 +67,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		
 		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.setIcon(new ImageIcon(TelaDeAtualizarPartida.class.getResource("/projetoLp2/bolao/docs/refresh.png")));
-		btnCadastrar.setBounds(312, 291, 159, 42);
+		btnCadastrar.setBounds(332, 291, 159, 42);
 		btnCadastrar.addActionListener(new ActionListener() {
 			private Integer nGols1;
 			private Integer nGols2;
@@ -82,11 +83,11 @@ public class TelaDeAtualizarPartida extends JPanel {
 				partidasDisponiveis = ControladorPartidas.ler();
 				try {
 					((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx, nGols1, nGols2);
+					JOptionPane.showMessageDialog(null, "Jogo Atualizado com sucesso!");
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				ControladorPartidas.escreve(partidasDisponiveis);
-				//JOptionPane.showMessageDialog(null, "Gols1:" + nGols1 + "\n" + "Gols2:" + nGols2);
 			}
 		});
 		add(btnCadastrar);
@@ -107,12 +108,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 		Partida[] partidasDisponiveis;
 		partidasDisponiveis = ControladorPartidas.ler();
 		for(Integer i = 0; i < partidasDisponiveis.length && partidasDisponiveis[i] != null; i++) {
-			partidas.addItem(i.toString() + ". " + partidasDisponiveis[i].toString());
+			partidas.addItem(i+1 + ". " + partidasDisponiveis[i].toString());
 		}
 		
 	}
 	
-	private void inicializaCombo(JComboBox gols) {
+	private void inicializaCombo(JComboBox<Integer> gols) {
 		for(Integer i = 0; i<=15; i++) {
 			gols.addItem(i);
 		}

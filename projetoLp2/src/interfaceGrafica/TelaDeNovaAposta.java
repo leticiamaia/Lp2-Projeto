@@ -150,7 +150,10 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							}
 							comboBox.setSelectedItem(comboItens[0]);
 						} catch (Exception e1) {
-							JOptionPane.showMessageDialog(null, e1.getMessage());
+							if(e1.getMessage().contains("For input string:"))
+								JOptionPane.showMessageDialog(null, "Valores n\u00E3o podem ser vazios, tente novamente!");
+							else
+								JOptionPane.showMessageDialog(null, e1.getMessage());
 						}
 
 					}
@@ -233,7 +236,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		comboBox.setBounds(601, 100, 360, 26);
 		add(comboBox);
 
-		JLabel fazerApostaLabel = new JLabel("Fazer uma Nova Aposta");
+		JLabel fazerApostaLabel = new JLabel("Fazer/Editar uma Aposta");
 		fazerApostaLabel.setBackground(Color.WHITE);
 		fazerApostaLabel.setBounds(10, 11, 492, 61);
 		add(fazerApostaLabel);
