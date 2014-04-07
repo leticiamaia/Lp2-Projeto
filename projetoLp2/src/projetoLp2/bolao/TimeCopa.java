@@ -126,9 +126,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	 * @return porcentagem de vitorias
 	 */
 	public int getPorcentagemVitorias(){
-		if (partidasJogadas.size() == 0)
+		if (numVitorias + numEmpates + numDerrotas == 0)
 			return 0;
-		return numVitorias/partidasJogadas.size() * 100;
+		return numVitorias * 100/(numVitorias + numEmpates + numDerrotas);
 	}
 
 	/**
@@ -144,9 +144,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	 * @return porcentagem de derrotas
 	 */
 	public int getPorcentagemDerrotas(){
-		if (partidasJogadas.size() == 0)
+		if (numVitorias + numEmpates + numDerrotas == 0)
 			return 0;
-		return numDerrotas/partidasJogadas.size() * 100;
+		return numDerrotas * 100/(numVitorias + numEmpates + numDerrotas);
 	}
 	
 	/**
@@ -162,9 +162,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 	 * @return porcentagem de empates
 	 */
 	public int getPorcentagemEmpates(){
-		if (partidasJogadas.size() == 0)
+		if (numVitorias + numEmpates + numDerrotas == 0)
 			return 0;
-		return numEmpates/partidasJogadas.size() * 100;
+		return numEmpates * 100/(numVitorias + numEmpates + numDerrotas);
 	}
 	
 	public List<Partida> getPartidasJogadas(){
@@ -189,17 +189,6 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 			if (other.nomeDoTime != null)
 				return false;
 		} else if (!nomeDoTime.equals(other.nomeDoTime))
-			return false;
-		if (numDerrotas != other.numDerrotas)
-			return false;
-		if (numEmpates != other.numEmpates)
-			return false;
-		if (numVitorias != other.numVitorias)
-			return false;
-		if (partidasJogadas == null) {
-			if (other.partidasJogadas != null)
-				return false;
-		} else if (!partidasJogadas.equals(other.partidasJogadas))
 			return false;
 		return true;
 	}
