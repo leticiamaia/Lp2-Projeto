@@ -122,11 +122,11 @@ public class TestaTimeCopa {
 		}
 
 		partida.setGols(1, 2);
-		Assert.assertTrue(time1.getNumDerrotas() == 1);
-		Assert.assertTrue(time1.getPorcentagemDerrotas()== 100);
-		Assert.assertTrue(time2.getNumVitorias() == 1);
-		Assert.assertTrue(time2.getPorcentagemVitorias()== 100);
-		Assert.assertTrue(time2.getPorcentagemEmpates()== 0);
+		Assert.assertEquals(time1.getNumDerrotas(), 1);
+		Assert.assertEquals(time1.getPorcentagemDerrotas(), 100);
+		Assert.assertEquals(time2.getNumVitorias(), 1);
+		Assert.assertEquals(time2.getPorcentagemVitorias(), 100);
+		Assert.assertEquals(time2.getPorcentagemEmpates(), 0);
 	}
 	
 	@Test
@@ -134,7 +134,7 @@ public class TestaTimeCopa {
 		Assert.assertTrue(time1.compareTo(time2) == -1);
 		Assert.assertTrue(time2.compareTo(time2) == 0);
 		Assert.assertTrue(time2.compareTo(time3) == 1);
-		Assert.assertTrue(time1.compareTo(time3) == -1);
+		Assert.assertTrue(time1.compareTo(time3) == -1); 
 	}
 
 }

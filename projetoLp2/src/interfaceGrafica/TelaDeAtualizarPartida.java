@@ -88,7 +88,6 @@ public class TelaDeAtualizarPartida extends JPanel {
 					e.printStackTrace();
 					//JOptionPane.showMessageDialog(null, e.getMessage());
 				}
-				ControladorPartidas.escreve(partidasDisponiveis); 
 			}
 		});
 		add(btnCadastrar);

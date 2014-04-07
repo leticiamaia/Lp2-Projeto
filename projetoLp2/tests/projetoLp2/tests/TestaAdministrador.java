@@ -10,6 +10,7 @@ import org.junit.Test;
 import projetoLp2.bolao.Administrador;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaAdministrador {
@@ -112,9 +113,14 @@ public class TestaAdministrador {
 		
 		partidas = admin.cadastraPartida(1, time1, time2, data);
 		partidas = admin.atualizaPartida(1, 0, 0);
+		partidas = ControladorPartidas.ler();
 		Assert.assertEquals(partidas[1].getGolsTime1(),0);
 		Assert.assertEquals(partidas[1].getGolsTime2(),0);
 		partidas = admin.cadastraPartida(2, time2, time1, data);
+		partidas = admin.atualizaPartida(2, 3, 4);
+		partidas = ControladorPartidas.ler();
+		Assert.assertEquals(partidas[2].getGolsTime1(),3);
+		Assert.assertEquals(partidas[2].getGolsTime2(),4);
 	}
 	
 	/*//impossivel de testar
