@@ -46,7 +46,7 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 	private  final JPanel mainPanel;
 	final String[] comboItens =  new String[]{"Selecione uma fase","Primeira fase","Oitavas de Final",
 			"Quartas de Final","Semi-final","Final"};	
-	final JComboBox<String> comboBox = new JComboBox<>(comboItens);
+	final JComboBox comboBox = new JComboBox(comboItens);
 	final JPanel panelPrimeiraFase, panelOitavaFinal, panelQuartaFinal, panelSemiFinal, panelFinal;
 	final int JOGOS_PRIMEIRA_FASE = 48;
 	final int JOGOS_OITAVAS = 56;
@@ -219,10 +219,10 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
 		comboBox.addItemListener(this);
-		comboBox.setBounds(601, 100, 360, 26);
+		comboBox.setBounds(610, 101, 360, 26);
 		add(comboBox);
 
-		JLabel fazerApostaLabel = new JLabel("Fazer/Editar uma Aposta");
+		JLabel fazerApostaLabel = new JLabel("Visualizar/Deletar  Apostas");
 		fazerApostaLabel.setBackground(Color.WHITE);
 		fazerApostaLabel.setBounds(10, 11, 492, 61);
 		add(fazerApostaLabel);
