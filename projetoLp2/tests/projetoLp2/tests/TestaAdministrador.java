@@ -1,5 +1,6 @@
 package projetoLp2.tests;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.junit.After;
@@ -8,8 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaAdministrador {
@@ -117,19 +120,21 @@ public class TestaAdministrador {
 		partidas = admin.cadastraPartida(2, time2, time1, data);
 	}
 	
-	/*//impossivel de testar
+	//impossivel de testar
 	@Test
 	public void testaAtualizaPontucao() throws Exception {
 		MeuBolao.cadastraJogador("nome", "username", "senha", "email", "perguntaSecreta", "resposta");
 		GregorianCalendar data = new GregorianCalendar();
-		data.add(Calendar.DATE, -2);
+		data.add(Calendar.SECOND, 1);
 		admin.cadastraPartida(1, time1, time2, data);
 		MeuBolao.login2("username", "senha");
 		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getPontos(), 0);
-		MeuBolao.apostar(1, 1, 0);
+		MeuBolao.apostar(1, 1, 1);
+		MeuBolao.desloga();
 		admin.atualizaPartida(1, 1, 1);	
-		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getPontos(), 2);		
-	}*/
+		MeuBolao.login2("username", "senha");
+		Assert.assertEquals(((Jogador) MeuBolao.getUsuarioLogado()).getPontos(), 3);		
+	}
 	
 	/*@Test
 	public void testaAtualizaRanking() {

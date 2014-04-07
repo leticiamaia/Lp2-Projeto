@@ -14,6 +14,8 @@ import projetoLp2.bolao.ApostaSemiFinal;
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.ControladorPartidas;
+import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaJogador {
 	private final String NOME = "nome";
@@ -30,6 +32,7 @@ public class TestaJogador {
 	
 	@Before
 	public void set() throws Exception{
+		CriaFile.main(null);
 		jogador = new Jogador(NOME, USERNAME, SENHA, EMAIL, PERGUNTA, RESPOSTA);
 		time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
@@ -138,43 +141,50 @@ public class TestaJogador {
 	@Test
 	public void testaNovaAposta() throws Exception {
 		try {
-			jogador.novaAposta(-1, partida, 1, 1);
+			jogador.novaAposta(-1, 1, 1);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Indice invalido",
 					e.getMessage());
 		}
-		
 		try {
-			jogador.novaAposta(1, null, 1, 1);
+			jogador.novaAposta(1, 0, 1);
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Partida Inexistente",
+			Assert.assertEquals("Partida Inexistente.",
 					e.getMessage());
 		}
 		
+		Partida[] partidas = ControladorPartidas.ler();
+		partidas[1] = partida;
+		partidas[48] = partida;
+		partidas[56] = partida;
+		partidas[60] = partida;
+		partidas[63] = partida;
+		ControladorPartidas.escreve(partidas);
+		
 		Assert.assertEquals(jogador.getApostas()[1], null);
-		jogador.novaAposta(1, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(partida, 1, 1));
+		jogador.novaAposta(1, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(1, 1, 1));
 		
 		Assert.assertEquals(jogador.getApostas()[48], null);
-		jogador.novaAposta(48, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[48], new ApostaOitavasDeFinal(partida, 1, 1));
+		jogador.novaAposta(48, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[48], new ApostaOitavasDeFinal(48, 1, 1));
 		
 		Assert.assertEquals(jogador.getApostas()[56], null);
-		jogador.novaAposta(56, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[56], new ApostaQuartasDeFinal(partida, 1, 1));
+		jogador.novaAposta(56, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[56], new ApostaQuartasDeFinal(56, 1, 1));
 		
 		Assert.assertEquals(jogador.getApostas()[60], null);
-		jogador.novaAposta(60, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[60], new ApostaSemiFinal(partida, 1, 1));
+		jogador.novaAposta(60, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[60], new ApostaSemiFinal(60, 1, 1));
 		
 		Assert.assertEquals(jogador.getApostas()[63], null);
-		jogador.novaAposta(63, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[63], new ApostaFinal(partida, 1, 1));
+		jogador.novaAposta(63, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[63], new ApostaFinal(63, 1, 1));
 		
-		jogador.novaAposta(1, partida, 1, 2);
-		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(partida, 1, 2));
+		jogador.novaAposta(1, 1, 2);
+		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(1, 1, 2));
 		
 	}
 	
@@ -196,8 +206,12 @@ public class TestaJogador {
 					e.getMessage());
 		}
 		
-		jogador.novaAposta(1, partida, 1, 1);
-		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(partida, 1, 1));
+		Partida[] partidas = ControladorPartidas.ler();
+		partidas[1] = partida;
+		ControladorPartidas.escreve(partidas);
+	
+		jogador.novaAposta(1, 1, 1);
+		Assert.assertEquals(jogador.getApostas()[1], new ApostaPrimeiraFase(1, 1, 1));
 		jogador.cancelarAposta(1);
 		Assert.assertEquals(jogador.getApostas()[1], null);
 	}

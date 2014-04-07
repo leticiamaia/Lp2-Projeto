@@ -72,13 +72,11 @@ public class Jogador extends Usuario implements Comparable {
 	 * @throws Exception
 	 *             Caso os parametros sejam invalidos
 	 */
-	public boolean novaAposta(int indiceAposta, Partida partida,
+	public boolean novaAposta(int indiceAposta,
 			int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
-		if (indiceAposta < 0)
+		if (indiceAposta < 0 || indiceAposta > 64)
 			throw new Exception("Indice invalido");
-		if (partida == null)		
-			throw new Exception("Partida Inexistente");
-
+	
 		if (apostas[indiceAposta] != null) {
 			apostas[indiceAposta].setPalpiteGolsTime1(palpiteGolsTime1);
 			apostas[indiceAposta].setPalpiteGolsTime2(palpiteGolsTime2);
@@ -86,19 +84,19 @@ public class Jogador extends Usuario implements Comparable {
 		}
 
 		if (indiceAposta >= 0 && indiceAposta < 48) {
-			apostas[indiceAposta] = new ApostaPrimeiraFase(partida,
+			apostas[indiceAposta] = new ApostaPrimeiraFase(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 48 && indiceAposta < 56) {
-			apostas[indiceAposta] = new ApostaOitavasDeFinal(partida,
+			apostas[indiceAposta] = new ApostaOitavasDeFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta >= 56 && indiceAposta < 60) {
-			apostas[indiceAposta] = new ApostaQuartasDeFinal(partida,
+			apostas[indiceAposta] = new ApostaQuartasDeFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
@@ -106,13 +104,13 @@ public class Jogador extends Usuario implements Comparable {
 		if (indiceAposta >= 60 && indiceAposta < 63) { // terceiro lugar tera
 														// mesmo peso que
 			// semifinal
-			apostas[indiceAposta] = new ApostaSemiFinal(partida,
+			apostas[indiceAposta] = new ApostaSemiFinal(indiceAposta,
 					palpiteGolsTime1, palpiteGolsTime2);
 			return true;
 		}
 
 		if (indiceAposta == 63) {
-			apostas[indiceAposta] = new ApostaFinal(partida, palpiteGolsTime1,
+			apostas[indiceAposta] = new ApostaFinal(indiceAposta, palpiteGolsTime1,
 					palpiteGolsTime2);
 			return true;
 		}

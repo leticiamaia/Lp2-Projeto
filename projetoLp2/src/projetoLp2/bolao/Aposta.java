@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import projetoLp2.bolao.docs.ControladorPartidas;
+
 /**
  * Essa classe representa uma aposta do jogador
  * 
@@ -15,7 +17,7 @@ public abstract class Aposta implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1431163718698165587L;
-	protected Partida partida;
+	protected int  indicePartida;
 	protected int palpiteGolsTime1, palpiteGolsTime2, valorPontuacao;
 
 	/**
@@ -26,11 +28,15 @@ public abstract class Aposta implements Serializable {
 	 * @param numGolsTime2 - Palpite do numero de gols do time 2.
 	 * @throws Exception se a partida for nula ou numero de gols for menor que 0.
 	 */
-	public Aposta(Partida partida, int numGolsTime1, int numGolsTime2)
+	public Aposta(int indicePartida, int numGolsTime1, int numGolsTime2)
 			throws Exception {
-		if (partida == null) {
+		if (indicePartida < 0 || indicePartida > 64) {
 			throw new Exception("Partida invalida!");
 		}
+		
+		Partida partida = ControladorPartidas.ler()[indicePartida];
+		
+		if (partida == null) throw new Exception ("Partida Inexistente.");
 		GregorianCalendar dataAceita = partida.getData();
 		//dataAceita.add(Calendar.DATE, -1);
 		if (dataAceita.before(new GregorianCalendar())) {
@@ -38,7 +44,7 @@ public abstract class Aposta implements Serializable {
 		}
 		setPalpiteGolsTime1(numGolsTime1);
 		setPalpiteGolsTime2(numGolsTime2);
-		this.partida = partida;
+		this.indicePartida = indicePartida;
 	}
 
 	/**
@@ -100,6 +106,7 @@ public abstract class Aposta implements Serializable {
 	 * @throws Exception se a partida ainda nao foi realizada.
 	 */
 	public int resultadoAposta() throws Exception {
+		Partida partida = ControladorPartidas.ler()[indicePartida];
 		int resultado = 0;
 		if (partida.getGolsTime1() == palpiteGolsTime1)
 			resultado += valorPontuacao;
@@ -123,11 +130,9 @@ public abstract class Aposta implements Serializable {
 			return false;
 		if (palpiteGolsTime2 != other.palpiteGolsTime2)
 			return false;
-		if (partida == null) {
-			if (other.partida != null)
+		if (indicePartida != other.indicePartida) {
 				return false;
-		} else if (!partida.equals(other.partida))
-			return false;
+		}
 		return true;
 	}
 }

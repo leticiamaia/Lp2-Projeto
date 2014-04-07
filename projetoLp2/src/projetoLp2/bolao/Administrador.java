@@ -89,9 +89,13 @@ public class Administrador extends Usuario {
 		if (partidas[indicePartida] == null) {
 			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
 		}
+		System.out.println("Log2");
 		partidas[indicePartida].setGols(resultadoTime1, resultadoTime2);
+		System.out.println("Log4");
 		ControladorPartidas.escreve(partidas);
+		System.out.println("Log5");
 		atualizaPontuacao(indicePartida);
+		System.out.println("Log6");
 		atualizaRanking();
 		System.out.println("PartidaAtualizada!");
 		return partidas;
@@ -119,20 +123,16 @@ public class Administrador extends Usuario {
 	private void atualizaPontuacao(int indicePartida) throws Exception {
 
 		List<Jogador> jogadores = ControladorJogador.ler();
+		System.out.println("Log6");
 		for (Jogador j : jogadores) {
 			Aposta aposta = j.getAposta(indicePartida);
-			if (aposta!= null)
+			if (aposta!= null) {
 				j.adicionaPontos(aposta.resultadoAposta());
+				System.out.println("Log7");
+			}
 		}
 		ControladorJogador.escreve(jogadores);
 
 	}
 
-	/**
-	 * Esse Metodo cria um Objeto de Input
-	 * 
-	 * @param fileName
-	 *            Nome do arquivo
-	 * @throws IOException
-	 */
 }
