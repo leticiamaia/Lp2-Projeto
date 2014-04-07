@@ -18,15 +18,19 @@ import javax.swing.JScrollPane;
 import projetoLp2.bolao.Aposta;
 import projetoLp2.bolao.MeuBolao;
 
-public class TelaDeVizualizarAposta extends JPanel implements ItemListener{
+public class TelaDeVisualizarAposta extends JPanel implements ItemListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel mainPanel;
 	final String[] comboItens =  new String[]{ "Selecione uma fase","Primeira fase","Oitavas de Final",
 			"Quartas de Final","Semi-final","Final"};	
-	final JComboBox comboBox = new JComboBox(comboItens);
+	final JComboBox<String> comboBox = new JComboBox<>(comboItens);
 	final JPanel panelPrimeiraFase, panelOitavaFinal, panelQuartaFinal, panelSemiFinal, panelFinal;
 	
-	public TelaDeVizualizarAposta () {
+	public TelaDeVisualizarAposta () {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null) ;
