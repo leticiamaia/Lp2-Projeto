@@ -126,7 +126,7 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
-		JPanel panelDasPartidas = new JPanel();
+		final JPanel panelDasPartidas = new JPanel();
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setBounds(332, 55, 460, 370);
 		panelTeste.add(panelDasPartidas);
@@ -152,7 +152,23 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
-				addAPartidasJogadas();
+				//addAPartidasJogadas();
+
+				
+				List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
+				if (partidasJogadas.size() == 0){
+					JLabel label = new JLabel("Nenhum jogo foi realizado!");
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					label.setFont(new Font("Tahoma", Font.PLAIN, 16));
+					label.setBounds(10, 5, 440, 44);
+					panelDasPartidas.add(label);
+				}
+				else{
+					for (Partida partida : partidasJogadas) {
+						panelDasPartidas.add(partida.panelDaPartida());
+					}
+				}
+			
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
