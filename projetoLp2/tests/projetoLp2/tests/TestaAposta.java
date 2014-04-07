@@ -1,9 +1,9 @@
 package projetoLp2.tests;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Aposta;
@@ -16,6 +16,17 @@ import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
 public class TestaAposta {
+	
+	TimeCopa time1;
+	TimeCopa time2;
+	Partida partida;
+	
+	@Before
+	public void inicializaTime() throws Exception {
+		time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+	}
 
 	@Test
 	public void testaConstrutor() throws Exception {
@@ -64,10 +75,6 @@ public class TestaAposta {
 
 	@Test
 	public void testaSetPalpite() throws Exception {
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014,
-				8, 15, 15, 30));
 		Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
 
 		try {
@@ -91,11 +98,6 @@ public class TestaAposta {
 
 	@Test
 	public void testaResultadoAposta() throws Exception {
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014,
-				8, 15, 15, 30));
-
 		try {
 			Aposta aposta = new ApostaOitavasDeFinal(partida, 1, 1);
 			aposta.resultadoAposta();

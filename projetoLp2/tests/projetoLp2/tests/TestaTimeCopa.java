@@ -6,12 +6,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
 public class TestaTimeCopa {
+	
+	private TimeCopa time1;
+	private TimeCopa time2;
+	private TimeCopa time3;
+	
+	@Before
+	public void inicializaVariaveis() throws Exception {
+		time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		time3 = new TimeCopa("bandeiraAustralia.png", "Australia",
+				"AUS");
+	}
 	@Test
 	public void testaConstrutor() throws Exception {
 		try {
@@ -86,10 +99,6 @@ public class TestaTimeCopa {
 
 	@Test
 	public void testaAddPartidaJogada() throws Exception {
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		TimeCopa time3 = new TimeCopa("bandeiraAustralia.png", "Australia",
-				"AUS");
 		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014,
 				8, 15, 15, 30));
 
@@ -121,12 +130,7 @@ public class TestaTimeCopa {
 	}
 	
 	@Test
-	public void testaCompareTo() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		TimeCopa time3 = new TimeCopa("bandeiraAustralia.png", "Australia",
-				"AUS");
-		
+	public void testaCompareTo() throws Exception{		
 		Assert.assertTrue(time1.compareTo(time2) == -1);
 		Assert.assertTrue(time2.compareTo(time2) == 0);
 		Assert.assertTrue(time2.compareTo(time3) == 1);

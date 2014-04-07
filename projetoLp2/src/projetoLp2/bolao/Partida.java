@@ -140,9 +140,14 @@ public class Partida implements Serializable {
 	 * Testa se uma partida ja foi realizada
 	 * @throws Exception se a partida ainda não foi realizada.
 	 */
-	protected void testaJogoNaoRealizado() throws Exception{
-		if (golsTime1 == -1 || golsTime2 == -1)
-			throw new Exception("Jogo ainda nao foi realizado!");
+	public boolean testaJogoNaoRealizado() /*throws Exception*/{
+		if (golsTime1 == -1 || golsTime2 == -1) 
+			/*throw new Exception("Jogo ainda nao foi realizado!");*/
+			return true;
+		else
+			return false;
+			
+			
 	}
 	
 	/**

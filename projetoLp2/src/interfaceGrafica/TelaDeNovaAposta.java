@@ -187,7 +187,7 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		
 		for(int i=0;  i < 64; i++) {
 			Partida partida = ControladorPartidas.ler()[i];
-			if(partida != null){
+			if(partida != null && partida.testaJogoNaoRealizado()){
 				JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
@@ -195,24 +195,24 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				decidePanel(i).add(partida.panelDaPartida(), c);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
-			}
-			if (i == 0 && partida == null) {
+			}				
+			if (i == 0 && (partida == null || !partida.testaJogoNaoRealizado())) {
 				panelPrimeiraFase.add(vazioLabel);
 			}
 
-			if (i == JOGOS_PRIMEIRA_FASE-1  && partida == null) {
+			if (i == JOGOS_PRIMEIRA_FASE-1  && (partida == null || !partida.testaJogoNaoRealizado())) {
 				panelOitavaFinal.add(vazioLabel4);
 			}
 
-			if (i == JOGOS_OITAVAS-1 && partida == null) {
+			if (i == JOGOS_OITAVAS-1 && (partida == null || !partida.testaJogoNaoRealizado())) {
 				panelQuartaFinal.add(vazioLabel3);
 			}
 
-			if (i == JOGOS_QUARTAS-1 && partida == null) { 
+			if (i == JOGOS_QUARTAS-1 && (partida == null || !partida.testaJogoNaoRealizado())) { 
 				panelSemiFinal.add(vazioLabel2);
 			}
 
-			if (i == JOGOS_SEMI-1 && partida == null) {
+			if (i == JOGOS_SEMI-1 && (partida == null || !partida.testaJogoNaoRealizado())) {
 				panelFinal.add(vazioLabel1);
 			}
 			else if(ControladorPartidas.ler()[0] == null && ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null 

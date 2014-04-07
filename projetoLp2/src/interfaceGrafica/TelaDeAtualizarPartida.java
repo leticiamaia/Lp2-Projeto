@@ -83,6 +83,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 				partidasDisponiveis = ControladorPartidas.ler();
 				try {
 					((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx, nGols1, nGols2);
+					inicializaComboPartidas();
 					JOptionPane.showMessageDialog(null, "Jogo Atualizado com sucesso!");
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -108,7 +109,9 @@ public class TelaDeAtualizarPartida extends JPanel {
 		Partida[] partidasDisponiveis;
 		partidasDisponiveis = ControladorPartidas.ler();
 		for(Integer i = 0; i < partidasDisponiveis.length && partidasDisponiveis[i] != null; i++) {
+			if(partidasDisponiveis[i].testaJogoNaoRealizado()) {
 			partidas.addItem(i+1 + ". " + partidasDisponiveis[i].toString());
+		}
 		}
 		
 	}

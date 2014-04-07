@@ -113,14 +113,14 @@ public class TelaDeCadastraJogo extends JPanel {
 							GregorianCalendar cal = new GregorianCalendar();
 							cal.setTime(date);
 							((Administrador) MeuBolao.getUsuarioLogado()).cadastraPartida(i, time1, time2, cal);
+							telaDeAtualizarPartida.inicializaComboPartidas();
+							JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 						} catch (Exception e) {
 							JOptionPane.showMessageDialog(null, e.getMessage());
 						}
 						break;
 					}
-					telaDeAtualizarPartida.inicializaComboPartidas();
 				}
-				JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
 			}
 		});
 	}

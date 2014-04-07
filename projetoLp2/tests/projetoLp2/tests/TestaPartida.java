@@ -3,18 +3,27 @@ package projetoLp2.tests;
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
 public class TestaPartida {
+	
+	private TimeCopa time1;
+	private TimeCopa time2;
+	private Partida partida;
+
+	@Before
+	public void inicializaTimes() throws Exception{
+		time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
+		time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
+	}
 
 	@Test
-	public void testaConstrutor() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		
+	public void testaConstrutor() throws Exception{		
 		try {
 			new Partida(null, time2, new GregorianCalendar());
 			Assert.fail();
@@ -36,7 +45,6 @@ public class TestaPartida {
 			Assert.assertEquals("Nao e possivel adicionar jogo com data anterior a atual!", e.getMessage());
 		}*/
 		
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		Assert.assertEquals("Alemanha", partida.getTime1().getNomeDoTime());
 		Assert.assertEquals("Brasil", partida.getTime2().getNomeDoTime());
 		Assert.assertEquals("15/09/2014 03:30", partida.getDataFormatada());		
@@ -44,11 +52,7 @@ public class TestaPartida {
 	
 	@Test
 	public void testaSetGols() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		
 		try {
-			Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 			partida.setGols(-1, 3);
 		} catch (Exception e) {
 			Assert.assertEquals("Numero de gols invalido!", e.getMessage());
@@ -61,7 +65,6 @@ public class TestaPartida {
 			Assert.assertEquals("Numero de gols invalido!", e.getMessage());
 		}
 		
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
 		partida.setGols(1, 3);
 		Assert.assertTrue(partida.getGolsTime1() == 1);
 		Assert.assertTrue(partida.getGolsTime2() == 3);
@@ -72,10 +75,6 @@ public class TestaPartida {
 	
 	@Test
 	public void testaCompareTo() throws Exception{
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-		
 		try {
 			partida.resultado();
 		} catch (Exception e) {
@@ -91,4 +90,12 @@ public class TestaPartida {
 		partida.setGols(1, 2);
 		Assert.assertTrue(partida.resultado() == -1);
 	}
+	
+	@Test
+	public void testaJogoNaoRealizado() throws Exception {
+		Assert.assertTrue(partida.testaJogoNaoRealizado());
+		partida.setGols(2, 0);
+		Assert.assertFalse(partida.testaJogoNaoRealizado());
+	}
+	
 }
