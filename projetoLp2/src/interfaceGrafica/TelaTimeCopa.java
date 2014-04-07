@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -158,8 +159,8 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
-				addAPartidasJogadas();
 				barrasDePorcentagem();
+				addAPartidasJogadas();
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
@@ -271,9 +272,12 @@ public class TelaTimeCopa extends JPanel {
 			panelDasPartidas.add(label);
 		}
 		else{
+			JPanel container = new JPanel();
+			container.setLayout(new BoxLayout(null, BoxLayout.PAGE_AXIS));
 			for (Partida partida : partidasJogadas) {
-				panelDasPartidas.add(partida.panelDaPartida());
+				container.add(partida.panelDaPartida());
 			}
+			panelDasPartidas.add(container);
 		}
 	}
 }
