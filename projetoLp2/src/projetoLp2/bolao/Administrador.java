@@ -85,7 +85,6 @@ public class Administrador extends Usuario {
 			throw new Exception("Resultado(s) invalido(s)!");
 
 		Partida[] partidas = (Partida[])ControladorPartidas.ler();
-		
 		if (partidas[indicePartida] == null) {
 			throw new Exception("Essa Partida nao foi Cadastrada ainda.");
 		}

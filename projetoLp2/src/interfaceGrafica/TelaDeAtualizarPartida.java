@@ -108,7 +108,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		Partida[] partidasDisponiveis;
 		partidasDisponiveis = ControladorPartidas.ler();
 		for(Integer i = 0; i < partidasDisponiveis.length && partidasDisponiveis[i] != null; i++) {
-			partidas.addItem(i+1 + ". " + partidasDisponiveis[i].toString());
+			partidas.addItem(i+1 + ". " + partidasDisponiveis[i].toString() + " - " +  partidasDisponiveis[i].getDataFormatada());
 		}
 		
 	}

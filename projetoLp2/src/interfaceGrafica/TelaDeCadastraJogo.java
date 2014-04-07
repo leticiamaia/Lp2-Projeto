@@ -1,11 +1,14 @@
 package interfaceGrafica;
 
 import java.awt.Color;
+
 import projetoLp2.bolao.Administrador;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -24,6 +27,7 @@ import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.ControladorTimes;
+
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
@@ -115,8 +119,10 @@ public class TelaDeCadastraJogo extends JPanel {
 							((Administrador) MeuBolao.getUsuarioLogado()).cadastraPartida(i, time1, time2, cal);
 							telaDeAtualizarPartida.inicializaComboPartidas();
 							JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
+						} catch(ParseException e1) {
+							JOptionPane.showMessageDialog(null, "Data inválida! Por favor siga o formato dd/MM/yyyy hh:mm");
 						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null, e.getMessage());
+							JOptionPane.showMessageDialog(null,  e.getMessage());
 						}
 						break;
 					}
