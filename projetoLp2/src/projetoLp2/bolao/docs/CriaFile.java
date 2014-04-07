@@ -56,7 +56,7 @@ public class CriaFile {
 		TimeCopa Colombia = new TimeCopa("bandeiraColombia.png", "Colombia", "COL");
 		times.put("COL", Colombia);
 		//times[9] = Colombia;
-		TimeCopa Coreia = new TimeCopa("bandeiraCoreiaDoSul.png", "Coreia do Sul", "CDS");
+		TimeCopa Coreia = new TimeCopa("bandeiraCoreiaDoSul.png", "Coreia do Sul", "CRS");
 		times.put("CRS", Coreia);
 		//times[10] = Coreia;
 		TimeCopa CostaDoMarfim = new TimeCopa("bandeiraCostaDoMarfim.png", "Costa do Marfim", "CMA");
