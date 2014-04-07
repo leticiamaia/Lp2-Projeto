@@ -202,7 +202,7 @@ public class TelaTimeCopa extends JPanel {
 				public void run(){
 					for (int i = 0; i <= porcentagem; i++) {
 						try {
-							sleep(25);
+							sleep(20);
 							barra.setValue(i);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -277,3 +277,14 @@ public class TelaTimeCopa extends JPanel {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
