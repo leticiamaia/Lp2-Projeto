@@ -24,6 +24,8 @@ import javax.swing.JScrollPane;
 
 public class TelaResultadoDosJogos extends JPanel {
 
+	
+	JPanel resultadosPanel;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
@@ -45,11 +47,12 @@ public class TelaResultadoDosJogos extends JPanel {
 		label.setIcon(new ImageIcon(TelaResultadoDosJogos.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		add(label);
 		
-		JPanel resultadosPanel = new JPanel(new GridBagLayout());
+		resultadosPanel = new JPanel(new GridBagLayout());
 		resultadosPanel.setBounds(0, 0, 822, 452);
 		
 		JScrollPane mainScroll = new JScrollPane(resultadosPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		mainScroll.setBounds(254, 172, 774, 390);
 		add(mainScroll);
 		mainScroll.setVisible(true);
 	
@@ -64,19 +67,32 @@ public class TelaResultadoDosJogos extends JPanel {
 		c.gridwidth = 2;
 		c.gridx = 1;
 		
+		atualizaResultados(c, cons);
+	}
+
+
+			/*if(partidas[i].testaJogoNaoRealizado()) {
+				JLabel tLabel = new JLabel("<html>Nenhuma partida ocorreu ainda.</html>");
+				tLabel.setBounds(61, 208, 751, 38);
+				tLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				resultadosPanel.add(tLabel);
+			}*/
+
+	public void atualizaResultados(GridBagConstraints c, GridBagConstraints cons) throws Exception {
 		Partida[] partidas = ControladorPartidas.ler();
 		for(int i=0;  i < partidas.length ; i++) {
 			if(partidas[i] != null && partidas[i].testaJogoNaoRealizado()){
 				c.gridy = i;
 				cons.gridy = i;
-				resultadosPanel.add(partidas[i].panelDaPartida(), c);
 				JLabel labelResultado = new JLabel(partidas[i].getResultadoFormatado());
 				labelResultado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 				resultadosPanel.add(labelResultado, cons);
-			}			
+				resultadosPanel.add(partidas[i].panelDaPartida(), c);
+	}
+			
 		}
 	}
-
+}
 	/*	private Object[][] partidasDisponiveis() throws Exception {
 			Partida[] partidas = ControladorPartidas.ler();
 			Object[][] data = (Object[][]) new Object();
@@ -88,7 +104,6 @@ public class TelaResultadoDosJogos extends JPanel {
 			}
 			return data;
 		}*/
-}
 
 		
 
