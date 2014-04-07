@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JProgressBar;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -40,6 +41,7 @@ public class TelaTimeCopa extends JPanel {
 	private JComboBox comboBox = new JComboBox(comboItens);
 	private TimeCopa timeSelecionadoAtual;
 	private JPanel panelDasPartidas = new JPanel();
+	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
 	//private JList listaDasPartidasJogadas = new JList();
 	/**
 	 * Create the panel.
@@ -96,7 +98,7 @@ public class TelaTimeCopa extends JPanel {
 		
 		final JLabel labelNumeroDeVitorias = new JLabel("");
 		labelNumeroDeVitorias.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		labelNumeroDeVitorias.setBounds(130, 92, 110, 33);
+		labelNumeroDeVitorias.setBounds(130, 92, 58, 33);
 		panelTeste.add(labelNumeroDeVitorias);
 		
 		JLabel lblNmeroDeDerrotas = new JLabel("N\u00BA de Derrotas:");
@@ -106,17 +108,17 @@ public class TelaTimeCopa extends JPanel {
 		
 		final JLabel labelNumeroDeDerrotas = new JLabel("");
 		labelNumeroDeDerrotas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		labelNumeroDeDerrotas.setBounds(130, 136, 115, 27);
+		labelNumeroDeDerrotas.setBounds(130, 136, 58, 27);
 		panelTeste.add(labelNumeroDeDerrotas);
 		
 		JLabel lblNDeEmpates = new JLabel("N\u00BA de Empates:");
 		lblNDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNDeEmpates.setBounds(10, 181, 155, 30);
+		lblNDeEmpates.setBounds(10, 174, 155, 30);
 		panelTeste.add(lblNDeEmpates);
 		
 		final JLabel labelNumeroDeEmpates = new JLabel("");
 		labelNumeroDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		labelNumeroDeEmpates.setBounds(130, 184, 115, 27);
+		labelNumeroDeEmpates.setBounds(130, 184, 58, 27);
 		panelTeste.add(labelNumeroDeEmpates);
 		
 		JLabel lblPartidasJogadas = new JLabel("Partidas Jogadas:");
@@ -130,6 +132,18 @@ public class TelaTimeCopa extends JPanel {
 		panelDasPartidas.setVisible(true);
 		panelTeste.add(panelDasPartidas);
 		panelDasPartidas.setLayout(null);
+		
+		barraDerrota.setStringPainted(true);
+		barraDerrota.setBounds(170, 138, 131, 27);
+		panelTeste.add(barraDerrota);
+		
+		barraVitoria.setStringPainted(true);
+		barraVitoria.setBounds(170, 97, 131, 27);
+		panelTeste.add(barraVitoria);
+		
+		barraEmpate.setStringPainted(true);
+		barraEmpate.setBounds(170, 179, 131, 27);
+		panelTeste.add(barraEmpate);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -151,6 +165,7 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
 				addAPartidasJogadas();
+				barrasDePorcentagem();
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
@@ -170,6 +185,41 @@ public class TelaTimeCopa extends JPanel {
 		
 	}
 	
+	private void barrasDePorcentagem(){
+		aumentaBarra(timeSelecionadoAtual.getPorcentagemVitorias(), barraVitoria);
+		aumentaBarra(timeSelecionadoAtual.getPorcentagemDerrotas(), barraDerrota);
+		aumentaBarra(timeSelecionadoAtual.getPorcentagemEmpates(), barraEmpate);
+	}
+	
+	private void aumentaBarra(final int porcentagem, final JProgressBar barra){
+		if (barra.equals(barraVitoria)){
+			if (porcentagem < 50)
+				barra.setForeground(Color.RED);
+			else
+				barra.setForeground(Color.GREEN);
+		}
+		else if (barra.equals(barraDerrota)) {
+			if (porcentagem < 50)
+				barra.setForeground(Color.GREEN);
+			else
+				barra.setForeground(Color.RED);
+		}
+		
+		new Thread(){
+			public void run(){
+				for (int i = 0; i <= porcentagem; i++) {
+					try {
+						sleep(30);
+						barra.setValue(i);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+		}.start();
+	}
+	
 	private String nomeDoTime(){
 		if (timeSelecionadoAtual == null)
 			return "";
@@ -185,19 +235,19 @@ public class TelaTimeCopa extends JPanel {
 	private String numeroDeVitorias() {
 		if (timeSelecionadoAtual == null)
 			return "";
-		return timeSelecionadoAtual.getNumVitorias() + " ("+(timeSelecionadoAtual.getPorcentagemVitorias())+"%)";
+		return timeSelecionadoAtual.getNumVitorias()+""; //+ " ("+(timeSelecionadoAtual.getPorcentagemVitorias())+"%)"//
 	}
 	
 	private String numeroDeDerrotas() {
 		if (timeSelecionadoAtual == null)
 			return "";
-		return timeSelecionadoAtual.getNumDerrotas() + " ("+(timeSelecionadoAtual.getPorcentagemDerrotas())+"%)";
+		return timeSelecionadoAtual.getNumDerrotas() + "";//" ("+(timeSelecionadoAtual.getPorcentagemDerrotas())+"%)";
 	}
 	
 	private String numeroDeEmpates() {
 		if (timeSelecionadoAtual == null)
 			return "";
-		return timeSelecionadoAtual.getNumEmpates() + " ("+(timeSelecionadoAtual.getPorcentagemEmpates())+"%)";
+		return timeSelecionadoAtual.getNumEmpates() + "";//" ("+(timeSelecionadoAtual.getPorcentagemEmpates())+"%)";
 	}
 	
 	private String[] arrayComboItens(){
@@ -264,4 +314,7 @@ public class TelaTimeCopa extends JPanel {
 		TelaTimeCopa panel = new TelaTimeCopa();
 		janela.getContentPane().add(panel);
 	}
+	
+	
+	
 }
