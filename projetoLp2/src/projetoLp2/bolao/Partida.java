@@ -135,6 +135,10 @@ public class Partida implements Serializable {
 		return g1.compareTo(g2);
 	}
 	
+	public String getResultadoFormatado() throws Exception {
+		return getGolsTime1() + " X " + getGolsTime2();
+	}
+	
 	/**
 	 * Testa se uma partida ja foi realizada
 	 * @throws Exception se a partida ainda não foi realizada.
