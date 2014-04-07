@@ -29,7 +29,7 @@ public class CriaFile {
 		TimeCopa Alemanha = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		times.put("ALE", Alemanha);
 		//times[0] = Alemanha;
-		TimeCopa Argelia = new TimeCopa("bandeiraArgelia.png", "Argelia", "ALG");
+		TimeCopa Argelia = new TimeCopa("bandeiraArgelia.png", "Argelia", "AGL");
 		times.put("AGL", Argelia);
 		//times[1] = Argelia;
 		TimeCopa Argentina = new TimeCopa("bandeiraArgentina.png", "Argentina", "ARG");
