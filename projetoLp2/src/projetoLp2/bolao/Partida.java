@@ -61,10 +61,10 @@ public class Partida implements Serializable {
 			throw new Exception("Numero de gols invalido!");
 		this.golsTime1 = golsTime1;
 		this.golsTime2 = golsTime2;
-
+/*
 		time1.addPartidaJogada(this);
 		time2.addPartidaJogada(this);
-
+*/
 		return true;
 	}
 
@@ -135,10 +135,6 @@ public class Partida implements Serializable {
 		return g1.compareTo(g2);
 	}
 	
-	public String getResultadoFormatado() throws Exception {
-		return getGolsTime1() + " X " + getGolsTime2();
-	}
-	
 	/**
 	 * Testa se uma partida ja foi realizada
 	 * @throws Exception se a partida ainda não foi realizada.
@@ -151,6 +147,10 @@ public class Partida implements Serializable {
 			return false;			
 	}
 	
+	public String getResultadoFormatado() throws Exception {
+		return getGolsTime1() + " X " + getGolsTime2();
+	}
+
 	/**
 	 * Retorna a string contendo a abreviacao do time 1 X abreviacao do time 2
 	 */
@@ -198,3 +198,5 @@ public class Partida implements Serializable {
 	}*/
 	
 }
+
+
