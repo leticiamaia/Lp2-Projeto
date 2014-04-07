@@ -14,6 +14,7 @@ import projetoLp2.bolao.ApostaQuartasDeFinal;
 import projetoLp2.bolao.ApostaSemiFinal;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.ControladorPartidas;
 
 public class TestaAposta {
 	
@@ -32,25 +33,23 @@ public class TestaAposta {
 	public void testaConstrutor() throws Exception {
 		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
 		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014,
-				8, 15, 15, 30));
 
 		try {
-			new ApostaPrimeiraFase(null, 1, 2);
+			new ApostaPrimeiraFase(-1, 1, 2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Partida invalida!", e.getMessage());
 		}
 
 		try {
-			new ApostaPrimeiraFase(partida, -1, 2);
+			new ApostaPrimeiraFase(0, -1, 2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Palpite de gols invalido!", e.getMessage());
 		}
 
 		try {
-			new ApostaPrimeiraFase(partida, 1, -2);
+			new ApostaPrimeiraFase(0, 1, -2);
 			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Palpite de gols invalido!", e.getMessage());
@@ -68,7 +67,7 @@ public class TestaAposta {
 					e.getMessage());
 		}*/
 		
-		Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
+		Aposta aposta = new ApostaPrimeiraFase(0, 1, 2);
 		Assert.assertTrue(aposta.getPalpiteGolsTime1() == 1);
 		Assert.assertTrue(aposta.getPalpiteGolsTime2() == 2);
 	}
@@ -76,6 +75,9 @@ public class TestaAposta {
 	@Test
 	public void testaSetPalpite() throws Exception {
 		Aposta aposta = new ApostaPrimeiraFase(partida, 1, 2);
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		Aposta aposta = new ApostaPrimeiraFase(0, 1, 2);
 
 		try {
 			aposta.setPalpiteGolsTime1(-1);
@@ -98,74 +100,84 @@ public class TestaAposta {
 
 	@Test
 	public void testaResultadoAposta() throws Exception {
+
+		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
+		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
+		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014,
+				8, 15, 15, 30));
+		
+		Partida[] partidas= ControladorPartidas.ler();
+		partidas[0] = partida;
+		ControladorPartidas.escreve(partidas);
+		
 		try {
-			Aposta aposta = new ApostaOitavasDeFinal(partida, 1, 1);
+			Aposta aposta = new ApostaOitavasDeFinal(0, 1, 1);
 			aposta.resultadoAposta();
 		} catch (Exception e) {
 			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
 
 		partida.setGols(3, 3);
-		Aposta aposta = new ApostaPrimeiraFase(partida, 5, 5);
+		partidas= ControladorPartidas.ler();
+		partidas[0] = partida;
+		ControladorPartidas.escreve(partidas);
+		
+		Aposta aposta = new ApostaPrimeiraFase(0, 5, 5);
 		Assert.assertTrue(aposta.resultadoAposta() == 1);
 
 
-		partida.setGols(3, 3);
-		aposta = new ApostaPrimeiraFase(partida, 3, 3);
+		aposta = new ApostaPrimeiraFase(0, 3, 3);
 		Assert.assertTrue(aposta.resultadoAposta() == 3);
 
 	
-		partida.setGols(3, 3);
-		aposta = new ApostaPrimeiraFase(partida, 4, 5);
+		aposta = new ApostaPrimeiraFase(0, 4, 5);
 		Assert.assertTrue(aposta.resultadoAposta() == 0);
 	
 		
-		partida.setGols(3, 3);
-		aposta = new ApostaPrimeiraFase(partida, 3, 5);
+		aposta = new ApostaPrimeiraFase(0, 3, 5);
 		Assert.assertTrue(aposta.resultadoAposta() == 1);
 		
-		partida.setGols(3, 3);
-		aposta = new ApostaPrimeiraFase(partida, 5, 3);
+		aposta = new ApostaPrimeiraFase(0, 5, 3);
 		Assert.assertTrue(aposta.resultadoAposta() == 1);
 		
 		partida.setGols(4, 2);
-		aposta = new ApostaOitavasDeFinal(partida, 4, 2);
+		partidas= ControladorPartidas.ler();
+		partidas[0] = partida;
+		ControladorPartidas.escreve(partidas);
+		
+		aposta = new ApostaOitavasDeFinal(0, 4, 2);
 		Assert.assertTrue(aposta.resultadoAposta() == 6);
 		
-		partida.setGols(4, 2);
-		aposta = new ApostaOitavasDeFinal(partida, 3, 2);
+		aposta = new ApostaOitavasDeFinal(0, 3, 2);
 		Assert.assertTrue(aposta.resultadoAposta() == 4);
 		
-		partida.setGols(4, 2);
-		aposta = new ApostaOitavasDeFinal(partida, 3, 1);
+		aposta = new ApostaOitavasDeFinal(0, 3, 1);
 		Assert.assertTrue(aposta.resultadoAposta() == 2);
 		
-		partida.setGols(4, 2);
-		aposta = new ApostaOitavasDeFinal(partida, 1, 1);
+		aposta = new ApostaOitavasDeFinal(0, 1, 1);
 		Assert.assertTrue(aposta.resultadoAposta() == 0);
 		
 		partida.setGols(3, 4);
-		aposta = new ApostaQuartasDeFinal(partida, 3, 4);
+		partidas= ControladorPartidas.ler();
+		partidas[0] = partida;
+		ControladorPartidas.escreve(partidas);
+		
+		aposta = new ApostaQuartasDeFinal(0, 3, 4);
 		Assert.assertTrue(aposta.resultadoAposta() == 12);
 
-		partida.setGols(3, 4);
-		aposta = new ApostaQuartasDeFinal(partida, 2, 4);
+		aposta = new ApostaQuartasDeFinal(0, 2, 4);
 		Assert.assertTrue(aposta.resultadoAposta() == 8);
 		
-		partida.setGols(3, 4);
-		aposta = new ApostaQuartasDeFinal(partida, 2, 3);
+		aposta = new ApostaQuartasDeFinal(0, 2, 3);
 		Assert.assertTrue(aposta.resultadoAposta() == 4);
 	
-		partida.setGols(3, 4);
-		aposta = new ApostaQuartasDeFinal(partida, 2, 2);
+		aposta = new ApostaQuartasDeFinal(0, 2, 2);
 		Assert.assertTrue(aposta.resultadoAposta() == 0);
 	
-		partida.setGols(3, 4);
-		aposta = new ApostaSemiFinal(partida, 3, 4);
+		aposta = new ApostaSemiFinal(0, 3, 4);
 		Assert.assertTrue(aposta.resultadoAposta() == 24);
 	
-		partida.setGols(3, 4);
-		aposta = new ApostaFinal(partida, 3, 4);
+		aposta = new ApostaFinal(0, 3, 4);
 		Assert.assertTrue(aposta.resultadoAposta() == 48);
 	}
 

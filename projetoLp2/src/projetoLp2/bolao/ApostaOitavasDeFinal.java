@@ -18,8 +18,8 @@ public class ApostaOitavasDeFinal extends Aposta{
 	 * @param numGolsTime2 - Palpite do numero de gols do time 0
 	 * @throws Exception se a partida for nula ou numero de gols for menor que 0
 	 */
-	public ApostaOitavasDeFinal(Partida partida, int numGolsTime1, int numGolsTime2) throws Exception {
-		super(partida, numGolsTime1, numGolsTime2);
+	public ApostaOitavasDeFinal(int indicePartida, int numGolsTime1, int numGolsTime2) throws Exception {
+		super(indicePartida, numGolsTime1, numGolsTime2);
 		super.valorPontuacao = 2;
 	}
 
