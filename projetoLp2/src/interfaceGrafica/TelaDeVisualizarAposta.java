@@ -2,7 +2,6 @@ package interfaceGrafica;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -11,7 +10,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -19,8 +17,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -42,10 +38,10 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 	/**
 	 * Create the panel.
 	 */
-
 	private  final JPanel mainPanel;
 	final String[] comboItens =  new String[]{"Selecione uma fase","Primeira fase","Oitavas de Final",
 			"Quartas de Final","Semi-final","Final"};	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	final JComboBox comboBox = new JComboBox(comboItens);
 	final JPanel panelPrimeiraFase, panelOitavaFinal, panelQuartaFinal, panelSemiFinal, panelFinal;
 	final int JOGOS_PRIMEIRA_FASE = 48;
@@ -127,38 +123,21 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 		btnSubmeter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Jogador jogador = (Jogador)MeuBolao.getUsuarioLogado();
 				for (int i = 0; i < radios.size();i++) {
-					Partida partida = ControladorPartidas.ler()[i];
 					if (radios.get(i).isSelected()) {
-						try {
-
-							JFormattedTextField golsTime1 = new JFormattedTextField(NumberFormat.getInstance());
-							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
-
-							final JComponent[] inputs = new JComponent[] {
-									new JLabel("Gols " + partida.getTime1().getNomeDoTime()), golsTime1,
-									new JLabel("Gols " + partida.getTime2().getNomeDoTime()),	golsTime2,
-							};
-							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
-
-							if(!golsTime1.getText().equals("") || !golsTime2.getText().equals("") ){
-								Integer gols1 = Integer.parseInt(golsTime1.getText());
-								Integer gols2 = Integer.parseInt(golsTime2.getText());
-								MeuBolao.apostar(i, gols1, gols2);
-								JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "Caracteres invalidos, aposta nao feita.");
-								break;
-							}
-							comboBox.setSelectedItem(comboItens[0]);
-						} catch (Exception e1) {
-							if(e1.getMessage().contains("For input string:"))
-								JOptionPane.showMessageDialog(null, "Valores n\u00E3o podem ser vazios, tente novamente!");
-							else
-								JOptionPane.showMessageDialog(null, e1.getMessage());
+						int cont = 0;
+						int j = 0; 
+						for (j = 0; cont < i+1;j++) {
+							if (jogador.getAposta(j) != null) cont++; 
 						}
-
+						try {
+							radios.remove(i);
+							MeuBolao.CancelarAposta(j-1);
+							JOptionPane.showMessageDialog(null,  "Sua aposta foi cancelada com sucesso.");
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,  e1.getMessage());
+						}
 					}
 				}
 
@@ -166,7 +145,7 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 		});
 		add(btnSubmeter);		
 		btnSubmeter.setBounds(506, 606, 303, 32);
-		btnSubmeter.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		btnSubmeter.setIcon(new ImageIcon(TelaDeVisualizarAposta.class.getResource("/projetoLp2/bolao/docs/cancel.png")));
 		
 		JLabel vazioLabel = new JLabel("Nenhum jogo cadastrado para essa fase. Por favor, tente outra!");
 		vazioLabel.setBounds(281, 103, 278, 16);
@@ -200,16 +179,6 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 				decidePanel(i).add(time, cons);
 				radios.add(time);
 			}				
-			
-			/*else if(jogador.getAposta(indiceAposta) == null && ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null 
-					&& ControladorPartidas.ler()[JOGOS_QUARTAS-1] == null && ControladorPartidas.ler()[JOGOS_SEMI-1] == null){
-				panelPrimeiraFase.add(vazioLabel1);
-				panelOitavaFinal.add(vazioLabel2);
-				panelQuartaFinal.add(vazioLabel4);
-				panelSemiFinal.add(vazioLabel3);
-				panelFinal.add(vazioLabel);
-				break; 
-			}*/
 		}
 
 		JLabel selecioneFase = new JLabel("Selecione a fase do jogo que voc\u00EA quer visualizar:");
