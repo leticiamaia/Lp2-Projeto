@@ -21,8 +21,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
@@ -33,16 +31,12 @@ public class TelaTimeCopa extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel mainPanel = new JPanel(new CardLayout());
-	//private static TimeCopa[] times = (TimeCopa[]) ControladorTimes.ler().values().toArray();
-	//private static Map<String, TimeCopa> mapTimes = (Map<String, TimeCopa>) ControladorTimes.ler();
-	//private static Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) mapTimes.values();
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
-	private JComboBox comboBox = new JComboBox(comboItens);
+	private JComboBox<String> comboBox = new JComboBox<String>(comboItens);
 	private TimeCopa timeSelecionadoAtual;
 	private JPanel panelDasPartidas = new JPanel();
 	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
-	//private JList listaDasPartidasJogadas = new JList();
 	/**
 	 * Create the panel.
 	 */
@@ -255,7 +249,6 @@ public class TelaTimeCopa extends JPanel {
 		String[] arrayComboItens = new String[32];
 		
 		int i = 0;
-		//ordenaTimes();
 		for (TimeCopa time : listaDeTimes) {
 			arrayComboItens[i] = time.toString();
 			i++;
@@ -263,25 +256,12 @@ public class TelaTimeCopa extends JPanel {
 		return arrayComboItens;
 	}
 	
-	/*private void adicionaItensAoComboBox(){
-		JPanel panelDoTime;
-		
-		for (int i = 1; i < comboItens.length; i++) {
-			panelDoTime = new JPanel(null);
-			panelDoTime.setBounds(0, 0, 822, 452);
-			mainPanel.add(panelDoTime, comboItens[i]);
-		}
-	}*/
 	
 	private Icon iconeDoTime() {
 		if (timeSelecionadoAtual == null)
 			return null;
 		return timeSelecionadoAtual.getBandeiraDoTime();
 	}
-	
-	/*private static void ordenaTimes(){
-		Arrays.sort(arrayTimes);
-	}*/
 	
 	private void addAPartidasJogadas(){
 		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
@@ -302,13 +282,6 @@ public class TelaTimeCopa extends JPanel {
 	}
 	
 	public static void main(String[] args) {
-		/*for (int i = 0; i < comboItens.length; i++) {
-			System.out.println(comboItens[i]);
-		}
-		
-		for (TimeCopa time : listaDeTimes) {
-			System.out.println(time);
-		}*/ 
 		JFrame janela = new JFrame();
 		janela.setBounds(0, 0, 1300, 700);
 		janela.setVisible(true);
