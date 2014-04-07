@@ -126,7 +126,7 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
-		final JPanel panelDasPartidas = new JPanel();
+		panelDasPartidas = new JPanel();
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setBounds(332, 55, 460, 370);
 		panelTeste.add(panelDasPartidas);
@@ -152,36 +152,11 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeVitorias.setText(numeroDeVitorias());
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
-				//addAPartidasJogadas();
-
-				
-				List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
-				if (partidasJogadas.size() == 0){
-					JLabel label = new JLabel("Nenhum jogo foi realizado!");
-					label.setHorizontalAlignment(SwingConstants.CENTER);
-					label.setFont(new Font("Tahoma", Font.PLAIN, 16));
-					label.setBounds(10, 5, 440, 44);
-					panelDasPartidas.add(label);
-				}
-				else{
-					for (Partida partida : partidasJogadas) {
-						panelDasPartidas.add(partida.panelDaPartida());
-					}
-				}
-			
+				addAPartidasJogadas();
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
 		add(btnOK);
-		
-	/*	comboBox.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//adicionaItensAoComboBox();
-
-			}
-		});*/
-		
 	}
 	
 	private TimeCopa opcaoComboBox(){
@@ -239,7 +214,7 @@ public class TelaTimeCopa extends JPanel {
 		return arrayComboItens;
 	}
 	
-	private void adicionaItensAoComboBox(){
+	/*private void adicionaItensAoComboBox(){
 		JPanel panelDoTime;
 		
 		for (int i = 1; i < comboItens.length; i++) {
@@ -247,7 +222,7 @@ public class TelaTimeCopa extends JPanel {
 			panelDoTime.setBounds(0, 0, 822, 452);
 			mainPanel.add(panelDoTime, comboItens[i]);
 		}
-	}
+	}*/
 	
 	private Icon iconeDoTime() {
 		if (timeSelecionadoAtual == null)
@@ -260,7 +235,6 @@ public class TelaTimeCopa extends JPanel {
 	}*/
 	
 	private void addAPartidasJogadas(){
-		
 		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
 		if (partidasJogadas.size() == 0){
 			JLabel label = new JLabel("Nenhum jogo foi realizado!");
