@@ -82,8 +82,13 @@ public class TelaDeAtualizarPartida extends JPanel {
 				Partida[] partidasDisponiveis;
 				partidasDisponiveis = ControladorPartidas.ler();
 				try {
-					((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx-1, nGols1, nGols2);
-					JOptionPane.showMessageDialog(null, "Jogo Atualizado com sucesso!");
+					if(partidasDisponiveis[idx].testaJogoNaoRealizado()) {
+						((Administrador)MeuBolao.getUsuarioLogado()).atualizaPartida(idx-1, nGols1, nGols2);
+						JOptionPane.showMessageDialog(null, "Jogo Atualizado com sucesso!");			
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Jogo ja atualizado!");
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					//JOptionPane.showMessageDialog(null, e.getMessage());
