@@ -126,6 +126,10 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Partida partida[] = ControladorPartidas.ler();
+				int idx = 0;
+				for(; idx < partida.length && !partida[idx].testaJogoNaoRealizado(); idx++);
+				System.out.println(idx);
+				System.out.println(partida[idx]);
 				for (int i = 0; i < radios.size();i++) {
 					if (radios.get(i).isSelected()) {
 						try {
@@ -134,15 +138,15 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
 
 							final JComponent[] inputs = new JComponent[] {
-									new JLabel("Gols " + partida[i].getTime1().getNomeDoTime()), golsTime1,
-									new JLabel("Gols " + partida[i].getTime2().getNomeDoTime()),	golsTime2,
+									new JLabel("Gols " + partida[i+idx].getTime1().getNomeDoTime()), golsTime1,
+									new JLabel("Gols " + partida[i+idx].getTime2().getNomeDoTime()),	golsTime2,
 							};
 							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
 
 							if(!golsTime1.getText().equals("") || !golsTime2.getText().equals("") ){
 								Integer gols1 = Integer.parseInt(golsTime1.getText());
 								Integer gols2 = Integer.parseInt(golsTime2.getText());
-								MeuBolao.apostar(i, gols1, gols2);
+								MeuBolao.apostar(i+idx, gols1, gols2);
 								JOptionPane.showMessageDialog(null, "Aposta feita com sucesso!");
 							}
 							else{
