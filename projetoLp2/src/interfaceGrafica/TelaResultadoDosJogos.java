@@ -73,12 +73,12 @@ public class TelaResultadoDosJogos extends JPanel {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.CENTER;
 		cons.gridwidth = 1;
-		cons.gridx = 0;
+		cons.gridx = 1;
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.CENTER;
 		c.gridwidth = 2;
-		c.gridx = 1;
+		c.gridx = 0;
 		
 		Partida[] partidas = ControladorPartidas.ler();
 		for(int i=0;  i < partidas.length ; i++) {

@@ -125,8 +125,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		btnSubmeter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Partida partida[] = ControladorPartidas.ler();
 				for (int i = 0; i < radios.size();i++) {
-					Partida partida = ControladorPartidas.ler()[i];
 					if (radios.get(i).isSelected()) {
 						try {
 
@@ -134,8 +134,8 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 							JFormattedTextField golsTime2 = new JFormattedTextField(NumberFormat.getInstance());
 
 							final JComponent[] inputs = new JComponent[] {
-									new JLabel("Gols " + partida.getTime1().getNomeDoTime()), golsTime1,
-									new JLabel("Gols " + partida.getTime2().getNomeDoTime()),	golsTime2,
+									new JLabel("Gols " + partida[i].getTime1().getNomeDoTime()), golsTime1,
+									new JLabel("Gols " + partida[i].getTime2().getNomeDoTime()),	golsTime2,
 							};
 							JOptionPane.showMessageDialog(null, inputs, "Insira sua aposta", JOptionPane.YES_NO_CANCEL_OPTION);
 
@@ -196,24 +196,27 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				decidePanel(i).add(partidas[i].panelDaPartida(), c);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
-			}				
+			}	
+			/*else if(!partidas[i].testaJogoNaoRealizado()){
+				panelPrimeiraFase.add(vazioLabel);
+			}*/
 			if (i == 0 && (partidas[i] == null)) {
 				panelPrimeiraFase.add(vazioLabel);
 			}
 
-			if (i == JOGOS_PRIMEIRA_FASE-1  && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
+			if (i == JOGOS_PRIMEIRA_FASE-1  && (partidas[i] == null)) {
 				panelOitavaFinal.add(vazioLabel4);
 			}
 
-			if (i == JOGOS_OITAVAS-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
+			if (i == JOGOS_OITAVAS-1 && (partidas[i] == null)) {
 				panelQuartaFinal.add(vazioLabel3);
 			}
 
-			if (i == JOGOS_QUARTAS-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) { 
+			if (i == JOGOS_QUARTAS-1 && (partidas[i] == null )) { 
 				panelSemiFinal.add(vazioLabel2);
 			}
 
-			if (i == JOGOS_SEMI-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
+			if (i == JOGOS_SEMI-1 && (partidas[i] == null)) {
 				panelFinal.add(vazioLabel1);
 			}
 			else if(partidas[0] == null && partidas[JOGOS_PRIMEIRA_FASE-1] == null && partidas[JOGOS_OITAVAS-1] == null 
