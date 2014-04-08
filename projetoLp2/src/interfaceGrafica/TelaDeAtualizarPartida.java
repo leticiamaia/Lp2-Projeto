@@ -43,7 +43,7 @@ public class TelaDeAtualizarPartida extends JPanel {
 		add(TelaDoAdministradorLabel);
 		
 		
-		partidas.setBounds(96, 129, 622, 25);
+		partidas.setBounds(96, 139, 622, 25);
 		inicializaComboPartidas();
 		add(partidas);
 		
@@ -104,8 +104,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 		add(label_1);
 		
 		JLabel lblSelecioneOJogo = new JLabel("Selecione o jogo que deseja atualizar:");
-		lblSelecioneOJogo.setBounds(312, 112, 261, 14);
+		lblSelecioneOJogo.setBounds(312, 122, 261, 14);
 		add(lblSelecioneOJogo);
+		
+		JLabel lblNotaAtualizeOs = new JLabel("Nota: atualize os jogos na ordem em que eles ocorreram.");
+		lblNotaAtualizeOs.setBounds(275, 62, 282, 14);
+		add(lblNotaAtualizeOs);
 		
 	}
 
