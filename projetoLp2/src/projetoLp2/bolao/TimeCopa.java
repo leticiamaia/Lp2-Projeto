@@ -92,7 +92,8 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 			throw new Exception("Partida invalida!");
 		if (!(p.getTime1().equals(this) || p.getTime2().equals(this)))
 			throw new Exception("O time nao esta nesta partida!");
-		p.testaJogoNaoRealizado();
+		if (p.testaJogoNaoRealizado())
+			throw new Exception("Jogo ainda nao foi realizado!");
 
 		partidasJogadas.add(p) ; 
 

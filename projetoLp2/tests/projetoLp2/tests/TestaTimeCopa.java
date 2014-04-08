@@ -127,7 +127,7 @@ public class TestaTimeCopa {
 		time1.addPartidaJogada(partida);
 		time2.addPartidaJogada(partida);
 		Assert.assertEquals(time1.getNumDerrotas(), 1);
-		//Assert.assertEquals(time1.getPorcentagemDerrotas(), 100);
+		Assert.assertEquals(time1.getPorcentagemDerrotas(), 100);
 		Assert.assertEquals(time1.getNumVitorias(), 0);
 		Assert.assertEquals(time1.getNumEmpates(), 0);
 		Assert.assertEquals(time2.getNumVitorias(), 1);
