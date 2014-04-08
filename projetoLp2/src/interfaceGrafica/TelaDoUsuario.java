@@ -67,10 +67,16 @@ public class TelaDoUsuario extends JFrame {
 		telaTimes = new TelaTimeCopa();
 		telaResultados = new TelaResultadoDosJogos();
 		telaBoasVindas.setVisible(true);
+		telaAposta.setVisible(false);
+		telaVisualizarAposta.setVisible(false);
+		telaResultados.setVisible(false);
+		telaTimes.setVisible(false);
+		infoPanel.setVisible(false);
 		getContentPane().setBackground(Color.WHITE);
 		
 		try {
 			rankingPanel = new RankingPanel();
+			rankingPanel.setVisible(false);
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}

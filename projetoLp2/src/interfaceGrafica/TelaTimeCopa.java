@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import projetoLp2.bolao.docs.ControladorTimes;
 import projetoLp2.bolao.Partida;
@@ -281,6 +282,9 @@ public class TelaTimeCopa extends JPanel {
 				container.add(label);
 				panelDasPartidas.add(container);*/
 			}
+			JScrollPane scroll = new JScrollPane(panelDasPartidas, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			panelTeste.add(scroll);
 		}
 	}
 }

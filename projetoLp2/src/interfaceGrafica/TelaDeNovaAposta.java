@@ -186,38 +186,38 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 		vazioLabel4.setBounds(281, 103, 278, 16);
 		vazioLabel4.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
+		Partida[] partidas = ControladorPartidas.ler();
 		for(int i=0;  i < 64; i++) {
-			Partida partida = ControladorPartidas.ler()[i];
-			if(partida != null && partida.testaJogoNaoRealizado()){
+			if(partidas[i] != null && partidas[i].testaJogoNaoRealizado()){
 				JRadioButton time = new JRadioButton();
 				grupo.add(time);
 				c.gridy = i;
 				cons.gridy = i;
-				decidePanel(i).add(partida.panelDaPartida(), c);
+				decidePanel(i).add(partidas[i].panelDaPartida(), c);
 				decidePanel(i).add(time, cons);
 				radios.add(time);
 			}				
-			if (i == 0 && (partida == null || !partida.testaJogoNaoRealizado())) {
+			if (i == 0 && (partidas[i] == null)) {
 				panelPrimeiraFase.add(vazioLabel);
 			}
 
-			if (i == JOGOS_PRIMEIRA_FASE-1  && (partida == null || !partida.testaJogoNaoRealizado())) {
+			if (i == JOGOS_PRIMEIRA_FASE-1  && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
 				panelOitavaFinal.add(vazioLabel4);
 			}
 
-			if (i == JOGOS_OITAVAS-1 && (partida == null || !partida.testaJogoNaoRealizado())) {
+			if (i == JOGOS_OITAVAS-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
 				panelQuartaFinal.add(vazioLabel3);
 			}
 
-			if (i == JOGOS_QUARTAS-1 && (partida == null || !partida.testaJogoNaoRealizado())) { 
+			if (i == JOGOS_QUARTAS-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) { 
 				panelSemiFinal.add(vazioLabel2);
 			}
 
-			if (i == JOGOS_SEMI-1 && (partida == null || !partida.testaJogoNaoRealizado())) {
+			if (i == JOGOS_SEMI-1 && (partidas[i] == null || partidas[i].testaJogoNaoRealizado()!= true)) {
 				panelFinal.add(vazioLabel1);
 			}
-			else if(ControladorPartidas.ler()[0] == null && ControladorPartidas.ler()[JOGOS_PRIMEIRA_FASE-1] == null && ControladorPartidas.ler()[JOGOS_OITAVAS-1] == null 
-					&& ControladorPartidas.ler()[JOGOS_QUARTAS-1] == null && ControladorPartidas.ler()[JOGOS_SEMI-1] == null){
+			else if(partidas[0] == null && partidas[JOGOS_PRIMEIRA_FASE-1] == null && partidas[JOGOS_OITAVAS-1] == null 
+					&& partidas[JOGOS_QUARTAS-1] == null && partidas[JOGOS_SEMI-1] == null){
 				panelPrimeiraFase.add(vazioLabel1);
 				panelOitavaFinal.add(vazioLabel2);
 				panelQuartaFinal.add(vazioLabel4);
