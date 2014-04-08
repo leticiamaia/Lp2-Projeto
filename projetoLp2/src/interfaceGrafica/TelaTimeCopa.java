@@ -153,6 +153,11 @@ public class TelaTimeCopa extends JPanel {
 		barraEmpate.setBounds(170, 179, 131, 27);
 		panelTeste.add(barraEmpate);
 		
+		JLabel lblImagemCopa = new JLabel("");
+		lblImagemCopa.setBounds(10, 215, 782, 226);
+		lblImagemCopa.setIcon(new ImageIcon("/projetoLp2/src/projetoLp2/bolao/docs/copa_do_mundo_2014_arte.jpg"));
+		panelTeste.add(lblImagemCopa);
+		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		selecioneFase.setBackground(Color.WHITE);
