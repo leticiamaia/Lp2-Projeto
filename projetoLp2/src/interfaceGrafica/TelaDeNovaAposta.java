@@ -169,12 +169,14 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 								Integer gols2 = Integer.parseInt(golsTime2
 										.getText());
 								MeuBolao.apostar(i, gols1, gols2);
-								JOptionPane.showMessageDialog(null,
-										"Aposta feita com sucesso!");
+								if(partida[i].getTime1().getNomeDoTime().equals("Brasil") || partida[i].getTime2().getNomeDoTime().equals("Brasil")){
+									JOptionPane.showMessageDialog(null, "VAAAAI BRASILL!!!", "Você apostou no brasil!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(TelaDoUsuario.class
+											.getResource("/projetoLp2/bolao/docs/Bandeira_do_Brasil_Tremulando[1].gif")));
+								}
+								JOptionPane.showMessageDialog(null,	"Aposta feita com sucesso!");
 							} else {
 								JOptionPane
-										.showMessageDialog(null,
-												"Caracteres invalidos, aposta nao feita.");
+										.showMessageDialog(null, "Caracteres invalidos, aposta nao feita.");
 								break;
 							}
 							comboBox.setSelectedItem(comboItens[0]);
