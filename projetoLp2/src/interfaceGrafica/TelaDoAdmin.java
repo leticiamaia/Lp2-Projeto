@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -59,6 +58,8 @@ public class TelaDoAdmin extends JFrame {
 	public TelaDoAdmin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1300, 700);	
+		setTitle("Bet2Beat - Tela do Administrador");
+		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		mainPane = new JPanel();
 		mainPane.setBackground(Color.WHITE);
 		mainPane.setBorder(new EmptyBorder(5, 5, 5, 5));

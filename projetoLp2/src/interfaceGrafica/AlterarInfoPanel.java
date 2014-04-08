@@ -32,8 +32,7 @@ public class AlterarInfoPanel extends JPanel {
 	private JPanel formularioAlteraInfoPanel;
 	private Jogador user;
 	private String novoNome, novoEmail, novaPergunta, novaResposta;
-	private JPanel telaBoaVindas;
-
+	
 	/**
 	 * Create the panel.
 	 * @param usuario 
@@ -76,7 +75,7 @@ public class AlterarInfoPanel extends JPanel {
 		criaAlterarInfoLabels();		
 		criaAlterarInfoFields();		
 		
-		telaBoaVindas = new TelaUserBoasVindas();
+		new TelaUserBoasVindas();
 		JButton botaoConfirmar = new JButton(" Confirmar");
 		botaoConfirmar.addActionListener(new ActionListener() {
 

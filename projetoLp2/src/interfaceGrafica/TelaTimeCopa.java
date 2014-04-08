@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.util.Collection;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -25,15 +24,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
 import java.awt.FlowLayout;
-
-import javax.swing.ScrollPaneConstants;
-
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -44,7 +35,7 @@ public class TelaTimeCopa extends JPanel {
 	private final JPanel mainPanel = new JPanel(new CardLayout());
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
-	private JComboBox/*<String>*/ comboBox = new JComboBox/*<String>*/(comboItens);
+	private JComboBox<String> comboBox = new JComboBox<String>(comboItens);
 	private TimeCopa timeSelecionadoAtual;
 	private final JPanel panelDasPartidas = new JPanel(), panelTeste = new JPanel();
 	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
