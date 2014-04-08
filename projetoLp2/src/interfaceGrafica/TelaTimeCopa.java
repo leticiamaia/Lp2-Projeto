@@ -92,6 +92,11 @@ public class TelaTimeCopa extends JPanel {
 		lblBandeira.setBounds(10, 51, 90, 30);
 		panelTeste.add(lblBandeira);
 		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(180, 221, 642, 231);
+		panelTeste.add(label_1);
+		label_1.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
+		
 		final JLabel lblIconeBandeira = new JLabel("");
 		lblIconeBandeira.setBounds(130, 46, 90, 45);
 		panelTeste.add(lblIconeBandeira);
@@ -136,6 +141,7 @@ public class TelaTimeCopa extends JPanel {
 		scrollPane.setBounds(332, 92, 460, 112);
 		panelTeste.add(scrollPane);
 		scrollPane.setViewportView(panelDasPartidas);
+		scrollPane.setAutoscrolls(true);
 		
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -153,10 +159,10 @@ public class TelaTimeCopa extends JPanel {
 		barraEmpate.setBounds(170, 179, 131, 27);
 		panelTeste.add(barraEmpate);
 		
-		JLabel lblImagemCopa = new JLabel("");
-		lblImagemCopa.setBounds(10, 215, 782, 226);
-		lblImagemCopa.setIcon(new ImageIcon("/projetoLp2/src/projetoLp2/bolao/docs/copa_do_mundo_2014_arte.jpg"));
-		panelTeste.add(lblImagemCopa);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
+		label.setBounds(-31, 236, 790, 216);
+		panelTeste.add(label);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
