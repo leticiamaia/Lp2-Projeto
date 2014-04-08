@@ -5,7 +5,6 @@ package projetoLp2.bolao;
  * @author Marcela, Leticia, Orion, Lucas
  */
 public class ApostaOitavasDeFinal extends Aposta{
-	
 	/**
 	 * 
 	 */
@@ -22,5 +21,4 @@ public class ApostaOitavasDeFinal extends Aposta{
 		super(indicePartida, numGolsTime1, numGolsTime2);
 		super.valorPontuacao = 2;
 	}
-
 }

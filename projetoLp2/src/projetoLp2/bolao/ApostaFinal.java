@@ -22,5 +22,4 @@ public class ApostaFinal extends Aposta {
 		super(indicePartida, numGolsTime1, numGolsTime2);
 		super.valorPontuacao = 16;
 	}
-
 }

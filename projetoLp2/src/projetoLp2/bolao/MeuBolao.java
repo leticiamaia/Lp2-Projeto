@@ -1,8 +1,6 @@
 package projetoLp2.bolao;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +8,26 @@ import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
+/**
+ * Essafaz a ligacao da interface com as classes internas do sistema
+ * 
+ * @author Leticia, Marcela, Orion, Lucas
+ * 
+ */
 public class MeuBolao {
 	private static Usuario usuarioLogado;
 	private static int indexUsuarioLogado;
-	ObjectInputStream ois;
-	ObjectOutputStream out;
 
+	/**
+	 * 
+	 * @param username
+	 *            Username(Login) do usuario.
+	 * @param senha
+	 *            Senha do Usuario.
+	 * @return Verdadeiro se o jogador conseguiu se Logar
+	 * @throws Exception
+	 *             Caso o usuario nao exista ou a senha seja incorreta.
+	 */
 	public static boolean login2(String username, String senha)
 			throws Exception {
 		boolean retorno = false;
@@ -51,6 +63,26 @@ public class MeuBolao {
 		return retorno;
 	}
 
+	/**
+	 * Esse metodo cadastra um Jogador no sistema
+	 * 
+	 * @param nome
+	 *            Nome do Jogador, campo nao obrigatorio.
+	 * @param username
+	 *            Username(login) do usuario.
+	 * @param senha
+	 *            Senha do usuario
+	 * @param email
+	 *            Email do usuario
+	 * @param perguntaSecreta
+	 *            Pergunta Secreta escolhida pelo usuario.
+	 * @param resposta
+	 *            Resposta da pergunta Secreta escolhida pelo usuario
+	 * @return Verdadiro se o usuario conseguiu se cadastrar
+	 * @throws Exception
+	 *             se o Usuario ou email ja existem, ou se os campos foram
+	 *             preenchidos de forma invalida.
+	 */
 	public static boolean cadastraJogador(String nome, String username,
 			String senha, String email, String perguntaSecreta, String resposta)
 			throws Exception {
@@ -92,7 +124,16 @@ public class MeuBolao {
 		ControladorJogador.escreve(jogadores);
 		return retorno;
 	}
-
+	
+	/**
+	 * Esse metodo loga o usuario caso ele esqueça sua senha.
+	 * @param usuario 
+	 * @param pergunta
+	 * @param respostaSecreta
+	 * @param email
+	 * @return
+	 * @throws Exception
+	 */
 	public static boolean checkUsuario(String usuario, String pergunta,
 			String respostaSecreta, String email) throws Exception {
 		if (usuario == null || usuario == "" || pergunta == null
@@ -203,32 +244,39 @@ public class MeuBolao {
 
 	public static boolean alterarInfo(String nome, String email, String senha,
 			String pergunta, String resposta) throws Exception {
-		if (!senha.equals("")) mudarSenha(senha);
-		if (!nome.equals("")) ((Jogador) usuarioLogado).setNome(nome);
-		if (!email.equals("")) ((Jogador) usuarioLogado).setEmail(email);
-		if (!pergunta.equals(""))((Jogador) usuarioLogado).setPerguntaSecreta(pergunta);
-		if (!resposta.equals("")) ((Jogador) usuarioLogado).setResposta(resposta);
+		if (!senha.equals(""))
+			mudarSenha(senha);
+		if (!nome.equals(""))
+			((Jogador) usuarioLogado).setNome(nome);
+		if (!email.equals(""))
+			((Jogador) usuarioLogado).setEmail(email);
+		if (!pergunta.equals(""))
+			((Jogador) usuarioLogado).setPerguntaSecreta(pergunta);
+		if (!resposta.equals(""))
+			((Jogador) usuarioLogado).setResposta(resposta);
 		List<Jogador> jogadores = ControladorJogador.ler();
-		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
+		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 		return true;
 	}
-	
+
 	public static Partida[] getPartidas() {
 		Partida[] partidas = ControladorPartidas.ler();
 		return partidas;
 	}
-	
-	public static boolean apostar(int indiceAposta, int palpiteGolsTime1, int palpiteGolsTime2) throws Exception {
+
+	public static boolean apostar(int indiceAposta, int palpiteGolsTime1,
+			int palpiteGolsTime2) throws Exception {
 		boolean retorno = false;
 		List<Jogador> jogadores = ControladorJogador.ler();
-		if (((Jogador)usuarioLogado).novaAposta(indiceAposta, palpiteGolsTime1, palpiteGolsTime2)) retorno = true;
-		jogadores.set(indexUsuarioLogado, (Jogador)usuarioLogado);
+		if (((Jogador) usuarioLogado).novaAposta(indiceAposta,
+				palpiteGolsTime1, palpiteGolsTime2))
+			retorno = true;
+		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
-		System.out.println("apostado");
 		return retorno;
 	}
-	
+
 	public static void CancelarAposta(int indiceAposta) throws Exception {
 		List<Jogador> jogadores = ControladorJogador.ler();
 		((Jogador) usuarioLogado).cancelarAposta(indiceAposta);
@@ -237,6 +285,6 @@ public class MeuBolao {
 	}
 
 	public static Aposta[] getApostas() {
-		return (Aposta[])((Jogador)usuarioLogado).getApostas();
+		return (Aposta[]) ((Jogador) usuarioLogado).getApostas();
 	}
 }

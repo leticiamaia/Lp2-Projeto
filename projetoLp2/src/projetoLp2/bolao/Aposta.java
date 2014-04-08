@@ -1,7 +1,6 @@
 package projetoLp2.bolao;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import projetoLp2.bolao.docs.ControladorPartidas;

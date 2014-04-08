@@ -1,17 +1,13 @@
 package projetoLp2.bolao;
 
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
 
 /**
  * Essa classe que representa uma partida da copa
@@ -61,10 +57,6 @@ public class Partida implements Serializable {
 			throw new Exception("Numero de gols invalido!");
 		this.golsTime1 = golsTime1;
 		this.golsTime2 = golsTime2;
-/*
-		time1.addPartidaJogada(this);
-		time2.addPartidaJogada(this);
-*/
 		return true;
 	}
 
@@ -186,17 +178,6 @@ public class Partida implements Serializable {
 		
 		return mainPanel;
 	}
-	
-/*	public static void main(String[] args) throws Exception {
-		JFrame frame = new JFrame();
-		frame.setVisible(true);
-		TimeCopa time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
-		Partida partida = new Partida(time1, time2, new GregorianCalendar(2014, 8, 15, 15, 30));
-		frame.getContentPane().add(partida.panelDaPartida());
-		frame.pack();
-	}*/
-	
 }
 
 
