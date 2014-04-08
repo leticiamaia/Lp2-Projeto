@@ -24,7 +24,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
-import java.awt.FlowLayout;
+
+import java.awt.GridBagLayout;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -37,7 +38,8 @@ public class TelaTimeCopa extends JPanel {
 	private final String[] comboItens = arrayComboItens();
 	private JComboBox<String> comboBox = new JComboBox<String>(comboItens);
 	private TimeCopa timeSelecionadoAtual;
-	private final JPanel panelDasPartidas = new JPanel(), panelTeste = new JPanel();
+	private JPanel panelDasPartidas = new JPanel();
+	private final JPanel panelTeste = new JPanel();
 	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
 	/**
 	 * Create the panel.
@@ -53,11 +55,11 @@ public class TelaTimeCopa extends JPanel {
 		mainPanel.setVisible(true);
 		add(mainPanel);
 		
-		JLabel fazerApostaLabel = new JLabel("Times da Copa 2014");
-		fazerApostaLabel.setBackground(Color.WHITE);
-		fazerApostaLabel.setBounds(10, 11, 492, 61);
-		fazerApostaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-		add(fazerApostaLabel);
+		JLabel timesCopa2014 = new JLabel("Times da Copa 2014");
+		timesCopa2014.setBackground(Color.WHITE);
+		timesCopa2014.setBounds(10, 11, 492, 61);
+		timesCopa2014.setFont(new Font("Calibri Light", Font.PLAIN, 43));
+		add(timesCopa2014);
 		
 		JLabel divisorHorizontalLabel = new JLabel("");
 		add(divisorHorizontalLabel);
@@ -82,11 +84,6 @@ public class TelaTimeCopa extends JPanel {
 		lblBandeira.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblBandeira.setBounds(10, 51, 90, 30);
 		panelTeste.add(lblBandeira);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(180, 221, 642, 231);
-		panelTeste.add(label_1);
-		label_1.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
 		
 		final JLabel lblIconeBandeira = new JLabel("");
 		lblIconeBandeira.setBounds(130, 46, 90, 45);
@@ -127,17 +124,7 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPartidasJogadas.setBounds(332, 50, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(332, 92, 460, 112);
-		panelTeste.add(scrollPane);
-		scrollPane.setViewportView(panelDasPartidas);
-		scrollPane.setAutoscrolls(true);
-		
-		panelDasPartidas.setBackground(Color.WHITE);
-		panelDasPartidas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panelDasPartidas.setVisible(true);
-		
+
 		barraDerrota.setStringPainted(true);
 		barraDerrota.setBounds(170, 138, 131, 27);
 		panelTeste.add(barraDerrota);
@@ -150,10 +137,12 @@ public class TelaTimeCopa extends JPanel {
 		barraEmpate.setBounds(170, 179, 131, 27);
 		panelTeste.add(barraEmpate);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
-		label.setBounds(-31, 236, 790, 216);
-		panelTeste.add(label);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(332, 94, 428, 347);
+		panelTeste.add(scrollPane);
+		
+		panelDasPartidas = new JPanel(new GridBagLayout());
+		scrollPane.setViewportView(panelDasPartidas);
 		
 		JLabel selecioneFase = new JLabel("Selecione o time que deseja visualizar:");
 		selecioneFase.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -176,7 +165,7 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
 				barrasDePorcentagem();
 				try {
-					addAPartidasJogadas();
+					atualizaResultados();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -185,6 +174,40 @@ public class TelaTimeCopa extends JPanel {
 		btnOK.setBounds(932, 111, 64, 26);
 		add(btnOK);
 	}
+
+public void atualizaResultados() throws Exception {
+	List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
+	panelDasPartidas.repaint();
+	panelDasPartidas.removeAll();
+	if (partidasJogadas.size() == 0){
+		JLabel label = new JLabel("Nenhum jogo do(a) "+ timeSelecionadoAtual.getNomeDoTime() +" foi realizado!");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		label.setBounds(10, 5, 440, 44);
+		panelDasPartidas.add(label);
+	}
+	else{
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.fill = GridBagConstraints.CENTER;
+		cons.gridwidth = 1;
+		cons.gridx = 1;
+		
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.gridx = 0;
+		for(int i=0;  i < partidasJogadas.size() ; i++) {
+			if(partidasJogadas.get(i) != null && !partidasJogadas.get(i).testaJogoNaoRealizado()){
+				c.gridy = i;
+				cons.gridy = i;
+				JLabel labelResultado = new JLabel(partidasJogadas.get(i).getResultadoFormatado());
+				labelResultado.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				panelDasPartidas.add(labelResultado, cons);
+				panelDasPartidas.add(partidasJogadas.get(i).panelDaPartida(), c);
+			}
+		}
+	}
+}
 	
 	private TimeCopa opcaoComboBox(){
 		String opcao = (String) comboBox.getSelectedItem();
@@ -277,49 +300,4 @@ public class TelaTimeCopa extends JPanel {
 			return null;
 		return timeSelecionadoAtual.getBandeiraDoTime();
 	}
-	
-	private void addAPartidasJogadas() throws Exception{
-		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
-		panelDasPartidas.repaint();
-		panelDasPartidas.removeAll();
-		if (partidasJogadas.size() == 0){
-			JLabel label = new JLabel("Nenhum jogo do(a) "+ timeSelecionadoAtual.getNomeDoTime() +" foi realizado!");
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			label.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			label.setBounds(10, 5, 440, 44);
-			panelDasPartidas.add(label);
-		}
-		else{
-			GridBagConstraints cons = new GridBagConstraints();
-			cons.fill = GridBagConstraints.CENTER;
-			cons.gridwidth = 1;
-			cons.gridx = 1;
-			
-			GridBagConstraints c = new GridBagConstraints();
-			c.fill = GridBagConstraints.CENTER;
-			c.gridwidth = 2;
-			c.gridx = 0;
-			for(int i=0;  i < partidasJogadas.size() ; i++) {
-				if(partidasJogadas.get(i) != null && !partidasJogadas.get(i).testaJogoNaoRealizado()){
-					c.gridy = i;
-					cons.gridy = i;
-					JLabel labelResultado = new JLabel(partidasJogadas.get(i).getResultadoFormatado());
-					labelResultado.setFont(new Font("Tahoma", Font.PLAIN, 15));
-					panelDasPartidas.add(labelResultado, cons);
-					panelDasPartidas.add(partidasJogadas.get(i).panelDaPartida(), c);
-				}
-			}
-		}
-	}
 }
-
-
-
-
-
-
-
-
-
-
-
