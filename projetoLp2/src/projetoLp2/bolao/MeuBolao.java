@@ -1,12 +1,10 @@
 package projetoLp2.bolao;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.ControladorJogador;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 /**
  * Essafaz a ligacao da interface com as classes internas do sistema
@@ -124,15 +122,22 @@ public class MeuBolao {
 		ControladorJogador.escreve(jogadores);
 		return retorno;
 	}
-	
+
 	/**
 	 * Esse metodo loga o usuario caso ele esqueça sua senha.
-	 * @param usuario 
+	 * 
+	 * @param usuario
+	 *            Username(Login) do usuario.
 	 * @param pergunta
+	 *            Pegunta que o usuario escolheu.
 	 * @param respostaSecreta
+	 *            Resposta da pergunta que o susuario escolheu.
 	 * @param email
-	 * @return
+	 *            Email do usario.
+	 * @return Verdadeiro se a operacao foi realizada com sucesso.
 	 * @throws Exception
+	 *             Caso os campos sejam preechidos invalidamente ou os dados nao
+	 *             sejam corretos.
 	 */
 	public static boolean checkUsuario(String usuario, String pergunta,
 			String respostaSecreta, String email) throws Exception {
@@ -156,7 +161,13 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
-
+	
+	/**
+	 * Esse metodo altera a senha do usuario
+	 * @param novaSenha A nova senha do usuario
+	 * @return Cerdadeiro se a operacao foi realizada com sucesso.
+	 * @throws Exception Caso os campos sejam preenchidos incorretamente.
+	 */
 	public static boolean mudarSenha(String novaSenha) throws Exception {
 		if (usuarioLogado == null)
 			throw new Exception(
@@ -174,8 +185,12 @@ public class MeuBolao {
 		return retorno;
 
 	}
-
-	public static boolean mudarSenhaAdmin() throws IOException {
+	
+	/**
+	 * Muda a senha Caso o usuario seja um administrador
+	 * @return verdadeiro se a operacao foi realizada com sucesso.
+	 */
+	private static boolean mudarSenhaAdmin() {
 		Administrador admin = null;
 		boolean retorno = false;
 
@@ -187,8 +202,12 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
-
-	public static boolean mudarSenhaUsuario() throws IOException {
+	
+	/**
+	 * Muda a senha caso o Usuario Logado seja um Jogador.
+	 * @return verdadeiro se a operacao foi realizada com sucesso.
+	 */
+	private static boolean mudarSenhaUsuario() {
 		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
 				.ler();
 		boolean retorno = false;
@@ -203,17 +222,27 @@ public class MeuBolao {
 		}
 		return retorno;
 	}
-
+	
+	/**
+	 * Esse metodo desloga o Usuario.
+	 */
 	public static void desloga() {
 		usuarioLogado = null;
 	}
 
+	/**
+	 * Esse metodo retorna o usuarioLogador
+	 * @return O usuarioLogado.
+	 */
 	public static Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
-
-	public static String[][] getRanking() throws IOException,
-			ClassNotFoundException {
+	
+	/**
+	 * Esse metodo retorna o ranking de Jogadores.
+	 * @return A tabela de ranking dos Jogadores.
+	 */
+	public static String[][] getRanking() {
 		ArrayList<Jogador> jogadores = (ArrayList<Jogador>) ControladorJogador
 				.ler();
 		String[][] tabela = new String[10][3];
@@ -230,11 +259,12 @@ public class MeuBolao {
 		}
 		return tabela;
 	}
-
+	
+	/**
+	 * Esse metodo retorna o ranaking do Jogador Logado
+	 * @return Uma tabela com o ranking, posicao e valor do ranking do jogador
+	 */
 	public static String[][] getRankingUsuario() throws Exception {
-		if (usuarioLogado instanceof Administrador) {
-			throw new Exception("Admin nao possua ranking.");
-		}
 		String[][] tabela = new String[1][3];
 		tabela[0][0] = "" + (indexUsuarioLogado + 1);
 		tabela[0][1] = usuarioLogado.getUsername();
@@ -242,6 +272,16 @@ public class MeuBolao {
 		return tabela;
 	}
 
+	/**
+	 * Esse Metodo altera as informacoes do Jogador Logado.
+	 * @param Nome Novo nome do jogador
+	 * @param Email Novo e-mail do Jogador
+	 * @param Senha Nova senha do Jogador
+	 * @param Pergunta Nova pergunta secreta do Jogador
+	 * @param Resposta Nova respota da pergunta secreta do jogador
+	 * @return Verdadeiro se a operacao foi reaizada com sucesso.
+	 * @throws Exception Execao de Mudar Senha.
+	 */
 	public static boolean alterarInfo(String nome, String email, String senha,
 			String pergunta, String resposta) throws Exception {
 		if (!senha.equals(""))
@@ -259,32 +299,36 @@ public class MeuBolao {
 		ControladorJogador.escreve(jogadores);
 		return true;
 	}
-
-	public static Partida[] getPartidas() {
-		Partida[] partidas = ControladorPartidas.ler();
-		return partidas;
-	}
-
-	public static boolean apostar(int indiceAposta, int palpiteGolsTime1,
+	
+	/**
+	 *Esse metodo faz uma aposta para o Jogador logado. 
+	 * @param indicePartida indice da Partida em que o jogador quer apostar
+	 * @param palpiteGolsTime1 Palpite do numero de gols do time 1
+	 * @param palpiteGolsTime2 Palpite do numero de gols do time 2
+	 * @return Verdadeiro se a operacao foi realiada com sucesso
+	 * @throws Exception Se houver Execoes da classe Jogador
+	 */
+	public static boolean apostar(int indicePartida, int palpiteGolsTime1,
 			int palpiteGolsTime2) throws Exception {
 		boolean retorno = false;
 		List<Jogador> jogadores = ControladorJogador.ler();
-		if (((Jogador) usuarioLogado).novaAposta(indiceAposta,
+		if (((Jogador) usuarioLogado).novaAposta(indicePartida,
 				palpiteGolsTime1, palpiteGolsTime2))
 			retorno = true;
 		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
 		return retorno;
 	}
-
+	
+	/**
+	 * Cancela uma aposta feira pelo jogador
+	 * @param indiceAposta Indice da aposta que o jogador deseja cancelar
+	 * @throws Exception Da classe Jogador.
+	 */
 	public static void CancelarAposta(int indiceAposta) throws Exception {
 		List<Jogador> jogadores = ControladorJogador.ler();
 		((Jogador) usuarioLogado).cancelarAposta(indiceAposta);
 		jogadores.set(indexUsuarioLogado, (Jogador) usuarioLogado);
 		ControladorJogador.escreve(jogadores);
-	}
-
-	public static Aposta[] getApostas() {
-		return (Aposta[]) ((Jogador) usuarioLogado).getApostas();
 	}
 }

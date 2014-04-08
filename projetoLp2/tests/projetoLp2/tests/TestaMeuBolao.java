@@ -277,11 +277,6 @@ public class TestaMeuBolao {
 
 		MeuBolao.desloga();
 		MeuBolao.login2("admin", "1234");
-		try {
-			MeuBolao.getRankingUsuario();
-		} catch (Exception e) {
-			Assert.assertEquals("Admin nao possua ranking.", e.getMessage());
-		}
 	}
 
 	@Test

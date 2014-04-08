@@ -31,8 +31,6 @@ public class TestaAposta {
 
 	@Test
 	public void testaConstrutor() throws Exception {
-		TimeCopa time1 = new TimeCopa("bandeiraHolanda.png", "Holanda", "HOL");
-		TimeCopa time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 
 		try {
 			new ApostaPrimeiraFase(-1, 1, 2);
@@ -54,18 +52,6 @@ public class TestaAposta {
 		} catch (Exception e) {
 			Assert.assertEquals("Palpite de gols invalido!", e.getMessage());
 		}
-
-		/*try {
-			GregorianCalendar c = new GregorianCalendar();
-			c.add(Calendar.MINUTE, 60);
-			Partida partida1 = new Partida(time1, time2, c);
-			new ApostaPrimeiraFase(partida1, 1, 2);
-			Assert.fail();
-		} catch (Exception e) {
-			Assert.assertEquals(
-					"Nao e mais possivel fazer uma aposta nessa partida.",
-					e.getMessage());
-		}*/
 		
 		Aposta aposta = new ApostaPrimeiraFase(0, 1, 2);
 		Assert.assertTrue(aposta.getPalpiteGolsTime1() == 1);
