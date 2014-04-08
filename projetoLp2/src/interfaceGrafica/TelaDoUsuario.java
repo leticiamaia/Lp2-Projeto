@@ -104,6 +104,7 @@ public class TelaDoUsuario extends JFrame {
 				telaBoasVindas.setVisible(false);
 				telaAposta.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
+				telaResultados.setVisible(false);
 				telaTimes.setVisible(false);
 				infoPanel.setVisible(true);
 			}
@@ -118,6 +119,7 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(false);
+				telaResultados.setVisible(false);
 				rankingPanel.setVisible(true);
 			}
 		});
@@ -137,6 +139,7 @@ public class TelaDoUsuario extends JFrame {
 				telaTimes.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
 				telaAposta.setVisible(true);
+				telaResultados.setVisible(false);
 			}
 		});
 		menuApostas.add(fazerApostaMenuItem);
@@ -154,7 +157,7 @@ public class TelaDoUsuario extends JFrame {
 				rankingPanel.setVisible(false);
 				telaAposta.setVisible(false);
 				telaTimes.setVisible(false);
-				telaVisualizarAposta.setVisible(true);
+				telaResultados.setVisible(false);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);
@@ -171,6 +174,7 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(true);
+				telaResultados.setVisible(false);
 				
 			}
 		});
@@ -187,11 +191,11 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
 				telaTimes.setVisible(false);
-				try {
+				/*try {
 					telaResultados.atualizaResultados();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}*/
 				telaResultados.setVisible(true);
 				
 			}
@@ -252,6 +256,7 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaTimes.setVisible(false);
 				telaVisualizarAposta.setVisible(false);
+				telaResultados.setVisible(false);
 				telaBoasVindas.setVisible(true);	
 			}
 		});
