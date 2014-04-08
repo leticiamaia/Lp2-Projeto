@@ -63,10 +63,11 @@ public class TelaDeCadastro extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setIconImage(new ImageIcon(this.getClass().getResource(	"/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-			
+
 		criaComponentesInstrucoes();
 		final JComboBox<String> perguntaSecretaComboBox = criaFormularioDeCadastro();
 
@@ -112,33 +113,36 @@ public class TelaDeCadastro extends JFrame {
 		cadastroUserLabel.setBounds(207, 0, 391, 54);
 		cadastroUserLabel.setFont(new Font("Calibri", Font.PLAIN, 33));
 		contentPane.add(cadastroUserLabel);
-		
-		JLabel informacaoLabel = new JLabel("Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
+
+		JLabel informacaoLabel = new JLabel(
+				"Preencha os campos a seguir com suas informa\u00E7\u00F5es. \r\n\n");
 		informacaoLabel.setLabelFor(this);
 		informacaoLabel.setToolTipText("");
 		informacaoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		informacaoLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		informacaoLabel.setBounds(214, 65, 327, 21);
 		contentPane.add(informacaoLabel);
-		
-		JLabel informacao2Label = new JLabel("Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
+
+		JLabel informacao2Label = new JLabel(
+				"Os campos marcados com um asterisco (*) s\u00E3o obrigat\u00F3rios.");
 		informacao2Label.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		informacao2Label.setBounds(196, 82, 386, 21);
 		contentPane.add(informacao2Label);
 	}
-	
+
 	private JComboBox<String> criaFormularioDeCadastro() {
 		criaNomeEmail();
 		criaUsuarioESenha();
 		final JComboBox<String> perguntaSecretaComboBox = criaPerguntaRespostaSecreta();
-		
-		JLabel notaMemorizeSenhaLabel = new JLabel("Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.");
+
+		JLabel notaMemorizeSenhaLabel = new JLabel(
+				"Memorize sua pergunta e resposta secreta. Elas servir\u00E3o para recuperar sua senha, caso voc\u00EA a esque\u00E7a.");
 		notaMemorizeSenhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		notaMemorizeSenhaLabel.setBounds(145, 326, 432, 14);
 		contentPane.add(notaMemorizeSenhaLabel);
 		return perguntaSecretaComboBox;
 	}
-	
+
 	private void criaNomeEmail() {
 		JLabel nomeLabel = new JLabel("Nome Completo: ");
 		nomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -160,7 +164,7 @@ public class TelaDeCadastro extends JFrame {
 		recebeEmailField.setBounds(241, 153, 336, 20);
 		contentPane.add(recebeEmailField);
 	}
-	
+
 	private void criaUsuarioESenha() {
 		JLabel userLabel = new JLabel("*Usu\u00E1rio:");
 		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -176,7 +180,7 @@ public class TelaDeCadastro extends JFrame {
 		senhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		senhaLabel.setBounds(179, 217, 54, 18);
 		contentPane.add(senhaLabel);
-		
+
 		recebeSenhaField = new JPasswordField();
 		recebeSenhaField.setBounds(241, 214, 336, 20);
 		contentPane.add(recebeSenhaField);
@@ -194,13 +198,19 @@ public class TelaDeCadastro extends JFrame {
 	private JComboBox<String> criaPerguntaRespostaSecreta() {
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox<String>();
 		perguntaSecretaComboBox.setBounds(241, 275, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
-		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que voc\u00ea visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de inf\u00e2ncia?");
-		perguntaSecretaComboBox.addItem("Qual \u00e9 o emprego dos seus sonhos?");
-		perguntaSecretaComboBox	.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
+		perguntaSecretaComboBox
+				.addItem("Qual a primeira praia que voc\u00ea visitou?");
+		perguntaSecretaComboBox
+				.addItem("Qual era seu apelido de inf\u00e2ncia?");
+		perguntaSecretaComboBox
+				.addItem("Qual \u00e9 o emprego dos seus sonhos?");
+		perguntaSecretaComboBox
+				.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel perguntaSecretaLabel = new JLabel("*Pergunta Secreta:");
@@ -212,14 +222,14 @@ public class TelaDeCadastro extends JFrame {
 		respostaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		respostaLabel.setBounds(168, 305, 65, 21);
 		contentPane.add(respostaLabel);
-		
+
 		respostaSecretaField = new JTextField();
 		respostaSecretaField.setColumns(10);
 		respostaSecretaField.setBounds(241, 306, 336, 20);
 		contentPane.add(respostaSecretaField);
 		return perguntaSecretaComboBox;
 	}
-	
+
 	public boolean verificaCampos() {
 		boolean sucesso = true;
 		if (usuario.equals("")) {
@@ -240,14 +250,14 @@ public class TelaDeCadastro extends JFrame {
 		}
 		if (!senha.equals(senhaConfirmada) || senha.isEmpty()
 				|| senhaConfirmada.isEmpty()) {
-			JOptionPane.showMessageDialog(null,
-					"As senhas n\u00e3o conferem!");
+			JOptionPane.showMessageDialog(null, "As senhas n\u00e3o conferem!");
 			sucesso = false;
 		}
 		sucesso &= verificaEmail();
 		if (sucesso) {
 			try {
-				sucesso = MeuBolao.cadastraJogador(nome, usuario, senha, email, pergunta, respostaSecreta);
+				sucesso = MeuBolao.cadastraJogador(nome, usuario, senha, email,
+						pergunta, respostaSecreta);
 				JOptionPane.showMessageDialog(null,
 						"Cadastro feito com sucesso!");
 				dispose();
@@ -257,29 +267,28 @@ public class TelaDeCadastro extends JFrame {
 		}
 		return sucesso;
 	}
-	
-	public boolean verificaEmail() { 
-	if(!email.contains("@")) {
-		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
-		return false;
-	}
-	int idx = email.lastIndexOf("@");
-	if (idx == 0 || idx == email.length()-1) {
-		JOptionPane.showMessageDialog(null, "E-mail Invalido.");
-		return false;
-	}
-	else {
-		int last = idx;
-		for (idx = idx+1; idx < email.length(); idx++) {
-			if (email.charAt(idx) == '.') {
-				if (idx - last == 1 || idx == email.length()-1) {
-					JOptionPane.showMessageDialog(null,	"E-mail Invalido.");
-					return false;
-				}
-				last = idx;
-			}
+
+	public boolean verificaEmail() {
+		if (!email.contains("@")) {
+			JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+			return false;
 		}
-		return true;
+		int idx = email.lastIndexOf("@");
+		if (idx == 0 || idx == email.length() - 1) {
+			JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+			return false;
+		} else {
+			int last = idx;
+			for (idx = idx + 1; idx < email.length(); idx++) {
+				if (email.charAt(idx) == '.') {
+					if (idx - last == 1 || idx == email.length() - 1) {
+						JOptionPane.showMessageDialog(null, "E-mail Invalido.");
+						return false;
+					}
+					last = idx;
+				}
+			}
+			return true;
+		}
 	}
-	}
-	} 
+}

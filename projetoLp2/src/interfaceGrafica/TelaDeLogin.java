@@ -36,7 +36,7 @@ public class TelaDeLogin extends JFrame {
 	private TelaEsqueciDados telaEsqueceu = new TelaEsqueciDados(this);
 	String getSenha;
 	String getLogin;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +48,7 @@ public class TelaDeLogin extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} 
+				}
 			}
 		});
 	}
@@ -58,59 +58,63 @@ public class TelaDeLogin extends JFrame {
 	 */
 	public TelaDeLogin() {
 		setResizable(false);
-		setTitle("Bet2Beat - Seja bem Vindo!"); 
-		setBackground(Color.WHITE); 
+		setTitle("Bet2Beat - Seja bem Vindo!");
+		setBackground(Color.WHITE);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(300, 150, 759, 448); 
+		setBounds(300, 150, 759, 448);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255)); 
+		contentPane.setBackground(new Color(255, 255, 255));
 		setContentPane(contentPane);
-		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
-		contentPane.setLayout(null); 
+		setIconImage(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		contentPane.setLayout(null);
 
 		criaTelaBoasVindas();
 
 		JPanel quadroDeLogin = new JPanel();
-		quadroDeLogin.setBounds(230, 195, 450, 164); 
-		contentPane.add(quadroDeLogin); 
-		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		quadroDeLogin.setBounds(230, 195, 450, 164);
+		contentPane.add(quadroDeLogin);
+		quadroDeLogin.setBorder(new TitledBorder(null, "Fazer Login",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		quadroDeLogin.setLayout(null);
 
 		criaQuadroDeLogin(quadroDeLogin);
-		
-		JButton botaoEntrar = new JButton(" Entrar"); 
-		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
+
+		JButton botaoEntrar = new JButton(" Entrar");
+		botaoEntrar.setIcon(new ImageIcon(TelaDeLogin.class
+				.getResource("/projetoLp2/bolao/docs/bullet_key.png")));
 		botaoEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				getLogin = recebeLogin.getText().trim();
-				getSenha = recebeSenhaEncriptada.getText().trim(); 
+				getSenha = recebeSenhaEncriptada.getText().trim();
 				try {
 					boolean sucesso = MeuBolao.login2(getLogin, getSenha);
 					if (sucesso) {
-						JOptionPane.showMessageDialog(null, "Login feito com sucesso! \n Seja bem vindo " + getLogin + " !"); 
-						dispose(); 
-						if(MeuBolao.getUsuarioLogado() instanceof Administrador)
-						{
+						JOptionPane.showMessageDialog(null,
+								"Login feito com sucesso! \n Seja bem vindo "
+										+ getLogin + " !");
+						dispose();
+						if (MeuBolao.getUsuarioLogado() instanceof Administrador) {
 							telaAdmin = new TelaDoAdmin();
-							telaAdmin.setVisible(true);									
-						}
-						else {
+							telaAdmin.setVisible(true);
+						} else {
 							telaUser = new TelaDoUsuario();
 							telaUser.setVisible(true);
 							telaDeCadastro.setVisible(false);
 						}
 					}
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null,e1.getMessage());
-				} 
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 			}
 		});
 		botaoEntrar.setBounds(104, 98, 99, 23);
-		quadroDeLogin.add(botaoEntrar); 
+		quadroDeLogin.add(botaoEntrar);
 
 		JButton botaoCadastrar = new JButton("Cadastrar");
-		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		botaoCadastrar.setIcon(new ImageIcon(TelaDeLogin.class
+				.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		botaoCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,14 +125,17 @@ public class TelaDeLogin extends JFrame {
 		quadroDeLogin.add(botaoCadastrar);
 
 		JButton botaoEsqueciDados = new JButton("Esqueci senha");
-		botaoEsqueciDados.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
+		botaoEsqueciDados
+				.setIcon(new ImageIcon(
+						TelaDeLogin.class
+								.getResource("/projetoLp2/bolao/docs/icon_forgotPassword.png")));
 		botaoEsqueciDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaEsqueceu.setVisible(true);
 			}
 		});
 		botaoEsqueciDados.setBounds(145, 130, 140, 23);
-		quadroDeLogin.add(botaoEsqueciDados);	
+		quadroDeLogin.add(botaoEsqueciDados);
 	}
 
 	private void criaTelaBoasVindas() {
@@ -138,12 +145,14 @@ public class TelaDeLogin extends JFrame {
 		contentPane.add(bolaoCopa2014);
 
 		JLabel fuleco = new JLabel("");
-		fuleco.setIcon(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/tatu-bola.png")));
+		fuleco.setIcon(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/tatu-bola.png")));
 		fuleco.setBounds(-44, 11, 255, 272);
-		contentPane.add(fuleco);		
+		contentPane.add(fuleco);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label.setIcon(new ImageIcon(TelaDeLogin.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		label.setBounds(171, 109, 510, 31);
 		contentPane.add(label);
 		JLabel boasVindas = new JLabel("Seja bem vindo!");
@@ -153,13 +162,13 @@ public class TelaDeLogin extends JFrame {
 	}
 
 	private void criaQuadroDeLogin(JPanel quadroDeLogin) {
-		JLabel login = new JLabel(); 
+		JLabel login = new JLabel();
 		login.setBounds(104, 36, 49, 20);
 		quadroDeLogin.add(login);
-		login.setText("Login:"); 
+		login.setText("Login:");
 		login.setBackground(new Color(240, 240, 240));
 
-		recebeLogin = new JTextField(); 
+		recebeLogin = new JTextField();
 		recebeLogin.setBounds(156, 36, 174, 20);
 		quadroDeLogin.add(recebeLogin);
 		recebeLogin.setColumns(10);
@@ -170,7 +179,7 @@ public class TelaDeLogin extends JFrame {
 		senha.setText("Senha: ");
 		senha.setBackground(new Color(240, 240, 240));
 
-		recebeSenhaEncriptada = new JPasswordField(); 
+		recebeSenhaEncriptada = new JPasswordField();
 		recebeSenhaEncriptada.setBounds(156, 67, 174, 20);
 		quadroDeLogin.add(recebeSenhaEncriptada);
 	}

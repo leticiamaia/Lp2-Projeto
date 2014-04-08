@@ -57,8 +57,8 @@ public class NewJPanel extends javax.swing.JPanel {
 		jTable1.setDefaultRenderer(String.class, centerRenderer);
 		try {
 			jTable1.setModel(new DefaultTableModel(MeuBolao.getRanking(),
-			new String[] { "Posi\u00E7\u00E3o", "Usu\u00E1rio",
-					"Pontua\u00E7\u00E3o" }) {
+					new String[] { "Posi\u00E7\u00E3o", "Usu\u00E1rio",
+							"Pontua\u00E7\u00E3o" }) {
 				/**
 				 * 
 				 */

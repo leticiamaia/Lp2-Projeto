@@ -23,7 +23,8 @@ public class RankingPanel extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public RankingPanel() throws Exception {
 		setBackground(Color.WHITE);
@@ -93,35 +94,47 @@ public class RankingPanel extends JPanel {
 
 		label = new JLabel("");
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(layout.createSequentialGroup()
-					.addGap(16)
-					.addComponent(label)
-					.addContainerGap(1268, Short.MAX_VALUE))
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(1212, Short.MAX_VALUE)
-					.addComponent(lblRaking)
-					.addGap(72))
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(337, Short.MAX_VALUE)
-					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-					.addGap(304))
-		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup()
-							.addGap(52)
-							.addComponent(label))
-						.addGroup(layout.createSequentialGroup()
-							.addGap(5)
-							.addComponent(lblRaking, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
-					.addGap(430)
-					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(101, Short.MAX_VALUE))
-		);
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(Alignment.TRAILING)
+				.addGroup(
+						layout.createSequentialGroup().addGap(16)
+								.addComponent(label)
+								.addContainerGap(1268, Short.MAX_VALUE))
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap(1212, Short.MAX_VALUE)
+								.addComponent(lblRaking).addGap(72))
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap(337, Short.MAX_VALUE)
+								.addComponent(jScrollPane1,
+										GroupLayout.PREFERRED_SIZE, 643,
+										GroupLayout.PREFERRED_SIZE).addGap(304)));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addGroup(
+										layout.createParallelGroup(
+												Alignment.LEADING)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addGap(52)
+																.addComponent(
+																		label))
+												.addGroup(
+														layout.createSequentialGroup()
+																.addGap(5)
+																.addComponent(
+																		lblRaking,
+																		GroupLayout.PREFERRED_SIZE,
+																		47,
+																		GroupLayout.PREFERRED_SIZE)))
+								.addGap(430)
+								.addComponent(jScrollPane1,
+										GroupLayout.PREFERRED_SIZE, 57,
+										GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(101, Short.MAX_VALUE)));
 		this.setLayout(layout);
 	}// </editor-fold>//GEN-END:initComponents
 

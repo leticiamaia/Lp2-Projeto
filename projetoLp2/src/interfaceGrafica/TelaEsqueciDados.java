@@ -60,7 +60,8 @@ public class TelaEsqueciDados extends JFrame {
 		contentPane.setBackground(Color.WHITE);
 		setTitle("Bet2Beat - Esqueci minha senha");
 		setContentPane(contentPane);
-		setIconImage(new ImageIcon(this.getClass().getResource("/projetoLp2/bolao/docs/program-icon.png")).getImage());
+		setIconImage(new ImageIcon(this.getClass().getResource(
+				"/projetoLp2/bolao/docs/program-icon.png")).getImage());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 
@@ -115,13 +116,19 @@ public class TelaEsqueciDados extends JFrame {
 
 		final JComboBox<String> perguntaSecretaComboBox = new JComboBox<String>();
 		perguntaSecretaComboBox.setBounds(270, 205, 336, 20);
-		perguntaSecretaComboBox.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
-		perguntaSecretaComboBox.addItem("Qual o nome do seu professor favarito(a)?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu primeiro animal de estima\u00e7\u00e3o?");
+		perguntaSecretaComboBox
+				.addItem("Qual o nome do seu professor favarito(a)?");
 		perguntaSecretaComboBox.addItem("Qual o nome do seu melhor amigo(a)?");
-		perguntaSecretaComboBox.addItem("Qual a primeira praia que voc\u00ea visitou?");
-		perguntaSecretaComboBox.addItem("Qual era seu apelido de inf\u00e2ncia?");
-		perguntaSecretaComboBox.addItem("Qual \u00e9 o emprego dos seus sonhos?");
-		perguntaSecretaComboBox	.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
+		perguntaSecretaComboBox
+				.addItem("Qual a primeira praia que voc\u00ea visitou?");
+		perguntaSecretaComboBox
+				.addItem("Qual era seu apelido de inf\u00e2ncia?");
+		perguntaSecretaComboBox
+				.addItem("Qual \u00e9 o emprego dos seus sonhos?");
+		perguntaSecretaComboBox
+				.addItem("Qual era o modelo do seu primeiro veiculo motorizado?");
 		contentPane.add(perguntaSecretaComboBox);
 
 		JLabel lblResposta = new JLabel("Sua resposta:");
@@ -155,8 +162,8 @@ public class TelaEsqueciDados extends JFrame {
 				respostaSecreta = respostaSecretaField.getText().trim();
 				eMail = recebeEmail.getText().trim();
 				try {
-					if (MeuBolao.checkUsuario(usuario, pergunta, respostaSecreta,
-							eMail)) {
+					if (MeuBolao.checkUsuario(usuario, pergunta,
+							respostaSecreta, eMail)) {
 						JOptionPane.showMessageDialog(null,
 								"Usuario(a) encontrado(a)! \nSeja bem vindo "
 										+ usuario + " !");
@@ -170,7 +177,10 @@ public class TelaEsqueciDados extends JFrame {
 						pane.setVisible(true);
 						telaLogin.setVisible(false);
 						do {
-							pane.showOptionDialog(null, panel,"Redefinir Senha", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,	options, options[0]);
+							pane.showOptionDialog(null, panel,
+									"Redefinir Senha", JOptionPane.NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null,
+									options, options[0]);
 							novaSenha = txt.getText().trim();
 							MeuBolao.mudarSenha(novaSenha);
 						} while (novaSenha.compareTo("") == 0);
@@ -178,7 +188,9 @@ public class TelaEsqueciDados extends JFrame {
 						telaUser.setVisible(true);
 						dispose();
 					} else {
-						JOptionPane.showMessageDialog(null,"Algum dado incorreto ou usuario n\u00e3o cadastrado!");
+						JOptionPane
+								.showMessageDialog(null,
+										"Algum dado incorreto ou usuario n\u00e3o cadastrado!");
 					}
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());

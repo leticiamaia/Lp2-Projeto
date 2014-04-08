@@ -17,7 +17,7 @@ public class TelaUserBoasVindas extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaUserBoasVindas() {		
+	public TelaUserBoasVindas() {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
@@ -34,9 +34,10 @@ public class TelaUserBoasVindas extends JPanel {
 		bolaoCopaLabel.setBounds(458, 62, 492, 61);
 		panel.add(bolaoCopaLabel);
 		bolaoCopaLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
-		
+
 		JLabel divisorHorizontalLabel = new JLabel("");
-		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		divisorHorizontalLabel.setBounds(420, 106, 530, 28);
 		panel.add(divisorHorizontalLabel);
 
@@ -44,7 +45,10 @@ public class TelaUserBoasVindas extends JPanel {
 		logoCopa2014.setBackground(Color.WHITE);
 		logoCopa2014.setBounds(335, 11, 113, 161);
 		panel.add(logoCopa2014);
-		logoCopa2014.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
+		logoCopa2014
+				.setIcon(new ImageIcon(
+						TelaDoUsuario.class
+								.getResource("/projetoLp2/bolao/docs/FIFA-World-Cup-2014-Brazil_peq.png")));
 
 		JLabel boasVindasLabel = new JLabel(
 				"Bem vindo! Essa \u00E9 sua p\u00E1gina principal. Voc\u00EA pode acessar as diversas funcionalidades do programa atrav\u00E9s da barra de menu fixada acima.");

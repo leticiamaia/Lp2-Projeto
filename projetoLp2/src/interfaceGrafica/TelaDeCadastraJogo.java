@@ -39,13 +39,14 @@ public class TelaDeCadastraJogo extends JPanel {
 	private static final long serialVersionUID = 834875740282875192L;
 
 	private JTextField textField;
-	
+
 	/**
 	 * Create the panel.
 	 */
-	public TelaDeCadastraJogo(final TelaDeAtualizarPartida telaDeAtualizarPartida) {
+	public TelaDeCadastraJogo(
+			final TelaDeAtualizarPartida telaDeAtualizarPartida) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
-		
+
 		setBounds(0, 0, 816, 361);
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -53,7 +54,8 @@ public class TelaDeCadastraJogo extends JPanel {
 
 		JLabel TelaDoAdministradorLabel = new JLabel("Fazer novo cadastro");
 		TelaDoAdministradorLabel.setBounds(267, 11, 240, 52);
-		TelaDoAdministradorLabel.setFont(new Font("Calibri Light", Font.PLAIN, 28));
+		TelaDoAdministradorLabel.setFont(new Font("Calibri Light", Font.PLAIN,
+				28));
 		add(TelaDoAdministradorLabel);
 
 		JLabel lblNewLabel = new JLabel("Time 1");
@@ -74,30 +76,32 @@ public class TelaDeCadastraJogo extends JPanel {
 		add(lblNewLabel_1);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setIcon(new ImageIcon(TelaDeCadastraJogo.class.getResource("/projetoLp2/bolao/docs/add_small.png")));
+		btnCadastrar.setIcon(new ImageIcon(TelaDeCadastraJogo.class
+				.getResource("/projetoLp2/bolao/docs/add_small.png")));
 		btnCadastrar.setBounds(321, 247, 112, 40);
 		add(btnCadastrar);
-		
+
 		final JComboBox<String> comboTime1 = new JComboBox<>();
 		comboTime1.setBounds(107, 162, 123, 35);
 		adicionaTimesCombo(comboTime1);
 		add(comboTime1);
-		
+
 		final JComboBox<String> comboTime2 = new JComboBox<>();
 		comboTime2.setBounds(525, 165, 123, 32);
 		adicionaTimesCombo(comboTime2);
 		add(comboTime2);
-		
+
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(TelaDeCadastraJogo.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
+		label_1.setIcon(new ImageIcon(TelaDeCadastraJogo.class
+				.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		label_1.setBounds(92, 48, 493, 14);
 		add(label_1);
-		
-		JLabel lblNotaAdicioneOs = new JLabel("Nota: adicione os jogos na ordem em que eles ir\u00E3o acontecer.");
+
+		JLabel lblNotaAdicioneOs = new JLabel(
+				"Nota: adicione os jogos na ordem em que eles ir\u00E3o acontecer.");
 		lblNotaAdicioneOs.setBounds(222, 67, 371, 14);
 		add(lblNotaAdicioneOs);
-		
-		
+
 		btnCadastrar.addActionListener(new ActionListener() {
 			private TimeCopa time1;
 			private TimeCopa time2;
@@ -109,20 +113,25 @@ public class TelaDeCadastraJogo extends JPanel {
 				time1 = times.get(comboTime1.getSelectedItem());
 				time2 = times.get(comboTime2.getSelectedItem());
 				data = textField.getText();
-				for(int i = 0; i < 64; i++) {
-					if(partidas[i] == null) {
+				for (int i = 0; i < 64; i++) {
+					if (partidas[i] == null) {
 						try {
-							DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+							DateFormat df = new SimpleDateFormat(
+									"dd/MM/yyyy hh:mm");
 							Date date = df.parse(data);
 							GregorianCalendar cal = new GregorianCalendar();
 							cal.setTime(date);
-							((Administrador) MeuBolao.getUsuarioLogado()).cadastraPartida(i, time1, time2, cal);
+							((Administrador) MeuBolao.getUsuarioLogado())
+									.cadastraPartida(i, time1, time2, cal);
 							telaDeAtualizarPartida.inicializaComboPartidas();
-							JOptionPane.showMessageDialog(null, "Jogo cadastrado!");
-						} catch(ParseException e1) {
-							JOptionPane.showMessageDialog(null, "Data inválida! Por favor siga o formato dd/MM/yyyy hh:mm");
+							JOptionPane.showMessageDialog(null,
+									"Jogo cadastrado!");
+						} catch (ParseException e1) {
+							JOptionPane
+									.showMessageDialog(null,
+											"Data inválida! Por favor siga o formato dd/MM/yyyy hh:mm");
 						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null,  e.getMessage());
+							JOptionPane.showMessageDialog(null, e.getMessage());
 						}
 						break;
 					}
@@ -132,10 +141,10 @@ public class TelaDeCadastraJogo extends JPanel {
 	}
 
 	private void adicionaTimesCombo(JComboBox<String> comboTime) {
-		Map<String,TimeCopa> times = ControladorTimes.ler();
+		Map<String, TimeCopa> times = ControladorTimes.ler();
 		Set<String> times1 = times.keySet();
 		Object[] times2 = times1.toArray();
-		for(int i = 0; i < times2.length; i++) {
+		for (int i = 0; i < times2.length; i++) {
 			comboTime.addItem(times2[i].toString());
 		}
 	}
