@@ -118,22 +118,22 @@ public class TelaTimeCopa extends JPanel {
 		
 		JLabel lblNDeEmpates = new JLabel("N\u00BA de Empates:");
 		lblNDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNDeEmpates.setBounds(10, 174, 155, 30);
+		lblNDeEmpates.setBounds(10, 174, 118, 30);
 		panelTeste.add(lblNDeEmpates);
 		
 		final JLabel labelNumeroDeEmpates = new JLabel("");
 		labelNumeroDeEmpates.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		labelNumeroDeEmpates.setBounds(130, 184, 58, 27);
+		labelNumeroDeEmpates.setBounds(130, 174, 58, 27);
 		panelTeste.add(labelNumeroDeEmpates);
 		
 		JLabel lblPartidasJogadas = new JLabel("Partidas Jogadas:");
 		lblPartidasJogadas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPartidasJogadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPartidasJogadas.setBounds(332, 11, 460, 33);
+		lblPartidasJogadas.setBounds(332, 50, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(332, 55, 460, 149);
+		scrollPane.setBounds(332, 92, 460, 112);
 		panelTeste.add(scrollPane);
 		scrollPane.setViewportView(panelDasPartidas);
 		
