@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,10 +11,6 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.docs.ControladorPartidas;
 
@@ -25,40 +19,50 @@ import javax.swing.JScrollPane;
 public class TelaResultadoDosJogos extends JPanel {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel resultadosPanel;
 	/**
 	 * Create the panel.
 	 * @throws Exception 
 	 */
 	public TelaResultadoDosJogos() throws Exception {
+		setBorder(null);
 		setVisible(false);
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 1284, 640);
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("<html><center>Resultados dos Jogos</center><html>");
-		lblNewLabel.setBounds(41, 11, 382, 74);
+		lblNewLabel.setBounds(6, 11, 382, 74);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 43));
 		add(lblNewLabel);
-
 		
 		JLabel label = new JLabel("");
-		label.setBounds(-72, 71, 615, 14);
+		label.setBounds(-108, 81, 615, 14);
 		label.setIcon(new ImageIcon(TelaResultadoDosJogos.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		add(label);
 		
 		resultadosPanel = new JPanel(new GridBagLayout());
+		resultadosPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		resultadosPanel.setBounds(0, 0, 822, 452);
+		
+		JLabel vazioLabel = new JLabel("Nenhum jogo foi realizado.");
+		vazioLabel.setBounds(281, 103, 278, 16);
+		vazioLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		resultadosPanel.add(vazioLabel);
 		
 		JScrollPane mainScroll = new JScrollPane(resultadosPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		mainScroll.setBounds(254, 172, 774, 390);
+		mainScroll.setBounds(224, 166, 843, 423);
 		add(mainScroll);
 		mainScroll.setVisible(true);
 	
 		
 		
-		atualizaResultados();
+		atualizaResultados(vazioLabel);
 	}
 
 
@@ -69,7 +73,7 @@ public class TelaResultadoDosJogos extends JPanel {
 				resultadosPanel.add(tLabel);
 			}*/
 
-	public void atualizaResultados() throws Exception {
+	public void atualizaResultados(JLabel vazioLabel) throws Exception {
 		GridBagConstraints cons = new GridBagConstraints();
 		cons.fill = GridBagConstraints.CENTER;
 		cons.gridwidth = 1;
@@ -83,6 +87,7 @@ public class TelaResultadoDosJogos extends JPanel {
 		Partida[] partidas = ControladorPartidas.ler();
 		for(int i=0;  i < partidas.length ; i++) {
 			if(partidas[i] != null && !partidas[i].testaJogoNaoRealizado()){
+				resultadosPanel.remove(vazioLabel);
 				c.gridy = i;
 				cons.gridy = i;
 				JLabel labelResultado = new JLabel(partidas[i].getResultadoFormatado());
@@ -90,6 +95,7 @@ public class TelaResultadoDosJogos extends JPanel {
 				resultadosPanel.add(labelResultado, cons);
 				resultadosPanel.add(partidas[i].panelDaPartida(), c);
 	}
+			
 		}
 	}
 }
