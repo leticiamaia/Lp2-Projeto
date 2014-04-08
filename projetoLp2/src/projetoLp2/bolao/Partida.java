@@ -33,7 +33,7 @@ public class Partida implements Serializable {
 	public Partida(TimeCopa time1, TimeCopa time2, GregorianCalendar data) throws Exception {
 		if (time1 == null || time2 == null)
 			throw new Exception("Time invalido!");
-
+		if (time1.equals(time2)) throw new Exception("Selecione times diferentes!");
 		GregorianCalendar dataDeHoje = new GregorianCalendar();
 		if (data.before(dataDeHoje))
 			throw new Exception("Nao e possivel adicionar jogo com data anterior a atual!");

@@ -234,10 +234,6 @@ public class TelaDeNovaAposta extends JPanel implements ItemListener {
 				decidePanel(i).add(time, cons);
 				radios.add(time);
 			}
-			/*
-			 * else if(!partidas[i].testaJogoNaoRealizado()){
-			 * panelPrimeiraFase.add(vazioLabel); }
-			 */
 			if (i == 0 && (partidas[i] == null)) {
 				panelPrimeiraFase.add(vazioLabel);
 			}

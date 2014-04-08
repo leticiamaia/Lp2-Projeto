@@ -1,4 +1,4 @@
-package interfaceGrafica;
+package projetoLp2.bolao;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

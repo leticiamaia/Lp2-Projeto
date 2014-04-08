@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import projetoLp2.bolao.ControladorRegras;
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 

@@ -137,17 +137,27 @@ public class TelaTimeCopa extends JPanel {
 		barraVitoria.setStringPainted(true);
 		barraVitoria.setBounds(170, 97, 131, 27);
 		panelTeste.add(barraVitoria);
+		
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(332, 94, 428, 347);
+				panelTeste.add(scrollPane);
+				
+						panelDasPartidas = new JPanel(new GridBagLayout());
+						scrollPane.setViewportView(panelDasPartidas);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(410, 230, 412, 219);
+		panelTeste.add(label_1);
+		label_1.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
 
 		barraEmpate.setStringPainted(true);
 		barraEmpate.setBounds(170, 179, 131, 27);
 		panelTeste.add(barraEmpate);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(332, 94, 428, 347);
-		panelTeste.add(scrollPane);
-
-		panelDasPartidas = new JPanel(new GridBagLayout());
-		scrollPane.setViewportView(panelDasPartidas);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(TelaTimeCopa.class.getResource("/projetoLp2/bolao/docs/torcida-vector.png")));
+		label.setBounds(0, 215, 452, 234);
+		panelTeste.add(label);
 
 		JLabel selecioneFase = new JLabel(
 				"Selecione o time que deseja visualizar:");

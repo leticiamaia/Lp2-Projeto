@@ -146,6 +146,7 @@ public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 							MeuBolao.CancelarAposta(j - 1);
 							JOptionPane.showMessageDialog(null,
 									"Sua aposta foi cancelada com sucesso.");
+							comboBox.setSelectedItem(comboItens[0]);
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null, e1.getMessage());
 						}
