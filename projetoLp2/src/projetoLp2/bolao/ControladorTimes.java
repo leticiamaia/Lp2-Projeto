@@ -1,4 +1,4 @@
-package projetoLp2.bolao.docs;
+package projetoLp2.bolao;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
-
-import projetoLp2.bolao.TimeCopa;
 
 public class ControladorTimes {
 	private static ObjectInputStream ois;
@@ -17,7 +15,7 @@ public class ControladorTimes {
 	public static Map<String, TimeCopa> ler() {
 		Map<String, TimeCopa> times = null;
 		try {
-			ois = new ObjectInputStream(new FileInputStream("times.bin"));
+			ois = new ObjectInputStream(new FileInputStream("resources/times.bin"));
 			times =  (Map<String, TimeCopa>)ois.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -33,7 +31,7 @@ public class ControladorTimes {
 	
 	public static void escreve(Map<String, TimeCopa> times) {
 		try {
-			out = new ObjectOutputStream(new FileOutputStream("times.bin"));
+			out = new ObjectOutputStream(new FileOutputStream("resources/times.bin"));
 			out.writeObject(times);
 		} catch (IOException e) {
 			e.printStackTrace();

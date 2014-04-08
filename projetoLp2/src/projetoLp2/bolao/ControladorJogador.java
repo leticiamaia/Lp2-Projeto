@@ -1,4 +1,4 @@
-package projetoLp2.bolao.docs;
+package projetoLp2.bolao;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
-import projetoLp2.bolao.Jogador;
 
 public class ControladorJogador {
 	
@@ -19,7 +17,7 @@ public class ControladorJogador {
 	public static List<Jogador> ler() {
 		List<Jogador> jogadores = null;
 		try {
-			ois = new ObjectInputStream(new FileInputStream("usuarios.bin"));
+			ois = new ObjectInputStream(new FileInputStream("resources/usuarios.bin"));
 			jogadores =  (List<Jogador>)ois.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
@@ -35,7 +33,7 @@ public class ControladorJogador {
 	
 	public static void escreve(List<Jogador> jogadores) {
 		try {
-			out = new ObjectOutputStream(new FileOutputStream("usuarios.bin"));
+			out = new ObjectOutputStream(new FileOutputStream("resources/usuarios.bin"));
 			out.writeObject(jogadores);
 		} catch (IOException e) {
 			e.printStackTrace();

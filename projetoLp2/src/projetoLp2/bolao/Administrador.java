@@ -5,10 +5,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import projetoLp2.bolao.docs.ControladorJogador;
-import projetoLp2.bolao.docs.ControladorPartidas;
-import projetoLp2.bolao.docs.ControladorTimes;
-
 /**
  * Essa classe representa o administrador do Nosso Bolao
  * 

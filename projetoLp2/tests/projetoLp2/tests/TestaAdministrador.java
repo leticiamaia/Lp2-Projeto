@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
-import projetoLp2.bolao.docs.ControladorPartidas;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaAdministrador {

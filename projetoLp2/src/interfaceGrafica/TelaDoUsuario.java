@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
-import projetoLp2.bolao.docs.ControladorRegras;
 
 public class TelaDoUsuario extends JFrame {
 
@@ -163,6 +162,7 @@ public class TelaDoUsuario extends JFrame {
 				telaTimes.setVisible(false);
 				telaResultados.setVisible(false);
 				telaResultados.setVisible(false);
+				telaVisualizarAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);

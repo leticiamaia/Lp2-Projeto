@@ -3,9 +3,6 @@ package projetoLp2.bolao;
 import java.util.ArrayList;
 import java.util.List;
 
-import projetoLp2.bolao.docs.ControladorAdmin;
-import projetoLp2.bolao.docs.ControladorJogador;
-
 /**
  * Essafaz a ligacao da interface com as classes internas do sistema
  * 

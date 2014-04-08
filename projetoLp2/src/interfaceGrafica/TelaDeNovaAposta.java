@@ -18,9 +18,10 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 import java.awt.Font;
 import java.awt.event.ItemEvent;

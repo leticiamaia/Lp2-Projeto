@@ -11,8 +11,9 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
+
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.Partida;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 import javax.swing.JScrollPane;
 

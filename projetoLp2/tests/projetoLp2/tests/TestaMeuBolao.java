@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.ControladorAdmin;
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.TimeCopa;
-import projetoLp2.bolao.docs.ControladorAdmin;
 import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaMeuBolao {

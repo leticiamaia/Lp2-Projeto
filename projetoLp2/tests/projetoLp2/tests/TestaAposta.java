@@ -12,9 +12,9 @@ import projetoLp2.bolao.ApostaOitavasDeFinal;
 import projetoLp2.bolao.ApostaPrimeiraFase;
 import projetoLp2.bolao.ApostaQuartasDeFinal;
 import projetoLp2.bolao.ApostaSemiFinal;
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 public class TestaAposta {
 	

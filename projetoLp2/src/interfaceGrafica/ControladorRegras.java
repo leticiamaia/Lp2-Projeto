@@ -1,4 +1,4 @@
-package projetoLp2.bolao.docs;
+package interfaceGrafica;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

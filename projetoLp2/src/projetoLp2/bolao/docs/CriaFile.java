@@ -6,6 +6,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.ControladorAdmin;
+import projetoLp2.bolao.ControladorJogador;
+import projetoLp2.bolao.ControladorPartidas;
+import projetoLp2.bolao.ControladorTimes;
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;

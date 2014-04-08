@@ -24,10 +24,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 import projetoLp2.bolao.Aposta;
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.Jogador;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 public class TelaDeVisualizarAposta extends JPanel implements ItemListener {
 

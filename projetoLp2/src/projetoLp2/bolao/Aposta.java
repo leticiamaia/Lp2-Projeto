@@ -3,8 +3,6 @@ package projetoLp2.bolao;
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-import projetoLp2.bolao.docs.ControladorPartidas;
-
 /**
  * Essa classe representa uma aposta do jogador
  * 

@@ -22,11 +22,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import projetoLp2.bolao.ControladorPartidas;
+import projetoLp2.bolao.ControladorTimes;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
-import projetoLp2.bolao.docs.ControladorPartidas;
-import projetoLp2.bolao.docs.ControladorTimes;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;

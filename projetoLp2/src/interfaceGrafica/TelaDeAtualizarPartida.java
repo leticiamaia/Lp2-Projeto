@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import projetoLp2.bolao.Administrador;
+import projetoLp2.bolao.ControladorPartidas;
 import projetoLp2.bolao.MeuBolao;
 import projetoLp2.bolao.Partida;
-import projetoLp2.bolao.docs.ControladorPartidas;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;

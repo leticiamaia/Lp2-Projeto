@@ -1,4 +1,4 @@
-package projetoLp2.bolao.docs;
+package projetoLp2.bolao;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,18 +6,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import projetoLp2.bolao.Partida;
-
-public class ControladorPartidas {
+public class ControladorAdmin {
 	
 	private static ObjectInputStream ois;
 	private static ObjectOutputStream out;
 	
-	public static Partida[] ler() {
-		Partida[] partidas = null;
+	public static Administrador ler() {
+		Administrador admin = null;
 		try {
-			ois = new ObjectInputStream(new FileInputStream("partidas.bin"));
-			partidas =  (Partida[])ois.readObject();
+			ois = new ObjectInputStream(new FileInputStream("resources/admin.bin"));
+			admin =  (Administrador)ois.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -27,13 +25,13 @@ public class ControladorPartidas {
 				e.printStackTrace();
 			}
 		}
-		return partidas;
+		return admin;
 	}
 	
-	public static void escreve(Partida[] partidas) {
+	public static void escreve(Administrador admin) {
 		try {
-			out = new ObjectOutputStream(new FileOutputStream("partidas.bin"));
-			out.writeObject(partidas);
+			out = new ObjectOutputStream(new FileOutputStream("resources/admin.bin"));
+			out.writeObject(admin);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -44,5 +42,6 @@ public class ControladorPartidas {
 			}
 		}
 	}
+
 
 }

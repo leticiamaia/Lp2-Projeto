@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import projetoLp2.bolao.docs.ControladorTimes;
+import projetoLp2.bolao.ControladorTimes;
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
 
