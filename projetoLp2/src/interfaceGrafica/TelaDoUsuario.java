@@ -164,6 +164,7 @@ public class TelaDoUsuario extends JFrame {
 				telaAposta.setVisible(false);
 				telaTimes.setVisible(false);
 				telaResultados.setVisible(false);
+				telaVisualizarAposta.setVisible(true);
 			}
 		});
 		menuApostas.add(verApostaMenuItem);
