@@ -167,10 +167,17 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 		return numEmpates * 100/(numVitorias + numEmpates + numDerrotas);
 	}
 	
+	/**
+	 * Esse metodo retorna as partidas jogadas pelo Time
+	 * @return Lista de partidas jogadas pelo Time
+	 */
 	public List<Partida> getPartidasJogadas(){
-		return partidasJogadas;
+		return partidasJogadas;  
 	}
 	
+	/**
+	 * Metodo Equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -192,7 +199,10 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 			return false;
 		return true;
 	}
-
+	
+	/**
+	 * Metodo de comparar 2 times.
+	 */
 	@Override
 	public int compareTo(TimeCopa time) {
 		if (this.getNomeDoTime().compareTo(time.getNomeDoTime()) < 0)
@@ -204,6 +214,9 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 		return 0;
 	}
 	
+	/**
+	 * Metodo de retornar a String do Obejto TimeCopa
+	 */
 	@Override
 	public String toString(){
 		return nomeDoTime;

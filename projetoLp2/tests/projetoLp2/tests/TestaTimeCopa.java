@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import projetoLp2.bolao.Partida;
 import projetoLp2.bolao.TimeCopa;
+import projetoLp2.bolao.docs.CriaFile;
 
 public class TestaTimeCopa {
 	
@@ -20,6 +21,7 @@ public class TestaTimeCopa {
 	
 	@Before
 	public void inicializaVariaveis() throws Exception {
+		CriaFile.main(null);
 		time1 = new TimeCopa("bandeiraAlemanha.png", "Alemanha", "ALE");
 		time2 = new TimeCopa("bandeiraBrasil.png", "Brasil", "BRA");
 		time3 = new TimeCopa("bandeiraAustralia.png", "Australia",
@@ -120,10 +122,14 @@ public class TestaTimeCopa {
 		} catch (Exception e) {
 			Assert.assertEquals("Jogo ainda nao foi realizado!", e.getMessage());
 		}
-
+		
 		partida.setGols(1, 2);
+		time1.addPartidaJogada(partida);
+		time2.addPartidaJogada(partida);
 		Assert.assertEquals(time1.getNumDerrotas(), 1);
-		Assert.assertEquals(time1.getPorcentagemDerrotas(), 100);
+		//Assert.assertEquals(time1.getPorcentagemDerrotas(), 100);
+		Assert.assertEquals(time1.getNumVitorias(), 0);
+		Assert.assertEquals(time1.getNumEmpates(), 0);
 		Assert.assertEquals(time2.getNumVitorias(), 1);
 		Assert.assertEquals(time2.getPorcentagemVitorias(), 100);
 		Assert.assertEquals(time2.getPorcentagemEmpates(), 0);
@@ -131,10 +137,10 @@ public class TestaTimeCopa {
 	
 	@Test
 	public void testaCompareTo() throws Exception{		
-		Assert.assertTrue(time1.compareTo(time2) == -1);
-		Assert.assertTrue(time2.compareTo(time2) == 0);
-		Assert.assertTrue(time2.compareTo(time3) == 1);
-		Assert.assertTrue(time1.compareTo(time3) == -1); 
+		Assert.assertEquals(time1.compareTo(time2), -1);
+		Assert.assertEquals(time2.compareTo(time2), 0);
+		Assert.assertEquals(time2.compareTo(time3), 1);
+		Assert.assertEquals(time1.compareTo(time3), -1); 
 	}
 
 }
