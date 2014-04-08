@@ -94,7 +94,7 @@ public class TimeCopa implements Serializable, Comparable<TimeCopa>{
 			throw new Exception("O time nao esta nesta partida!");
 		p.testaJogoNaoRealizado();
 
-		partidasJogadas.add(p);
+		partidasJogadas.add(p) ; 
 
 		if (p.getTime1().equals(this)) {
 			if (p.resultado() == 1)
