@@ -137,11 +137,9 @@ public class TelaTimeCopa extends JPanel {
 		panelTeste.add(scrollPane);
 		scrollPane.setViewportView(panelDasPartidas);
 		
-		//panelDasPartidas.setLayout(new BoxLayout(null, BoxLayout.PAGE_AXIS));
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelDasPartidas.setVisible(true);
-		//panelDasPartidas.setLayout(null);
 		
 		barraDerrota.setStringPainted(true);
 		barraDerrota.setBounds(170, 138, 131, 27);
@@ -180,7 +178,6 @@ public class TelaTimeCopa extends JPanel {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
@@ -195,7 +192,6 @@ public class TelaTimeCopa extends JPanel {
 				return time;
 			}
 		}
-		
 		return null;
 	}
 	
@@ -292,15 +288,6 @@ public class TelaTimeCopa extends JPanel {
 			panelDasPartidas.add(label);
 		}
 		else{
-			/*JLabel label = new JLabel();
-			JPanel container = new JPanel();
-			for (Partida partida : partidasJogadas) {
-				label = new JLabel(partida.getResultadoFormatado());
-				container.add(label);
-				panelDasPartidas.add(partida.panelDaPartida());
-				panelDasPartidas.add(container);
-			}*/
-			
 			GridBagConstraints cons = new GridBagConstraints();
 			cons.fill = GridBagConstraints.CENTER;
 			cons.gridwidth = 1;
@@ -318,12 +305,8 @@ public class TelaTimeCopa extends JPanel {
 					labelResultado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 					panelDasPartidas.add(labelResultado, cons);
 					panelDasPartidas.add(partidasJogadas.get(i).panelDaPartida(), c);
-		}
+				}
 			}
-
-			/*JScrollPane scroll = new JScrollPane(panelDasPartidas, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			panelTeste.add(scroll);*/
 		}
 	}
 }
