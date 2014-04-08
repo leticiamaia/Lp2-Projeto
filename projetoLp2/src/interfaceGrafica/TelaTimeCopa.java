@@ -3,6 +3,7 @@ package interfaceGrafica;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,15 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+import java.awt.FlowLayout;
+
+import javax.swing.ScrollPaneConstants;
+
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 
 public class TelaTimeCopa extends JPanel {
 
@@ -34,7 +44,7 @@ public class TelaTimeCopa extends JPanel {
 	private final JPanel mainPanel = new JPanel(new CardLayout());
 	private Collection<TimeCopa> listaDeTimes = (Collection<TimeCopa>) ControladorTimes.ler().values();
 	private final String[] comboItens = arrayComboItens();
-	private JComboBox<String> comboBox = new JComboBox<String>(comboItens);
+	private JComboBox/*<String>*/ comboBox = new JComboBox/*<String>*/(comboItens);
 	private TimeCopa timeSelecionadoAtual;
 	private final JPanel panelDasPartidas = new JPanel(), panelTeste = new JPanel();
 	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
@@ -122,11 +132,15 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(332, 55, 460, 149);
+		panelTeste.add(scrollPane);
+		scrollPane.setViewportView(panelDasPartidas);
+		
 		//panelDasPartidas.setLayout(new BoxLayout(null, BoxLayout.PAGE_AXIS));
 		panelDasPartidas.setBackground(Color.WHITE);
-		panelDasPartidas.setBounds(332, 55, 460, 370);
+		panelDasPartidas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelDasPartidas.setVisible(true);
-		panelTeste.add(panelDasPartidas);
 		//panelDasPartidas.setLayout(null);
 		
 		barraDerrota.setStringPainted(true);
@@ -161,7 +175,11 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeDerrotas.setText(numeroDeDerrotas());
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
 				barrasDePorcentagem();
-				addAPartidasJogadas();
+				try {
+					addAPartidasJogadas();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -262,7 +280,7 @@ public class TelaTimeCopa extends JPanel {
 		return timeSelecionadoAtual.getBandeiraDoTime();
 	}
 	
-	private void addAPartidasJogadas(){
+	private void addAPartidasJogadas() throws Exception{
 		List<Partida> partidasJogadas = timeSelecionadoAtual.getPartidasJogadas();
 		panelDasPartidas.repaint();
 		panelDasPartidas.removeAll();
@@ -275,16 +293,37 @@ public class TelaTimeCopa extends JPanel {
 		}
 		else{
 			/*JLabel label = new JLabel();
-			JPanel container = new JPanel();*/
+			JPanel container = new JPanel();
 			for (Partida partida : partidasJogadas) {
-				panelDasPartidas.add(partida.panelDaPartida());
-				/*label = new JLabel(partida.toString());
+				label = new JLabel(partida.getResultadoFormatado());
 				container.add(label);
-				panelDasPartidas.add(container);*/
+				panelDasPartidas.add(partida.panelDaPartida());
+				panelDasPartidas.add(container);
+			}*/
+			
+			GridBagConstraints cons = new GridBagConstraints();
+			cons.fill = GridBagConstraints.CENTER;
+			cons.gridwidth = 1;
+			cons.gridx = 1;
+			
+			GridBagConstraints c = new GridBagConstraints();
+			c.fill = GridBagConstraints.CENTER;
+			c.gridwidth = 2;
+			c.gridx = 0;
+			for(int i=0;  i < partidasJogadas.size() ; i++) {
+				if(partidasJogadas.get(i) != null && !partidasJogadas.get(i).testaJogoNaoRealizado()){
+					c.gridy = i;
+					cons.gridy = i;
+					JLabel labelResultado = new JLabel(partidasJogadas.get(i).getResultadoFormatado());
+					labelResultado.setFont(new Font("Tahoma", Font.PLAIN, 15));
+					panelDasPartidas.add(labelResultado, cons);
+					panelDasPartidas.add(partidasJogadas.get(i).panelDaPartida(), c);
+		}
 			}
-			JScrollPane scroll = new JScrollPane(panelDasPartidas, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+
+			/*JScrollPane scroll = new JScrollPane(panelDasPartidas, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			panelTeste.add(scroll);
+			panelTeste.add(scroll);*/
 		}
 	}
 }
