@@ -79,8 +79,12 @@ public class TelaDeAtualizarPartida extends JPanel {
 				nGols1 = (Integer) gols1.getSelectedItem();
 				nGols2 = (Integer) gols2.getSelectedItem();
 				partida = (String) partidas.getSelectedItem();
-				int idx = (partida.charAt(0));
-				idx -= '0';
+				int idx = 0; 
+				for(int i = 0; partida.charAt(i) != '.'; i++) {
+					idx *= 10;
+					idx += partida.charAt(i);
+					idx -= '0';
+				}
 				Partida[] partidasDisponiveis;
 				partidasDisponiveis = ControladorPartidas.ler();
 				try {
