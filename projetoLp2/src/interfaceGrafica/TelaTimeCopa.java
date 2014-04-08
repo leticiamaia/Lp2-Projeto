@@ -35,7 +35,7 @@ public class TelaTimeCopa extends JPanel {
 	private final String[] comboItens = arrayComboItens();
 	private JComboBox<String> comboBox = new JComboBox<String>(comboItens);
 	private TimeCopa timeSelecionadoAtual;
-	private JPanel panelDasPartidas = new JPanel();
+	private final JPanel panelDasPartidas = new JPanel(), panelTeste = new JPanel();
 	private final JProgressBar barraEmpate = new JProgressBar(), barraVitoria = new JProgressBar(), barraDerrota = new JProgressBar();
 	/**
 	 * Create the panel.
@@ -62,7 +62,6 @@ public class TelaTimeCopa extends JPanel {
 		divisorHorizontalLabel.setIcon(new ImageIcon(TelaDoUsuario.class.getResource("/projetoLp2/bolao/docs/divider.jpg")));
 		divisorHorizontalLabel.setBounds(-88, 59, 700, 21);
 		
-		final JPanel panelTeste = new JPanel();
 		panelTeste.setBounds(0, 0, 822, 452);
 		mainPanel.add( panelTeste, comboItens[0]);
 		panelTeste.setLayout(null);
@@ -122,11 +121,12 @@ public class TelaTimeCopa extends JPanel {
 		lblPartidasJogadas.setBounds(332, 11, 460, 33);
 		panelTeste.add(lblPartidasJogadas);
 		
+		//panelDasPartidas.setLayout(new BoxLayout(null, BoxLayout.PAGE_AXIS));
 		panelDasPartidas.setBackground(Color.WHITE);
 		panelDasPartidas.setBounds(332, 55, 460, 370);
 		panelDasPartidas.setVisible(true);
 		panelTeste.add(panelDasPartidas);
-		panelDasPartidas.setLayout(null);
+		//panelDasPartidas.setLayout(null);
 		
 		barraDerrota.setStringPainted(true);
 		barraDerrota.setBounds(170, 138, 131, 27);
@@ -161,6 +161,7 @@ public class TelaTimeCopa extends JPanel {
 				labelNumeroDeEmpates.setText(numeroDeEmpates());
 				barrasDePorcentagem();
 				addAPartidasJogadas();
+				
 			}
 		});
 		btnOK.setBounds(932, 111, 64, 26);
@@ -272,12 +273,14 @@ public class TelaTimeCopa extends JPanel {
 			panelDasPartidas.add(label);
 		}
 		else{
-			JPanel container = new JPanel();
-			container.setLayout(new BoxLayout(null, BoxLayout.PAGE_AXIS));
+			/*JLabel label = new JLabel();
+			JPanel container = new JPanel();*/
 			for (Partida partida : partidasJogadas) {
-				container.add(partida.panelDaPartida());
+				panelDasPartidas.add(partida.panelDaPartida());
+				/*label = new JLabel(partida.toString());
+				container.add(label);
+				panelDasPartidas.add(container);*/
 			}
-			panelDasPartidas.add(container);
 		}
 	}
 }
